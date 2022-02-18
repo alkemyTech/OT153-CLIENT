@@ -1,11 +1,13 @@
-<p-card 
-    header="{{title | uppercase}}"
-    [style]="{
-        'width': '',
-        'text-align': 'center',
-        'background-image': 'url('+[pathBackground]+')',
-        'background-position': 'center'
-    }"
-    styleClass="p-card-shadow"
+<div>
+    <div [style]="{
+            'color': [colorText],
+            'background-image': [this.background()]
+        }"
+        ngClass="p-card-shadow container-title text-title"
     >
-</p-card>
+        <p>{{title | uppercase}}</p>
+    
+    </div>
+<div>
+
+
