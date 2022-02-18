@@ -10,6 +10,8 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { PrimengModule } from "../shared/primeng/primeng.module";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,8 +33,14 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    RouterModule
+    RouterModule,
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    RouterModule,
+    FormsModule,
+    PrimengModule,
+  ],
 })
 export class FeaturesModule {}
