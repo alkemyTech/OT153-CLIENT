@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { ChipsModule } from 'primeng/chips';
 import { CommonModule } from "@angular/common";
@@ -23,11 +24,27 @@ import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  exports: [ButtonModule, RippleModule, CommonModule, CalendarModule,  
-    ChipsModule, DialogModule, DropdownModule, CarouselModule, DividerModule,
-    ImageModule, InputNumberModule, InputTextareaModule, InputTextModule,
-    PaginatorModule, PasswordModule, RadioButtonModule, SelectButtonModule,
-    SidebarModule, TooltipModule
+  exports: [
+    ButtonModule, 
+    CommonModule, 
+    CalendarModule,
+    CardModule,  
+    CarouselModule, 
+    ChipsModule, 
+    DialogModule, 
+    DropdownModule, 
+    DividerModule,
+    ImageModule, 
+    InputNumberModule, 
+    InputTextareaModule, 
+    InputTextModule,
+    PaginatorModule, 
+    PasswordModule, 
+    RadioButtonModule, 
+    RippleModule, 
+    SelectButtonModule,
+    SidebarModule, 
+    TooltipModule
   ],
 })
 export class PrimengModule {}
