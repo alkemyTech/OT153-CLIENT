@@ -9,6 +9,7 @@ import { OrganizationDetailsComponent } from "./backoffice/pages/organization-de
 import { DonationsComponent } from "./public/components/donations/donations.component";
 import { ErrorComponent } from "./public/components/donations/error/error.component";
 import { ThanksComponent } from "./public/components/donations/thanks/thanks.component";
+import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: "nosotros",
     component: AboutComponent,
+  },
+  { 
+    path: "login", 
+    component: LoginFormComponent 
   },
   {
     path: "",
