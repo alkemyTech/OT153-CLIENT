@@ -4,9 +4,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { PrimengModule } from './primeng/primeng.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     CKEditorModule,
