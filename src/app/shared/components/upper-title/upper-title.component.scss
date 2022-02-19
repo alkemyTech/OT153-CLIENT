@@ -1,7 +1,10 @@
 $colorText: black;
+$fontFamily: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$bgColor: rgb(252, 96, 85);
+
 .text-title{
-    font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    font-weight: 700;
+    font-family: $fontFamily;
+    font-weight: 800;
     font-size: 2rem;
     text-align: center;
     color: $colorText;
@@ -11,6 +14,6 @@ $colorText: black;
     padding: 1px;
     margin: 0;
     border-radius: 5px;
-    background-color: rgb(252, 96, 85);
+    background-color: $bgColor;
     background-position: center;
 }
