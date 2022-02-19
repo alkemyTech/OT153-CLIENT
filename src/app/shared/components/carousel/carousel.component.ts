@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Slide } from '../../models/slide.model';
+import { Component, OnInit } from '@angular/core';
+import { CarouselService } from './carousel.service';
+import { Slide } from './slide.interface';
 
 @Component({
   selector: 'app-carousel',
@@ -8,12 +9,34 @@ import { Slide } from '../../models/slide.model';
 })
 export class CarouselComponent implements OnInit {
 
-  @Input() slides: Slide[];
+  slides: Slide[];
 
-	constructor() {
+	responsiveOptions;
+
+	constructor(private carouselService: CarouselService) {
+		this.responsiveOptions = [
+            {
+                breakpoint: '1024px',
+                numVisible: 3,
+                numScroll: 3
+            },
+            {
+                breakpoint: '768px',
+                numVisible: 2,
+                numScroll: 2
+            },
+            {
+                breakpoint: '560px',
+                numVisible: 1,
+                numScroll: 1
+            }
+        ];
 	}
 
 	ngOnInit() {
+		// this.productService.getProductsSmall().then(products => {
+		// 	this.products = products;
+		// });
   }
 
 }

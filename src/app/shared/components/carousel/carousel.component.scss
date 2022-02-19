@@ -1,24 +1,14 @@
-$bgColor: rgb(240, 240, 240);
-
-.container{
-    padding: 1px;
-    margin: 0;
-    border-radius: 5px;
-    background-position: center;
-}
-
-.slide-item {
-    .slide-item-content {
+.product-item {
+    .product-item-content {
         border: 1px solid var(--surface-d);
         border-radius: 3px;
         margin: .3rem;
         text-align: center;
         padding: 2rem 0;
-        background-color: $bgColor;
     }
 
-    .slide-image {
-        width: 60%;
+    .product-image {
+        width: 50%;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
     }
 }
