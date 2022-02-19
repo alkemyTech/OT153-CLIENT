@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { PrimengModule } from './primeng/primeng.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CarouselComponent
+  ],
   imports: [
     CommonModule,
     CKEditorModule,
@@ -16,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports:[
     CKEditorModule,
     PrimengModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselComponent
   ]
 })
 export class SharedModule { }
