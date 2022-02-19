@@ -4,9 +4,11 @@ import { CommonModule } from '@angular/common';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpperTitleComponent } from './components/upper-title/upper-title.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 const componentToExport = [
-  UpperTitleComponent
+  UpperTitleComponent,
+  CarouselComponent
 ]
 
 const modulesToExport = [
