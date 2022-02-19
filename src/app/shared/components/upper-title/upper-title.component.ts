@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class UpperTitleComponent implements OnInit {
   @Input()title!: string;
   @Input()pathBackground!: string;
+  @Input()colorBackground!: string;
   @Input()colorText!: string;
 
   constructor() {
