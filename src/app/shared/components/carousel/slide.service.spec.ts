@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CarouselService } from './carousel.service';
+import { SlideService } from './slide.service';
 
-describe('CarouselService', () => {
-  let service: CarouselService;
+describe('SlideService', () => {
+  let service: SlideService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CarouselService);
+    service = TestBed.inject(SlideService);
   });
 
   it('should be created', () => {
