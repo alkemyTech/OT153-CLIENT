@@ -1,1 +1,23 @@
-<p>login-form works!</p>
+<div class="container">
+    <p-card header="Inicio de sesión">
+        <div class="grid p-fluid">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="col-12">
+                    <div class="p-inputgroup">
+                        <input type="text" formControlName="email" pInputText placeholder="Correo electrónico">         
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <div class="p-inputgroup">
+                        <input type="password" formControlName="password" pInputText placeholder="Contraseña">         
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <button pButton type="submit" label="Enviar" ></button>
+                </div>
+            </form>
+        </div>
+    </p-card>
+</div>
