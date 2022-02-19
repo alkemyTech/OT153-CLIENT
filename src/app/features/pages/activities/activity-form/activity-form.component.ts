@@ -7,10 +7,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./activity-form.component.scss']
 })
 export class ActivityFormComponent implements OnInit {
-  public Editor = ClassicEditor;
-  public model = {
-    editorData: '<p>Hello, world!</p>'
-};
+ 
   title = 'base-ong-angular-client';
 
   constructor() { }
