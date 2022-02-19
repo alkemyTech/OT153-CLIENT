@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class CarouselService {
+export class SlideService {
 
   private apiUrl = `http://ongapi.alkemy.org/api/slides`;
 
