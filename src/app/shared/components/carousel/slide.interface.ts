@@ -1,11 +1,12 @@
 export interface Slide {
-    id?: string;
+    id?: number;
     name: string,
     description: string,
     image: string,
     order: number,
-    user_id: string,
-    created_at: Date,
-    updated_at: Date,
-    deleted_at: Date
+    user_id?: number,
+    created_at: string,
+    updated_at: string,
+    deleted_at?: string,
+    group_id?: number
 }
