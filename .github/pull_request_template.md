@@ -11,7 +11,7 @@ Please add a screenshot or video.
 
 ## Teammate collaborator
 
-Please add collaborating teammates if so
+Please add collaborating teammates if so tag them.
 
 ### Sanity Check Steps
 
