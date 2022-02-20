@@ -1,10 +1,8 @@
-:host ::ng-deep .password input {
-    width: 15rem
-}
-
 form{
+    justify-content: center;
+    align-content: center;
     margin: 0 auto;
-    background-color: gray;
+    background-color: white;
     border-radius: 5px;
     margin-top: 2px;
 }
