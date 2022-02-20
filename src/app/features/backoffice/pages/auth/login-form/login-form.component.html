@@ -3,22 +3,35 @@
         <div class="grid p-fluid">
             <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                 <div class="col-12">
-                    <div class="p-inputgroup" *ngIf="!(loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched))">
-                        <input type="text" formControlName="email" pInputText placeholder="Correo electrónico">         
+                    <div class="p-inputgroup">
+                        <input type="text" 
+                            [ngClass]="{'ng-invalid ng-dirty': (loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched))}"
+                            formControlName="email" 
+                            aria-describedby="email-help"
+                            pInputText 
+                            placeholder="Correo electrónico">         
                     </div>
                     <div class="field" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
-                        <input id="email" formControlName="email" type="text" aria-describedby="email-help" class="ng-invalid ng-dirty" placeholder="Correo electrónico" pInputText />
                         <small id="email-help" class="p-error block">Correo electrónico inválido.</small>         
                     </div>
                 </div>
                 
                 <div class="col-12">
-                    <div class="p-inputgroup" *ngIf="!(loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched))">
-                        <input type="password" formControlName="password" pInputText placeholder="Contraseña">         
+                    <div class="p-inputgroup">
+                        <input id="password" 
+                            formControlName="password" 
+                            type="password" 
+                            aria-describedby="password-help" 
+                            [ngClass]="{'ng-invalid ng-dirty': (loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched))}" 
+                            pInputText 
+                            placeholder="Contraseña"/>
+                   
                     </div>
                     <div class="field" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
-                        <input id="password" formControlName="password" type="password" aria-describedby="password-help" class="ng-invalid ng-dirty" pInputText placeholder="Contraseña"/>
-                        <small id="password-help" class="p-error block">La contraseña debe tener al menos seis caracteres.</small>         
+                        <small id="password-help" class="p-error block">Mínimo 6 caracteres.</small>         
+                        <small id="password-help" class="p-error block">Al menos una letra.</small>         
+                        <small id="password-help" class="p-error block">Al menos un número.</small>         
+                        <small id="password-help" class="p-error block">Al menos un símbolo.</small>         
                     </div>
                 </div>
 
