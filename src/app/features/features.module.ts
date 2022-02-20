@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
 import { ActivityFormComponent } from "./backoffice/pages/activities/activity-form/activity-form.component";
 import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./backoffice/pages/auth/register-form/register-form.component";
@@ -23,6 +24,7 @@ import { ErrorComponent } from "./public/pages/donations/error/error.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
+
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-ac
     ActivitiesComponent,
     NewActivityFormComponent,
     EditActivityFormComponent,
+    UserFormComponent
   ],
   exports: [
     ActivityFormComponent,

@@ -1,17 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-import { ActivityFormComponent } from "./backoffice/pages/activities/activity-form/activity-form.component";
-import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.component";
-import { AboutComponent } from "./public/pages/about/about.component";
-import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { SlidesFormComponent } from "./backoffice/pages/slides/slides-form/slides-form.component";
 import { DonationsComponent } from "./public/pages/donations/donations.component";
 import { ErrorComponent } from "./public/pages/donations/error/error.component";
 import { ThanksComponent } from "./public/pages/donations/thanks/thanks.component";
-import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
+import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
+import { ActivityFormComponent } from "./backoffice/pages/activities/activity-form/activity-form.component";
+import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
+import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.component";
+import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
+import { AboutComponent } from "./public/pages/about/about.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -93,6 +95,14 @@ const routes: Routes = [
   {
     path: "gracias",
     component: ThanksComponent,
+  },
+  {
+    path: "user",
+    component: UserFormComponent,
+  },
+  {
+    path: "user/edit/:id",
+    component: UserFormComponent,
   },
   {
     path: "**",
