@@ -9,6 +9,10 @@ Please add a short description about the changes.
 
 Please add a screenshot or video.
 
+## Teammate collaborator
+
+Please add collaborating teammates if so
+
 ### Sanity Check Steps
 
 - [ ] All console logs have been removed.
