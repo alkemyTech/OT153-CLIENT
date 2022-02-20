@@ -1,31 +1,53 @@
-<div class="">
-    <app-upper-title title="Formulario de Registro" [colorBackground]="'black'" [colorText]="'white'"></app-upper-title>
-    <form (submit)="submit()" [formGroup]="registerForm" class="col-5">
-        <div class="field">
-            <label for="username" class="block">Enter username for this new account.</label>
-            <input id="username" type="text" aria-describedby="username-help" pInputText formControlName="username"/>
-            <small id="username-help" class="block">Enter username for this new account.</small>
-        </div>
+<div class="flex-container">
+    <p-card styleClass="p-card-shadow col-4">
 
-        <div class="field">
-            <label for="password" class="block">Enter password for this new account.</label>
-            <input id="password" type="password" aria-describedby="password-help" pInputText  formControlName="password"/>
-            <!-- <small id="password-help" class="block">Enter password for this new account.</small> -->
-        </div>
+        <form (submit)="submit()" [formGroup]="registerForm" class="w-100 col-5">
 
-        <div class="field">
-            <label for="confirmPassword" class="block">Confirm Password</label>
-            <input id="confirmPassword" type="password" aria-describedby="confirmPassword-help" pInputText  formControlName="confirmPassword"/>
-            <!-- <small id="confirmPassword-help" class="block">Confirm password.</small> -->
-        </div>
+            <h2>Registro</h2>
 
-        <button pButton type="button" label="Registrar" 
-            class="p-button-primary">
-        </button>
+            <div class="field" [class.has-error]="useremailControl.touched && useremailControl.dirty">
+                <!-- <label for="useremail" class="block">Enter username for this new account</label> -->
+                <input 
+                    id="useremail" type="text"
+                    placeholder='Correo electrónico' 
+                    aria-describedby="useremail-help" 
+                    pInputText formControlName="useremail"
+                />
+                <div *ngIf="useremailControl.invalid">
+                    <small 
+                        *ngIf="useremailControl.touched && useremailControl.hasError('required')" 
+                        id="useremail-help" class="p-error">El campo es obligatorio</small>
+                    <small 
+                        *ngIf="useremailControl.touched && useremailControl.hasError('pattern')" 
+                        id="useremail-help" class="p-error">Email invalido</small>
+                    <small id="useremail-help" class="block"> {{registerForm.value.useremail}} </small>
+                </div>
+                
+            </div>
 
-        <button pButton type="button" label="Volver"  
-            class="p-button-secondary">
-        </button>
+            <div class="field">
+                <!-- <label for="password" class="block">Enter password for this new account</label> -->
+                <input id="password" placeholder='Contraseña' type="password" aria-describedby="password-help" pInputText  formControlName="password"/>
+                <small id="password-help" class="block">{{registerForm.value.password}}</small>
+            </div>
 
-    </form>
+            <div class="field">
+                <!-- <label for="confirmPassword" class="block">Confirm Password</label> -->
+                <input id="confirmPassword" placeholder='Confirmar Contraseña' type="password" aria-describedby="confirmPassword-help" pInputText  formControlName="confirmPassword"/>
+                <small id="confirmPassword-help" class="block">{{registerForm.value.confirmPassword}}</small>
+            </div>
+
+            <button pButton type="button" label="Volver"  
+                class="p-button-secondary w-50">
+            </button>
+
+            <button pButton type="submit" label="Registrar" 
+                class="p-button-primary w-50">
+            </button>
+
+        </form>
+    </p-card>
+    <div class="col-8">
+
+    </div>
 </div>
