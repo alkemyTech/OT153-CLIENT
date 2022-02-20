@@ -14,10 +14,6 @@
                     <div class="field" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
                         <small id="email-help" class="p-error block">Correo electrónico inválido.</small>         
                     </div>
-                    <div class="field" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
-                        <input id="email" formControlName="email" type="text" aria-describedby="email-help" class="ng-invalid ng-dirty" placeholder="Correo electrónico" pInputText />
-                        <small id="email-help" class="p-error block">Correo electrónico inválido.</small>         
-                    </div>
                 </div>
                 
                 <div class="col-12">
@@ -36,10 +32,6 @@
                         <small id="password-help" class="p-error block">Al menos una letra.</small>         
                         <small id="password-help" class="p-error block">Al menos un número.</small>         
                         <small id="password-help" class="p-error block">Al menos un símbolo.</small>         
-                    </div>
-                    <div class="field" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
-                        <input id="password" formControlName="password" type="password" aria-describedby="password-help" class="ng-invalid ng-dirty" pInputText placeholder="Contraseña"/>
-                        <small id="password-help" class="p-error block">La contraseña debe tener al menos seis caracteres.</small>         
                     </div>
                 </div>
 
