@@ -3,6 +3,7 @@ import { ButtonModule } from "primeng/button";
 import { CalendarModule } from "primeng/calendar";
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from "primeng/carousel";
+import { CardModule } from "primeng/card";
 import { ChipsModule } from "primeng/chips";
 import { CommonModule } from "@angular/common";
 import { DialogModule } from "primeng/dialog";
@@ -29,6 +30,7 @@ import { TooltipModule } from "primeng/tooltip";
     CardModule,
     CommonModule,
     ChipsModule,
+    CardModule,
     DialogModule,
     DropdownModule,
     CarouselModule,
