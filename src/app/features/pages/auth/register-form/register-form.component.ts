@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, PatternValidator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -7,22 +7,38 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
+  private patternEmail: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  private useremailFormControl = new FormControl( '', [Validators.required, Validators.pattern(this.patternEmail), Validators.minLength(6)] );
+  private passwordFormControl = new FormControl( '', [Validators.required, Validators.minLength(6)] );
+  private confirmPasswordFormControl = new FormControl( '', [Validators.required, Validators.minLength(6)] );
 
-  value4!: string;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { 
+  }
 
   registerForm = this.formBuilder.group({
-    username: [''],
-    password: [''],
-    confirmPassword: ['']
+    useremail: this.useremailFormControl,
+    password: this.passwordFormControl,
+    confirmPassword: this.confirmPasswordFormControl
   });
 
 
   ngOnInit(): void {
   }
 
-  submit():void {
-    
+  submit() {
+    console.log(this.registerForm.value)
+  }
+
+  get useremailControl():FormControl{
+    return this.registerForm.get('useremail') as FormControl;
+  }
+
+  get passwordControl():FormControl{
+    return this.registerForm.get('password') as FormControl;
+  }
+
+  get confirmPasswordControl():FormControl{
+    return this.registerForm.get('confirmPassword') as FormControl;
   }
 
 }
