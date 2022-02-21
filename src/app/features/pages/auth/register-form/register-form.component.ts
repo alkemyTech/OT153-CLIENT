@@ -1,5 +1,6 @@
+import { patternValidator, passwordMatchValidator } from 'src/app/shared/validators/CustomValidator';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, PatternValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -7,9 +8,21 @@ import { FormBuilder, FormControl, PatternValidator, Validators } from '@angular
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  private patternEmail: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  private useremailFormControl = new FormControl( '', [Validators.required, Validators.pattern(this.patternEmail), Validators.minLength(6)] );
-  private passwordFormControl = new FormControl( '', [Validators.required, Validators.minLength(6)] );
+  private patternEmail: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //
+  private patternSymbols: RegExp = /[-!$%@^&*()_+|~=`{}\[\]:";'<>?,.\/]/; //
+
+  private useremailFormControl = new FormControl( '', [
+      Validators.required, Validators.minLength(6),
+      patternValidator(this.patternEmail, { hasEmail: true })
+    ] );
+
+  private passwordFormControl = new FormControl( '', [
+      Validators.required, Validators.minLength(6),
+      patternValidator(/\d/, { hasNumber: true }),
+      patternValidator(/\w/, { hasLetter: true }),
+      patternValidator(this.patternSymbols, { hasSymbol: true })
+    ] );
+
   private confirmPasswordFormControl = new FormControl( '', [Validators.required, Validators.minLength(6)] );
 
   constructor(private formBuilder: FormBuilder) { 
@@ -19,6 +32,9 @@ export class RegisterFormComponent implements OnInit {
     useremail: this.useremailFormControl,
     password: this.passwordFormControl,
     confirmPassword: this.confirmPasswordFormControl
+  },
+  { 
+     
   });
 
 
