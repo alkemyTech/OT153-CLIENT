@@ -1,6 +1,6 @@
 <p-card header="Registro" styleClass="p-card-shadow col-8 m-auto">
     <div class="grid p-fluid">
-        <form (submit)="submit()" [formGroup]="registerForm" class="w-100 col-5">
+        <form (submit)="submit()" [formGroup]="frmSignup" class="w-100 col-5">
             <div class="field" [class.has-error]="useremailControl.touched && useremailControl.dirty">
                 <input pInputText id="useremail" type="text" placeholder='Correo electrónico' aria-describedby="useremail-help" formControlName="useremail"/>
                 <div *ngIf="useremailControl.invalid">
@@ -8,9 +8,8 @@
                         *ngIf="useremailControl.touched && useremailControl.hasError('required')" 
                         id="useremail-help" class="p-error">El campo es obligatorio</small>
                     <small 
-                        *ngIf="useremailControl.touched && useremailControl.hasError('pattern')" 
+                        *ngIf="useremailControl.touched && useremailControl.hasError('hasEmail')" 
                         id="useremail-help" class="p-error">Email invalido</small>
-                    <small id="useremail-help" class="block"> {{registerForm.value.useremail}} </small>
                 </div>
             </div>
 
@@ -24,16 +23,16 @@
                         id="password-help" class="p-error">El campo es obligatorio</small>
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('minlength')" 
-                        id="password-help" class="p-error block">Contraseña insegura, debe tener minimo seis caracteres.</small>
+                        id="password-help" class="p-error block">Debe tener minimo seis caracteres.</small>
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('hasNumber')" 
-                        id="password-help" class="p-error block">Al menos un número.</small>  
+                        id="password-help" class="p-error block">Ingrese al menos un número.</small>  
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('hasLetter')" 
-                        id="password-help" class="p-error block">Al menos una letra.</small> 
+                        id="password-help" class="p-error block">Ingrese al menos una letra.</small> 
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('hasSymbol')" 
-                        id="password-help" class="p-error block">Al menos un símbolo.</small> 
+                        id="password-help" class="p-error block">Ingrese al menos un símbolo.</small> 
 
                 </div>
             </div>
@@ -41,16 +40,20 @@
 
             <div class="field" [class.has-error]="confirmPasswordControl.touched && confirmPasswordControl.dirty">    
             
-                <!-- <label for="confirmPassword" class="block">Confirm Password</label> -->
-                <input id="confirmPassword" placeholder='Confirmar Contraseña' type="password" aria-describedby="confirmPassword-help" pInputText  formControlName="confirmPassword"/>
-                <div
-                    *ngIf="passwordControl.touched && confirmPasswordControl.touched && registerForm.hasError('missmatch')"
-                    class="error"
-                ></div>
-
-
-
-                <small id="confirmPassword-help" class="block">{{registerForm.value.confirmPassword}}</small><small id="password-help" class="block"> {{registerForm.value.password}} </small>
+                <input id="confirmPassword" placeholder='Confirmar Contraseña' type="password" aria-describedby="confirmPassword-help" pInputText formControlName="confirmPassword"/>
+                <div *ngIf="passwordControl.touched && confirmPasswordControl.touched" class="error">
+                    <div *ngIf="confirmPasswordControl.invalid">
+                        <small 
+                            *ngIf="confirmPasswordControl.touched && confirmPasswordControl.hasError('required')" 
+                            id="password-help" class="p-error block">El campo es obligatorio</small>
+                        <small 
+                            *ngIf="confirmPasswordControl.touched && confirmPasswordControl.hasError('NoPassswordMatch')" 
+                            id="password-help" class="p-error block">La confirmacion no coincide.</small>
+                    </div>
+                </div>
+                
+                <small id="confirmPassword-help" class="block">{{registerForm().value.confirmPassword}}</small>
+                <small id="password-help" class="block"> {{registerForm().value.password}} </small>
             </div>
 
             
