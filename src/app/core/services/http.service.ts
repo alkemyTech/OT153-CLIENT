@@ -13,16 +13,26 @@ export class HttpService {
     this._headers = new HttpHeaders({ Group: this._groupId });
   }
 
-  public get<T>(url: string, activateHeader:boolean = false ):Observable<T> {
-    return this.http.get<T>(url, activateHeader ? { headers: this._headers }: {});
+  public get<T>(url: string, activateHeader: boolean = false): Observable<T> {
+    return this.http.get<T>(
+      url,
+      activateHeader ? { headers: this._headers } : {}
+    );
   }
 
   public patch<T>(url: string, body: T): Observable<T> {
     return this.http.patch<T>(url, body);
   }
 
-  public post<T>(url: string, body: T): Observable<T> {
-    return this.http.post<T>(url, body);
+  public post<T>(
+    url: string,
+    body: Observable<T> | null,
+    activateHeader: boolean = false,
+    options: {}
+  ): Observable<T> {
+    return this.http.post<T>(
+      url,
+      activateHeader ? { headers: this._headers } : {}
+    );
   }
-  
 }
