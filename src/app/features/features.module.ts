@@ -12,8 +12,9 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
-import { AboutComponent } from './pages/about/about.component';
-import { AboutTextComponent } from './pages/about/components/about-text/about-text.component';
+import { AboutComponent } from "./pages/about/about.component";
+import { AboutTextComponent } from "./pages/about/components/about-text/about-text.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AboutTextComponent } from './pages/about/components/about-text/about-te
     TestimonialFormComponent,
     UserFormComponent,
     AboutComponent,
-    AboutTextComponent
+    AboutTextComponent,
+    DashboardComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -38,14 +40,14 @@ import { AboutTextComponent } from './pages/about/components/about-text/about-te
     TestimonialFormComponent,
     UserFormComponent,
     RouterModule,
-    SharedModule
+    SharedModule,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class FeaturesModule {}
