@@ -11,7 +11,7 @@ Please add a screenshot or video.
 
 ## Teammate collaborator
 
-- [ ] Someone from the team collaborated (if so , please tag them).
+- [ ] Someone from the team collaborated (**_if so, please tag them after this line_**).
 
 ### Sanity Check Steps
 
