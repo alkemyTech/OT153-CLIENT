@@ -26,12 +26,13 @@ export class HttpService {
 
   public post<T>(
     url: string,
-    body: Observable<T> | null,
-    activateHeader: boolean = false,
-    options: {}
+    body: any,
+    activateHeader: boolean = false
   ): Observable<T> {
+    console.log(body);
     return this.http.post<T>(
       url,
+      body,
       activateHeader ? { headers: this._headers } : {}
     );
   }
