@@ -27,7 +27,6 @@ import { OrganizationDetailsComponent } from "./backoffice/pages/organization-de
     NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
-    UserFormComponent,
     AboutComponent,
     AboutTextComponent,
     DashboardComponent,
