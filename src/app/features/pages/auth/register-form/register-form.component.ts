@@ -1,6 +1,7 @@
-import { patternValidator, passwordMatchValidator } from './CustomValidator';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { wordValidator, digitValidator, symbolValidator, emailValidator } from '@app/core/util/validators/form.validators';
+import { passwordMatchValidator } from '@app/core/util/validators/password.validators';
 
 @Component({
   selector: 'app-register-form',
@@ -8,27 +9,18 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  public frmSignup: FormGroup;
-  
-  private patternEmail: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //
-  private patternSymbols: RegExp = /[-!$%@^&*()_+|~=`{}\[\]:";'<>?,.\/]/; //
-
-  private useremailFormControl = new FormControl( '', [
-      Validators.required, Validators.minLength(6),
-      patternValidator(this.patternEmail, { hasEmail: true })
-    ] );
-
-  private passwordFormControl = new FormControl( '', [
-      Validators.required, Validators.minLength(6),
-      patternValidator(/\d/, { hasNumber: true }),
-      patternValidator(/\w/, { hasLetter: true }),
-      patternValidator(this.patternSymbols, { hasSymbol: true })
-    ] );
-
+  private frmSignup: FormGroup;
+  private useremailFormControl: FormControl = new FormControl( '', 
+    [ Validators.required, Validators.minLength(6), emailValidator() ]);
+  private passwordFormControl: FormControl = new FormControl( '', 
+    [ Validators.required, Validators.minLength(6), digitValidator(), wordValidator(), symbolValidator() ]);
   private confirmPasswordFormControl = ([null, Validators.compose([Validators.required])]);
 
   constructor(private formBuilder: FormBuilder) { 
     this.frmSignup = this.registerForm();
+  }
+  
+  ngOnInit(): void {
   }
 
   registerForm(): FormGroup {
@@ -39,21 +31,16 @@ export class RegisterFormComponent implements OnInit {
         confirmPassword: this.confirmPasswordFormControl
      },
      {
-        // check whether our password and confirm password match
         validator: passwordMatchValidator
      });
-  }
-
-
-  ngOnInit(): void {
   }
 
   submit() {
     console.log(this.registerForm().value)
   }
 
-  get formBuild():FormBuilder{
-    return this.formBuilder as FormBuilder;
+  get formSignup():FormGroup{
+    return this.frmSignup;
   }
 
   get useremailControl():FormControl{
