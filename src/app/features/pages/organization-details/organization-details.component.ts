@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Organization } from 'src/app/shared/models/organization.model';
+import { Organization } from 'src/app/core/models/organization.model';
+import { HttpService } from 'src/app/core/services/http.service';
 
 @Component({
   selector: 'app-organization-details',
@@ -8,12 +9,14 @@ import { Organization } from 'src/app/shared/models/organization.model';
 })
 export class OrganizationDetailsComponent implements OnInit {
 
-  organization: Organization; 
+  organization: any; 
 
-  constructor() { }
+  constructor(private httpSvc: HttpService) { }
 
   ngOnInit(): void {
-    // ERASE -> Mock data until proper service is set. 
+    // this.getOrganization(); --> DISABLED UNTIL SERVICES WORK CORRECTLY
+
+    // MOCK DATA TO DELETE WHEN SERVICES IS WORKING
     this.organization = {
       "id": 1,
       "name": "Organizacion SomosMas",
@@ -30,8 +33,15 @@ export class OrganizationDetailsComponent implements OnInit {
       "linkedin_url": "https://github.com/alkemyTech/OT130-CLIENT/pull/20",
       "instagram_url": "https://github.com/alkemyTech/OT130-CLIENT/pull/20",
       "twitter_url": "https://github.com/alkemyTech/OT130-CLIENT/pull/20"
-    }
-    // END ERASE - Mock Data
+      }
+    // END MOCK DATA
+  }
+
+  getOrganization(){
+    const url = `http://ongapi.alkemy.org/public/api/organization/`;
+    this.httpSvc.get(url, true).subscribe(organization => {
+      this.organization = organization;
+    })
   }
 
 }
