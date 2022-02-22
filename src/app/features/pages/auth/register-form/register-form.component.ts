@@ -10,10 +10,10 @@ import { passwordMatchValidator } from '@app/core/util/validators/password.valid
 })
 export class RegisterFormComponent implements OnInit {
   private frmSignup: FormGroup;
-  private useremailFormControl: FormControl = new FormControl( '', 
-    [ Validators.required, Validators.minLength(6), emailValidator() ]);
-  private passwordFormControl: FormControl = new FormControl( '', 
-    [ Validators.required, Validators.minLength(6), digitValidator(), wordValidator(), symbolValidator() ]);
+  private email: string; 
+  private password: string;
+  private useremailFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(6), emailValidator() ]);
+  private passwordFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(6), digitValidator(), wordValidator(), symbolValidator() ]);
   private confirmPasswordFormControl = ([null, Validators.compose([Validators.required])]);
 
   constructor(private formBuilder: FormBuilder) { 
@@ -36,7 +36,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.registerForm().value)
+    const email = this.frmSignup.value.useremail;
+    const password = this.frmSignup.value.userpassword;
   }
 
   get formSignup():FormGroup{
