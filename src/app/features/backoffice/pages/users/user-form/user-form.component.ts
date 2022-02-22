@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '@app/features/services/users.service';
-import { User } from "src/app/core/models/user.models";
+import { ImgFile, User } from "src/app/core/models/user.models";
+
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +17,9 @@ export class UserFormComponent implements OnInit {
   title = "Agregar Usuario";
   btn   = "Registrar Usuario";
   id: string|null;
-  profile_image: string = "../../../../../assets/img/img_user.png";
+  imageFile!: ImgFile;
+  imageError: boolean = false;
+  image: string = "../../../../../assets/img/img_user.png";
   imgName: string = "";
   edit: boolean = false;
   ok: boolean = false;
@@ -45,10 +48,11 @@ export class UserFormComponent implements OnInit {
         Validators.required]],
       role_id: ['2', [
         Validators.required]],
-        description: ['', [
+      description: ['', [
           Validators.required,
-          Validators.minLength(10)
-        ]]
+          Validators.minLength(10)]],
+      profile_image: ["", [Validators.required]],
+
     });
     this.id = this._router.snapshot.paramMap.get("id");
   }
@@ -62,8 +66,9 @@ export class UserFormComponent implements OnInit {
       name: this.form.get("name")?.value,
       email: this.form.get("email")?.value,
       password: this.form.get("password")?.value,
-      profile_image: this.form.get("profile_image")?.value,
+      profile_image: this.image,
       role_id: this.form.get("role_id")?.value,
+      description: this.form.get("description")?.value,
     };
 
     if (this.id) {
@@ -75,10 +80,10 @@ export class UserFormComponent implements OnInit {
         alert("Usuario creado");
       });
     }
-
   }
 
   formEdit(){
+    
     if(this.id !== null){
       this.edit = true;
       this.title = "Editar Usuario";
@@ -90,14 +95,41 @@ export class UserFormComponent implements OnInit {
           name: response.data.name,
           email: response.data.email,
           password: response.data.password,
-          role_id: response.data.role_id
+          role_id: response.data.role_id,
+          profile_image: this.image
         });
-        if(response.data.profile_image !== null){
-          this.profile_image = response.data.profile_image;
-        }        
+            
       });      
     }
   }
 
+  fileEvent(event:any) {
+    this.imageFile = { id: "0"}; 
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];   
+      if ( (file.type != "image/jpeg") && (file.type != "image/png")   )    {
+        this.imageError=true;      
+        return false;
+      }
+     
+      reader.readAsDataURL(file);
+      reader.onload = () => {               
+        this.image = "data:image/png;base64,"+reader.result!.toString().split(',')[1];         
+        var img = new Image();             
+        img.addEventListener('load',
+      function(){
+        var formElement = <HTMLFormElement>document.getElementById('imageError');     
+       }    
+      ,false);
+  
+      img.src = this.image;    
+      this.imageFile.imgFile=reader.result!.toString().split(',')[1];            
+      };
+  
+  
+    }
+    return true;
+  }
 
 }

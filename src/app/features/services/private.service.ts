@@ -8,6 +8,7 @@ export class PrivateService {
 
   constructor(private http: HttpClient) {}
 
+  
   router(rout: string, id?: string) {
     let route = rout;
     if (id) {
@@ -29,13 +30,8 @@ export class PrivateService {
     return this.http.put(urls, JSON.stringify(body), { headers: httpHeaders });
   }
 
-<<<<<<< HEAD
   post(rout: string, body: object) {
     const httpHeaders = this.headers();
-=======
-  post(rout: string, body: object, auth?: boolean) {
-    const httpHeaders = this.headers(auth);
->>>>>>> ac0613b (Create functions Edit and Create Users)
     const urls = this.router(rout);
     return this.http.post<any>(urls, JSON.stringify(body), {
       headers: httpHeaders,
@@ -43,13 +39,8 @@ export class PrivateService {
     
   }
 
-<<<<<<< HEAD
     patch(rutter: string, body: object, id?: string) {
     const httpHeaders = this.headers();
-=======
-    patch(rutter: string, body: object, id?: string, auth?: boolean) {
-    const httpHeaders = this.headers(auth);
->>>>>>> ac0613b (Create functions Edit and Create Users)
     const urls = this.router(rutter, id);
     return this.http.patch(urls, JSON.stringify(body), {
       headers: httpHeaders,
@@ -57,11 +48,7 @@ export class PrivateService {
   }
 
   
-<<<<<<< HEAD
   headers() {
-=======
-  headers(auth?: boolean) {
->>>>>>> ac0613b (Create functions Edit and Create Users)
     let httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
     return httpHeaders;
   }
