@@ -25,7 +25,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 
-
 @NgModule({
   declarations: [
     ActivityFormComponent,

@@ -97,12 +97,24 @@ const routes: Routes = [
     component: ThanksComponent,
   },
   {
+    path: "donar",
+    component: DonationsComponent ,
+  },
+  {
+    path: "error",
+    component: ErrorComponent ,
+  },
+  {
     path: "user",
     component: UserFormComponent,
   },
   {
     path: "user/edit/:id",
     component: UserFormComponent,
+  },
+  {
+    path: "gracias",
+    component: ThanksComponent ,
   },
   {
     path: "**",

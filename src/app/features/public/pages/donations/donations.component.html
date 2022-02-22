@@ -1,5 +1,6 @@
 <h1 style="text-align: center;">Donaciones</h1>
 
+<<<<<<< HEAD
 <header class="acnur-header" data-type="background" data-content="Background-Desktop" style="background-image: url(../../../../assets/img/donations.jpg);display: none">
     <div class="container"></div>
 </header>
@@ -7,6 +8,9 @@
 
 <p-card [style]="{'width': '90vw','margin':'auto'}">
     
+=======
+<p-card [style]="{'width': '90vw','margin':'auto'}">
+>>>>>>> b5049fd (OT153-59 Create component Donations, Thankyou and error)
     <h2 style="text-align: center;">{{title}}</h2>
     <h3>{{message}}</h3>
 
@@ -14,6 +18,7 @@
         <div class="p-grid p-fluid">
             <div class="p-col-12 p-md-4" [style]="{'margin-bottom':'25px'}">
                 <div class="p-inputgroup">
+<<<<<<< HEAD
                     <input formControlName="value" type="text" pInputText placeholder="Formato valido 100.50" required>
                     <input type="hidden" name="cant" value="1" />
                     <span appMsgErrorForm messageError="Por favor, ingrese un valor" *ngIf="empty"></span> <br>
@@ -24,6 +29,16 @@
             </div>
         </div>
         <div style="text-align:center; margin-top:20px">
+=======
+                    <input formControlName="value"  type="text" pInputText placeholder="Formato valido 100.50" required>
+                    <input type="hidden" name="cant" value="1" />
+                    <span  appMsgErrorForm messageError="Por favor, ingrese un valor" *ngIf="empty"></span> <br>
+                    <span class="invalid" *ngIf="form.get('value')?.errors?.['required'] &&  form.get('value')?.touched">El importe de la donacion es requerido</span>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:20px"> 
+>>>>>>> b5049fd (OT153-59 Create component Donations, Thankyou and error)
             <button pButton type="submit" label="Donar" *ngIf="form.valid"></button>
         </div>
     </form>
