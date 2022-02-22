@@ -1,6 +1,7 @@
-<p-card header="Registro" styleClass="p-card-shadow col-8 m-auto">
+<p-card header="Registro" styleClass="p-card-shadow col-6 m-auto">
     <div class="grid p-fluid">
-        <form (submit)="submit()" [formGroup]="frmSignup" class="w-100 col-5">
+        <form (submit)="submit()" [formGroup]="formSignup" class="w-100 col-5">
+
             <div class="field" [class.has-error]="useremailControl.touched && useremailControl.dirty">
                 <input pInputText id="useremail" type="text" placeholder='Correo electrónico' aria-describedby="useremail-help" formControlName="useremail"/>
                 <div *ngIf="useremailControl.invalid">
@@ -13,22 +14,24 @@
                 </div>
             </div>
 
-
             <div class="field" [class.has-error]="passwordControl.touched && passwordControl.dirty">
-                <!-- <label for="password" class="block">Enter password for this new account</label> -->
+
                 <input id="password" placeholder='Contraseña' type="password" aria-describedby="password-help" pInputText  formControlName="password"/>
                 <div *ngIf="passwordControl.invalid">
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('required')" 
-                        id="password-help" class="p-error">El campo es obligatorio</small>
+                        id="password-help" class="p-error">El campo es obligatorio </small>
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('minlength')" 
-                        id="password-help" class="p-error block">Debe tener minimo seis caracteres.</small>
+                        id="password-help" class="p-error block">Debe tener minimo seis caracteres. </small>
+                    <small 
+                        *ngIf="passwordControl.touched && passwordControl.hasError('hasNoSpaces')" 
+                        id="password-help" class="p-error block">No ingrese espacios.</small>  
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('hasNumber')" 
                         id="password-help" class="p-error block">Ingrese al menos un número.</small>  
                     <small 
-                        *ngIf="passwordControl.touched && passwordControl.hasError('hasLetter')" 
+                        *ngIf="passwordControl.touched && passwordControl.hasError('hasWord')" 
                         id="password-help" class="p-error block">Ingrese al menos una letra.</small> 
                     <small 
                         *ngIf="passwordControl.touched && passwordControl.hasError('hasSymbol')" 
