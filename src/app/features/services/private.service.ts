@@ -29,8 +29,8 @@ export class PrivateService {
     return this.http.put(urls, JSON.stringify(body), { headers: httpHeaders });
   }
 
-  post(rout: string, body: object, auth?: boolean) {
-    const httpHeaders = this.headers(auth);
+  post(rout: string, body: object) {
+    const httpHeaders = this.headers();
     const urls = this.router(rout);
     return this.http.post<any>(urls, JSON.stringify(body), {
       headers: httpHeaders,
@@ -38,8 +38,8 @@ export class PrivateService {
     
   }
 
-    patch(rutter: string, body: object, id?: string, auth?: boolean) {
-    const httpHeaders = this.headers(auth);
+    patch(rutter: string, body: object, id?: string) {
+    const httpHeaders = this.headers();
     const urls = this.router(rutter, id);
     return this.http.patch(urls, JSON.stringify(body), {
       headers: httpHeaders,
@@ -47,7 +47,7 @@ export class PrivateService {
   }
 
   
-  headers(auth?: boolean) {
+  headers() {
     let httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
     return httpHeaders;
   }
