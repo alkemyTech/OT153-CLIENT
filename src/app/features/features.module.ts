@@ -12,6 +12,8 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { AboutComponent } from './pages/about/about.component';
+import { AboutTextComponent } from './pages/about/components/about-text/about-text.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { SharedModule } from "../shared/shared.module";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    AboutComponent,
+    AboutTextComponent
   ],
   exports: [
     ActivityFormComponent,

@@ -2,11 +2,17 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   { 
     path: "actividades", 
-    component: ActivityFormComponent },
+    component: ActivityFormComponent 
+  },
+  {
+    path: "nosotros",
+    component: AboutComponent
+  },
   {
     path: "",
     redirectTo: "actividades",
