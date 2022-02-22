@@ -90,7 +90,6 @@ export class UserFormComponent implements OnInit {
       this.btn = "Guardar Cambios";
       this.imgName = "";
       this._userService.getUser(this.id).subscribe((response)=>{
-        console.log(response)
         this.form.patchValue({
           name: response.data.name,
           email: response.data.email,
