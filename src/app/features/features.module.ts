@@ -14,7 +14,8 @@ import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
 import { AboutComponent } from "./pages/about/about.component";
 import { AboutTextComponent } from "./pages/about/components/about-text/about-text.component";
-import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+
+import { DashboardComponent } from "./pages/backoffice/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
