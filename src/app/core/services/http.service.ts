@@ -36,4 +36,17 @@ export class HttpService {
       activateHeader ? { headers: this._headers } : {}
     );
   }
+
+  public patch<T>(
+    url: string,
+    body: any,
+    activateHeader: boolean = false
+  ): Observable<T> {
+    console.log(body);
+    return this.http.patch<T>(
+      url,
+      body,
+      activateHeader ? { headers: this._headers } : {}
+    );
+  }
 }
