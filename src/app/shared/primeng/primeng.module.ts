@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { ButtonModule } from "primeng/button";
 import { CalendarModule } from "primeng/calendar";
+import { CardModule } from 'primeng/card';
 import { CarouselModule } from "primeng/carousel";
 import { ChipsModule } from "primeng/chips";
 import { CommonModule } from "@angular/common";
@@ -24,9 +25,9 @@ import { TooltipModule } from "primeng/tooltip";
   imports: [CommonModule],
   exports: [
     ButtonModule,
-    RippleModule,
-    CommonModule,
     CalendarModule,
+    CardModule,
+    CommonModule,
     ChipsModule,
     DialogModule,
     DropdownModule,
@@ -39,6 +40,7 @@ import { TooltipModule } from "primeng/tooltip";
     PaginatorModule,
     PasswordModule,
     RadioButtonModule,
+    RippleModule,
     SelectButtonModule,
     SidebarModule,
     TooltipModule,
