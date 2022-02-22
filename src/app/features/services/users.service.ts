@@ -21,7 +21,7 @@ export class UsersService {
   }
 
   editUser(id: string, usuario: User): Observable<any> {
-    return this.http.patch(this.environment, usuario, id);
+    return this.http.put(this.environment, usuario, id);
   }
   
 }
