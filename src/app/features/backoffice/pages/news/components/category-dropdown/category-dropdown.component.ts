@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '@app/core/services/http.service';
-import { Subscription } from 'rxjs';
 
 //!
 interface simpleCategory {
@@ -20,7 +18,9 @@ export class CategoryDropdownComponent implements OnInit {
   selectedCategory: simpleCategory;
 
   @Input() placeholder: string;
-  @Output() propagar = new EventEmitter<number>();
+  @Input() formControlName: string;
+  @Output() emitSelect = new EventEmitter<number>();
+  @Output() emitClicked = new EventEmitter<boolean>();
 
   constructor(private HttpService :HttpService) {
   }
@@ -39,6 +39,18 @@ export class CategoryDropdownComponent implements OnInit {
   }
 
   idSelected() {
-    this.propagar.emit(this.selectedCategory.id);
+    if (this.selectedCategory === null) {
+      this.emitSelect.emit(undefined); //???
+    }else{
+      this.emitSelect.emit(this.selectedCategory.id);
+    }
+  }
+
+  clickedEMPTY(){
+    if (this.selectedCategory === null || this.selectedCategory === undefined) {
+      this.emitClicked.emit(true);
+    }else{
+      this.emitClicked.emit(false);
+    }
   }
 }
