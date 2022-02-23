@@ -30,7 +30,6 @@ import { TooltipModule } from "primeng/tooltip";
     CarouselModule,
     CommonModule,
     ChipsModule,
-    CardModule,
     DialogModule,
     DividerModule,
     DropdownModule,
@@ -45,7 +44,6 @@ import { TooltipModule } from "primeng/tooltip";
     SelectButtonModule,
     SidebarModule,
     TooltipModule,
-    CardModule,
   ],
 })
 export class PrimengModule {}
