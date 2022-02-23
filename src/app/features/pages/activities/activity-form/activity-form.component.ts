@@ -1,11 +1,11 @@
 import {
-  AfterContentInit,
   Component,
-  EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   TemplateRef,
   ViewChild,
 } from "@angular/core";
@@ -13,67 +13,73 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { HttpService } from "@app/core/services/http.service";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { PartialObserver, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
+import { MessageService } from "primeng/api";
+
 @Component({
   selector: "app-activity-form",
   templateUrl: "./activity-form.component.html",
   styleUrls: ["./activity-form.component.scss"],
+  providers: [MessageService],
 })
-export class ActivityFormComponent
-  implements OnInit, AfterContentInit, OnDestroy
-{
+export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   title = "base-ong-angular-client";
 
   @Input() formTitle: string;
-  @Input() defaultName: string;
-  @Input() defaultImage: string;
-  @Input() defaultDescription: string;
-  @Output() submitForm = new EventEmitter();
+  @Input() defaultName: string | null;
+  @Input() defaultImage: string | null;
+  @Input() defaultDescription: string | boolean | null = "";
+  @Input() voidCKeditor: boolean = false; //
 
-  form: FormGroup = new FormGroup({
-    name: new FormControl("", Validators.required),
-    image: new FormControl("", Validators.required),
-    description: new FormControl(""),
-  });
+  form: FormGroup = new FormGroup(
+    {
+      name: new FormControl("", Validators.required),
+      image: new FormControl("", Validators.required),
+      description: new FormControl(""),
+    },
+    { updateOn: "change" }
+  );
 
+  public Editor = ClassicEditor;
   @ViewChild("image") image: TemplateRef<Event["target"]>;
   imageBuffer: string | ArrayBuffer | null;
   imgMessage: string;
-  public Editor = ClassicEditor;
-  invalidState: boolean = false;
-  loadSubmit: boolean = false;
+  submitted: boolean = false;
+  displaySubmitSpinner: boolean = false;
   subscription: Subscription;
 
-  constructor(private http: HttpService) {}
+  constructor(
+    private http: HttpService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {}
 
-  ngAfterContentInit(): void {
-    this.form.controls["name"].setValue(this.defaultName);
-    this.form.controls["image"].setValue(this.defaultImage);
-    console.log("Input descripción: " + this.defaultDescription);
-
-    // this.form.controls["description"].setValue(this.defaultDescription);
-    this.imageBuffer = this.defaultImage;
+  ngOnChanges(changes: SimpleChanges): void {
+    // listen to async @Input changes from parent data binding
+    if (changes["defaultName"]) {
+      this.initializeForm();
+    }
   }
 
-  showViaService() {
-    console.log(this.form.value);
+  initializeForm(): void {
+    this.form.get("name")?.setValue(this.defaultName);
+    this.form.get("description")?.setValue(this.defaultDescription);
+    this.form.get("image")?.setValue(this.defaultImage);
+
+    this.imageBuffer = this.defaultImage;
   }
 
   ckeditorChange({ editor }: ChangeEvent) {
     const EditorData = editor.getData();
-    console.log(EditorData);
-    // this.form.patchValue({ description: EditorData });
-    // this.form.controls["description"].setValue("test");
-    // console.log(this.form.value);
+    this.form.get("description")?.setValue(EditorData);
   }
 
-  selectFile(event: any) {
+  selectFile(event) {
     let file = event.target.files[0];
     if (file.type.match(/image\/*/) == null) {
       this.imgMessage = "Only images are supported";
-      this.imageBuffer = "";
+      this.imageBuffer = null;
     } else {
       let reader = new FileReader();
       reader.readAsDataURL(file);
@@ -92,31 +98,43 @@ export class ActivityFormComponent
 
   onSubmit(form: FormGroup) {
     if (!form.valid) {
-      this.invalidState = true;
+      this.submitted = true;
     } else {
-      this.invalidState = false;
-      this.loadSubmit = true;
-      this.subscription = (
-        this.defaultDescription
-          ? this.http.patch(
-              "http://ongapi.alkemy.org/" /* api/activities" */,
-              form.value
-            )
-          : this.http.post(
-              "http://ongapi.alkemy.org/" /* api/activities" */,
-              form.value
-            )
-      ).subscribe(
-        (response: PartialObserver<any> | unknown) => {
-          this.loadSubmit = false;
-          console.log(response);
-        },
-        (err) => {
-          this.loadSubmit = false;
-          console.log(err);
-        }
-      );
+      this.submitted = false;
+      let url = "http://ongapi.alkemy.org/api/activities";
+      this.httpSendActivity(url, form);
     }
+  }
+
+  httpSendActivity(url: string, form: FormGroup) {
+    this.displaySubmitSpinner = true;
+    this.messageService.add({
+      severity: "info",
+      summary: "Cargando actividad...",
+    });
+
+    this.subscription = (
+      this.defaultName
+        ? this.http.patch(url, form.value)
+        : this.http.post(url, form.value)
+    ).subscribe(
+      (response) => {
+        this.displaySubmitSpinner = false;
+        this.messageService.add({
+          severity: "success",
+          summary: "Enviado!",
+          detail: "La actividad fue cargada exitosamente.",
+        });
+      },
+      (err) => {
+        this.displaySubmitSpinner = false;
+        this.messageService.add({
+          severity: "error",
+          summary: "Error",
+          detail: `${err.status} ${err.statusText}`,
+        });
+      }
+    );
   }
 
   ngOnDestroy(): void {
