@@ -10,11 +10,20 @@ export class HttpService {
   private _headers!: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this._headers = new HttpHeaders({ Group: this._groupId });
+    this._headers = new HttpHeaders({ responseType: 'blob'  });
   }
 
   public get<T>(url: string, activateHeader:boolean = false ):Observable<T> {
     return this.http.get<T>(url, activateHeader ? { headers: this._headers }: {});
   }
+
+  public patch<T>(url: string, body) {
+
+    // const body = { name, email, password };
+
+    return this.http.patch<T>(url, body);
+  }
+
+  
 }
 
