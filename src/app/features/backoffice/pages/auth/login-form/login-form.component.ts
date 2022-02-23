@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { emailFieldValidator } from 'src/app/shared/validators/email.validator';
-import { passwordStrengthValidator } from 'src/app/shared/validators/password.validator';
+import { getControl as getControlFunction } from '@app/core/util/getControlForm';
+import { emailValidator } from '@app/core/util/validators/form.validators';
 
 
 @Component({
@@ -10,10 +10,10 @@ import { passwordStrengthValidator } from 'src/app/shared/validators/password.va
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-
+  getControl = getControlFunction;
   loginForm = this.fb.group({
-    email: ['', [Validators.required, emailFieldValidator()]],
-    password: ['', [Validators.required, Validators.minLength(6), passwordStrengthValidator()]]
+    email: ['', [Validators.required, emailValidator()]],
+    password: ['', [Validators.required]]
   })
 
   constructor(private fb: FormBuilder) { }
