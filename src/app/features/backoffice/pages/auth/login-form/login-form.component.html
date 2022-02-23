@@ -5,13 +5,13 @@
                 <div class="col-12">
                     <div class="p-inputgroup">
                         <input type="text" 
-                            [ngClass]="{'ng-invalid ng-dirty': (loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched))}"
+                            [ngClass]="{'ng-invalid ng-dirty': (getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched)}"
                             formControlName="email" 
                             aria-describedby="email-help"
                             pInputText 
                             placeholder="Correo electrónico">         
                     </div>
-                    <div class="field" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+                    <div class="field" *ngIf="getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched">
                         <small id="email-help" class="p-error block">Correo electrónico inválido.</small>         
                     </div>
                 </div>
@@ -21,22 +21,17 @@
                         <input id="password" 
                             formControlName="password" 
                             type="password" 
-                            aria-describedby="password-help" 
-                            [ngClass]="{'ng-invalid ng-dirty': (loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched))}" 
+                            aria-describedby="password-help"
                             pInputText 
                             placeholder="Contraseña"/>
-                   
                     </div>
-                    <div class="field" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
-                        <small id="password-help" class="p-error block">Mínimo 6 caracteres.</small>         
-                        <small id="password-help" class="p-error block">Al menos una letra.</small>         
-                        <small id="password-help" class="p-error block">Al menos un número.</small>         
-                        <small id="password-help" class="p-error block">Al menos un símbolo.</small>         
+                    <div class="field" *ngIf="getControl(loginForm, 'password')?.invalid && getControl(loginForm, 'password')?.touched">
+                        <small id="password-help" class="p-error block">Contraseña obligatoria.</small>         
                     </div>
                 </div>
 
                 <div class="col-12">
-                    <button pButton type="submit" label="Enviar" ></button>
+                    <button pButton type="submit" label="Enviar" [disabled]="!loginForm.valid" ></button>
                 </div>
             </form>
         </div>
