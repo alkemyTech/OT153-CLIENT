@@ -1,3 +1,5 @@
+import { ActivitiesCardComponent } from './public/pages/activities/activities-card/activities-card.component';
+import { ActivitiesComponent } from './public/pages/activities/activities.component';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -38,6 +40,7 @@ import { ErrorComponent } from "./public/components/donations/error/error.compon
   ],
   exports: [
     ActivityFormComponent,
+    ActivitiesComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CategoriesFormComponent,
