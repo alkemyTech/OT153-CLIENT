@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://ongapi.alkemy.org",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
