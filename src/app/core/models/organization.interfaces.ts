@@ -1,10 +1,10 @@
 export interface Organization {
   success: boolean;
-  data:    Data;
+  data:    OrganizationData;
   message: string;
 }
 
-export interface Data {
+export interface OrganizationData {
   id:                number;
   name:              string;
   logo:              string;
