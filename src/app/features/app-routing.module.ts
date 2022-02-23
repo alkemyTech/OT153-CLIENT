@@ -2,12 +2,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-<<<<<<< HEAD
-=======
-import { AboutComponent } from "./public/pages/about/about.component";
-import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.component";
-import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
->>>>>>> Merge branch 'OT153-39_OrganizationDetailsScreen' into develop
 import { ActivityFormComponent } from './backoffice/pages/activities/activity-form/activity-form.component';
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 import { AboutComponent } from './public/pages/about/about.component';
