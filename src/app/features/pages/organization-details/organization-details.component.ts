@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Organization } from 'src/app/core/models/organization.model';
+import { Organization } from '@app/core/models/organization.interfaces';
 import { HttpService } from 'src/app/core/services/http.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class OrganizationDetailsComponent implements OnInit {
   constructor(private httpSvc: HttpService) { }
 
   ngOnInit(): void {
-    // this.getOrganization(); --> DISABLED UNTIL SERVICES WORK CORRECTLY
+    // this.getOrganization(); //--> DISABLED UNTIL SERVICES WORK CORRECTLY
 
     // MOCK DATA TO DELETE WHEN SERVICES IS WORKING
     this.organization = {
@@ -39,9 +39,14 @@ export class OrganizationDetailsComponent implements OnInit {
 
   getOrganization(){
     const url = `http://ongapi.alkemy.org/public/api/organization/`;
-    this.httpSvc.get(url, true).subscribe(organization => {
-      this.organization = organization;
-    })
+    this.httpSvc.get<Organization>(url, true).subscribe(
+      (res) => {
+        this.organization = res;
+        console.log(res)
+      },
+      (error) =>{
+        console.log(error);
+      })
   }
 
 }
