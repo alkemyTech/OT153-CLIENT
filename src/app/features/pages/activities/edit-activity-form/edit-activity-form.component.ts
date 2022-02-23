@@ -30,7 +30,7 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   }
 
   getActivity() {
-    this.activityResponse.data.id = this.route.snapshot.url[3].path; // [3] = index of url: UrlSegment[] from 'backoffice/actividades/editar/:id'
+    this.activityResponse.data.id = this.route.snapshot.url[3].path; // [3] = index of url: UrlSegment[] from 'backoffice/actividades/edit/:id'
 
     this.subscription = this.http
       .getActivity(
