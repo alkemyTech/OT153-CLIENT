@@ -21,12 +21,7 @@
             </div>
 
             <div class="field col-12">
-                <input id="category-input" placeholder='Categoria' type="text" pInputText/>
-            </div>
-
-            <div class="field col-12">
-                <h5>Content with Filters</h5>
-                <app-category-dropdown></app-category-dropdown>
+                <app-category-dropdown placeholder="Seleccione Categoria" (propagar)="selectedIdCategory($event)"></app-category-dropdown>
             </div>
             
             <div class="row flex">
@@ -34,6 +29,7 @@
                 <div class="col-6">
                     <button pButton type="submit" label="Crear/Editar"class="p-button-primary box"></button>
                 </div>
+
                 <div class="col-6">
                     <button pButton type="button" label="Atras" class="p-button-secondary box"></button>
                 </div>

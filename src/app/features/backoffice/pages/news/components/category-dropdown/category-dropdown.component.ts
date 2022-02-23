@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '@app/core/services/http.service';
 import { Subscription } from 'rxjs';
 
 //!
 interface simpleCategory {
-  id:string;
+  id:number;
   name:string;
 }
 
@@ -15,13 +15,14 @@ interface simpleCategory {
   styleUrls: ['./category-dropdown.component.scss']
 })
 export class CategoryDropdownComponent implements OnInit {
-  url= "http://ongapi.alkemy.org/api/categories?limit=2";
-
+  url= "http://ongapi.alkemy.org/api/categories?limit=5";
   categories: simpleCategory[];
   selectedCategory: simpleCategory;
 
-  constructor(private HttpService :HttpService) {
+  @Input() placeholder: string;
+  @Output() propagar = new EventEmitter<number>();
 
+  constructor(private HttpService :HttpService) {
   }
 
   ngOnInit() {
@@ -35,5 +36,9 @@ export class CategoryDropdownComponent implements OnInit {
         alert(error.error.message);
       }
     );
+  }
+
+  idSelected() {
+    this.propagar.emit(this.selectedCategory.id);
   }
 }

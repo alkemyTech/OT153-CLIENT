@@ -1,7 +1,9 @@
 <p-dropdown 
   [options]="categories" 
   [(ngModel)]="selectedCategory" 
-  placeholder="Select Category" 
+  [placeholder]="placeholder"
   optionLabel="name" 
   [showClear]="true"
+  (onChange)="idSelected()"
 ></p-dropdown>
+
