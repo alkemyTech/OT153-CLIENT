@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class HttpService {
-  private _groupId!: string;
+  private _groupId: string = "153";
   private _headers!: HttpHeaders;
 
   constructor(private http: HttpClient) {
