@@ -1,1 +1,45 @@
-<p>news-form works!</p>
+<!-- 
+    * Título 
+    * Contenido
+    * Categoría 
+    * campo Imagen 
+    * obtener las Categorías desde el endpoint /categories. 
+    * Además, para el Contenido, reemplazar el campo de texto por la librería CKEditor. 
+! El objetivo es convertirlo en un formulario reutilizable para las acciones de edición y creación de Novedades.  
+-->
+
+<p-card header="Creacion/Edicion" styleClass="p-card-shadow m-auto col-6">
+    <div class="grid p-fluid">
+        <form (submit)="submit()" class="w-100">
+
+            <div class="field col-12">
+                <input id="title-input" placeholder='Titulo' type="text" pInputText/>
+            </div>
+
+            <div class="field col-12">
+                <input id="content-input" placeholder='Contenido' type="text" pInputText/>
+            </div>
+
+            <div class="field col-12">
+                <input id="category-input" placeholder='Categoria' type="text" pInputText/>
+            </div>
+
+            <div class="field col-12">
+                <h5>Content with Filters</h5>
+                <app-category-dropdown></app-category-dropdown>
+            </div>
+            
+            <div class="row flex">
+
+                <div class="col-6">
+                    <button pButton type="submit" label="Crear/Editar"class="p-button-primary box"></button>
+                </div>
+                <div class="col-6">
+                    <button pButton type="button" label="Atras" class="p-button-secondary box"></button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</p-card>

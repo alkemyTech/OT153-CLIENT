@@ -33,6 +33,7 @@ import { ListMembersComponent } from './backoffice/pages/members/list-members/li
     RegisterFormComponent,
     CategoriesFormComponent,
     NewsFormComponent,
+    CategoryDropdownComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     AboutComponent,
