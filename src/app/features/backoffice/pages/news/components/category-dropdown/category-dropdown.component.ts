@@ -18,9 +18,9 @@ export class CategoryDropdownComponent implements OnInit {
   selectedCategory: simpleCategory;
 
   @Input() placeholder: string;
-  @Input() formControlName: string;
+  @Input() required: boolean = false;
   @Output() emitSelect = new EventEmitter<number>();
-  @Output() emitClicked = new EventEmitter<boolean>();
+  @Output() emitTouchedDirty = new EventEmitter<boolean>();
 
   constructor(private HttpService :HttpService) {
   }
@@ -40,6 +40,7 @@ export class CategoryDropdownComponent implements OnInit {
 
   idSelected() {
     if (this.selectedCategory === null) {
+      this.emitTouchedDirty.emit(true);
       this.emitSelect.emit(undefined); //???
     }else{
       this.emitSelect.emit(this.selectedCategory.id);
@@ -48,9 +49,9 @@ export class CategoryDropdownComponent implements OnInit {
 
   clickedEMPTY(){
     if (this.selectedCategory === null || this.selectedCategory === undefined) {
-      this.emitClicked.emit(true);
+      this.emitTouchedDirty.emit(true);
     }else{
-      this.emitClicked.emit(false);
+      this.emitTouchedDirty.emit(false);
     }
   }
 }

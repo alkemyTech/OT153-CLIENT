@@ -36,7 +36,7 @@ export class NewsFormComponent implements OnInit {
     console.log('idCategory: ', id);
   }
 
-  dropdownCategoryEmpty(flag: boolean){
+  dropdownCategoryTouchedDirty(flag: boolean){
     this.categoryInvalid = flag;
   }
 
@@ -48,7 +48,7 @@ export class NewsFormComponent implements OnInit {
     return this.formNews.controls['title'] as FormControl;
   }
 
-  get categoryEmpty() :boolean{
+  get categoryTouchedDirty() :boolean{
     return this.categoryInvalid; 
   }
 
