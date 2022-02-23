@@ -7,7 +7,6 @@ import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.compo
 import { AboutComponent } from './public/pages/about/about.component';
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { DonationsComponent } from "./public/components/donations/donations.component";
-import { UserFormComponent } from "./backoffice/pages/users/user-form/user-form.component";
 import { ErrorComponent } from "./public/components/donations/error/error.component";
 import { ThanksComponent } from "./public/components/donations/thanks/thanks.component";
 
@@ -47,10 +46,6 @@ const routes: Routes = [
   {
     path: "error",
     component: ErrorComponent ,
-  },
-  {
-    path: "user",
-    component: UserFormComponent,
   },
   {
     path: "nosotros",
