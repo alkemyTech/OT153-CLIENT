@@ -2,20 +2,19 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
-import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
-import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
-import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
-import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
-import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
-import { AboutComponent } from "./pages/about/about.component";
-import { AboutTextComponent } from "./pages/about/components/about-text/about-text.component";
-
-import { DashboardComponent } from "./pages/backoffice/dashboard/dashboard.component";
+import { ActivityFormComponent } from './backoffice/pages/activities/activity-form/activity-form.component';
+import { LoginFormComponent } from './backoffice/pages/auth/login-form/login-form.component';
+import { RegisterFormComponent } from './backoffice/pages/auth/register-form/register-form.component';
+import { CategoriesFormComponent } from './backoffice/pages/categories/categories-form/categories-form.component';
+import { NewsFormComponent } from './backoffice/pages/news/news-form/news-form.component';
+import { SlidesFormComponent } from './public/components/slides/slides-form/slides-form.component';
+import { TestimonialFormComponent } from './backoffice/pages/testimonials/testimonial-form/testimonial-form.component';
+import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
+import { AboutComponent } from './public/pages/about/about.component';
+import { AboutTextComponent } from './public/pages/about/components/about-text/about-text.component';
+import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [

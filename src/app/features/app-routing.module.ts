@@ -1,9 +1,10 @@
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
+
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-import { AboutComponent } from "./pages/about/about.component";
-import { DashboardComponent } from "./pages/backoffice/dashboard/dashboard.component";
+import { ActivityFormComponent } from './backoffice/pages/activities/activity-form/activity-form.component';
+import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
+import { AboutComponent } from './public/pages/about/about.component';
 
 const routes: Routes = [
   {
