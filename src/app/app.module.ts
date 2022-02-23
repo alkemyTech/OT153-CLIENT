@@ -15,8 +15,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     FeaturesModule,
     ToastModule,
     BrowserAnimationsModule,
+    ToastModule
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    BrowserAnimationsModule
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
