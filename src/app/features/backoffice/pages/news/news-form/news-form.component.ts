@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+interface simpleCategory {
+  id:string;
+  name:string;
+}
+
 @Component({
   selector: 'app-news-form',
   templateUrl: './news-form.component.html',
@@ -7,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class NewsFormComponent implements OnInit {
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -14,6 +20,10 @@ export class NewsFormComponent implements OnInit {
 
   submit(): void{
 
+  }
+
+  selectedIdCategory(mensaje) {
+    console.log('idCategory: ', mensaje);
   }
 
 }
