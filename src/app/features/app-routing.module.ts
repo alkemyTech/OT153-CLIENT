@@ -5,24 +5,32 @@ import { RouterModule, Routes } from "@angular/router";
 import { ActivityFormComponent } from './backoffice/pages/activities/activity-form/activity-form.component';
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 import { AboutComponent } from './public/pages/about/about.component';
-import { OrganizationDetailsComponent } from "./pages/organization-details/organization-details.component";
+import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 
 const routes: Routes = [
   {
-    path: "actividades",
-    component: ActivityFormComponent,
+    path: '',
+    component: ActivityFormComponent, // Replace with HomeComponent once object is created
+    children: [
+      {
+        path: "actividades",
+        component: ActivityFormComponent,
+      },
+      {
+        path: "nosotros",
+        component: AboutComponent,
+      }
+    ]
   },
   {
     path: "backoffice",
     component: DashboardComponent,
-  },
-  { 
-    path: "backoffice/organization", 
-    component: OrganizationDetailsComponent 
-  },
-  {
-    path: "nosotros",
-    component: AboutComponent,
+    children: [
+      { 
+        path: "organization", 
+        component: OrganizationDetailsComponent 
+      }
+    ]
   },
   {
     path: "",
