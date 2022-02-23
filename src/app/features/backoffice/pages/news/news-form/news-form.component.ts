@@ -5,11 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './news-form.component.html',
   styleUrls: ['./news-form.component.scss']
 })
-export class NewsFormComponent implements OnInit {
 
+export class NewsFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submit(): void{
+
   }
 
 }
