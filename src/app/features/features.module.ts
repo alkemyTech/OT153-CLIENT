@@ -17,9 +17,7 @@ import { AboutComponent } from './public/pages/about/about.component';
 import { AboutTextComponent } from './public/pages/about/components/about-text/about-text.component';
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
-import { DonationsComponent } from './public/components/donations/donations.component';
-import { ThanksComponent } from './public/components/donations/thanks/thanks.component';
-import { ErrorComponent } from "./public/components/donations/error/error.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -53,6 +51,7 @@ import { ErrorComponent } from "./public/components/donations/error/error.compon
     SharedModule,
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
     RouterModule,
