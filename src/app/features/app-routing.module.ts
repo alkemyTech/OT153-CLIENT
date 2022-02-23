@@ -89,7 +89,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "actividades",
+    redirectTo: "home",
     pathMatch: "full",
   },
   {
@@ -101,17 +101,21 @@ const routes: Routes = [
     component: DonationsComponent ,
   },
   {
+    path: "donar",
+    component: DonationsComponent ,
+  },
+  {
     path: "error",
     component: ErrorComponent ,
   },
-  {
-    path: "user",
-    component: UserFormComponent,
-  },
-  {
-    path: "user/edit/:id",
-    component: UserFormComponent,
-  },
+   {
+     path: "user",
+     component: UserFormComponent,
+   },
+   {
+     path: "user/edit/:id",
+     component: UserFormComponent,
+   },
   {
     path: "gracias",
     component: ThanksComponent ,

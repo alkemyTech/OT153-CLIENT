@@ -1,8 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
-import {
-  NgModule
-} from "@angular/core";
+import { NgModule } from "@angular/core";
 import { HttpService } from "./services/http.service";
 
 @NgModule({
@@ -10,5 +8,6 @@ import { HttpService } from "./services/http.service";
   ],
   imports: [CommonModule, HttpClientModule],
   providers: [HttpService],
+  exports: []
 })
 export class CoreModule {}

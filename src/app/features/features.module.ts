@@ -25,6 +25,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 
+import { CoreModule } from '../core/core.module';
+import { HomeComponent } from "./public/pages/home/home.component";
+import { IndexComponent } from "./public/pages/home/index/index.component";
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -45,7 +48,10 @@ import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-ac
     ActivitiesComponent,
     NewActivityFormComponent,
     EditActivityFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    HomeComponent,
+    IndexComponent
+    
   ],
   exports: [
     ActivityFormComponent,
@@ -67,6 +73,7 @@ import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-ac
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    CoreModule
   ],
 })
 export class FeaturesModule {}
