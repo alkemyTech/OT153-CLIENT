@@ -1,0 +1,15 @@
+<p-card header="Actividades" styleClass="p-card-shadow col-6 m-auto">
+  <div *ngFor="let activitie of activities">
+    <p-card header="{{activitie.name}}" subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+            <img alt="Card" [src]="activitie['image']" >
+        </ng-template>
+        <p>
+          {{activitie.description}}</p>
+        <ng-template pTemplate="footer">
+          
+        </ng-template>
+    </p-card>
+  </div>
+
+</p-card>
