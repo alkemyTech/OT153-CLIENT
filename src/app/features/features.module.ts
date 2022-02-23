@@ -15,7 +15,8 @@ import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.
 import { AboutComponent } from './public/pages/about/about.component';
 import { AboutTextComponent } from './public/pages/about/components/about-text/about-text.component';
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
-import { OrganizationDetailsComponent } from "./pages/organization-details/organization-details.component";
+import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
+
 
 @NgModule({
   declarations: [
