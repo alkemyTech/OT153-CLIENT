@@ -12,7 +12,6 @@ import { ThanksComponent } from "./public/components/donations/thanks/thanks.com
 import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 import { NewActivityFormComponent } from "./pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./pages/activities/edit-activity-form/edit-activity-form.component";
-
 const routes: Routes = [
   {
     path: "",

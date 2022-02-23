@@ -8,10 +8,3 @@ export interface ActivityResponse {
   };
   message: string;
 }
-
-/* export interface Activity {
-  id: number | string | null;
-  name: string;
-  description: string;
-  image: string;
-} */
