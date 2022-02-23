@@ -24,8 +24,11 @@ const routes: Routes = [
   },
   {
     path: "backoffice",
-    component: DashboardComponent,
     children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      },
       { 
         path: "organization", 
         component: OrganizationDetailsComponent 
