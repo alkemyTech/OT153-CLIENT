@@ -24,8 +24,8 @@ import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from "primeng/tooltip";
 import { FileUploadModule } from "primeng/fileupload";
 import { MessageModule } from "primeng/message";
-import { MessagesModule } from "primeng/messages";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { ToastModule } from "primeng/toast";
 
 @NgModule({
   declarations: [],
@@ -55,8 +55,8 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
     TooltipModule,
     FileUploadModule,
     MessageModule,
-    MessagesModule,
     ProgressSpinnerModule,
+    ToastModule,
   ],
 })
 export class PrimengModule {}
