@@ -7,11 +7,11 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class HttpService {
-  private _groupId: string = "153";
+  private _groupId: string = '153'; //153
   private _headers!: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this._headers = new HttpHeaders({ Group: this._groupId });
+    this._headers = new HttpHeaders({ group_id: this._groupId });
   }
 
   public get<T>(url: string, activateHeader: boolean = false): Observable<T> {
