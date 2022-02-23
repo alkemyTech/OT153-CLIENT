@@ -7,6 +7,7 @@ import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.compo
 import { AboutComponent } from './public/pages/about/about.component';
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { SlidesFormComponent } from './backoffice/pages/slides/slides-form/slides-form.component';
+import { ThanksComponent } from "./backoffice/pages/donations/thanks/thanks.component";
 
 const routes: Routes = [
   {
@@ -44,6 +45,12 @@ const routes: Routes = [
       }
     ]
   },  
+  {
+    path: 'backoffice',
+    children: [
+     
+    ]
+  },
   {
     path: "",
     redirectTo: "actividades",
