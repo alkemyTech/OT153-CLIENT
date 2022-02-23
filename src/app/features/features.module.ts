@@ -32,6 +32,7 @@ import { ListActivititesComponent } from './backoffice/pages/activities/list-act
     RegisterFormComponent,
     CategoriesFormComponent,
     NewsFormComponent,
+    CategoryDropdownComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     AboutComponent,
