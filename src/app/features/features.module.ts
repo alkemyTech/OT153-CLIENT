@@ -36,7 +36,9 @@ import { ErrorComponent } from "./public/components/donations/error/error.compon
     OrganizationDetailsComponent,
     DonationsComponent,
     ThanksComponent,
-    ErrorComponent
+    ErrorComponent,
+    ActivitiesCardComponent,
+    ActivitiesComponent,
   ],
   exports: [
     ActivityFormComponent,
