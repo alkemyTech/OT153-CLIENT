@@ -27,6 +27,7 @@ import { TooltipModule } from "primeng/tooltip";
     ButtonModule,
     CalendarModule,
     CardModule,
+    CarouselModule,
     CommonModule,
     ChipsModule,
     CardModule,
