@@ -29,6 +29,7 @@ import { ListMembersComponent } from './backoffice/pages/members/list-members/li
 import { ActivitySelectedComponent } from './public/pages/activities/components/activity-selected/activity-selected.component';
 import { ContactComponent } from "./public/pages/contact/contact.component";
 import { ContactInfoComponent } from './public/pages/contact/components/contact-info/contact-info.component';
+import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slides-list.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ContactInfoComponent } from './public/pages/contact/components/contact-
     ActivitySelectedComponent,
     ContactComponent,
     ContactInfoComponent
+    SlidesListComponent,
   ],
   exports: [
     ActivityFormComponent,
