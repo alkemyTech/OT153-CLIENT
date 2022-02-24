@@ -57,12 +57,6 @@ const routes: Routes = [
     component: LoginFormComponent 
   },
   {
-    path: 'backoffice',
-    children: [
-     
-    ]
-  },
-  {
     path: "",
     redirectTo: "actividades",
     pathMatch: "full",
@@ -75,7 +69,7 @@ const routes: Routes = [
     path: "**",
     redirectTo: "actividades",
     pathMatch: "full",
-  }  
+  },
 ];
 
 @NgModule({
