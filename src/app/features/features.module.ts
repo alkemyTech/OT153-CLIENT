@@ -23,6 +23,7 @@ import { ErrorComponent } from "./public/pages/donations/error/error.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
+import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-ac
     ActivitiesComponent,
     NewActivityFormComponent,
     EditActivityFormComponent,
+    ListActivititesComponent,
   ],
   exports: [
     ActivityFormComponent,
