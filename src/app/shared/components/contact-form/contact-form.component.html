@@ -1,0 +1,76 @@
+<p-card header="Contacto" styleClass="p-card-shadow col-6 m-auto">
+    <div class="grid p-fluid">
+        <form (submit)="submit()" [formGroup]="formSignup" class="w-100 col-5">
+
+            <div class="flex">
+                <div class="col-6">
+                    <div class="field box" [class.has-error]="nameControl.touched && nameControl.dirty">
+                        <input pInputText id="name" type="text" placeholder='Nombre' 
+                            aria-describedby="name-help" formControlName="name"/>
+                        <div *ngIf="nameControl.invalid">
+                            <small 
+                                *ngIf="nameControl.touched && nameControl.hasError('required')" 
+                                id="name-help" class="p-error">*El campo es obligatorio</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="field box" [class.has-error]="phoneControl.touched && phoneControl.dirty">
+                        <p-inputNumber [ngModel]="null" mode="decimal" [useGrouping]="false" placeholder='Telefono'
+                            id="phone" aria-describedby="phone-help" formControlName="phone">
+                        </p-inputNumber>
+                        <div *ngIf="phoneControl.invalid">
+                            <small 
+                                *ngIf="phoneControl.touched && phoneControl.hasError('required')" 
+                                id="phone-help" class="p-error">*El campo es obligatorio.</small>
+                            <small 
+                                *ngIf="phoneControl.touched && phoneControl.hasError('minlength') && !phoneControl.hasError('hasNumber')" 
+                                id="phone-help" class="p-error">*Minimo 8 numeros.</small>
+                            <small 
+                                *ngIf="phoneControl.touched && phoneControl.hasError('hasNumber')" 
+                                id="phone-help" class="p-error">*Número invalido.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex">
+                <div class="col-12">
+                    <div class="field box" [class.has-error]="emailControl.touched && emailControl.dirty">
+                        <input pInputText id="email" type="text" placeholder='Correo electrónico' aria-describedby="useremail-help" formControlName="email"/>
+                        <div *ngIf="emailControl.invalid">
+                            <small 
+                                *ngIf="emailControl.touched && emailControl.hasError('required')" 
+                                id="email-help" class="p-error">*El campo es obligatorio.</small>
+                            <small 
+                                *ngIf="emailControl.touched && emailControl.hasError('hasEmail')" 
+                                id="email-help" class="p-error">*Email invalido</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex">
+                <div class="col-12">
+                    <div class="field box" [class.has-error]="messageControl.touched && messageControl.dirty">
+                        <textarea pInputTextarea id="message" placeholder="Mensaje" rows="5" cols="30" 
+                            [autoResize]="true" aria-describedby="message-help" formControlName="message"></textarea>
+                        <div *ngIf="messageControl.invalid">
+                            <small 
+                                *ngIf="messageControl.touched && messageControl.hasError('required')" 
+                                id="message-help" class="p-error">*El campo es obligatorio.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex">
+                <div class="col-12">
+                    <button pButton type="submit" label="Enviar"class="p-button-primary box"></button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</p-card>
