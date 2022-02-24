@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { Member } from '../../../../core/models/members.interfaces';
-import { UsService } from '../../services/us.service';
+import { Member } from '../../../../../../core/models/members.interfaces';
+import { UsService } from '../../../../services/us.service';
 
 @Component({
   selector: 'app-us',
@@ -10,7 +9,6 @@ import { UsService } from '../../services/us.service';
 })
 export class UsComponent implements OnInit {
   public members  : Member[] = [];
-  faCoffee = faCoffee;
   constructor(
     private _us : UsService
   ) { }
