@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@app/core/services/http.service';
 import { Activities } from '@app/core/models/activities.interfaces'
- ++
+
 @Component({
   selector: 'app-activities-card',
   templateUrl: './activities-card.component.html',
