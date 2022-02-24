@@ -20,6 +20,7 @@ import { RadioButtonModule } from "primeng/radiobutton";
 import { RippleModule } from "primeng/ripple";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { SidebarModule } from "primeng/sidebar";
+import { TableModule } from 'primeng/table';
 import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
 import { MessageModule } from "primeng/message";
@@ -49,6 +50,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
     RippleModule,
     SelectButtonModule,
     SidebarModule,
+    TableModule,
     ToastModule,
     TooltipModule,
     MessageModule,

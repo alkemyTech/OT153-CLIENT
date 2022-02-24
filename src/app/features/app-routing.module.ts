@@ -12,6 +12,7 @@ import { ThanksComponent } from "./public/pages/donations/thanks/thanks.componen
 import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
+import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 const routes: Routes = [
   {
     path: "",
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: "organization",
         component: OrganizationDetailsComponent,
+      },
+      {
+        path: "actividades",
+        component: ListActivititesComponent,
       },
       {
         path: "actividades/crear",
