@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { emailValidator, digitValidator } from '@app/core/util/validators/form.validators';
+import { emailValidator, digitValidator, allDigitValidator} from '@app/core/util/validators/form.validators';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,7 +12,7 @@ export class ContactFormComponent implements OnInit {
   private frmContact: FormGroup;
   private emailFormControl: FormControl = new FormControl( '', [ Validators.required, emailValidator() ]);
   private nameFormControl: FormControl = new FormControl ( '', [ Validators.required ]);
-  private phoneFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(8), digitValidator() ]);
+  private phoneFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(8), allDigitValidator() ]);
   private messageFormControl: FormControl = new FormControl ( '', [ Validators.required ]);
   private error_required: string = 'El campo es obligatorio';
 

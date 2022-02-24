@@ -17,18 +17,17 @@
 
                 <div class="col-6">
                     <div class="field box" [class.has-error]="phoneControl.touched && phoneControl.dirty">
-                        <p-inputNumber [ngModel]="null" mode="decimal" [useGrouping]="false" placeholder='Telefono'
-                            id="phone" aria-describedby="phone-help" formControlName="phone">
-                        </p-inputNumber>
+                        <input pInputText [ngModel]="null" type="text" placeholder='Telefono'
+                            id="phone" aria-describedby="phone-help" formControlName="phone"/>
                         <div *ngIf="phoneControl.invalid">
                             <small 
                                 *ngIf="phoneControl.touched && phoneControl.hasError('required')" 
                                 id="phone-help" class="p-error">*El campo es obligatorio.</small>
                             <small 
-                                *ngIf="phoneControl.touched && phoneControl.hasError('minlength') && !phoneControl.hasError('hasNumber')" 
+                                *ngIf="(phoneControl.touched && phoneControl.hasError('minlength')) && !phoneControl.hasError('hasAllNumber')" 
                                 id="phone-help" class="p-error">*Minimo 8 numeros.</small>
                             <small 
-                                *ngIf="phoneControl.touched && phoneControl.hasError('hasNumber')" 
+                                *ngIf="phoneControl.touched && phoneControl.hasError('hasAllNumber')" 
                                 id="phone-help" class="p-error">*Número invalido.</small>
                         </div>
                     </div>
