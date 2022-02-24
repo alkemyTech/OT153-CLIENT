@@ -2,7 +2,7 @@
     <div *ngIf="!user_email">
         <h3>Suscribete a nuestra Newsletter</h3>
         <form (submit)="submit()" [formGroup]="form">
-            <div class="col-12">
+            <div class="col-12 ">
                 <div class="field" [class.has-error]="email?.touched && email?.dirty">
                     <input aria-describedby="email-help" formControlName="email" type="text" pInputText
                         placeholder="ejemplo@email.com" id="email">
