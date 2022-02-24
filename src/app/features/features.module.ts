@@ -1,4 +1,4 @@
-import { ActivitiesCardComponent } from './public/pages/activities/activities-card/activities-card.component';
+import { ActivitiesCardComponent } from './public/pages/activities/components/activities-card/activities-card.component';
 import { ActivitiesComponent } from './public/pages/activities/activities.component';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
