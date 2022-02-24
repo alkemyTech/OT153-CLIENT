@@ -10,8 +10,8 @@ import { DonationsComponent } from "./public/components/donations/donations.comp
 import { ErrorComponent } from "./public/components/donations/error/error.component";
 import { ThanksComponent } from "./public/components/donations/thanks/thanks.component";
 import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
-import { NewActivityFormComponent } from "./pages/activities/new-activity-form/new-activity-form.component";
-import { EditActivityFormComponent } from "./pages/activities/edit-activity-form/edit-activity-form.component";
+import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
+import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 const routes: Routes = [
   {
     path: "",
@@ -39,10 +39,6 @@ const routes: Routes = [
     path: "backoffice",
     children: [
       {
-        path: "",
-        component: DashboardComponent,
-      },
-      {
         path: "organization",
         component: OrganizationDetailsComponent,
       },
@@ -63,11 +59,15 @@ const routes: Routes = [
         component: NewActivityFormComponent,
       },
       {
-        path: "actividades/editar",
+        path: "actividades/editar/:id",
         component: EditActivityFormComponent,
       },
+      {
+        path: "",
+        component: DashboardComponent,
+        pathMatch: "full",
+      },
     ],
-    component: DashboardComponent,
   },
   {
     path: "donar",

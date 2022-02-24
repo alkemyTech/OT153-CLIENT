@@ -21,9 +21,9 @@ import { DonationsComponent } from "./public/components/donations/donations.comp
 import { ThanksComponent } from "./public/components/donations/thanks/thanks.component";
 import { ErrorComponent } from "./public/components/donations/error/error.component";
 import { UserFormComponent } from "./backoffice/pages/users/user-form/user-form.component";
-import { NewActivityFormComponent } from "./pages/activities/new-activity-form/new-activity-form.component";
-import { EditActivityFormComponent } from "./pages/activities/edit-activity-form/edit-activity-form.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
+import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 
 @NgModule({
   declarations: [
