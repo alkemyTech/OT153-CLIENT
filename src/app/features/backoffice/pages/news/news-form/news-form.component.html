@@ -1,37 +1,44 @@
 <!-- 
-    * Título 
-    * Contenido > ckeditor
+    * Crear/Editar
+     Título 
+     Contenido > ckeditor
      Categoría > dropdown
     * campo Imagen >
      obtener las Categorías desde el endpoint /categories. 
-    * Además, para el Contenido, reemplazar el campo de texto por la librería CKEditor. 
+     Además, para el Contenido, reemplazar el campo de texto por la librería CKEditor. 
 ! El objetivo es convertirlo en un formulario reutilizable para las acciones de edición y creación de Novedades.  
 -->
 
-<p-card header="Creacion/Edicion" styleClass="p-card-shadow m-auto col-6">
+<p-card header="{{this.pageTitle}} Novedades" styleClass="p-card-shadow m-auto col-12">
     <div class="grid p-fluid">
         <form (submit)="submit()" [formGroup]="formNews" class="w-100">
-
             <div class="field col-12" [class.has-error]="titleControl.touched && titleControl.dirty">
                 <input pInputText id="title-input" placeholder="Titulo" type="text" formControlName="title" aria-describedby="title-help"/>
                 <div *ngIf="titleControl.invalid">
                     <small 
                         *ngIf="titleControl.touched && titleControl.hasError('required')" 
-                        id="title-help" class="p-error">El campo es obligatorio</small>
+                        id="title-help" class="p-error">*El campo es obligatorio</small>
                     <small 
                         *ngIf="titleControl.touched && titleControl.hasError('minlength')" 
-                        id="title-help" class="p-error">Minimo 4 caracteres.</small>
+                        id="title-help" class="p-error">*Minimo 4 caracteres.</small>
                 </div>
             </div>
 
             <div class="field col-12">
-                <input id="content" placeholder='Contenido' type="text" pInputText/>
+                <!-- <input id="content" placeholder='Contenido' type="text" pInputText/> -->
+                <div class="col-sm-9">
+                    <ckeditor [editor]="editor" [config]="config" formControlName="content"></ckeditor>
+                </div>
+                <div *ngIf="contentControl.invalid">
+                    <small 
+                        *ngIf="contentControl.touched && contentControl.hasError('required')" 
+                        id="title-help" class="p-error">*El campo es obligatorio</small>
+                </div>
             </div>
 
-            <div class="field col-12" [class.has-error]="titleControl.touched && titleControl.dirty">
-                <app-category-dropdown placeholder="Categoria" aria-describedby="category-help" [required]="true"
-                    (emitSelect)="selectedIdCategory($event)" (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)" 
-                    >
+            <div class="field col-12">
+                <app-category-dropdown placeholder="Categoria" aria-describedby="category-help" [required]="true" 
+                    (emitSelect)="selectedIdCategory($event)" (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)">
                 </app-category-dropdown>
                 <small 
                     *ngIf="categoryTouchedDirty" 
@@ -41,7 +48,7 @@
             <div class="row flex">
 
                 <div class="col-6">
-                    <button pButton type="submit" label="Crear/Editar"class="p-button-primary box"></button>
+                    <button pButton type="submit" label="{{this.pageTitle}}" class="p-button-primary box"></button>
                 </div>
 
                 <div class="col-6">
