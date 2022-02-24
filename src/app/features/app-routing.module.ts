@@ -6,13 +6,14 @@ import { ActivityFormComponent } from './backoffice/pages/activities/activity-fo
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 import { AboutComponent } from './public/pages/about/about.component';
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
-import { SlidesFormComponent } from './backoffice/pages/slides/slides-form/slides-form.component';
-import { ThanksComponent } from "./backoffice/pages/donations/thanks/thanks.component";
+import { SlidesFormComponent } from "./backoffice/pages/slides/slides-form/slides-form.component";
+import { ThanksComponent } from "./public/pages/donations/thanks/thanks.component";
+import { DonationsComponent } from "./public/pages/donations/donations.component";
+
 
 const routes: Routes = [
   {
     path: '',
-    component: ActivityFormComponent, // Replace with HomeComponent once object is created
     children: [
       {
         path: "actividades",
@@ -21,6 +22,14 @@ const routes: Routes = [
       {
         path: "nosotros",
         component: AboutComponent,
+      },
+      {
+        path: "donacion",
+        component: DonationsComponent,        
+      },
+      {
+        path: 'gracias',
+        component: ThanksComponent
       }
     ]
   },
@@ -44,22 +53,12 @@ const routes: Routes = [
         component: SlidesFormComponent
       }
     ]
-  },  
-  {
-    path: 'backoffice',
-    children: [
-     
-    ]
   },
   {
     path: "",
     redirectTo: "actividades",
     pathMatch: "full",
-  },
-  {
-    path: "gracias",
-    component: ThanksComponent ,
-  },
+  },  
   {
     path: "**",
     redirectTo: "actividades",
