@@ -4,7 +4,6 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges,
   TemplateRef,
   ViewChild,
