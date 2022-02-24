@@ -5,10 +5,12 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpperTitleComponent } from './components/upper-title/upper-title.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
 const componentToExport = [
   UpperTitleComponent,
-  CarouselComponent
+  CarouselComponent,
+  ContactFormComponent
 ]
 
 const modulesToExport = [
