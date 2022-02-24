@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { HttpService } from "@app/core/services/http.service";
 import { ActivityResponse } from "@app/shared/models/activity.model";
 import { BehaviorSubject, Subscription } from "rxjs";
@@ -23,14 +23,14 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   };
   subscription: Subscription;
 
-  constructor(private http: HttpService, private route: ActivatedRoute) {}
+  constructor(private http: HttpService, private router: Router) {}
 
   ngOnInit(): void {
     this.getActivity();
   }
 
   getActivity() {
-    this.activityResponse.data.id = this.route.snapshot.url[2].path; // [2] = index of url: UrlSegment[] from '/actividades/editar/:id'
+    this.activityResponse.data.id = this.router.url.split("/").pop(); // [2] = index of url: UrlSegment[] from '/actividades/editar/:id'
 
     this.subscription = this.http
       .getActivity(
