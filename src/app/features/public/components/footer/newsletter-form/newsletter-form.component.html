@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div *ngIf="!user_email">
+        <h3>Suscribete a nuestra Newsletter</h3>
+        <form (submit)="submit()" [formGroup]="form">
+            <div class="col-12 md:col-4">
+                <div class="field" [class.has-error]="email?.touched && email?.dirty">
+                    <input aria-describedby="email-help" formControlName="email" type="text" pInputText
+                        placeholder="ejemplo@email.com" id="email">
+                    <button type="submit" pButton pRipple icon="pi pi-check" styleClass="p-button-warn"
+                        [disabled]="!form.valid"></button>
+                    <div *ngIf="email?.invalid">
+                        <small *ngIf="email?.touched && email?.hasError('hasEmail')" id="email-help"
+                            class="p-error">Email
+                            invalido</small>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="user_email">
+        <h3>Ya estas suscrito a nuestra Newsletter</h3>
+        <p>Muchas gracias !</p>
+    </div>
+</div>
