@@ -8,7 +8,6 @@ import { CommonModule } from "@angular/common";
 import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from "primeng/dropdown";
-import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from "primeng/image";
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextareaModule } from "primeng/inputtextarea";
@@ -34,7 +33,6 @@ import { TooltipModule } from "primeng/tooltip";
     DialogModule,
     DividerModule,
     DropdownModule,
-    FileUploadModule,
     ImageModule,
     InputNumberModule,
     InputTextareaModule,
