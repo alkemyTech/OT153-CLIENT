@@ -9,7 +9,7 @@ import { ChipsModule } from "primeng/chips";
 import { DialogModule } from "primeng/dialog";
 import { DividerModule } from "primeng/divider";
 import { DropdownModule } from "primeng/dropdown";
-import { FileUploadModule } from 'primeng/fileupload';
+import { FileUploadModule } from "primeng/fileupload";
 import { ImageModule } from "primeng/image";
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextareaModule } from "primeng/inputtextarea";
@@ -20,12 +20,10 @@ import { RadioButtonModule } from "primeng/radiobutton";
 import { RippleModule } from "primeng/ripple";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { SidebarModule } from "primeng/sidebar";
-import { ToastModule } from 'primeng/toast';
+import { ToastModule } from "primeng/toast";
 import { TooltipModule } from "primeng/tooltip";
-import { FileUploadModule } from "primeng/fileupload";
 import { MessageModule } from "primeng/message";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
-import { ToastModule } from "primeng/toast";
 
 @NgModule({
   declarations: [],
@@ -53,10 +51,8 @@ import { ToastModule } from "primeng/toast";
     SidebarModule,
     ToastModule,
     TooltipModule,
-    FileUploadModule,
     MessageModule,
     ProgressSpinnerModule,
-    ToastModule,
   ],
 })
 export class PrimengModule {}

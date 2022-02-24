@@ -21,10 +21,6 @@ export class HttpService {
     );
   }
 
-  public patch<T>(url: string, body: T): Observable<T> {
-    return this.http.patch<T>(url, body);
-  }
-
   public post<T>(
     url: string,
     body: any,
