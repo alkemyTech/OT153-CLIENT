@@ -4,11 +4,8 @@
 
 export const environment = {
   production: false,
-<<<<<<< HEAD
   users: "http://ongapi.alkemy.org/api/users",
-=======
   membersUrl: "http://ongapi.alkemy.org/api/members",
->>>>>>> 42c4e00 (OT153-67 Create members list)
 };
 
 /*
