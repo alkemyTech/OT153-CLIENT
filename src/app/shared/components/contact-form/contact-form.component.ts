@@ -1,4 +1,3 @@
-import { ValidatorFn } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { emailValidator, digitValidator, allDigitValidator} from '@app/core/util/validators/form.validators';
@@ -14,7 +13,6 @@ export class ContactFormComponent implements OnInit {
   private nameFormControl: FormControl = new FormControl ( '', [ Validators.required ]);
   private phoneFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(8), allDigitValidator() ]);
   private messageFormControl: FormControl = new FormControl ( '', [ Validators.required ]);
-  private error_required: string = 'El campo es obligatorio';
 
   constructor(private formBuilder: FormBuilder) { 
   }
@@ -37,10 +35,6 @@ export class ContactFormComponent implements OnInit {
     const email = this.frmContact.get('useremail')?.value;
   }
 
-  errorRequired():string{
-    return this.error_required;
-  }
-
   controlForm(key: string): FormControl{
     return this.frmContact.controls[key] as FormControl;
   }
@@ -48,7 +42,7 @@ export class ContactFormComponent implements OnInit {
   get formSignup():FormGroup{
     return this.frmContact;
   }
-
+  
   get nameControl():FormControl {
     return this.controlForm('name');
   }
