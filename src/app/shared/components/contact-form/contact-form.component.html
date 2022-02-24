@@ -17,7 +17,7 @@
 
                 <div class="col-6">
                     <div class="field box" [class.has-error]="phoneControl.touched && phoneControl.dirty">
-                        <input pInputText [ngModel]="null" type="text" placeholder='Telefono'
+                        <input pInputText [ngModel]="null" type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder='Telefono'
                             id="phone" aria-describedby="phone-help" formControlName="phone"/>
                         <div *ngIf="phoneControl.invalid">
                             <small 
