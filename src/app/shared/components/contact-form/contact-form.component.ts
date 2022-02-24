@@ -14,6 +14,11 @@ export class ContactFormComponent implements OnInit {
   private phoneFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(8), allDigitValidator() ]);
   private messageFormControl: FormControl = new FormControl ( '', [ Validators.required ]);
 
+  private name:string; 
+  private phone :string;
+  private email:string; 
+  private message:string ;
+
   constructor(private formBuilder: FormBuilder) { 
   }
   
@@ -32,14 +37,21 @@ export class ContactFormComponent implements OnInit {
   }
 
   submit() {
-    const email = this.frmContact.get('useremail')?.value;
+    if (this.formContact.valid){
+      this.name=this.nameControl.value;
+      this.phone=this.phoneControl.value;
+      this.email=this.emailControl.value;
+      this.message=this.messageControl.value;
+
+      
+    }
   }
 
   controlForm(key: string): FormControl{
     return this.frmContact.controls[key] as FormControl;
   }
 
-  get formSignup():FormGroup{
+  get formContact():FormGroup{
     return this.frmContact;
   }
   
