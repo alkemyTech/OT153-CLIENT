@@ -6,9 +6,9 @@ import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.compo
 import { AboutComponent } from "./public/pages/about/about.component";
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { SlidesFormComponent } from "./backoffice/pages/slides/slides-form/slides-form.component";
-import { DonationsComponent } from "./public/components/donations/donations.component";
-import { ErrorComponent } from "./public/components/donations/error/error.component";
-import { ThanksComponent } from "./public/components/donations/thanks/thanks.component";
+import { DonationsComponent } from "./public/pages/donations/donations.component";
+import { ErrorComponent } from "./public/pages/donations/error/error.component";
+import { ThanksComponent } from "./public/pages/donations/thanks/thanks.component";
 import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
