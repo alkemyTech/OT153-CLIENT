@@ -1,0 +1,17 @@
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(160, 160, 160);
+  background-color: rgba(250, 238, 219, 0.486);
+  border-radius: 4px;
+  width: 300px;
+  height: 300px;
+  box-shadow: inset 0px 0px 5px black;
+  overflow: hidden;
+}
+
+img {
+  width: 300px;
+  object-fit: contain;
+}
