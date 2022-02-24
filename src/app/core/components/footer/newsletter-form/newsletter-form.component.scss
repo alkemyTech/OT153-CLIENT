@@ -1,0 +1,74 @@
+.content {
+  max-width: 370px;
+  width: auto;
+  padding: 20px;
+  background: #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.6);
+  h3 {
+    font-size: 1.4em;
+  }
+  p {
+    font-weight: 300;
+  }
+  button {
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    border-radius: 5px;
+    width: 27%;
+    display: inline-block;
+    padding: 8px;
+    background: #fff;
+    text-align: center;
+    border: 2px solid transparent;
+  }
+
+  button:hover {
+    border: 2px solid #aaa;
+  }
+}
+
+input[type="email"] {
+  outline: none;
+  display: inline-block;
+  width: 65%;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+
+input[type="email"]:focus {
+  border: 2px solid #aaa;
+}
+
+button {
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  border-radius: 5px;
+  width: 27%;
+  display: inline-block;
+  padding: 8px;
+  background: #fff;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+button:hover {
+  border: 2px solid #aaa;
+  cursor: pointer;
+}
+
+.has-error {
+  border: 2px solid red !important;
+}
+.invalid {
+  opacity: 0.5;
+  border: 2px solid transparent !important;
+  cursor: default !important;
+}
