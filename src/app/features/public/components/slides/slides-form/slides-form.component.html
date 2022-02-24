@@ -1,12 +1,12 @@
 <div class="col-12 md:col-10 lg:col-6 m-auto mt-4">
   <p-card>
-    <h4 class="mb-5 text-center">Formulario Slides</h4>
+    <h4>Formulario Slides</h4>
     <form autocomplete="off" [formGroup]="slideForm" (ngSubmit)="submitForm()">
       <!-- Name -->
       <div class="field">
         <span class="p-float-label">
           <input id="float-input" type="text" pInputText formControlName="name" class="inputfield w-full"> 
-          <label for="float-input">Nombre</label>
+          <label for="float-input">Name</label>
         </span>
         <span class="form-text text-danger" *ngIf="invalidField('name')">
           Campo obligatorio, al menos 4 caracteres
@@ -17,7 +17,7 @@
       <div class="field mt-4">
           <span class="p-float-label">
             <input formControlName="order" id="float-input" type="number" pInputText class="inputfield w-full" (input)="orderError($event)"> 
-            <label for="float-input">Orden</label>
+            <label for="float-input">Order</label>
           </span>
           <span class="form-text text-danger" *ngIf="invalidField('order')">
             {{ orderMessage }}
@@ -38,7 +38,6 @@
       <div class="row mt-4">
         <div class="col-sm-9">
           <p-fileUpload 
-            #fileInput
             [showUploadButton]="false" 
             [showCancelButton]="false" 
             chooseLabel="Elija la imagen" 
@@ -55,10 +54,10 @@
             </ul>
           </ng-template>
           <span class="form-text text-danger" *ngIf="invalidField('image')">
-            Debe seleccionar una imágen
+            Debe seleccionar una imagen
           </span>
           <div *ngIf="imageUrl" class="row flex align-items-center justify-content-center flex-column">
-            <h4>Current image</h4>
+            <h5>Actual image</h5>
             <p-image [src]="imageUrl" alt="Image" width="250" [preview]="true"></p-image>
           </div>
         </div>
@@ -66,7 +65,7 @@
 
       <!-- Button save -->
       <div class="row mt-4">
-          <button pButton type="submit" label="Guardar" class="p-button-sm" [loading]="isLoading"></button>
+          <button pButton type="submit" label="Guardar" class="p-button-sm"></button>
       </div>
     </form>
   </p-card>  
