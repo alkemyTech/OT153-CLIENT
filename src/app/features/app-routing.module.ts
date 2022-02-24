@@ -6,7 +6,10 @@ import { ActivityFormComponent } from './backoffice/pages/activities/activity-fo
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 import { AboutComponent } from './public/pages/about/about.component';
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
-import { SlidesFormComponent } from './backoffice/pages/slides/slides-form/slides-form.component';
+import { DonationsComponent } from "./public/components/donations/donations.component";
+import { ErrorComponent } from "./public/components/donations/error/error.component";
+import { ThanksComponent } from "./public/components/donations/thanks/thanks.component";
+import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 
 const routes: Routes = [
   {
@@ -33,17 +36,32 @@ const routes: Routes = [
       { 
         path: "organization", 
         component: OrganizationDetailsComponent 
-      },
-      {
-        path: "slides",
-        component: SlidesFormComponent
-      },
-      {
-        path: "slides/:id",
-        component: SlidesFormComponent
       }
+    ],
+    component: DashboardComponent,
+  },
+  {
+    path: "donar",
+    component: DonationsComponent ,
+  },
+  {
+    path: "error",
+    component: ErrorComponent ,
+  },
+  {
+    path: "nosotros",
+    component: AboutComponent,
+  },
+  { 
+    path: "login", 
+    component: LoginFormComponent 
+  },
+  {
+    path: 'backoffice',
+    children: [
+     
     ]
-  },  
+  },
   {
     path: "",
     redirectTo: "actividades",
@@ -57,7 +75,7 @@ const routes: Routes = [
     path: "**",
     redirectTo: "actividades",
     pathMatch: "full",
-  }
+  }  
 ];
 
 @NgModule({

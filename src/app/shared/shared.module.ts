@@ -15,6 +15,7 @@ const modulesToExport = [
   CKEditorModule,
   PrimengModule,
   ReactiveFormsModule
+
 ]
 @NgModule({
   declarations: [
