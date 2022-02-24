@@ -11,7 +11,7 @@ import { LoginFormComponent } from './backoffice/pages/auth/login-form/login-for
 import { RegisterFormComponent } from './backoffice/pages/auth/register-form/register-form.component';
 import { CategoriesFormComponent } from './backoffice/pages/categories/categories-form/categories-form.component';
 import { NewsFormComponent } from './backoffice/pages/news/news-form/news-form.component';
-import { SlidesFormComponent } from './public/components/slides/slides-form/slides-form.component';
+import { SlidesFormComponent } from './backoffice/pages/slides/slides-form/slides-form.component';
 import { TestimonialFormComponent } from './backoffice/pages/testimonials/testimonial-form/testimonial-form.component';
 import { AboutComponent } from './public/pages/about/about.component';
 import { AboutTextComponent } from './public/pages/about/components/about-text/about-text.component';
