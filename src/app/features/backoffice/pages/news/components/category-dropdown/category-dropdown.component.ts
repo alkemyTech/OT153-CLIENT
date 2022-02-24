@@ -1,19 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpService } from '@app/core/services/http.service';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { HttpService } from "@app/core/services/http.service";
 
 //!
 interface simpleCategory {
-  id:number;
-  name:string;
+  id: number;
+  name: string;
 }
 
 @Component({
-  selector: 'app-category-dropdown',
-  templateUrl: './category-dropdown.component.html',
-  styleUrls: ['./category-dropdown.component.scss']
+  selector: "app-category-dropdown",
+  templateUrl: "./category-dropdown.component.html",
+  styleUrls: ["./category-dropdown.component.scss"],
 })
 export class CategoryDropdownComponent implements OnInit {
-  url= "http://ongapi.alkemy.org/api/categories?limit=5";
+  url = "http://ongapi.alkemy.org/api/categories?limit=5";
   categories: simpleCategory[];
   selectedCategory: simpleCategory;
 
@@ -22,12 +22,11 @@ export class CategoryDropdownComponent implements OnInit {
   @Output() emitSelect = new EventEmitter<number>();
   @Output() emitTouchedDirty = new EventEmitter<boolean>();
 
-  constructor(private HttpService :HttpService) {
-  }
+  constructor(private HttpService: HttpService) {}
 
   ngOnInit() {
     this.HttpService.get<simpleCategory[]>(`${this.url}`, true).subscribe(
-      (res : any) => {
+      (res: any) => {
         const { data } = res;
         const _categories = data;
         this.categories = [..._categories];
@@ -42,16 +41,19 @@ export class CategoryDropdownComponent implements OnInit {
     if (this.selectedCategory === null) {
       this.emitTouchedDirty.emit(true);
       this.emitSelect.emit(undefined); //???
-    }else{
+    } else {
       this.emitSelect.emit(this.selectedCategory.id);
     }
   }
 
-  clickedEMPTY(){
-    if (this.selectedCategory === null || this.selectedCategory === undefined) {
+  clickedEMPTY() {
+    if (this.required || this.selectedCategory === null || this.selectedCategory === undefined ) 
+    {
       this.emitTouchedDirty.emit(true);
-    }else{
+    } else {
       this.emitTouchedDirty.emit(false);
     }
   }
+
+
 }
