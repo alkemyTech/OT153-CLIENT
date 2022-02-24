@@ -17,12 +17,14 @@ import { ListMembersComponent } from './backoffice/pages/members/list-members/li
 import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slides-list.component';
 import { UsersCrudComponent } from './backoffice/pages/users/users.component';
 import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.component';
-import { ActivitiesComponent } from "./public/pages/activities/activities.component";
-import { ActivitySelectedComponent } from "./public/pages/activities/components/activity-selected/activity-selected.component";
-import { ContactComponent } from "./public/pages/contact/contact.component";
+import { ActivitiesComponent } from './public/pages/activities/activities.component';
+import { ActivitySelectedComponent } from './public/pages/activities/components/activity-selected/activity-selected.component';
+import { ContactComponent } from './public/pages/contact/contact.component';
 import { UsComponent } from './public/pages/about/components/us/us.component';
 
 import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
+import { OrganizationEditComponent } from './backoffice/pages/organization-details/organization-edit/organization-edit.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -57,18 +59,17 @@ const routes: Routes = [
         component: ContactComponent,
       },
       {
-        path: "members",
+        path: 'members',
         component: UsComponent,
       },
       {
-        path: "users/create",
+        path: 'users/create',
         component: UserFormComponent,
       },
       {
-        path: "users/:id",
+        path: 'users/:id',
         component: UserFormComponent,
       },
-
     ],
   },
   {
@@ -100,6 +101,10 @@ const routes: Routes = [
         component: OrganizationDetailsComponent,
       },
       {
+        path: 'organization/editar',
+        component: OrganizationEditComponent,
+      },
+      {
         path: 'actividades',
         component: ListActivititesComponent,
       },
@@ -124,7 +129,7 @@ const routes: Routes = [
         component: ListMembersComponent,
       },
       {
-        path: "",
+        path: '',
         component: DashboardComponent,
         pathMatch: 'full',
       },
@@ -159,7 +164,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'actividades',
     pathMatch: 'full',
-  }
+  },
 ];
 
 @NgModule({
