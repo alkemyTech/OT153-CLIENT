@@ -18,6 +18,9 @@ import { AboutTextComponent } from './public/pages/about/components/about-text/a
 import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DonationsComponent } from './public/pages/donations/donations.component';
+import { ErrorComponent } from './public/pages/donations/error/error.component';
+import { ThanksComponent } from './public/pages/donations/thanks/thanks.component';
 
 @NgModule({
   declarations: [
