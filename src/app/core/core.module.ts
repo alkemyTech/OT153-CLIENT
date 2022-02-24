@@ -6,7 +6,8 @@ import {
 import { HttpService } from "./services/http.service";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [CommonModule, HttpClientModule],
   providers: [HttpService],
 })
