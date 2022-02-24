@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-
 import { ButtonModule } from "primeng/button";
 import { CalendarModule } from "primeng/calendar";
 import { CardModule } from "primeng/card";
@@ -53,6 +52,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
     TooltipModule,
     MessageModule,
     ProgressSpinnerModule,
+    CardModule,
   ],
 })
 export class PrimengModule {}

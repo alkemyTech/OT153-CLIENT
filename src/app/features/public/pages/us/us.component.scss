@@ -1,0 +1,183 @@
+@media screen {
+  section {
+    display: block;
+  }
+
+  img {
+    border: 0;
+  }
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .img-circle {
+    border-radius: 50%;
+  }
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .container:after {
+    clear: both;
+  }
+  .row:before,
+  .row:after {
+    content: " ";
+    display: table;
+  }
+  .row:after {
+    clear: both;
+  }
+  .col-xs-12 {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 750px;
+    }
+    .col-sm-3,
+    .col-sm-8 {
+      float: left;
+    }
+    .col-sm-3 {
+      width: 25%;
+    }
+    .col-sm-8 {
+      width: 66.66666666666666%;
+    }
+    .col-sm-offset-2 {
+      margin-left: 16.666666666666664%;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      max-width: 970px;
+    }
+    .col-md-3,
+    .col-md-8 {
+      float: left;
+    }
+    .col-md-3 {
+      width: 25%;
+    }
+    .col-md-8 {
+      width: 66.66666666666666%;
+    }
+    .col-md-offset-2 {
+      margin-left: 16.666666666666664%;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1170px;
+    }
+    .col-lg-3,
+    .col-lg-8 {
+      float: left;
+    }
+    .col-lg-3 {
+      width: 25%;
+    }
+    .col-lg-8 {
+      width: 66.66666666666666%;
+    }
+    .col-lg-offset-2 {
+      margin-left: 16.666666666666664%;
+    }
+  }
+}
+
+@media screen {
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 48px;
+    line-height: 72px;
+    margin: 0px;
+    padding: 0px;
+  }
+  h4 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 27px;
+    margin: 0px;
+    padding: 0px;
+  }
+  p {
+    font-weight: 400;
+    text-align: center;
+    font-size: 16px;
+    line-height: 25px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 25px;
+    opacity: 0.7;
+  }
+  #team {
+    padding-top: 110px;
+    padding-bottom: 90px;
+    background-color: blue;
+    background-position: center;
+    background-repeat: repeat;
+    display: block;
+    position: relative;
+    z-index: 120;
+    padding-top: 90px;
+    text-align: center;
+  }
+  #team h2,
+  #team h4,
+  #team p  {
+    color: white;
+  }
+
+  .iconify  {
+    color: white;
+    width: 40px;
+    height: 40px;
+  }
+
+  .member_photo {
+    width: 140px;
+    height: 140px;
+    margin: 60px auto;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+  }
+  
+  .team_box:hover .member_photo {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  .border {
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+  }
+}
+
+@media screen {
+  @media (max-width: 479px) {
+    h2 {
+      font-size: 20px;
+      line-height: 52px;
+    }
+  }
+}

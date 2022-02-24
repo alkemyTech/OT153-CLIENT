@@ -28,6 +28,7 @@ import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-ac
 import { CoreModule } from '../core/core.module';
 import { HomeComponent } from "./public/pages/home/home.component";
 import { IndexComponent } from "./public/pages/home/index/index.component";
+import { UsComponent } from "./public/pages/us/us.component";
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -50,7 +51,8 @@ import { IndexComponent } from "./public/pages/home/index/index.component";
     EditActivityFormComponent,
     UserFormComponent,
     HomeComponent,
-    IndexComponent
+    IndexComponent,
+    UsComponent
     
   ],
   exports: [

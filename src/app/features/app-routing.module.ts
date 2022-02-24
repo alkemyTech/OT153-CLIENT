@@ -8,11 +8,17 @@ import { ThanksComponent } from "./public/pages/donations/thanks/thanks.componen
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
+<<<<<<< HEAD
 import { ActivityFormComponent } from "./backoffice/pages/activities/activity-form/activity-form.component";
 import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
 import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.component";
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { AboutComponent } from "./public/pages/about/about.component";
+import { UsComponent } from "./public/pages/us/us.component";
+=======
+import { IndexComponent } from "./public/components/home/index/index.component";
+import { UsComponent } from './public/pages/us/us.component';
+>>>>>>> 6c6ebfa (OT153-67 Create members list)
 
 const routes: Routes = [
   {
