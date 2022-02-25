@@ -151,9 +151,6 @@ export class NewsFormComponent implements OnInit, DoCheck {
         this.frmNews.get('image')?.setValue(data.image);
         this.frmNews.get('category')?.setValue(data.category_id);
         this.imageUrl = resp.data.image;
-        
-        console.log("values News",this.categoryControl.value);
-
     })
   }
 
@@ -168,6 +165,10 @@ export class NewsFormComponent implements OnInit, DoCheck {
       };
       this.uploadedFile = file;
       this.imageFormControl.setValue(file ? file.name : '');
+        
+      console.log("url imag",this.imageControl.value);
+      
+
     }
   }
 
