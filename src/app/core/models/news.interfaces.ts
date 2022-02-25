@@ -11,11 +11,11 @@ export interface News {
 }
 
 export interface NewData {
-    id: number,
-    name: string,
-    slug: string,
-    content: string,
-    image: string,
-    user_id: number,
-    category_id: number,
+  id: number,
+  name: string,
+  slug: string,
+  content: string,
+  image: string,
+  user_id: number,
+  category_id: number,
 }
