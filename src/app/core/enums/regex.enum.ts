@@ -5,11 +5,13 @@ export enum regex {
   SYMBOLS_REGEX = '[^a-z0-9]',
   ALLDIGITS_REGEX = '^[0-9]+$',
   URL_HTTPS = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?',
+  FACEBOOK_REGEX = 'https://www.facebook.com/[A-Za-z0-9 - _  . ]{2,80}$',
 }
-
+// https:\/\/www\.facebook\.com\/[A-Za-z0-9 \- \_  \. ]{2,80}$
 export const EMAIL_REGEX: RegExp = new RegExp(regex.EMAIL_REGEX);
 export const SYMBOLS_REGEX: RegExp = new RegExp(regex.SYMBOLS_REGEX);
 export const DIGIT_REGEX: RegExp = new RegExp(regex.DIGIT_REGEX);
 export const WORD_REGEX: RegExp = new RegExp(regex.WORD_REGEX);
 export const ALLDIGIT_REGEX: RegExp = new RegExp(regex.ALLDIGITS_REGEX);
-export const URL_HTTPS_REGEX:RegExp = new RegExp(regex.URL_HTTPS)
+export const URL_HTTPS_REGEX: RegExp = new RegExp(regex.URL_HTTPS);
+export const FACEBOOK_REGEX: RegExp = new RegExp(regex.ALLDIGITS_REGEX);
