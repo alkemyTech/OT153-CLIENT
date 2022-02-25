@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="card"  *ngFor="let item of members">
+      <div class="card-header">
+        <img src="{{item.image}}" alt="Foto de {{item.name}}" title="Foto de {{item.name}}">
+      </div>
+      <div class="card-body">
+        <span class="name name-purple">{{item.name}}</span>
+        <h4>{{item.description}}</h4>
+        <div class="social-network">
+            <a href="{{item.facebookUrl}}" title="Facebook" target="_blank" ><img src="https://img.icons8.com/color/30/000000/facebook-circled--v1.png"/></a>
+            <a href="{{item.linkedinUrl}}" title="LinkedIn"><img src="https://img.icons8.com/color/30/000000/linkedin-circled--v1.png"/></a>
+        </div>
+      </div>
+    </div>
+</div>

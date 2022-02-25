@@ -14,12 +14,14 @@ import { NewActivityFormComponent } from './backoffice/pages/activities/new-acti
 import { EditActivityFormComponent } from './backoffice/pages/activities/edit-activity-form/edit-activity-form.component';
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
-import { ActivitiesComponent } from './public/pages/activities/activities.component';
-import { ActivitySelectedComponent } from './public/pages/activities/components/activity-selected/activity-selected.component';
-import { ContactComponent } from './public/pages/contact/contact.component';
 import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slides-list.component';
 import { UsersCrudComponent } from './backoffice/pages/users/users.component';
 import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.component';
+import { ActivitiesComponent } from "./public/pages/activities/activities.component";
+import { ActivitySelectedComponent } from "./public/pages/activities/components/activity-selected/activity-selected.component";
+import { ContactComponent } from "./public/pages/contact/contact.component";
+import { UsComponent } from './public/pages/about/components/us/us.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -53,6 +55,11 @@ const routes: Routes = [
         path: 'contacto',
         component: ContactComponent,
       },
+      {
+        path: "members",
+        component: UsComponent,
+      },
+
     ],
   },
   {
@@ -143,7 +150,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'actividades',
     pathMatch: 'full',
-  },
+  }
 ];
 
 @NgModule({
