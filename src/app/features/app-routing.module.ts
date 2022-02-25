@@ -67,11 +67,11 @@ const routes: Routes = [
         path: "actividades/editar/:id",
         component: EditActivityFormComponent,
       },
-      {
-        path: "",
-        component: DashboardComponent,
-        pathMatch: "full",
-      },
+      // {
+      //   path: "",
+      //   component: DashboardComponent,
+      //   pathMatch: "full",
+      // },
     ],
   },
   {
