@@ -5,6 +5,7 @@ import { UsersService } from '@app/features/services/users.service';
 import { ImgFile, User } from "src/app/core/models/user.models";
 
 
+
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -19,7 +20,7 @@ export class UserFormComponent implements OnInit {
   id: string|null;
   imageFile!: ImgFile;
   imageError: boolean = false;
-  image: string = "../../../../../assets/img/img_user.png";
+  image: string = "assets/img/img_user.png";
   imgName: string = "";
   edit: boolean = false;
   ok: boolean = false;

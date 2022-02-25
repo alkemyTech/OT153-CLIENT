@@ -7,16 +7,25 @@ import { UpperTitleComponent } from './components/upper-title/upper-title.compon
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
+
 const componentToExport = [
   UpperTitleComponent,
   CarouselComponent,
+<<<<<<< HEAD
   ContactFormComponent
+=======
+>>>>>>> f4b5092 (Fixing errors and remake the us's components)
 ]
 
 const modulesToExport = [
   CKEditorModule,
   PrimengModule,
+<<<<<<< HEAD
   ReactiveFormsModule
+=======
+  ReactiveFormsModule,
+
+>>>>>>> f4b5092 (Fixing errors and remake the us's components)
 ]
 @NgModule({
   declarations: [

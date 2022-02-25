@@ -32,6 +32,12 @@ export class HttpService {
       activateHeader ? { headers: this._headers } : {}
     );
   }
+<<<<<<< HEAD
+=======
+
+  
+}
+>>>>>>> f4b5092 (Fixing errors and remake the us's components)
 
   public patch<T>(
     url: string,

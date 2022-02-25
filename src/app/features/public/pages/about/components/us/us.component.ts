@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Member } from '../../../../../../core/models/members.interfaces';
-import { UsService } from '../../../../services/us.service';
+import { Member } from '@app/core/models/members.interfaces';
+import { HttpService } from '@app/core/services/http.service';
 
 @Component({
   selector: 'app-us',
@@ -8,18 +8,18 @@ import { UsService } from '../../../../services/us.service';
   styleUrls: ['./us.component.scss']
 })
 export class UsComponent implements OnInit {
-  public members  : Member[] = [];
-  constructor(
-    private _us : UsService
-  ) { }
+  members  : Member[];
+  url = 'http://ongapi.alkemy.org/api/members';
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.getMembers();
   }
 
   getMembers(){
-    this._us.getMember().subscribe(response => {
-      this.members = response.data;
+    this.httpService.get<any>(this.url).subscribe((response)=>{
+      const { data } = response
+      this.members = data;
     });
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { User } from "src/app/core/models/user.models";
-import { environment } from "../backoffice/pages/users/user-form/enviroment";
+import { environment } from "@env/environment";
 import { PrivateService } from "./private.service";
 
 @Injectable({
@@ -9,7 +9,7 @@ import { PrivateService } from "./private.service";
 })
 export class UsersService {
 
-  environment = environment.usersUrl;
+  environment = environment.users;
   constructor(private http: PrivateService) {}
 
   getUser(id?: string): Observable<any> {

@@ -4,13 +4,20 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@shared/*": ["src/app/shared"],
       "@admin/*": ["src/app/pages/*"],
-      "@pages/*": ["src/app/pages/*"],
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"],
       "@auth/*": ["src/app/pages/auth/&"],
+      "@core/*": ["src/app/core*"],
       "@env/*": ["src/environments/*"],
+<<<<<<< HEAD
       "@util/*": ["src/app/core/util/*"]
+=======
+      "@features/*": ["src/app/features*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@util/*": ["src/app/core/util/*"],
+>>>>>>> f4b5092 (Fixing errors and remake the us's components)
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

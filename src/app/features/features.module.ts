@@ -24,7 +24,6 @@ import { ErrorComponent } from "./public/pages/donations/error/error.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
-
 import { CoreModule } from '../core/core.module';
 import { HomeComponent } from "./public/pages/home/home.component";
 import { IndexComponent } from "./public/pages/home/index/index.component";
@@ -50,8 +49,6 @@ import { UsComponent } from './public/pages/about/components/us/us.component';
     NewActivityFormComponent,
     EditActivityFormComponent,
     UserFormComponent,
-    HomeComponent,
-    IndexComponent,
     UsComponent
     
   ],

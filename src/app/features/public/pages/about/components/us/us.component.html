@@ -1,18 +1,22 @@
-<section id="team" data-type="background" style="background-position: 50% -140px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-            <h2>Nuestros Miembros</h2></div>
-        </div>
-        
-        <div class="row" id="team_boxes">
-            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 team_box" *ngFor="let item of members">
-                <img src="{{item.image}}" alt="Foto de {{item.name}}" title="Foto de {{item.name}}" class="img-circle img-responsive member_photo" data-pagespeed-url-hash="2697352191" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                <h4>{{item.name}}</h4>
-                <p>{{item.description}}</p>
-                <a href="{{item.facebookUrl}}"><span class="iconify" data-icon="ant-design:facebook-filled"></span></a>
-                <a href="{{item.linkedinUrl}}"><span class="iconify" data-icon="mdi:linkedin"></span></a>
+<section id="team" class="front-page-section">
+    <div class="section-content">
+        <div class="container">
+            <div class="row inline-columns">
+                <div id="illdy_person-5" class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 widget-person" *ngFor="let item of members">
+                    <div class="person clearfix" data-person-color="#f18b6d">
+                        <div class="person-image"><img src="{{item.image}}" alt="Foto de {{item.name}}" title="Foto de {{item.name}}">
+                        </div>
+                        <div class="person-content">
+                            <h6>{{item.name}}</h6>
+                            <p>{{item.description}}</p>
+                            <ul class="person-content-social clearfix">
+                                <li><a href="#" title="Facebook" target="_blank" ><img src="https://img.icons8.com/color/30/000000/facebook-circled--v1.png"/></a></li>
+                                <li><a href="#" title="LinkedIn"><img src="https://img.icons8.com/color/30/000000/linkedin-circled--v1.png"/></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>      
+        </div>
     </div>
 </section>

@@ -13,6 +13,7 @@ import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-for
 import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.component";
 import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
 import { AboutComponent } from "./public/pages/about/about.component";
+import { UsComponent } from './public/pages/about/components/us/us.component';
 
 const routes: Routes = [
   {
