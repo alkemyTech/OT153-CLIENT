@@ -17,6 +17,9 @@ import { ListMembersComponent } from './backoffice/pages/members/list-members/li
 import { ActivitiesComponent } from "./public/pages/activities/activities.component";
 import { ActivitySelectedComponent } from "./public/pages/activities/components/activity-selected/activity-selected.component";
 import { ContactComponent } from "./public/pages/contact/contact.component";
+import { SlidesListComponent } from "./backoffice/pages/slides/slides-list/slides-list.component";
+
+
 const routes: Routes = [
   {
     path: "",
@@ -60,12 +63,21 @@ const routes: Routes = [
         component: OrganizationDetailsComponent,
       },
       {
-        path: 'slides',
-        component: SlidesFormComponent,
-      },
-      {
-        path: 'slides/:id',
-        component: SlidesFormComponent,
+        path: "slides",
+        children: [
+          {
+            path: "",
+            component: SlidesListComponent,
+          },
+          {
+            path: "crear",
+            component: SlidesFormComponent,
+          },
+          {
+            path: ":id",
+            component: SlidesFormComponent, // Replace with SlideDetailComponent once created
+          },
+        ]
       },
       {
         path: 'organization',
