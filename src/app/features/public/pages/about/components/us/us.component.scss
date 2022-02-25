@@ -1,6 +1,7 @@
 @import "__colors";
 @import "__fonts";
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 *{
   box-sizing: border-box;
@@ -12,7 +13,7 @@ body {
   align-items: center;
   margin: 0;
   background-color: $bgColor;
-  font-family: $roboto
+  font-family: $roboto;
 }
 .container {
   display: flex;
