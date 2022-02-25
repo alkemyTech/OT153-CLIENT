@@ -42,7 +42,7 @@
             <div class="field col-12">
                 <app-category-dropdown placeholder="Categoria" aria-describedby="category-help" 
                     [required]="true" 
-                    [setSelectedIdCategory]="(categoryControl.value !== undefined)? categoryControl.value: undefined"
+                    [setSelectedIdCategory]="(this.isEdit)? categoryControl.value : -1"
                     (emitSelect)="selectedIdCategory($event)" 
                     (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)">
                 </app-category-dropdown>
