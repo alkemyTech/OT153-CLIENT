@@ -52,7 +52,7 @@ export class PrivateService {
     });
   }
 
-  checkToken(): string | Headers {
+  checkToken(): null | Headers {
     let token = JSON.parse(localStorage.getItem("userToken") || "");
     if (token) {
       let headers = new Headers({
@@ -61,6 +61,6 @@ export class PrivateService {
       });
       return headers;
     }
-    return "";
+    return null;
   }
 }
