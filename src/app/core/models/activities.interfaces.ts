@@ -1,3 +1,8 @@
+export interface ActivitiesResponse {
+    success: boolean;
+    data:    Activities[];
+    message: string;
+}
 export interface Activities {
     id: number,
     name: string,

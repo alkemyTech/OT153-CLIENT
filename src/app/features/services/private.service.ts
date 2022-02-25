@@ -18,9 +18,9 @@ export class PrivateService {
     
   }
 
-  get(rout: string, id?: string) {
+  get<T>(rout: string, id?: string) {
     const urls = this.router(rout, id);
-    return this.http.get(urls);
+    return this.http.get<T>(urls);
   }
 
   put(rout: string, body: object, id?: string) {
@@ -38,15 +38,14 @@ export class PrivateService {
     
   }
 
-    patch(rutter: string, body: object, id?: string) {
+  patch(rutter: string, body: object, id?: string) {
     const httpHeaders = this.headers();
     const urls = this.router(rutter, id);
     return this.http.patch(urls, JSON.stringify(body), {
       headers: httpHeaders,
     });
   }
-
-  
+    
   headers() {
     let httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
     return httpHeaders;
