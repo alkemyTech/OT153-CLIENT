@@ -11,21 +11,14 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 const componentToExport = [
   UpperTitleComponent,
   CarouselComponent,
-<<<<<<< HEAD
   ContactFormComponent
-=======
->>>>>>> f4b5092 (Fixing errors and remake the us's components)
 ]
 
 const modulesToExport = [
   CKEditorModule,
   PrimengModule,
-<<<<<<< HEAD
-  ReactiveFormsModule
-=======
   ReactiveFormsModule,
 
->>>>>>> f4b5092 (Fixing errors and remake the us's components)
 ]
 @NgModule({
   declarations: [
