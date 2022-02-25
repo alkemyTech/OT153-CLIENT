@@ -1,17 +1,14 @@
 import { Component, Input, OnInit } from "@angular/core";
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
-import { HttpService } from "@app/core/services/http.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { MessageService } from "primeng/api";
 import { Subscription } from "rxjs";
-import { facebookLinkValidator } from "@app/core/util/validators/form.validators";
-import { getControl } from "@app/core/util/getControlForm";
+import {
+  facebookLinkValidator,
+  instagramLinkValidator,
+  twitterLinkValidator,
+} from "@app/core/util/validators/form.validators";
+import { getControl as getControlFunction } from "@app/core/util/getControlForm";
 @Component({
   selector: "app-organization-edit",
   templateUrl: "./organization-edit.component.html",
@@ -27,25 +24,26 @@ export class OrganizationEditComponent implements OnInit {
   @Input() defaultFacebookLink: string;
   @Input() defaultTwitterLink: string;
 
-  form: FormGroup = new FormGroup({
-    name: new FormControl("", Validators.required),
-    logo: new FormControl("", Validators.required),
-    shortDescription: new FormControl("", Validators.required),
-    longDescription: new FormControl("", Validators.required),
-    facebookLink: new FormControl("", facebookLinkValidator),
-    instagramLink: new FormControl("", Validators.required),
-    twitterLink: new FormControl("", Validators.required),
-  });
+  form = this.fb.group(
+    {
+      name: ["", [Validators.required]],
+      logo: ["", [Validators.required]],
+      shortDescription: ["", [Validators.required]],
+      longDescription: ["", [Validators.required]],
+      facebookLink: ["", [facebookLinkValidator()]],
+      instagramLink: ["", [instagramLinkValidator()]],
+      twitterLink: ["", [twitterLinkValidator()]],
+    },
+    { updateOn: "change" }
+  );
+  getControl = getControlFunction;
   imageBuffer: string | ArrayBuffer | null;
   imgMessage: string;
   displaySubmitSpinner: boolean = false;
   subscription: Subscription;
   submitted: boolean = false;
 
-  constructor(
-    private http: HttpService,
-    private messageService: MessageService
-  ) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 
@@ -80,55 +78,6 @@ export class OrganizationEditComponent implements OnInit {
       this.submitted = true;
     } else {
       this.submitted = false;
-      let url = "http://ongapi.alkemy.org/api/activities";
-      this.httpSendActivity(url, form);
     }
-  }
-
-  httpSendActivity(url: string, form: FormGroup) {
-    this.displaySubmitSpinner = true;
-    this.messageService.add({
-      severity: "info",
-      summary: "Cargando actividad...",
-    });
-
-    this.subscription = (
-      this.defaultName
-        ? this.http.patch(url, form.value)
-        : this.http.post(url, form.value)
-    ).subscribe(
-      (response) => {
-        this.displaySubmitSpinner = false;
-        this.messageService.add({
-          severity: "success",
-          summary: "Enviado!",
-          detail: "La actividad fue cargada exitosamente.",
-        });
-      },
-      (err) => {
-        this.displaySubmitSpinner = false;
-        this.messageService.add({
-          severity: "error",
-          summary: "Error",
-          detail: `${err.status} ${err.statusText}`,
-        });
-      }
-    );
-  }
-
-  validateRegex(control: string) {
-    /*   const form_control = this.form.get(control);
-    if (!form_control?.validator) {
-      return false;
-    }
-
-    const validator = form_control.validator({} as AbstractControl);
-    return validator; */
-
-    return this.form.get("facebookLink")?.validator;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
