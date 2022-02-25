@@ -21,7 +21,7 @@
                         (change)="selectFile($event)">
 
                     <p-message *ngIf="imageBuffer" severity="success" styleClass="ml-2 mt-1 "></p-message>
-                    <p-message *ngIf="form.invalid && !imageBuffer" severity="error" text="requerido" class="ml-2">
+                    <p-message *ngIf="submitted && !imageBuffer" severity="error" text="requerido" class="ml-2">
                     </p-message>
                     <div class="mt-2" [innerHtml]='imgMessage' *ngIf="imgMessage"></div>
                 </div>
@@ -31,21 +31,21 @@
                 <div class="field">
                     <label><strong>Nombre de la organización *</strong></label>
                     <div class="p-inputgroup">
-                        <input formControlName="name" class="form-control" aria-describedby="username-help" type="text"
-                            autocomplete="off" pInputText placeholder="...">
+                        <input formControlName="name" class="form-control" type="text" autocomplete="off" pInputText
+                            placeholder="...">
                     </div>
-                    <small id="username-help" *ngIf="form.invalid && !this.form.controls['name'].value" severity="error"
+                    <small *ngIf="submitted && !this.form.controls['name'].value" severity="error"
                         class="p-error">Nombre de la organización es requerido.</small>
                 </div>
 
                 <div class="field">
                     <label><strong>Descripción corta *</strong></label>
                     <div class="p-inputgroup">
-                        <input formControlName="shortDescription" class="form-control" aria-describedby="username-help"
-                            type="text" autocomplete="off" pInputText placeholder="...">
+                        <input formControlName="shortDescription" class="form-control" type="text" autocomplete="off"
+                            pInputText placeholder="...">
                     </div>
-                    <small id="username-help" *ngIf="form.invalid && !this.form.controls['shortDescription'].value"
-                        severity="error" class="p-error">Descripción corta es requerida.</small>
+                    <small *ngIf="submitted && !this.form.controls['shortDescription'].value" severity="error"
+                        class="p-error">Descripción corta es requerida.</small>
                 </div>
 
                 <div class="field">
@@ -54,6 +54,8 @@
                         <input formControlName="facebookLink" class="form-control" type="text" autocomplete="off"
                             pInputText placeholder="...">
                     </div>
+                    <small *ngIf="submitted && validateRegex('facebookLink')" severity="error" class="p-error">Ops! Hay
+                        algo incorrecto en el enlace...</small>
                 </div>
 
                 <div class="field">
@@ -85,10 +87,8 @@
                 <button pButton pRipple class="p-button-raised" label="Submit" type="submit"></button>
             </div>
             <p-progressSpinner class="m-auto" [style]="{width: '50px', height: '50px', opacity: '.7'}"
-                *ngIf="loadSubmit">
+                *ngIf="displaySubmitSpinner">
             </p-progressSpinner>
         </form>
     </p-card>
 </div>
-<button type="button" style="background-color: red; position: fixed; bottom: 15px;
-left: 15px;" pButton (click)="showSpinner()" label="clg form"></button>
