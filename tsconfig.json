@@ -13,6 +13,7 @@
       "@features/*": ["src/app/features/*"],
       "@models/*": ["src/app/core/models/*"],
       "@pages/*": ["src/app/pages/*"],
+      "@public/*": ["src/app/features/public/*"],
       "@shared/*": ["src/app/shared"],
       "@util/*": ["src/app/core/util/*"]
     },
