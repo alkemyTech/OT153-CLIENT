@@ -1,3 +1,4 @@
+import { DoCheck, OnChanges } from '@angular/core';
 import { HttpService } from '@app/core/services/http.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -5,6 +6,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FileUpload } from 'primeng/fileupload';
 import { New, NewData } from '@app/core/models/news.interfaces';
 import { simpleCategory } from "@app/core/models/category.interface";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-news-form',
@@ -12,17 +14,17 @@ import { simpleCategory } from "@app/core/models/category.interface";
   styleUrls: ['./news-form.component.scss']
 })
 
-export class NewsFormComponent implements OnInit {
+export class NewsFormComponent implements OnInit, DoCheck {
   @ViewChild('fileInput') fileInput: FileUpload;
 
   @Input() idNews: number; //idNews <= -1 --> create // idNews >= 0 --> edit
-  private isEditFlag: boolean = false;
+  public isEditFlag: boolean;
   private title: string = 'Crear';
   private url: string = 'http://ongapi.alkemy.org/api/news' ;
   public isLoading: boolean = false;
 
   private frmNews: FormGroup;
-  private titleFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(4) ] );
+  private nameFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(4) ] );
   private contentFormControl: FormControl = new FormControl( '', [ Validators.required ] );
   private categoryFormControl: FormControl = new FormControl( '', [ Validators.required ] );
   private imageFormControl: FormControl = new FormControl('', [ Validators.required ] );
@@ -38,15 +40,18 @@ export class NewsFormComponent implements OnInit {
   public uploadedFile: File | null;
 
 
-  constructor(private httpService: HttpService, private formBuilder: FormBuilder) { 
-    
+  constructor( private route: ActivatedRoute, private httpService: HttpService, private formBuilder: FormBuilder) { }
+
+  ngDoCheck(): void {
+
   }
 
   ngOnInit(): void {
     this.frmNews = this.newsForm();
     this.config = { placeholder:'Contenido' };
-    this.defineCreateOrEdit();
-    this.loadNews();    
+    this.isEditFlag = (this.idNews >= 0);
+    this.title = this.isEdit? 'Editar' : 'Crear';  
+    this.loadNews(); 
   }
 
   defineCreateOrEdit(){
@@ -55,7 +60,6 @@ export class NewsFormComponent implements OnInit {
   }
 
   submit(): void{
-    this.categoryControl.setValue(this._categoryId)
     this.frmNews.markAllAsTouched();
     if(this.frmNews.valid){
       this.isLoading = true;
@@ -70,18 +74,20 @@ export class NewsFormComponent implements OnInit {
     }
 
     console.log(this.frmNews.controls);
+    console.log("submit", this._categoryId); 
     
     
   }
 
   edit(){
-    const { title, content } = this.formNews.value;
+
+    const { name, content, category, image } = this.formNews.value;
     let body;
     if(this.uploadedFile){
       let image = this.base64Image;
-      body = {title, content, image}  
+      body = { name, content, category, image }  
     }else{
-      body = { title, content }
+      body = { name, content, category}
     }
 
     let url = `${this.url}/${this.idNews}`;
@@ -101,9 +107,9 @@ export class NewsFormComponent implements OnInit {
   }
 
   create(){
-    const {title, content} = this.formNews.value;
+    const { name, content, category } = this.formNews.value;
     let image = this.base64Image;
-    const body: any = {title, content, image } ;
+    const body: any = {name, content, category, image } ;
 
     this.httpService.post<New>(this.url, body).subscribe((resp)=>{
       if(resp.success){
@@ -122,7 +128,7 @@ export class NewsFormComponent implements OnInit {
 
   newsForm(): FormGroup{
     return this.formBuilder.group( {
-        title: this.titleFormControl,
+        name: this.nameFormControl,
         content: this.contentFormControl,
         category: this.categoryFormControl,
         image: this.imageFormControl
@@ -131,7 +137,6 @@ export class NewsFormComponent implements OnInit {
   }
 
   loadNews(){
-    
     this.isEditFlag ? this.getNews(this.idNews) : null ;   
   }
 
@@ -140,18 +145,16 @@ export class NewsFormComponent implements OnInit {
     this.httpService.get<New>(url)
       .subscribe((resp) => {
         const { success, data } = resp;
-        const category_id = data.category_id;
-        console.log("one News", data);
-        this.frmNews.get('title')?.setValue(data.name);
+        console.log("getNews(): ", data);
+        this.frmNews.get('name')?.setValue(data.name);
         this.frmNews.get('content')?.setValue(data.content);
-        this.frmNews.get('image')?.setValue(resp.data.image);
-        this.categoryControl.setValue(data.category_id)
+        this.frmNews.get('image')?.setValue(data.image);
+        this.frmNews.get('category')?.setValue(data.category_id);
         this.imageUrl = resp.data.image;
         
         console.log("values News",this.categoryControl.value);
 
     })
-
   }
 
   onSelect(event) {
@@ -164,19 +167,19 @@ export class NewsFormComponent implements OnInit {
         this.base64Image = reader.result
       };
       this.uploadedFile = file;
-      this.formNews.controls['image'].setValue(file ? file.name : '');
+      this.imageFormControl.setValue(file ? file.name : '');
     }
   }
 
   onRemove(){
-    // this.imageFormControl?.setValue('');
-    this.imageFormControl.setErrors( {required:true} )
+    this.imageFormControl?.setValue('');
     this.base64Image = '';
     this.uploadedFile = null;
   }
 
   selectedIdCategory(newId: number) {
     this._categoryId = newId;
+    this.categoryControl.setValue(newId);
   }
 
   dropdownCategoryTouchedDirty(flag: boolean) {
@@ -187,8 +190,8 @@ export class NewsFormComponent implements OnInit {
     return this.frmNews;
   } 
 
-  get titleControl(): FormControl {
-    return this.formNews.get('title') as FormControl;
+  get nameControl(): FormControl {
+    return this.formNews.get('name') as FormControl;
   }
 
   get contentControl(): FormControl {
