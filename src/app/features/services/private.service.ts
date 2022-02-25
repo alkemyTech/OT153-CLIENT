@@ -1,54 +1,55 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrivateService {
 
+  private token: string;
+
   constructor(private http: HttpClient) {}
 
-  router(rout: string, id?: string) {
-    let route = rout;
-    if (id) {
-      route = rout + "/" + id;
-    }
-
-    return route;
-    
-  }
-
-  get<T>(rout: string, id?: string) {
-    const urls = this.router(rout, id);
-    return this.http.get<T>(urls);
-  }
-
-  put(rout: string, body: object, id?: string) {
-    const httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
-    const urls = this.router(rout, id);
-    return this.http.put(urls, JSON.stringify(body), { headers: httpHeaders });
-  }
-
-  post(rout: string, body: object) {
-    const httpHeaders = this.headers();
-    const urls = this.router(rout);
-    return this.http.post<any>(urls, JSON.stringify(body), {
-      headers: httpHeaders,
-    });
-    
-  }
-
-  patch(rutter: string, body: object, id?: string) {
-    const httpHeaders = this.headers();
-    const urls = this.router(rutter, id);
-    return this.http.patch(urls, JSON.stringify(body), {
-      headers: httpHeaders,
-    });
-  }
-    
   headers() {
-    let httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
+    let httpHeaders = new HttpHeaders(
+      { 
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${this.token}`
+      });
     return httpHeaders;
   }
+
+  router(url: string, id?: string) {
+    let route = url;
+    if (id) {
+      route = url + "/" + id;
+    }
+    return route;    
+  }
+
+  get<T>(url: string, id?: string): Observable<T> {
+    const urls = this.router(url, id);
+    return this.http.get<T>(urls, { headers: this.headers() });
+  }
+
+  put<T>(url: string, body: object, id?: string): Observable<T> {
+    const urls = this.router(url, id);
+    return this.http.put<T>(urls, JSON.stringify(body), { headers: this.headers() });
+  }
+
+  post<T>(url: string, body: object): Observable<T> {
+    const urls = this.router(url);
+    return this.http.post<T>(urls, JSON.stringify(body), {
+      headers: this.headers(),
+    });    
+  }
+
+  patch<T>(url: string, body: object, id?: string): Observable<T> {
+    const urls = this.router(url, id);
+    return this.http.patch<T>(urls, JSON.stringify(body), {
+      headers: this.headers(),
+    });
+  }  
 
 }
