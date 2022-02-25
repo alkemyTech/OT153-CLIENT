@@ -11,7 +11,9 @@
 
 <p-card header="{{this.pageTitle}} Novedades" styleClass="p-card-shadow m-auto col-12">
     <div class="grid p-fluid">
-        <form (submit)="submit()" [formGroup]="formNews" class="w-100">
+        <form (ngSubmit)="submit()" [formGroup]="formNews" class="w-100">
+
+            <!-- section TITLE -->
             <div class="field col-12" [class.has-error]="titleControl.touched && titleControl.dirty">
                 <input pInputText id="title-input" placeholder="Titulo" type="text" formControlName="title" aria-describedby="title-help"/>
                 <div *ngIf="titleControl.invalid">
@@ -24,8 +26,8 @@
                 </div>
             </div>
 
+            <!-- section CONTENT  -->
             <div class="field col-12">
-                <!-- <input id="content" placeholder='Contenido' type="text" pInputText/> -->
                 <div class="col-sm-9">
                     <ckeditor [editor]="editor" [config]="config" formControlName="content"></ckeditor>
                 </div>
@@ -36,25 +38,57 @@
                 </div>
             </div>
 
+            <!-- section CATEGORY -->
             <div class="field col-12">
-                <app-category-dropdown placeholder="Categoria" aria-describedby="category-help" [required]="true" 
-                    (emitSelect)="selectedIdCategory($event)" (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)">
+                <app-category-dropdown placeholder="Categoria" aria-describedby="category-help" 
+                    [required]="true" 
+                    [setSelectedIdCategory]=1611
+                    (emitSelect)="selectedIdCategory($event)" 
+                    (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)">
                 </app-category-dropdown>
+                <input type="hidden" name="fileHidden" formControlName="category"/>
                 <small 
                     *ngIf="categoryTouchedDirty" 
                     id="category-help" class="p-error">Seleccione una categoria.</small>
             </div>
             
-            <div class="row flex">
+            <!-- section IMAGE IMG -->
+            <div class="field col-12">
+                <p-fileUpload #fileInput
+                    [showUploadButton]="false" 
+                    [showCancelButton]="false" 
+                    chooseLabel="Elija una imagen" 
+                    invalidFileTypeMessageDetail="Archivos permitidos: jpeg y png" 
+                    accept="image/jpeg, image/png" [auto]="false" 
+                    (onRemove)="onRemove()" (onSelect)="onSelect($event)">
+                </p-fileUpload>
 
+                <input type="hidden" name="fileHidden" formControlName="image"/>
+
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFile">
+                        <li >{{uploadedFile.name}} - {{uploadedFile.size}} bytes</li>
+                    </ul>
+                </ng-template>
+
+                <small *ngIf="imageControl.touched && imageControl.hasError('krequired')" 
+                    id="image-help" class="p-error">Debe seleccionar una imágen</small>
+                
+                <p-card *ngIf="imageControl?.value" header="Imagen Actual" class="col-12">
+                    <p-image [src]="imageUrl" alt="Image" width="100vh" [preview]="true"></p-image>
+                </p-card>
+                
+            </div>
+            
+            <!-- section BUTTONS -->
+            <div class="row flex">
                 <div class="col-6">
-                    <button pButton type="submit" label="{{this.pageTitle}}" class="p-button-primary box"></button>
+                    <button pButton type="submit" label="{{this.pageTitle}}" class="p-button-primary box" [loading]="isLoading"></button>
                 </div>
 
                 <div class="col-6">
                     <button pButton type="button" label="Atras" class="p-button-secondary box"></button>
                 </div>
-
             </div>
 
         </form>
