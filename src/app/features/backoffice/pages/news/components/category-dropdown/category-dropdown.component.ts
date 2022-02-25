@@ -3,6 +3,7 @@ import { HttpService } from "@app/core/services/http.service";
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 import { respSimpleCategory, simpleCategory} from "@app/core/models/category.interface";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 @Component({
   selector: "app-category-dropdown",
   templateUrl: "./category-dropdown.component.html",
@@ -29,20 +30,21 @@ export class CategoryDropdownComponent implements OnInit, DoCheck, OnChanges {
   }
 
   ngOnChanges(){  
-    if(this.setSelectedIdCategory === undefined || this.setSelectedIdCategory === null){
-      null
-    } else {
-      this.selectedCategory.id = this.setSelectedIdCategory;
-      this.getCategory(this.setSelectedIdCategory);
+    if(this.setSelectedIdCategory < 0 || this.setSelectedIdCategory.toString() == "" ){
+      console.log("no se ejecuto getCategory", this.setSelectedIdCategory, this.selectedCategory,);
+    } 
+    else {
+      const id = this.setSelectedIdCategory;
+      this.selectedCategory.id = id as number;
+      this.getCategory(id);
+      this.idSelected();
     }
-    this.idSelected();
-    console.log("as",this.selectedCategory);
   }
 
   getCategory(id: number){
-    let _url = `${this.url}/${id}`;
     if( id === undefined || id === null || id < 0){  
     } else{
+      let _url = `${this.url}/${id}`;
       this.HttpService.get<respSimpleCategory>(_url)
         .subscribe((res) => {
           const { data } = res;
@@ -54,6 +56,7 @@ export class CategoryDropdownComponent implements OnInit, DoCheck, OnChanges {
         }
       ); 
     }
+    console.log("se ejecuto getCategory", this.setSelectedIdCategory, this.selectedCategory);
 
   }
 
