@@ -18,7 +18,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "alkemy",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -37,7 +37,10 @@
               "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [ "./src/styles/" ]
+            }
           },
           "configurations": {
             "production": {
@@ -112,5 +115,5 @@
       }
     }
   },
-  "defaultProject": "base-ong-angular-client"
+  "defaultProject": "ong-somos-nosotros"
 }
