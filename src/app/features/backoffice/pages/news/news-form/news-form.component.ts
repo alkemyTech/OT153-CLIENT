@@ -1,22 +1,23 @@
-import { DoCheck, OnChanges } from '@angular/core';
+/**
+ * -- @param idNews: number. ------ If idNews >= 1 then EDIT else CREATE end.
+ * -- @param routerLink: string.--- Back button path.
+ *    
+ */ 
 import { HttpService } from '@app/core/services/http.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FileUpload } from 'primeng/fileupload';
-import { New, NewData } from '@app/core/models/news.interfaces';
-import { simpleCategory } from "@app/core/models/category.interface";
-import { ActivatedRoute } from '@angular/router';
-
+import { New } from '@app/core/models/news.interfaces';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-news-form',
   templateUrl: './news-form.component.html',
   styleUrls: ['./news-form.component.scss']
 })
-
-export class NewsFormComponent implements OnInit, DoCheck {
+export class NewsFormComponent implements OnInit {
   @ViewChild('fileInput') fileInput: FileUpload;
-
+  @Input() routerLink: string;
   @Input() idNews: number; //idNews <= -1 --> create // idNews >= 0 --> edit
   public isEditFlag: boolean;
   private title: string = 'Crear';
@@ -28,23 +29,15 @@ export class NewsFormComponent implements OnInit, DoCheck {
   private contentFormControl: FormControl = new FormControl( '', [ Validators.required ] );
   private categoryFormControl: FormControl = new FormControl( '', [ Validators.required ] );
   private imageFormControl: FormControl = new FormControl('', [ Validators.required ] );
-
   public _categoryId: number;
   private categoryInvalid: boolean;
-
   private classicEditor = ClassicEditor;
   public config;
-  
   public imageUrl: string;
   public base64Image: string | ArrayBuffer | null;
   public uploadedFile: File | null;
 
-
-  constructor( private route: ActivatedRoute, private httpService: HttpService, private formBuilder: FormBuilder) { }
-
-  ngDoCheck(): void {
-
-  }
+  constructor( private messageService: MessageService, private httpService: HttpService, private formBuilder: FormBuilder ) { }
 
   ngOnInit(): void {
     this.frmNews = this.newsForm();
@@ -64,64 +57,54 @@ export class NewsFormComponent implements OnInit, DoCheck {
     if(this.frmNews.valid){
       this.isLoading = true;
       if(this.isEditFlag){
-        this.edit();     
+        this.patch();     
       }else{
-        this.create();
+        this.post();
       }
     }else{
-      console.log("no valid");
-      
-    }
-
-    console.log(this.frmNews.controls);
-    console.log("submit", this._categoryId); 
-    
+      this.addToastMessage('error', 'Complete los campos del formulario')
+    }    
     
   }
 
-  edit(){
-
-    const { name, content, category, image } = this.formNews.value;
+  patch(){
+    const { name, content, category } = this.formNews.value;
     let body;
     if(this.uploadedFile){
       let image = this.base64Image;
-      body = { name, content, category, image }  
+      body = {name, content, category, image}  
     }else{
-      body = { name, content, category}
+      body = {name, content, category }
     }
 
     let url = `${this.url}/${this.idNews}`;
     this.httpService.patch<New>(url, body).subscribe((resp) => {
       if(resp.success){
-        console.log("Good");
-        
+        this.addToastMessage('success', 'Edicion exitosa!');
         this.loadNews();
         this.fileInput.clear();
       }else{
-        console.log("Bad");
-        
+        this.addToastMessage('error', 'Hubo un error al '+ this.title +' la Novedad!')
       }
-      
       this.isLoading = false;
     })
   }
 
-  create(){
+  post(){
     const { name, content, category } = this.formNews.value;
     let image = this.base64Image;
     const body: any = {name, content, category, image } ;
 
     this.httpService.post<New>(this.url, body).subscribe((resp)=>{
       if(resp.success){
-        console.log("good");
-        
+        this.addToastMessage('success', 'Creacion exitosa!');
+        this.addToastMessage('success', 'Usted creo la novedad: '+ name +'.');
+
         this.fileInput.clear();
         this.formNews.reset();
       }else{
-        console.log("bad");
-        
+        this.addToastMessage('error', 'Hubo un error al '+ this.title +' la Novedad!');
       }
-      
       this.isLoading = false;
     })
   }
@@ -145,18 +128,20 @@ export class NewsFormComponent implements OnInit, DoCheck {
     this.httpService.get<New>(url)
       .subscribe((resp) => {
         const { success, data } = resp;
-        console.log("getNews(): ", data);
         this.frmNews.get('name')?.setValue(data.name);
         this.frmNews.get('content')?.setValue(data.content);
         this.frmNews.get('image')?.setValue(data.image);
         this.frmNews.get('category')?.setValue(data.category_id);
         this.imageUrl = resp.data.image;
+        if(this.isEditFlag){
+          this.frmNews.get('image')?.setErrors(null);
+        }
     })
   }
 
   onSelect(event) {
-    if(!event.currentFiles) return
-    let file = event.currentFiles;
+    if(!event.currentFiles[0]) return
+    let file = event.currentFiles[0];
     if(file.type === 'image/jpeg'){      
       let reader = new FileReader();
       reader.readAsDataURL(file);
@@ -164,11 +149,7 @@ export class NewsFormComponent implements OnInit, DoCheck {
         this.base64Image = reader.result
       };
       this.uploadedFile = file;
-      this.imageFormControl.setValue(file ? file.name : '');
-        
-      console.log("url imag",this.imageControl.value);
-      
-
+      this.frmNews.controls['image'].setValue(file ? file.name : '');
     }
   }
 
@@ -185,6 +166,16 @@ export class NewsFormComponent implements OnInit, DoCheck {
 
   dropdownCategoryTouchedDirty(flag: boolean) {
     this.categoryInvalid = flag;
+  }
+
+  addToastMessage(typeMsg: string, msg: string){
+    this.messageService.add(
+      { 
+        key: 'toastMessage', 
+        severity: typeMsg, 
+        summary: msg, 
+      }
+    );
   }
 
   get formNews(): FormGroup {

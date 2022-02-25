@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter, DoCheck, OnChanges } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from "@angular/core";
 import { HttpService } from "@app/core/services/http.service";
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 import { respSimpleCategory, simpleCategory} from "@app/core/models/category.interface";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 @Component({
   selector: "app-category-dropdown",
   templateUrl: "./category-dropdown.component.html",
   styleUrls: ["./category-dropdown.component.scss"],
 })
-export class CategoryDropdownComponent implements OnInit, DoCheck, OnChanges {
+
+export class CategoryDropdownComponent implements OnInit, OnChanges {
   url = "http://ongapi.alkemy.org/api/categories";
   categories: simpleCategory[];
   selectedCategory: simpleCategory = {name:"", id: -1};
@@ -24,14 +24,11 @@ export class CategoryDropdownComponent implements OnInit, DoCheck, OnChanges {
 
   ngOnInit(): void{
     this.getCategories();
-  }
-
-  ngDoCheck(): void {
+    
   }
 
   ngOnChanges(){  
     if(this.setSelectedIdCategory < 0 || this.setSelectedIdCategory.toString() == "" ){
-      console.log("no se ejecuto getCategory", this.setSelectedIdCategory, this.selectedCategory,);
     } 
     else {
       const id = this.setSelectedIdCategory;
@@ -49,15 +46,12 @@ export class CategoryDropdownComponent implements OnInit, DoCheck, OnChanges {
         .subscribe((res) => {
           const { data } = res;
           this.selectedCategory = data;
-          console.log(res);
         },
         (error) => {
            alert(error.error.message);
         }
       ); 
     }
-    console.log("se ejecuto getCategory", this.setSelectedIdCategory, this.selectedCategory);
-
   }
 
   getCategories(): void{

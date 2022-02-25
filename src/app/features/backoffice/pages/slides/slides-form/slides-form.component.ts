@@ -154,7 +154,7 @@ export class SlidesFormComponent implements OnInit {
     }
     
   }
-
+  
   editSlide(){   
     const { name, order, description } = this.slideForm.value;
     let body;
