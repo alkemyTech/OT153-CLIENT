@@ -1,6 +1,6 @@
-import { ValidatorFn } from '@angular/forms';
-import { patternValidator } from './custom.validators';
-import { DIGIT_REGEX, WORD_REGEX, SYMBOLS_REGEX, EMAIL_REGEX, ALLDIGIT_REGEX } from '../../enums/regex.enum';
+import { ValidatorFn } from "@angular/forms";
+import { patternValidator } from "./custom.validators";
+import { DIGIT_REGEX, WORD_REGEX, SYMBOLS_REGEX, EMAIL_REGEX, ALLDIGIT_REGEX, FACEBOOK_REGEX,} from "../../enums/regex.enum";
 
 export function digitValidator(): ValidatorFn {
   return patternValidator(DIGIT_REGEX, { hasNumber: true });
@@ -16,4 +16,7 @@ export function emailValidator(): ValidatorFn {
 }
 export function allDigitValidator(): ValidatorFn {
   return patternValidator(ALLDIGIT_REGEX, { hasAllNumber: true });
+}
+export function facebookLinkValidator(): ValidatorFn {
+  return patternValidator(FACEBOOK_REGEX, { hasLink: true });
 }
