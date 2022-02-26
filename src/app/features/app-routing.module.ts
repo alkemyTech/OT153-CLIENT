@@ -13,6 +13,7 @@ import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-for
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
+import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
 const routes: Routes = [
   {
     path: "",
@@ -66,6 +67,10 @@ const routes: Routes = [
       {
         path: "actividades/editar/:id",
         component: EditActivityFormComponent,
+      },
+      {
+        path: "members",
+        component: ListMembersComponent,
       },
       {
         path: "",
