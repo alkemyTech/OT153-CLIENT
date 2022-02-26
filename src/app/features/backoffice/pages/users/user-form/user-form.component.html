@@ -1,0 +1,58 @@
+<div class="user">
+    <form class="container-user" [formGroup]="form" (ngSubmit)="createUser()">
+    <div class="user-img">
+      <img src="{{image}}"  id="input-perfil" title="Click en la imagen para modificar" alt="Imagen de perfil del usuario">
+      <input class="form-control" formControlName="profile_image" type="file" id="avatar" (change)="fileEvent($event)">
+      <input type="hidden" id="errorEnImagen" value="{{imageError}}">
+    </div>
+    
+    <div class="user-form">
+      <span class="user-form-title">
+        {{ title }}
+      </span>
+
+      <div class="wrap-user-input">
+        <select class="user-input" style="height: 50px;margin-left: 0px; padding-left:26px  !important;" formControlName="role_id">
+          <option value="1">Administrador</option>
+          <option value="2">Regular</option>
+        </select>
+      </div>
+
+      <div class="wrap-user-input">
+        <input class="user-input" type="text"  placeholder="Name" required   id="name"  placeholder="Nombre"  formControlName="name"> 
+        <span class="invalid" *ngIf="form.get('name')?.errors?.['required'] &&  form.get('name')?.touched">El nombre es requerido</span>
+      </div>
+
+      <div class="wrap-user-input">
+        <input class="user-input" type="email" placeholder="Email" id="email" placeholder="Email" formControlName="email">
+        <span  class="invalid" *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched">El email es requerido</span>
+      </div>
+
+      <div class="wrap-user-input">
+        <input class="user-input" type="password" placeholder="Password"  id="password" formControlName="password">
+        <span class="invalid" *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched">El password es requerido</span>
+      </div>
+
+      <div class="wrap-user-input">
+        <textarea class="user-input" placeholder="Descripcion"   id="description" formControlName="description"></textarea>
+        <span class="invalid" *ngIf="form.get('description')?.errors?.['required'] && form.get('description')?.touched"></span>
+      </div>
+
+      <div class="container-user-form-btn">
+        <span *ngIf="form.invalid"  style="color: red"  class="btn-block">Complete los campos para agregar el usuario!</span> <br>
+        <span class="invalid" *ngIf="form.get('profile_image')?.errors?.['required'] &&  form.get('profile_image')?.touched">La Imagen es requerido</span>
+        <button class="user-form-btn"  *ngIf="form.valid">
+          <span>
+            {{btn}}
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+</form>
+</div>
+
+
+
+
+

@@ -22,6 +22,7 @@ import { ActivitySelectedComponent } from "./public/pages/activities/components/
 import { ContactComponent } from "./public/pages/contact/contact.component";
 import { UsComponent } from './public/pages/about/components/us/us.component';
 
+import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
 const routes: Routes = [
   {
     path: '',
@@ -116,6 +117,15 @@ const routes: Routes = [
       },
       {
         path: '',
+        path: "users",
+        component: UserFormComponent,
+      },
+      {
+        path: "users/:id",
+        component: UserFormComponent,
+      },
+      {
+        path: "",
         component: DashboardComponent,
         pathMatch: 'full',
       },
