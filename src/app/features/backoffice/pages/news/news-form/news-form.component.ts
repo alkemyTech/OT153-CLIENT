@@ -3,13 +3,15 @@
  * -- @param routerLink: string.--- Back button path.
  *    
  */ 
-import { HttpService } from '@app/core/services/http.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { FileUpload } from 'primeng/fileupload';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { getControl } from '@app/core/util/getControlForm';
+import { getControl as getControlFunction } from '@app/core/util/getControlForm';
+import { HttpService } from '@app/core/services/http.service';
 import { New } from '@app/core/models/news.interfaces';
 import { MessageService } from 'primeng/api';
+import { FileUpload } from 'primeng/fileupload';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-news-form',
   templateUrl: './news-form.component.html',
@@ -23,12 +25,12 @@ export class NewsFormComponent implements OnInit {
   private title: string = 'Crear';
   private url: string = 'http://ongapi.alkemy.org/api/news' ;
   public isLoading: boolean = false;
-
   private frmNews: FormGroup;
   private nameFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(4) ] );
   private contentFormControl: FormControl = new FormControl( '', [ Validators.required ] );
   private categoryFormControl: FormControl = new FormControl( '', [ Validators.required ] );
   private imageFormControl: FormControl = new FormControl('', [ Validators.required ] );
+  public getControl = getControlFunction;
   public _categoryId: number;
   private categoryInvalid: boolean;
   private classicEditor = ClassicEditor;
@@ -42,14 +44,27 @@ export class NewsFormComponent implements OnInit {
   ngOnInit(): void {
     this.frmNews = this.newsForm();
     this.config = { placeholder:'Contenido' };
-    this.isEditFlag = (this.idNews >= 0);
-    this.title = this.isEdit? 'Editar' : 'Crear';  
+    this.defineCreateOrEdit() 
     this.loadNews(); 
+  }
+
+  newsForm(): FormGroup{
+    return this.formBuilder.group( {
+        name: this.nameFormControl,
+        content: this.contentFormControl,
+        category: this.categoryFormControl,
+        image: this.imageFormControl
+      }
+    );
   }
 
   defineCreateOrEdit(){
     this.isEditFlag = this.idNews >= 0? true : false;
     this.title = this.isEdit? 'Editar' : 'Crear';    
+  }
+
+  loadNews(){
+    this.isEditFlag ? this.getNews(this.idNews) : null ;   
   }
 
   submit(): void{
@@ -109,20 +124,6 @@ export class NewsFormComponent implements OnInit {
     })
   }
 
-  newsForm(): FormGroup{
-    return this.formBuilder.group( {
-        name: this.nameFormControl,
-        content: this.contentFormControl,
-        category: this.categoryFormControl,
-        image: this.imageFormControl
-      }
-    );
-  }
-
-  loadNews(){
-    this.isEditFlag ? this.getNews(this.idNews) : null ;   
-  }
-
   getNews(id: number){
     let url = `${this.url}/${id}`;
     this.httpService.get<New>(url)
@@ -161,7 +162,7 @@ export class NewsFormComponent implements OnInit {
 
   selectedIdCategory(newId: number) {
     this._categoryId = newId;
-    this.categoryControl.setValue(newId);
+    this.formControl('category').setValue(newId);
   }
 
   dropdownCategoryTouchedDirty(flag: boolean) {
@@ -182,20 +183,8 @@ export class NewsFormComponent implements OnInit {
     return this.frmNews;
   } 
 
-  get nameControl(): FormControl {
-    return this.formNews.get('name') as FormControl;
-  }
-
-  get contentControl(): FormControl {
-    return this.formNews.get('content') as FormControl;
-  }
-
-  get categoryControl(): FormControl {
-    return this.formNews.get('category') as FormControl;
-  }
-
-  get imageControl(): FormControl{
-    return this.formNews.get('image') as FormControl;
+  formControl(name :string): FormControl{
+    return getControl(this.formNews, name) as FormControl;
   }
 
   get categoryTouchedDirty(): boolean {
