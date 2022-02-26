@@ -1,11 +1,11 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing/'
 import { TestBed, async, inject } from '@angular/core/testing';
-import { UsersService } from './user.service';
+import { UserService } from './user.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpService } from '../../services/http.service';
 
 describe('Service: NewsUsers', () => {
-  let service: UsersService
+  let service: UserService
 
   beforeEach(() => {
     TestBed.configureTestingModule({ 
@@ -14,14 +14,14 @@ describe('Service: NewsUsers', () => {
         HttpService
        ]
     });
-    service = TestBed.inject(UsersService);
+    service = TestBed.inject(UserService);
   });
 
-  it('should ...', inject([UsersService], (service: UsersService) => {
+  it('should ...', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy();
   }));
 
-  it('should get', inject([UsersService], (service: UsersService) => {
+  it('should get', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy();
   }));
 
