@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpService } from '@app/core/services/http.service';
 import { Observable, Observer } from 'rxjs';
 import { User, Users, UserData } from '@app/core/models/users.interfaces';
 import { Delete } from '@app/core/models/delete.interface';
+import { HttpService } from '@app/core/services/http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +14,32 @@ export class UserService {
   private _baseUrl: string = 'http://ongapi.alkemy.org/api/users'; 
   
   constructor(private http: HttpClient) {
-    this._headers = new HttpHeaders({ Group: this._groupId })
+    console.log("... user service ...");
+  }
+
+  headers() {
+    let httpHeaders = new HttpHeaders( { "Content-Type": "application/json"  });
+    return httpHeaders;
   }
 
   public getAllUsers(): Observable<Users> {
-    return this.http.get<Users>(this._baseUrl);
+    return this.http.get<Users>(this._baseUrl, { headers: this.headers() });
   }
 
-  public createUser<User>(body :UserData): Observable<User> {
-    throw new Error('Method not implemented.');
+  public createUser(body: UserData): Observable<User> {
+    return this.http.post<User>(this._baseUrl, body, { headers: this.headers() });
   }
 
-  public getUserById<User>(id: number): Observable<User> {
+  public getUserById(id: number): Observable<User> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.get<User>(url);
   }
 
-  public updateUserById<User>(id: number, body:UserData): Observable<User> {
+  public updateUserById(id: number, body:UserData): Observable<User> {
+    return this.http.put<User>(this._baseUrl, JSON.stringify(body), { headers: this.headers() });
+  }
+
+  public deleteLogicUserById(id: number): Observable<User>{
     throw new Error('Method not implemented.');
   }
 
