@@ -11,9 +11,8 @@ describe('CategoryDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryDropdownComponent ]
-    })
-    .compileComponents();
+      declarations: [CategoryDropdownComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

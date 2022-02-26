@@ -1,11 +1,10 @@
-<p-dropdown 
-  [options]="categories" 
-  [(ngModel)]="selectedCategory" 
+<p-dropdown
+  [options]="categories"
+  [(ngModel)]="selectedCategory"
   [placeholder]="placeholder"
-  optionLabel="name" 
+  optionLabel="name"
   [showClear]="true"
   (onChange)="idSelected()"
   (onClick)="clickedEMPTY()"
   [required]="required"
 ></p-dropdown>
-

@@ -1,8 +1,8 @@
 /**
  * -- @param idNews: number. ------ If idNews >= 1 then EDIT else CREATE end.
  * -- @param routerLink: string.--- Back button path.
- *    
- */ 
+ *
+ */
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { getControl } from '@app/core/util/getControlForm';
@@ -15,7 +15,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-news-form',
   templateUrl: './news-form.component.html',
-  styleUrls: ['./news-form.component.scss']
+  styleUrls: ['./news-form.component.scss'],
 })
 export class NewsFormComponent implements OnInit {
   @ViewChild('fileInput') fileInput: FileUpload;
@@ -23,13 +23,13 @@ export class NewsFormComponent implements OnInit {
   @Input() idNews: number; //idNews <= -1 --> create // idNews >= 0 --> edit
   public isEditFlag: boolean;
   private title: string = 'Crear';
-  private url: string = 'http://ongapi.alkemy.org/api/news' ;
+  private url: string = 'http://ongapi.alkemy.org/api/news';
   public isLoading: boolean = false;
   private frmNews: FormGroup;
-  private nameFormControl: FormControl = new FormControl( '', [ Validators.required, Validators.minLength(4) ] );
-  private contentFormControl: FormControl = new FormControl( '', [ Validators.required ] );
-  private categoryFormControl: FormControl = new FormControl( '', [ Validators.required ] );
-  private imageFormControl: FormControl = new FormControl('', [ Validators.required ] );
+  private nameFormControl: FormControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
+  private contentFormControl: FormControl = new FormControl('', [Validators.required]);
+  private categoryFormControl: FormControl = new FormControl('', [Validators.required]);
+  private imageFormControl: FormControl = new FormControl('', [Validators.required]);
   public getControl = getControlFunction;
   public _categoryId: number;
   private categoryInvalid: boolean;
@@ -39,122 +39,123 @@ export class NewsFormComponent implements OnInit {
   public base64Image: string | ArrayBuffer | null;
   public uploadedFile: File | null;
 
-  constructor( private messageService: MessageService, private httpService: HttpService, private formBuilder: FormBuilder ) { }
+  constructor(
+    private messageService: MessageService,
+    private httpService: HttpService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.frmNews = this.newsForm();
-    this.config = { placeholder:'Contenido' };
-    this.defineCreateOrEdit() 
-    this.loadNews(); 
+    this.config = { placeholder: 'Contenido' };
+    this.defineCreateOrEdit();
+    this.loadNews();
   }
 
-  newsForm(): FormGroup{
-    return this.formBuilder.group( {
-        name: this.nameFormControl,
-        content: this.contentFormControl,
-        category: this.categoryFormControl,
-        image: this.imageFormControl
-      }
-    );
+  newsForm(): FormGroup {
+    return this.formBuilder.group({
+      name: this.nameFormControl,
+      content: this.contentFormControl,
+      category: this.categoryFormControl,
+      image: this.imageFormControl,
+    });
   }
 
-  defineCreateOrEdit(){
-    this.isEditFlag = this.idNews >= 0? true : false;
-    this.title = this.isEdit? 'Editar' : 'Crear';    
+  defineCreateOrEdit() {
+    this.isEditFlag = this.idNews >= 0 ? true : false;
+    this.title = this.isEdit ? 'Editar' : 'Crear';
   }
 
-  loadNews(){
-    this.isEditFlag ? this.getNews(this.idNews) : null ;   
+  loadNews() {
+    this.isEditFlag ? this.getNews(this.idNews) : null;
   }
 
-  submit(): void{
+  submit(): void {
     this.frmNews.markAllAsTouched();
-    if(this.frmNews.valid){
+    if (this.frmNews.valid) {
       this.isLoading = true;
-      if(this.isEditFlag){
-        this.patch();     
-      }else{
+      if (this.isEditFlag) {
+        this.patch();
+      } else {
         this.post();
       }
-    }else{
-      this.addToastMessage('error', 'Complete los campos del formulario')
-    }    
-    
+    } else {
+      this.addToastMessage('error', 'Complete los campos del formulario');
+    }
   }
 
-  patch(){
+  patch() {
     const { name, content, category } = this.formNews.value;
     let body;
-    if(this.uploadedFile){
+    if (this.uploadedFile) {
       let image = this.base64Image;
-      body = {name, content, category, image}  
-    }else{
-      body = {name, content, category }
+      body = { name, content, category, image };
+    } else {
+      body = { name, content, category };
     }
 
     let url = `${this.url}/${this.idNews}`;
     this.httpService.patch<New>(url, body).subscribe((resp) => {
-      if(resp.success){
+      if (resp.success) {
         this.addToastMessage('success', 'Edicion exitosa!');
         this.loadNews();
         this.fileInput.clear();
-      }else{
-        this.addToastMessage('error', 'Hubo un error al '+ this.title +' la Novedad!')
+      } else {
+        this.addToastMessage('error', 'Hubo un error al ' + this.title + ' la Novedad!');
       }
       this.isLoading = false;
-    })
+    });
   }
 
-  post(){
+  post() {
     const { name, content, category } = this.formNews.value;
     let image = this.base64Image;
-    const body: any = {name, content, category, image } ;
+    const body: any = { name, content, category, image };
 
-    this.httpService.post<New>(this.url, body).subscribe((resp)=>{
-      if(resp.success){
+    this.httpService.post<New>(this.url, body).subscribe((resp) => {
+      if (resp.success) {
         this.addToastMessage('success', 'Creacion exitosa!');
-        this.addToastMessage('success', 'Usted creo la novedad: '+ name +'.');
+        this.addToastMessage('success', 'Usted creo la novedad: ' + name + '.');
 
         this.fileInput.clear();
         this.formNews.reset();
-      }else{
-        this.addToastMessage('error', 'Hubo un error al '+ this.title +' la Novedad!');
+      } else {
+        this.addToastMessage('error', 'Hubo un error al ' + this.title + ' la Novedad!');
       }
       this.isLoading = false;
-    })
+    });
   }
 
-  getNews(id: number){
+  getNews(id: number) {
     let url = `${this.url}/${id}`;
-    this.httpService.get<New>(url)
-      .subscribe((resp) => {
-        const { success, data } = resp;
-        this.frmNews.get('name')?.setValue(data.name);
-        this.frmNews.get('content')?.setValue(data.content);
-        this.frmNews.get('image')?.setValue(data.image);
-        this.frmNews.get('category')?.setValue(data.category_id);
-        this.imageUrl = resp.data.image;
-        if(this.isEditFlag){
-          this.frmNews.get('image')?.setErrors(null);
-        }
-    })
+    this.httpService.get<New>(url).subscribe((resp) => {
+      const { success, data } = resp;
+      this.frmNews.get('name')?.setValue(data.name);
+      this.frmNews.get('content')?.setValue(data.content);
+      this.frmNews.get('image')?.setValue(data.image);
+      this.frmNews.get('category')?.setValue(data.category_id);
+      this.imageUrl = resp.data.image;
+      if (this.isEditFlag) {
+        this.frmNews.get('image')?.setErrors(null);
+      }
+    });
   }
 
   onSelect(event) {
-    if(!event.currentFiles[0]) return
+    if (!event.currentFiles[0]) return;
     let file = event.currentFiles[0];
-    if(file.type === 'image/jpeg'){      
+    if (file.type === 'image/jpeg') {
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.base64Image = reader.result
+        this.base64Image = reader.result;
       };
       this.uploadedFile = file;
       this.frmNews.controls['image'].setValue(file ? file.name : '');
     }
   }
 
-  onRemove(){
+  onRemove() {
     this.imageFormControl?.setValue('');
     this.base64Image = '';
     this.uploadedFile = null;
@@ -169,29 +170,27 @@ export class NewsFormComponent implements OnInit {
     this.categoryInvalid = flag;
   }
 
-  addToastMessage(typeMsg: string, msg: string){
-    this.messageService.add(
-      { 
-        key: 'toastMessage', 
-        severity: typeMsg, 
-        summary: msg, 
-      }
-    );
+  addToastMessage(typeMsg: string, msg: string) {
+    this.messageService.add({
+      key: 'toastMessage',
+      severity: typeMsg,
+      summary: msg,
+    });
   }
 
   get formNews(): FormGroup {
     return this.frmNews;
-  } 
+  }
 
-  formControl(name :string): FormControl{
+  formControl(name: string): FormControl {
     return getControl(this.formNews, name) as FormControl;
   }
 
   get categoryTouchedDirty(): boolean {
-    return this.categoryInvalid; 
+    return this.categoryInvalid;
   }
 
-  get isEdit(): boolean{
+  get isEdit(): boolean {
     return this.isEditFlag;
   }
 
@@ -199,8 +198,7 @@ export class NewsFormComponent implements OnInit {
     return this.title;
   }
 
-  get editor():any {
+  get editor(): any {
     return this.classicEditor;
   }
-
 }

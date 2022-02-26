@@ -11,9 +11,8 @@ describe('ActivitiesCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActivitiesCardComponent ]
-    })
-    .compileComponents();
+      declarations: [ActivitiesCardComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -3,19 +3,16 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-upper-title',
   templateUrl: './upper-title.component.html',
-  styleUrls: ['./upper-title.component.scss']
+  styleUrls: ['./upper-title.component.scss'],
 })
 export class UpperTitleComponent implements OnInit {
-  @Input()title!: string;
-  @Input()pathBackground!: string;
-  @Input()colorBackground!: string;
-  @Input()colorText!: string;
-  @Input()class!: string;
+  @Input() title!: string;
+  @Input() pathBackground!: string;
+  @Input() colorBackground!: string;
+  @Input() colorText!: string;
+  @Input() class!: string;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

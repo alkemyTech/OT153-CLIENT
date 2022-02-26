@@ -1,9 +1,9 @@
 export enum regex {
-    EMAIL_REGEX = "^[^@]+@[^@]+\.[a-zA-Z]{2,}$",
-    DIGIT_REGEX = "[0-9]",
-    WORD_REGEX = "[a-zA-Z]",
-    SYMBOLS_REGEX = "[^a-z0-9]",
-    ALLDIGITS_REGEX = "^[0-9]+$"
+  EMAIL_REGEX = '^[^@]+@[^@]+.[a-zA-Z]{2,}$',
+  DIGIT_REGEX = '[0-9]',
+  WORD_REGEX = '[a-zA-Z]',
+  SYMBOLS_REGEX = '[^a-z0-9]',
+  ALLDIGITS_REGEX = '^[0-9]+$',
 }
 
 export const EMAIL_REGEX: RegExp = new RegExp(regex.EMAIL_REGEX);

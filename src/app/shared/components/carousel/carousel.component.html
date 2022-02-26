@@ -1,15 +1,15 @@
 <p-carousel [value]="slides" [autoplayInterval]="5000" [circular]="true">
-    <ng-template let-slide pTemplate="item">
-        <div class="product-item">
-            <div class="product-item-content">
-                <div class="mb-3">
-                    <img [src]="slide.image" [alt]="slide.name" class="product-image" />
-                </div>
-                <div>
-                    <h4 class="mb-1">{{slide.name}}</h4>
-                    <div [innerHTML]="slide.description"></div>
-                </div>
-            </div>
+  <ng-template let-slide pTemplate="item">
+    <div class="product-item">
+      <div class="product-item-content">
+        <div class="mb-3">
+          <img [src]="slide.image" [alt]="slide.name" class="product-image" />
         </div>
-    </ng-template>
+        <div>
+          <h4 class="mb-1">{{ slide.name }}</h4>
+          <div [innerHTML]="slide.description"></div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </p-carousel>

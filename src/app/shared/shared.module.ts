@@ -7,28 +7,12 @@ import { UpperTitleComponent } from './components/upper-title/upper-title.compon
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 
-const componentToExport = [
-  UpperTitleComponent,
-  CarouselComponent,
-  ContactFormComponent
-]
+const componentToExport = [UpperTitleComponent, CarouselComponent, ContactFormComponent];
 
-const modulesToExport = [
-  CKEditorModule,
-  PrimengModule,
-  ReactiveFormsModule
-]
+const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
 @NgModule({
-  declarations: [
-    ...componentToExport
-  ],
-  imports: [
-    CommonModule,
-    ...modulesToExport
-  ],
-  exports:[
-    ...modulesToExport,
-    ...componentToExport
-  ]
+  declarations: [...componentToExport],
+  imports: [CommonModule, ...modulesToExport],
+  exports: [...modulesToExport, ...componentToExport],
 })
-export class SharedModule { }
+export class SharedModule {}

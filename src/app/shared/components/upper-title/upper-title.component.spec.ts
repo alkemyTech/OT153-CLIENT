@@ -8,9 +8,8 @@ describe('UpperTitleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpperTitleComponent ]
-    })
-    .compileComponents();
+      declarations: [UpperTitleComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

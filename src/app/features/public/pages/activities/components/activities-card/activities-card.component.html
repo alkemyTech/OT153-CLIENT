@@ -1,17 +1,15 @@
 <p-card header="" styleClass="p-card-shadow m-auto">
   <div class="grid">
     <div *ngFor="let activitie of activities" class="col-6">
-      <p-card header="{{activitie.name}}" subheader="" [style]="{ height: '100%'}" styleClass="p-card-shadow m-3">
-          <ng-template pTemplate="header">
-              <img alt="Card" [src]="activitie['image']" >
-          </ng-template>
-          <p>
-            {{activitie.description}}</p>
-          <ng-template pTemplate="footer">
-            
-          </ng-template>
+      <p-card header="{{ activitie.name }}" subheader="" [style]="{ height: '100%' }" styleClass="p-card-shadow m-3">
+        <ng-template pTemplate="header">
+          <img alt="Card" [src]="activitie['image']" />
+        </ng-template>
+        <p>
+          {{ activitie.description }}
+        </p>
+        <ng-template pTemplate="footer"> </ng-template>
       </p-card>
     </div>
   </div>
-
 </p-card>

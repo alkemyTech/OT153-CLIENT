@@ -1,9 +1,12 @@
-<h2 style="text-align: center; padding-top: 20px;">Bienvendio a tu Dashboard</h2>
+<h2 style="text-align: center; padding-top: 20px">Bienvendio a tu Dashboard</h2>
 <div class="wrapper">
-    <div *ngFor="let category of categories" class="card">
-        <p-card (click)="redirect(category.link)" header="{{category.title}}"
-            [style]="{'width':'250px', 'height':'250px', 'border-radius':'12px'}">
-            <img src="assets/backoffice/{{category.title}}.png" alt="">
-        </p-card>
-    </div>
+  <div *ngFor="let category of categories" class="card">
+    <p-card
+      (click)="redirect(category.link)"
+      header="{{ category.title }}"
+      [style]="{ width: '250px', height: '250px', 'border-radius': '12px' }"
+    >
+      <img src="assets/backoffice/{{ category.title }}.png" alt="" />
+    </p-card>
+  </div>
 </div>
