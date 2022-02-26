@@ -14,7 +14,6 @@ export class UserService {
   private _baseUrl: string = 'http://ongapi.alkemy.org/api/users'; 
   
   constructor(private http: HttpClient) {
-    console.log("... user service ...");
   }
 
   headers() {
