@@ -34,6 +34,8 @@ import { UsersCrudComponent } from './backoffice/pages/users/users.component';
 import { EditUserComponent } from './backoffice/pages/users/edit-user/edit-user.component';
 import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.component';
 import { UsComponent } from "./public/pages/about/components/us/us.component";
+import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
+
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -65,6 +67,7 @@ import { UsComponent } from "./public/pages/about/components/us/us.component";
     EditUserComponent,
     NewUserComponent,
     UsComponent,
+    UserFormComponent,
   ],
   exports: [
     ActivityFormComponent,
