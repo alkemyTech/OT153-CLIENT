@@ -14,11 +14,10 @@ import { HttpService } from '@app/core/services/http.service';
   styleUrls: ['./slides-form.component.scss'],
 })
 export class SlidesFormComponent implements OnInit {
-
   @ViewChild('fileInput') fileInput: FileUpload;
   public isLoading: boolean = false;
   public Editor = ClassicEditor;
-  public config = { placeholder:'Descripción'};
+  public config = { placeholder: 'Descripción' };
   public orderMessage: string = 'Debe asignar el orden de la imágen';
   public uploadedFile: File | null;
   public slideData: SlideData;
@@ -29,23 +28,21 @@ export class SlidesFormComponent implements OnInit {
   public url: string = 'http://ongapi.alkemy.org/api/slides';
   public base64Image: string | ArrayBuffer | null;
   public slideId: number;
-  
-  slideForm: FormGroup = this.fb.group(
-    {
-      name: ['', [Validators.required, Validators.minLength(4)]],
-      order: ['', [Validators.required]],
-      description: ['',[Validators.required]],
-      image: ['',[Validators.required]],
-    }   
-  );
 
-  constructor( 
-    private fb: FormBuilder, 
-    private route: ActivatedRoute, 
+  slideForm: FormGroup = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(4)]],
+    order: ['', [Validators.required]],
+    description: ['', [Validators.required]],
+    image: ['', [Validators.required]],
+  });
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
     private http: HttpClient,
     private httpService: HttpService,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadSlide();
@@ -53,82 +50,79 @@ export class SlidesFormComponent implements OnInit {
   }
 
   onSelect(event) {
-    if(!event.currentFiles[0]) return
+    if (!event.currentFiles[0]) return;
     let file = event.currentFiles[0];
-    if(file.type === 'image/jpeg'){      
+    if (file.type === 'image/jpeg') {
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.base64Image = reader.result
+        this.base64Image = reader.result;
       };
       this.uploadedFile = file;
       this.slideForm.controls['image'].setValue(file ? file.name : '');
     }
   }
 
-  onRemove(){
+  onRemove() {
     this.slideForm.get('image')?.setValue('');
     this.base64Image = '';
     this.uploadedFile = null;
   }
 
   invalidField(field: string) {
-    return (
-      this.slideForm.get(field)?.invalid &&
-      this.slideForm.get(field)?.touched
-    );
+    return this.slideForm.get(field)?.invalid && this.slideForm.get(field)?.touched;
   }
-  
-  loadSlide(){
+
+  loadSlide() {
     let id: number;
-    this.route.params.subscribe(params =>{
-      id = params['id']
+    this.route.params.subscribe((params) => {
+      id = params['id'];
     });
 
-    if(id!){
+    if (id!) {
       let url = `${this.url}/${id}`;
-      this.httpService.get<Slide>(url).subscribe((resp)=> {
-        const {success, data} = resp;
-        if(success && data.id){
-          this.slideForm.get('name')?.setValue(data.name)
-          this.slideForm.get('order')?.setValue(data.order)
-          this.slideForm.get('description')?.setValue(data.description)
+      this.httpService.get<Slide>(url).subscribe((resp) => {
+        const { success, data } = resp;
+        if (success && data.id) {
+          this.slideForm.get('name')?.setValue(data.name);
+          this.slideForm.get('order')?.setValue(data.order);
+          this.slideForm.get('description')?.setValue(data.description);
           this.imageUrl = resp.data.image;
           this.dbOrder = resp.data.order;
           this.slideId = resp.data.id;
-          if(this.imageUrl){
+          if (this.imageUrl) {
             this.slideForm.get('image')?.setErrors(null);
             this.edit = true;
           }
           this.getOrders();
         }
-      })
-    }else{
+      });
+    } else {
       this.edit = false;
     }
   }
 
-  getOrders(){
-    this.httpService.get<Slides>(this.url).subscribe((resp) =>{
-      let data: SlideData[] = resp.data;      
-      data.map((slide)=>{
-        if(slide.order != this.dbOrder){
+  getOrders() {
+    this.httpService.get<Slides>(this.url).subscribe((resp) => {
+      let data: SlideData[] = resp.data;
+      data.map((slide) => {
+        if (slide.order != this.dbOrder) {
           this.orders.push(slide.order);
         }
-      })
-    })
+      });
+    });
   }
 
-  orderError(event){
+  orderError(event) {
     let value = parseInt(event.target.value);
-    if( isNaN(value)|| value < 0){      
+    if (isNaN(value) || value < 0) {
       this.orderMessage = 'Debe asignar el órden de la imágen, debe ser un número mayor a 0';
-      this.slideForm.get('order')?.setErrors({'incorrect': true});
-    }else{
-      if(this.orders.includes(value) && value != this.dbOrder && value != NaN){
-        this.slideForm.get('order')?.setErrors({'incorrect': true});
+      this.slideForm.get('order')?.setErrors({ incorrect: true });
+    } else {
+      if (this.orders.includes(value) && value != this.dbOrder && value != NaN) {
+        this.slideForm.get('order')?.setErrors({ incorrect: true });
         this.orderMessage = `El orden debe ser distinto a  (${this.orders.join(', ')})`;
-      }else{
+      } else {
         this.slideForm.get('order')?.setErrors(null);
       }
     }
@@ -136,87 +130,75 @@ export class SlidesFormComponent implements OnInit {
 
   submitForm() {
     this.slideForm.markAllAsTouched();
-    if(this.slideForm.valid){
+    if (this.slideForm.valid) {
       this.isLoading = true;
-      if(this.edit){
-        this.editSlide();     
-      }else{
+      if (this.edit) {
+        this.editSlide();
+      } else {
         this.postSlide();
       }
-    }else{
-      this.messageService.add(
-        { 
-          key: 'toastMessage', 
-          severity: 'error', 
-          summary: 'Please complete all the fields', 
-        }
-      );
+    } else {
+      this.messageService.add({
+        key: 'toastMessage',
+        severity: 'error',
+        summary: 'Please complete all the fields',
+      });
     }
-    
   }
-  
-  editSlide(){   
+
+  editSlide() {
     const { name, order, description } = this.slideForm.value;
     let body;
-    if(this.uploadedFile){
+    if (this.uploadedFile) {
       let image = this.base64Image;
-      body = {name, order, description, image}  
-    }else{
-      body = {name, order, description }
+      body = { name, order, description, image };
+    } else {
+      body = { name, order, description };
     }
 
     let url = `${this.url}/${this.slideId}`;
     this.httpService.patch<Slide>(url, body).subscribe((resp) => {
-      if(resp.success){
-        this.messageService.add(
-          { 
-            key: 'toastMessage', 
-            severity: 'success', 
-            summary: 'Successfully updated', 
-          }
-        );
+      if (resp.success) {
+        this.messageService.add({
+          key: 'toastMessage',
+          severity: 'success',
+          summary: 'Successfully updated',
+        });
         this.loadSlide();
         this.fileInput.clear();
-      }else{
-        this.messageService.add(
-          { 
-            key: 'toastMessage', 
-            severity: 'error', 
-            summary: 'There was an error trying to update', 
-          }
-        );
+      } else {
+        this.messageService.add({
+          key: 'toastMessage',
+          severity: 'error',
+          summary: 'There was an error trying to update',
+        });
       }
       this.isLoading = false;
-    })
+    });
   }
 
-  postSlide(){
+  postSlide() {
     const { name, order, description } = this.slideForm.value;
     let image = this.base64Image;
-    const body: any = {name, order, description, image};
+    const body: any = { name, order, description, image };
 
-    this.httpService.post<Slide>(this.url, body).subscribe((resp)=>{
-      if(resp.success){
-        this.messageService.add(
-          { 
-            key: 'toastMessage', 
-            severity: 'success', 
-            summary: 'Successfully posted', 
-          }
-        );
+    this.httpService.post<Slide>(this.url, body).subscribe((resp) => {
+      if (resp.success) {
+        this.messageService.add({
+          key: 'toastMessage',
+          severity: 'success',
+          summary: 'Successfully posted',
+        });
         this.fileInput.clear();
         this.slideForm.reset();
-      }else{
-        this.messageService.add(
-          { 
-            key: 'toastMessage', 
-            severity: 'error', 
-            summary: 'There was an error trying to post the slide', 
-          }
-        );
+      } else {
+        this.messageService.add({
+          key: 'toastMessage',
+          severity: 'error',
+          summary: 'There was an error trying to post the slide',
+        });
       }
       this.isLoading = false;
-    })
+    });
   }
-
 }

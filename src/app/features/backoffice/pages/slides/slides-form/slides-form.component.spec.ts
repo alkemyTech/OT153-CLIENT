@@ -8,9 +8,8 @@ describe('SlidesFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SlidesFormComponent ]
-    })
-    .compileComponents();
+      declarations: [SlidesFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

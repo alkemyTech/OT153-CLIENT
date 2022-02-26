@@ -1,113 +1,113 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
-import { ActivityFormComponent } from "./backoffice/pages/activities/activity-form/activity-form.component";
-import { DashboardComponent } from "./backoffice/pages/dashboard/dashboard.component";
-import { AboutComponent } from "./public/pages/about/about.component";
-import { OrganizationDetailsComponent } from "./backoffice/pages/organization-details/organization-details.component";
-import { SlidesFormComponent } from "./backoffice/pages/slides/slides-form/slides-form.component";
-import { DonationsComponent } from "./public/pages/donations/donations.component";
-import { ErrorComponent } from "./public/pages/donations/error/error.component";
-import { ThanksComponent } from "./public/pages/donations/thanks/thanks.component";
-import { LoginFormComponent } from "./backoffice/pages/auth/login-form/login-form.component";
-import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
-import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { ActivityFormComponent } from './backoffice/pages/activities/activity-form/activity-form.component';
+import { DashboardComponent } from './backoffice/pages/dashboard/dashboard.component';
+import { AboutComponent } from './public/pages/about/about.component';
+import { OrganizationDetailsComponent } from './backoffice/pages/organization-details/organization-details.component';
+import { SlidesFormComponent } from './backoffice/pages/slides/slides-form/slides-form.component';
+import { DonationsComponent } from './public/pages/donations/donations.component';
+import { ErrorComponent } from './public/pages/donations/error/error.component';
+import { ThanksComponent } from './public/pages/donations/thanks/thanks.component';
+import { LoginFormComponent } from './backoffice/pages/auth/login-form/login-form.component';
+import { NewActivityFormComponent } from './backoffice/pages/activities/new-activity-form/new-activity-form.component';
+import { EditActivityFormComponent } from './backoffice/pages/activities/edit-activity-form/edit-activity-form.component';
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: ActivityFormComponent, // Replace with HomeComponent once object is created
     children: [
       {
-        path: "actividades",
+        path: 'actividades',
         component: ActivityFormComponent,
       },
       {
-        path: "nosotros",
+        path: 'nosotros',
         component: AboutComponent,
       },
       {
-        path: "donacion",
+        path: 'donacion',
         component: DonationsComponent,
       },
       {
-        path: "gracias",
+        path: 'gracias',
         component: ThanksComponent,
       },
     ],
   },
   {
-    path: "backoffice",
+    path: 'backoffice',
     children: [
       {
-        path: "organization",
+        path: 'organization',
         component: OrganizationDetailsComponent,
       },
       {
-        path: "slides",
+        path: 'slides',
         component: SlidesFormComponent,
       },
       {
-        path: "slides/:id",
+        path: 'slides/:id',
         component: SlidesFormComponent,
       },
       {
-        path: "organization",
+        path: 'organization',
         component: OrganizationDetailsComponent,
       },
       {
-        path: "actividades",
+        path: 'actividades',
         component: ListActivititesComponent,
       },
       {
-        path: "actividades/crear",
+        path: 'actividades/crear',
         component: NewActivityFormComponent,
       },
       {
-        path: "actividades/editar/:id",
+        path: 'actividades/editar/:id',
         component: EditActivityFormComponent,
       },
       {
-        path: "members",
+        path: 'members',
         component: ListMembersComponent,
       },
       {
-        path: "",
+        path: '',
         component: DashboardComponent,
-        pathMatch: "full",
+        pathMatch: 'full',
       },
     ],
   },
   {
-    path: "donar",
+    path: 'donar',
     component: DonationsComponent,
   },
   {
-    path: "error",
+    path: 'error',
     component: ErrorComponent,
   },
   {
-    path: "nosotros",
+    path: 'nosotros',
     component: AboutComponent,
   },
   {
-    path: "login",
+    path: 'login',
     component: LoginFormComponent,
   },
   {
-    path: "",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'actividades',
+    pathMatch: 'full',
   },
   {
-    path: "gracias",
+    path: 'gracias',
     component: ThanksComponent,
   },
   {
-    path: "**",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    path: '**',
+    redirectTo: 'actividades',
+    pathMatch: 'full',
   },
 ];
 

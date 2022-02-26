@@ -6,19 +6,17 @@ import { HttpService } from '@app/core/services/http.service';
 import { Observable, Observer, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private _groupId: string = "153";
+  private _groupId: string = '153';
   private _headers!: HttpHeaders;
-  private _baseUrl: string = 'http://ongapi.alkemy.org/api/users'; 
-  
-  constructor(private http: HttpClient) {
-    console.log("... user service ...");
-  }
+  private _baseUrl: string = 'http://ongapi.alkemy.org/api/users';
+
+  constructor(private http: HttpClient) {}
 
   headers() {
-    let httpHeaders = new HttpHeaders( { "Content-Type": "application/json"  });
+    let httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
     return httpHeaders;
   }
 
@@ -35,14 +33,13 @@ export class UserService {
     return this.http.get<User>(url);
   }
 
-  public updateUserById(id: number, body:UserData): Observable<User> {
+  public updateUserById(id: number, body: UserData): Observable<User> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.put<User>(url, body, { headers: this.headers() });
   }
 
-  public deleteUserById(id: number): Observable<Delete>{
+  public deleteUserById(id: number): Observable<Delete> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.delete<Delete>(url);
   }
-
 }

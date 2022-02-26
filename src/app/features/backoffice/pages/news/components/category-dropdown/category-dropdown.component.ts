@@ -1,18 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from "@angular/core";
-import { HttpService } from "@app/core/services/http.service";
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { HttpService } from '@app/core/services/http.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from "@angular/common/http";
-import { respSimpleCategory, simpleCategory} from "@app/core/models/category.interface";
+import { HttpClient } from '@angular/common/http';
+import { respSimpleCategory, simpleCategory } from '@app/core/models/category.interface';
 @Component({
-  selector: "app-category-dropdown",
-  templateUrl: "./category-dropdown.component.html",
-  styleUrls: ["./category-dropdown.component.scss"],
+  selector: 'app-category-dropdown',
+  templateUrl: './category-dropdown.component.html',
+  styleUrls: ['./category-dropdown.component.scss'],
 })
-
 export class CategoryDropdownComponent implements OnInit, OnChanges {
-  url = "http://ongapi.alkemy.org/api/categories";
+  url = 'http://ongapi.alkemy.org/api/categories';
   categories: simpleCategory[];
-  selectedCategory: simpleCategory = {name:"", id: -1};
+  selectedCategory: simpleCategory = { name: '', id: -1 };
 
   @Input() placeholder: string;
   @Input() required: boolean = false;
@@ -20,17 +19,15 @@ export class CategoryDropdownComponent implements OnInit, OnChanges {
   @Output() emitSelect = new EventEmitter<number>();
   @Output() emitTouchedDirty = new EventEmitter<boolean>();
 
-  constructor(private HttpService: HttpService, private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private HttpService: HttpService, private route: ActivatedRoute, private http: HttpClient) {}
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.getCategories();
-    
   }
 
-  ngOnChanges(){  
-    if(this.setSelectedIdCategory < 0 || this.setSelectedIdCategory.toString() == "" ){
-    } 
-    else {
+  ngOnChanges() {
+    if (this.setSelectedIdCategory < 0 || this.setSelectedIdCategory.toString() == '') {
+    } else {
       const id = this.setSelectedIdCategory;
       this.selectedCategory.id = id as number;
       this.getCategory(id);
@@ -38,28 +35,28 @@ export class CategoryDropdownComponent implements OnInit, OnChanges {
     }
   }
 
-  getCategory(id: number){
-    if( id === undefined || id === null || id < 0){  
-    } else{
+  getCategory(id: number) {
+    if (id === undefined || id === null || id < 0) {
+    } else {
       let _url = `${this.url}/${id}`;
-      this.HttpService.get<respSimpleCategory>(_url)
-        .subscribe((res) => {
+      this.HttpService.get<respSimpleCategory>(_url).subscribe(
+        (res) => {
           const { data } = res;
           this.selectedCategory = data;
         },
         (error) => {
-           alert(error.error.message);
+          alert(error.error.message);
         }
-      ); 
+      );
     }
   }
 
-  getCategories(): void{
+  getCategories(): void {
     this.HttpService.get<simpleCategory[]>(`${this.url}`, true).subscribe(
       (res: any) => {
         const { data } = res;
         const _categories = data;
-        this.categories = [..._categories];        
+        this.categories = [..._categories];
       },
       (error) => {
         alert(error.error.message);
@@ -67,7 +64,7 @@ export class CategoryDropdownComponent implements OnInit, OnChanges {
     );
   }
 
-  idSelected() {    
+  idSelected() {
     if (this.selectedCategory === null || this.selectedCategory === undefined) {
       this.emitTouchedDirty.emit(true);
     } else {
@@ -76,13 +73,10 @@ export class CategoryDropdownComponent implements OnInit, OnChanges {
   }
 
   clickedEMPTY() {
-    if (this.required && (this.selectedCategory === null || this.selectedCategory === undefined)) 
-    {
+    if (this.required && (this.selectedCategory === null || this.selectedCategory === undefined)) {
       this.emitTouchedDirty.emit(true);
     } else {
       this.emitTouchedDirty.emit(false);
     }
   }
-
-
 }

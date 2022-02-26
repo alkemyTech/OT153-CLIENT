@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PrivateService {
   private token: string;
@@ -12,7 +12,7 @@ export class PrivateService {
 
   headers() {
     let httpHeaders = new HttpHeaders({
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${this.token}`,
     });
     return httpHeaders;
@@ -21,7 +21,7 @@ export class PrivateService {
   router(url: string, id?: string) {
     let route = url;
     if (id) {
-      route = url + "/" + id;
+      route = url + '/' + id;
     }
     return route;
   }
@@ -53,10 +53,10 @@ export class PrivateService {
   }
 
   checkToken(): null | Headers {
-    let token = JSON.parse(localStorage.getItem("userToken") || "");
+    let token = JSON.parse(localStorage.getItem('userToken') || '');
     if (token) {
       let headers = new Headers({
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       });
       return headers;
