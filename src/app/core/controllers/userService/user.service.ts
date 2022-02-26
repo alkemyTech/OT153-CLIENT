@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
 import { User, Users, UserData } from '@app/core/models/users.interfaces';
 import { Delete } from '@app/core/models/delete.interface';
 import { HttpService } from '@app/core/services/http.service';
-
+import { Observable, Observer, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,15 +36,13 @@ export class UserService {
   }
 
   public updateUserById(id: number, body:UserData): Observable<User> {
-    return this.http.put<User>(this._baseUrl, JSON.stringify(body), { headers: this.headers() });
-  }
-
-  public deleteLogicUserById(id: number): Observable<User>{
-    throw new Error('Method not implemented.');
+    let url = `${this._baseUrl}/${id}`;
+    return this.http.put<User>(url, body, { headers: this.headers() });
   }
 
   public deleteUserById(id: number): Observable<Delete>{
-    throw new Error('Method not implemented.');
+    let url = `${this._baseUrl}/${id}`;
+    return this.http.delete<Delete>(url);
   }
 
 }
