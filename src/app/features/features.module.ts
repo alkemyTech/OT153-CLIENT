@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NewActivityFormComponent } from "./backoffice/pages/activities/new-activity-form/new-activity-form.component";
 import { EditActivityFormComponent } from "./backoffice/pages/activities/edit-activity-form/edit-activity-form.component";
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
+import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ListActivititesComponent } from './backoffice/pages/activities/list-act
     NewActivityFormComponent,
     EditActivityFormComponent,
     ListActivititesComponent,
+    ListMembersComponent,
   ],
   exports: [
     ActivityFormComponent,
