@@ -14,14 +14,24 @@ import { NewActivityFormComponent } from './backoffice/pages/activities/new-acti
 import { EditActivityFormComponent } from './backoffice/pages/activities/edit-activity-form/edit-activity-form.component';
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
+import { ActivitiesComponent } from "./public/pages/activities/activities.component";
+import { ActivitySelectedComponent } from "./public/pages/activities/components/activity-selected/activity-selected.component";
 const routes: Routes = [
   {
-    path: '',
-    component: ActivityFormComponent, // Replace with HomeComponent once object is created
+    path: "",
     children: [
       {
-        path: 'actividades',
-        component: ActivityFormComponent,
+        path:"",
+        component: ActivityFormComponent, // Replace with HomeComponent once object is created   
+        pathMatch:"full"
+      },
+      {
+        path: "actividades",
+        component: ActivitiesComponent,
+      },
+      {
+        path: "actividades/view/:id",
+        component: ActivitySelectedComponent,
       },
       {
         path: 'nosotros',

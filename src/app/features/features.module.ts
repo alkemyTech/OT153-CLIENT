@@ -26,6 +26,7 @@ import { NewActivityFormComponent } from './backoffice/pages/activities/new-acti
 import { EditActivityFormComponent } from './backoffice/pages/activities/edit-activity-form/edit-activity-form.component';
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
+import { ActivitySelectedComponent } from './public/pages/activities/components/activity-selected/activity-selected.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ListMembersComponent } from './backoffice/pages/members/list-members/li
     EditActivityFormComponent,
     ListActivititesComponent,
     ListMembersComponent,
+    ActivitySelectedComponent,
   ],
   exports: [
     ActivityFormComponent,
