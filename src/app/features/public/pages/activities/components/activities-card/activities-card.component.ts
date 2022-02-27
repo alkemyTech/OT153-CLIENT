@@ -9,6 +9,7 @@ import { Activities } from '@app/core/models/activities.interfaces';
 })
 export class ActivitiesCardComponent implements OnInit {
   url = 'http://ongapi.alkemy.org/api/activities';
+  redirectUrl = 'view/';
   activities: Activities[];
 
   constructor(private httpService: HttpService) {}
