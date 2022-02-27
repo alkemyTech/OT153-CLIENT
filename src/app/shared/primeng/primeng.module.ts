@@ -17,6 +17,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { PasswordModule } from 'primeng/password';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RippleModule } from 'primeng/ripple';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
@@ -47,6 +48,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     PasswordModule,
     RadioButtonModule,
     RippleModule,
+    ScrollPanelModule,
     SelectButtonModule,
     SidebarModule,
     TableModule,
