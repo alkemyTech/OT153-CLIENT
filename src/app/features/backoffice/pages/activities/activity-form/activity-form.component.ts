@@ -1,10 +1,20 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '@app/core/services/http.service';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Subscription } from 'rxjs';
-import { MessageService } from 'primeng/api';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+} from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { HttpService } from "@app/core/services/http.service";
+import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
+import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { Subscription } from "rxjs";
+import { MessageService } from "primeng/api";
+import { PrivateApiService } from "@app/core/services/privateApi.service";
 
 @Component({
   selector: 'app-activity-form',
@@ -38,7 +48,15 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   displaySubmitSpinner: boolean = false;
   subscription: Subscription;
 
+<<<<<<< HEAD
   constructor(private http: HttpService, private messageService: MessageService) {}
+=======
+  constructor(
+    private http: HttpService,
+    private httpPrivate: PrivateApiService,
+    private messageService: MessageService
+  ) {}
+>>>>>>> added patch method in privateApi.service.ts
 
   ngOnInit(): void {}
 
@@ -101,7 +119,13 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
     });
 
     this.subscription = (
+<<<<<<< HEAD
       this.defaultName ? this.http.patch(url, form.value) : this.http.post(url, form.value)
+=======
+      this.defaultName
+        ? this.httpPrivate.patch(url, form.value)
+        : this.http.post(url, form.value)
+>>>>>>> added patch method in privateApi.service.ts
     ).subscribe(
       (response) => {
         this.displaySubmitSpinner = false;
