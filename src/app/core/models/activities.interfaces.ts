@@ -4,15 +4,21 @@ export interface ActivitiesResponse {
   message: string;
 }
 export interface Activities {
-  id: number;
-  name: string;
-  slug: string;
-  description: string;
-  image: string;
-  user_id: number;
-  category_id: number;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string;
-  group_id: number;
+    id: number | string | undefined,
+    name: string,
+    slug?: string,
+    description: string,
+    image?: string,
+    user_id?: number,
+    category_id?: number,
+    created_at?: string,
+    updated_at?: string,
+    deleted_at?: string,
+    group_id?: number
 }
+
+export interface ActivityResponse {
+    success: boolean | null;
+    data: Activities;
+    message: string;
+  }

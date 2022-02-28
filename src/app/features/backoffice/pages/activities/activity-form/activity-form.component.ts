@@ -27,8 +27,8 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() formTitle: string;
   @Input() defaultName: string | null;
-  @Input() defaultImage: string | null;
-  @Input() defaultDescription: string | boolean | null = '';
+  @Input() defaultImage: string | null | undefined;
+  @Input() defaultDescription: string | boolean | null = "";
   @Input() voidCKeditor: boolean = false; //
 
   form: FormGroup = new FormGroup(
@@ -41,22 +41,18 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   );
 
   public Editor = ClassicEditor;
-  @ViewChild('image') image: TemplateRef<Event['target']>;
-  imageBuffer: string | ArrayBuffer | null;
+  @ViewChild("image") image: TemplateRef<Event["target"]>;
+  imageBuffer: string | ArrayBuffer | null | undefined;
   imgMessage: string;
   submitted: boolean = false;
   displaySubmitSpinner: boolean = false;
   subscription: Subscription;
 
-<<<<<<< HEAD
-  constructor(private http: HttpService, private messageService: MessageService) {}
-=======
   constructor(
     private http: HttpService,
     private httpPrivate: PrivateApiService,
     private messageService: MessageService
   ) {}
->>>>>>> added patch method in privateApi.service.ts
 
   ngOnInit(): void {}
 
@@ -119,13 +115,9 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
     });
 
     this.subscription = (
-<<<<<<< HEAD
-      this.defaultName ? this.http.patch(url, form.value) : this.http.post(url, form.value)
-=======
       this.defaultName
-        ? this.httpPrivate.patch(url, form.value)
+        ? this.httpPrivate.patchActivity(url, form.value)
         : this.http.post(url, form.value)
->>>>>>> added patch method in privateApi.service.ts
     ).subscribe(
       (response) => {
         this.displaySubmitSpinner = false;

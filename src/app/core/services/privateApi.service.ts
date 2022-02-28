@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { ActivityResponse } from "@app/core/models/activities.interfaces";
+import { New } from "@app/core/models/news.interfaces";
 
 @Injectable({
   providedIn: "root",
@@ -17,11 +19,28 @@ export class PrivateApiService {
     );
   }
 
-  public patch<T>(url: string, body: any, activateHeader: boolean = true): Observable<T> {
+  public patch<T>(url: string, body : {}, activateHeader: boolean = true): Observable<T> {
     return this.http.patch<T>(
       url,
-      body,
+      body ? body : {},
       activateHeader ? { headers: this._headers } : {}
     );
   }
+
+  public patchActivity<ActivityResponse>(url: string, body : {}, activateHeader: boolean = true): Observable<ActivityResponse> {
+    return this.http.patch<ActivityResponse>(
+      url,
+      body ? body : {},
+      activateHeader ? { headers: this._headers } : {}
+    );
+  }
+
+  public patchNews<New>(url: string, body : {}, activateHeader: boolean = true): Observable<New> {
+    return this.http.patch<New>(
+      url,
+      body ? body : {},
+      activateHeader ? { headers: this._headers } : {}
+    );
+  }
+  
 }

@@ -12,6 +12,7 @@ import { New } from '@app/core/models/news.interfaces';
 import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { PrivateApiService } from '@app/core/services/privateApi.service';
 @Component({
   selector: 'app-news-form',
   templateUrl: './news-form.component.html',
@@ -39,11 +40,7 @@ export class NewsFormComponent implements OnInit {
   public base64Image: string | ArrayBuffer | null;
   public uploadedFile: File | null;
 
-  constructor(
-    private messageService: MessageService,
-    private httpService: HttpService,
-    private formBuilder: FormBuilder
-  ) {}
+  constructor( private messageService: MessageService, private httpService: HttpService, private httpPrivateService: PrivateApiService, private formBuilder: FormBuilder ) { }
 
   ngOnInit(): void {
     this.frmNews = this.newsForm();
@@ -95,8 +92,8 @@ export class NewsFormComponent implements OnInit {
     }
 
     let url = `${this.url}/${this.idNews}`;
-    this.httpService.patch<New>(url, body).subscribe((resp) => {
-      if (resp.success) {
+    this.httpPrivateService.patchNews<New>(url, body).subscribe((resp) => {
+      if(resp.success){
         this.addToastMessage('success', 'Edicion exitosa!');
         this.loadNews();
         this.fileInput.clear();
