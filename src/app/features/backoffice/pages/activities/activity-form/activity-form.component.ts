@@ -26,9 +26,9 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   title = 'base-ong-angular-client';
 
   @Input() formTitle: string;
-  @Input() defaultName: string | null;
+  @Input() defaultName: string | null | undefined;
   @Input() defaultImage: string | null | undefined;
-  @Input() defaultDescription: string | boolean | null = "";
+  @Input() defaultDescription: string | boolean | null | undefined = "";
   @Input() voidCKeditor: boolean = false; //
 
   form: FormGroup = new FormGroup(

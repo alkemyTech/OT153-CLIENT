@@ -1,13 +1,14 @@
 <p-card header="" styleClass="p-card-shadow m-auto">
   <div class="grid">
     <div *ngFor="let activitie of activities" class="col-6">
-      <a routerLink="{{redirectUrl}}{{activitie.id}}">
+      <a routerLink="{{activitie.id}}">
       <p-card header="{{activitie.name}}" subheader="" [style]="{ height: '100%'}" styleClass="p-card-shadow m-3">
           <ng-template pTemplate="header">
               <img alt="Card" [src]="activitie['image']" >
           </ng-template>
-          <p>
-            {{activitie.description}}</p>
+         
+             <div [innerHtml]="activitie.description"></div>
+         
           <ng-template pTemplate="footer">
             
           </ng-template>

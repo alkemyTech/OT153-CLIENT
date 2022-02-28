@@ -21,10 +21,11 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
-import { TooltipModule } from 'primeng/tooltip';
-import { MessageModule } from 'primeng/message';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from "primeng/toast";
+import { TooltipModule } from "primeng/tooltip";
+import { MessageModule } from "primeng/message";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   declarations: [],
@@ -44,18 +45,19 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,
+    MessageModule,
     PaginatorModule,
     PasswordModule,
+    ProgressSpinnerModule,
     RadioButtonModule,
     RippleModule,
     ScrollPanelModule,
     SelectButtonModule,
     SidebarModule,
+    SkeletonModule,
     TableModule,
     ToastModule,
     TooltipModule,
-    MessageModule,
-    ProgressSpinnerModule,
   ],
 })
 export class PrimengModule {}
