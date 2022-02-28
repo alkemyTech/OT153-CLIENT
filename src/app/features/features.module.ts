@@ -27,9 +27,10 @@ import { EditActivityFormComponent } from './backoffice/pages/activities/edit-ac
 import { ListActivititesComponent } from './backoffice/pages/activities/list-activitites/list-activitites.component';
 import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
 import { ActivitySelectedComponent } from './public/pages/activities/components/activity-selected/activity-selected.component';
-import { ContactComponent } from "./public/pages/contact/contact.component";
+import { ContactComponent } from './public/pages/contact/contact.component';
 import { ContactInfoComponent } from './public/pages/contact/components/contact-info/contact-info.component';
 import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slides-list.component';
+import { UsersCrudComponent } from './backoffice/pages/users/users.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slide
     ContactComponent,
     ContactInfoComponent,
     SlidesListComponent,
+    UsersCrudComponent,
   ],
   exports: [
     ActivityFormComponent,
