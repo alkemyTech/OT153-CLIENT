@@ -1,4 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { Organization } from "@app/core/models/organization.interfaces";
+import { HttpService } from "@app/core/services/http.service";
+import { PublicapiService } from "@app/core/services/publicapi.service";
+
 
 @Component({
   selector: "app-contact",
@@ -6,9 +10,21 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./contact.component.scss"],
 })
 export class ContactComponent implements OnInit {
-  title: string = "Contacto";
-  colorBackground: string = "#f3f3f3";
-  constructor() {}
+  title: string = "Contactate con nosotros";
+  colorBackground: string = "transparent";
+  organization_link:string = 'api/organization'
+  organization_info:Organization 
+  constructor(public http:PublicapiService) {}
 
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.getContactInfo()
+  }
+
+  getContactInfo():void{
+    this.http.get<Organization>(this.organization_link).subscribe((res)=>{
+      console.log(res.data)
+      this.organization_info = res
+    },(error)=>{console.log(error)})
+  }
 }
