@@ -7,3 +7,21 @@
   max-width: 600px;
   margin: 0 auto;
 }
+.cell{
+  h4{
+    padding: 0;
+    margin: 0;
+  }
+  img{
+    width: 52px ;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .cell{
+  img{
+    width: 32px ;
+  }
+}
+
+}
