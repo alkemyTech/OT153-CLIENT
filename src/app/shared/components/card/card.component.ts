@@ -21,18 +21,25 @@ export class CardComponent implements OnInit {
   @Input() data: ICard;
   @Input() fixedWidth?: boolean;
   @Input() width?: number = 20;
+  @Input() heightDescription?: number = 5;
 
-  style = {}
+  style = {};
+  styleDescription = {};
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.styleDescription = { 
+      'width': '100%', 
+      'height': this.heightDescription+'rem'
+    }
     if (this.fixedWidth) {
       this.style = {
         'width': this.width+'rem', 
         'margin-bottom': '2em',
       }
     };
+
   }
 
   
