@@ -3,6 +3,13 @@ export interface ActivitiesResponse {
   data: Activities[];
   message: string;
 }
+
+export interface ActivityResponse {
+    success: boolean | null;
+    data: Activities;
+    message: string;
+  }
+
 export interface Activities {
     id: number | string | undefined,
     name: string,
@@ -17,8 +24,3 @@ export interface Activities {
     group_id?: number
 }
 
-export interface ActivityResponse {
-    success: boolean | null;
-    data: Activities;
-    message: string;
-  }
