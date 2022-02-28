@@ -21,11 +21,12 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
-import { ToastModule } from "primeng/toast";
-import { TooltipModule } from "primeng/tooltip";
-import { MessageModule } from "primeng/message";
-import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
+import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [],
@@ -35,8 +36,9 @@ import { SkeletonModule } from 'primeng/skeleton';
     CalendarModule,
     CardModule,
     CarouselModule,
-    CommonModule,
     ChipsModule,
+    CommonModule,
+    ConfirmDialogModule,
     DialogModule,
     DividerModule,
     DropdownModule,
@@ -47,6 +49,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     InputTextModule,
     MessageModule,
     PaginatorModule,
+    ProgressSpinnerModule,
     PasswordModule,
     ProgressSpinnerModule,
     RadioButtonModule,
