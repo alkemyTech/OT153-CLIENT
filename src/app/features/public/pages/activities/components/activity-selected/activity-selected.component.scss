@@ -1,0 +1,29 @@
+.container {
+    background-color: rgb(226, 226, 226);// should be $background when created 'app/styles/colors.scss' file
+    
+    & h3 {
+        font-size: 2em;
+    }
+}
+
+.activityDescription {
+    border: 1px solid rgba(245, 222, 179, 0.500);
+    background-color: rgba(240, 235, 226, 0.63);// $background-secondary
+    padding: 20px;
+}
+
+
+img {
+    animation: fade 1.3s ease-in-out;
+
+    @keyframes fade {
+            0% {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+    }
+}

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { HttpService } from "@app/core/services/http.service";
 import { ActivityResponse } from "@app/core/models/activities.interfaces";
+import { HttpService } from "@app/core/services/http.service";
 import { BehaviorSubject, Subscription } from "rxjs";
 @Component({
   selector: 'app-edit-activity-form',
@@ -9,17 +9,17 @@ import { BehaviorSubject, Subscription } from "rxjs";
   styleUrls: ['./edit-activity-form.component.scss'],
 })
 export class EditActivityFormComponent implements OnInit, OnDestroy {
-  name = '';
-  name$ = new BehaviorSubject<string>(this.name);
+  name: string | undefined = "";
+  name$ = new BehaviorSubject<string | undefined>(this.name);
   image: string | undefined = "";
   image$ = new BehaviorSubject<string | undefined>(this.name);
-  description = "";
-  description$ = new BehaviorSubject<string | null>(this.name);
+  description: string | undefined = "";
+  description$ = new BehaviorSubject<string | undefined | null>(this.name);
 
   activityResponse: ActivityResponse = {
-    success: null,
-    data: { id: '', name: '', description: '', image: '' },
-    message: '',
+    success: true,
+    data: { id: "", name: "", description: "", image: "" },
+    message: "",
   };
   subscription: Subscription;
 

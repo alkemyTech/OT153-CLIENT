@@ -30,7 +30,7 @@ const routes: Routes = [
         component: ActivitiesComponent,
       },
       {
-        path: "actividades/view/:id",
+        path: "actividades/:id",
         component: ActivitySelectedComponent,
       },
       {
