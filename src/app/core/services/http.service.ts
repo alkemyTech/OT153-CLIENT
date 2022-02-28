@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ActivityResponse } from '@app/shared/models/activity.model';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { ActivityResponse } from "@app/core/models/activities.interfaces";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root',

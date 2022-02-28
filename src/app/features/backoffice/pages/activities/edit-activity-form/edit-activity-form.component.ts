@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpService } from '@app/core/services/http.service';
-import { ActivityResponse } from '@app/shared/models/activity.model';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { HttpService } from "@app/core/services/http.service";
+import { ActivityResponse } from "@app/core/models/activities.interfaces";
+import { BehaviorSubject, Subscription } from "rxjs";
 @Component({
   selector: 'app-edit-activity-form',
   templateUrl: './edit-activity-form.component.html',
@@ -11,9 +11,9 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class EditActivityFormComponent implements OnInit, OnDestroy {
   name = '';
   name$ = new BehaviorSubject<string>(this.name);
-  image = '';
-  image$ = new BehaviorSubject<string>(this.name);
-  description = '';
+  image: string | undefined = "";
+  image$ = new BehaviorSubject<string | undefined>(this.name);
+  description = "";
   description$ = new BehaviorSubject<string | null>(this.name);
 
   activityResponse: ActivityResponse = {
@@ -30,7 +30,7 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   }
 
   getActivity() {
-    this.activityResponse.data.id = this.router.url.split('/').pop(); // [2] = index of url: UrlSegment[] from '/actividades/editar/:id'
+    this.activityResponse.data.id = this.router.url.split("/").pop(); 
 
     this.subscription = this.http
       .getActivity(`http://ongapi.alkemy.org/api/activities/${this.activityResponse.data.id}`)
