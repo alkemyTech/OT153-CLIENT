@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Organization } from "@app/core/models/organization.interfaces";
 import { HttpService } from "@app/core/services/http.service";
 
 @Component({
@@ -7,23 +8,10 @@ import { HttpService } from "@app/core/services/http.service";
   styleUrls: ["./contact-info.component.scss"],
 })
 export class ContactInfoComponent implements OnInit {
-  contactInfo: contactInfo;
-  constructor(private http: HttpService) {}
+  @Input() info: Organization
+  constructor() {}
   ngOnInit(): void {
-    this.getContactInfo();
-  }
-
-  getContactInfo(): void {
-    this.http
-      .get("http://ongapi.alkemy.org/api/organization")
-      .subscribe((res) => {
-        console.log(res);
-      });
   }
 }
 
-interface contactInfo {
-  addres: string;
-  phone: string;
-  email: string;
-}
+
