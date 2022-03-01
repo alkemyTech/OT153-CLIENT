@@ -46,7 +46,7 @@ export class ActivitiesControllerService {
   }
 
   deleteActivity(id: number): Observable<ActivitiesResponse>{
-    return this.privateService.delete(this.url, 1432)
+    return this.privateService.delete(this.url, id)
   }
 
   
