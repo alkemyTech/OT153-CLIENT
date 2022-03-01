@@ -19,6 +19,14 @@ export class PrivateApiService {
     );
   }
 
+  public post<T>(url: string, body: any, activateHeader: boolean = false): Observable<T> {
+    return this.http.post<T>(
+      url, 
+      body, 
+      activateHeader ? { headers: this._headers } : {}
+      );
+  }
+
   public patch<T>(url: string, body : {}, activateHeader: boolean = true): Observable<T> {
     return this.http.patch<T>(
       url,
