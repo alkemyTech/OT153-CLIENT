@@ -80,7 +80,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'organization',
+        path: "organizacion",
         component: OrganizationDetailsComponent,
       },
       {
