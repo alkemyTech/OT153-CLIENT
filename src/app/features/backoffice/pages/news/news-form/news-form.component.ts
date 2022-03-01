@@ -8,11 +8,12 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { getControl } from '@app/core/util/getControlForm';
 import { getControl as getControlFunction } from '@app/core/util/getControlForm';
 import { HttpService } from '@app/core/services/http.service';
-import { New } from '@app/core/models/news.interfaces';
+import { New, NewData, News } from '@app/core/models/news.interfaces';
 import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { PrivateApiService } from '@app/core/services/privateApi.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-news-form',
   templateUrl: './news-form.component.html',
@@ -108,18 +109,24 @@ export class NewsFormComponent implements OnInit {
     const { name, content, category } = this.formNews.value;
     let image = this.base64Image;
     const body: any = { name, content, category, image };
+    let _resp: New;
+    this.httpPrivateService.post<New>(this.url, body).subscribe({
+      next: (resp) => { _resp = resp },
+      error: (error:HttpErrorResponse) => { 
+        this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al' + this.title + 'la Novedad!');
+      },
+      complete: () => { 
+        if (_resp.success) {
+          this.addToastMessage('success', 'Creacion exitosa!');
+          this.addToastMessage('success', 'Usted creo la novedad: ' + name + '.');
 
-    this.httpService.post<New>(this.url, body).subscribe((resp) => {
-      if (resp.success) {
-        this.addToastMessage('success', 'Creacion exitosa!');
-        this.addToastMessage('success', 'Usted creo la novedad: ' + name + '.');
-
-        this.fileInput.clear();
-        this.formNews.reset();
-      } else {
-        this.addToastMessage('error', 'Hubo un error al ' + this.title + ' la Novedad!');
-      }
-      this.isLoading = false;
+          this.fileInput.clear();
+          this.formNews.reset();
+        } else {
+          this.addToastMessage('error', 'Hubo un error al ' + this.title + ' la Novedad!');
+        }
+        this.isLoading = false;
+      },
     });
   }
 
