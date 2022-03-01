@@ -16,6 +16,7 @@ import { ListActivititesComponent } from './backoffice/pages/activities/list-act
 import { ListMembersComponent } from './backoffice/pages/members/list-members/list-members.component';
 import { ActivitiesComponent } from "./public/pages/activities/activities.component";
 import { ActivitySelectedComponent } from "./public/pages/activities/components/activity-selected/activity-selected.component";
+import { ContactComponent } from "./public/pages/contact/contact.component";
 const routes: Routes = [
   {
     path: "",
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: 'gracias',
         component: ThanksComponent,
+      },
+      {
+        path: "contacto",
+        component: ContactComponent,
       },
     ],
   },
