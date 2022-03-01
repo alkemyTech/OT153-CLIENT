@@ -23,4 +23,22 @@ export interface Activities {
     deleted_at?: string,
     group_id?: number
 }
+export interface NewActivity {
+    name: string,
+    slug: string,
+    description: string,
+    image: File,
+    user_id: number,
+    category_id: number,
+    group_id: number
+}
+export interface NewActivityPost {
+    name: string,
+    slug: string,
+    description: string,
+    image: string | ArrayBuffer | undefined | File,
+    user_id: number,
+    category_id: number,
+    group_id: number
+}
 
