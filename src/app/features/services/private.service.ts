@@ -18,7 +18,7 @@ export class PrivateService {
     return httpHeaders;
   }
 
-  router(url: string, id?: string) {
+  router(url: string, id?: number) {
     let route = url;
     if (id) {
       route = url + '/' + id;
@@ -26,12 +26,12 @@ export class PrivateService {
     return route;
   }
 
-  get<T>(url: string, id?: string): Observable<T> {
+  get<T>(url: string, id?: number): Observable<T> {
     const urls = this.router(url, id);
     return this.http.get<T>(urls, { headers: this.headers() });
   }
 
-  put<T>(url: string, body: object, id?: string): Observable<T> {
+  put<T>(url: string, body: object, id?: number): Observable<T> {
     const urls = this.router(url, id);
     return this.http.put<T>(urls, JSON.stringify(body), {
       headers: this.headers(),
@@ -45,7 +45,7 @@ export class PrivateService {
     });
   }
 
-  patch<T>(url: string, body: object, id?: string): Observable<T> {
+  patch<T>(url: string, body: object, id?: number): Observable<T> {
     const urls = this.router(url, id);
     return this.http.patch<T>(urls, JSON.stringify(body), {
       headers: this.headers(),
@@ -63,4 +63,10 @@ export class PrivateService {
     }
     return null;
   }
+  
+  delete<T>(url: string, id: number): Observable<T> {
+    const urls = this.router(url, id);
+    return this.http.delete<T>(urls, {headers: this.headers()})
+  }
+
 }
