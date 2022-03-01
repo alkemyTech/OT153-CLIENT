@@ -23,8 +23,8 @@ export class ContactComponent implements OnInit {
 
   getContactInfo():void{
     this.http.get<Organization>(this.organization_link).subscribe((res)=>{
-      console.log(res.data)
+  
       this.organization_info = res
-    },(error)=>{console.log(error)})
+    },(error)=>{alert(error)})
   }
 }
