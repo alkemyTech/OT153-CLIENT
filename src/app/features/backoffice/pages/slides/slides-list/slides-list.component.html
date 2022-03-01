@@ -1,38 +1,79 @@
-<div class="container">
-    <p-table [value]="this.slides" styleClass="p-datatable-customers">
-        <ng-template pTemplate="caption">
-            <div class="table-header flex flex-row flex wrap">
-                <div class="flex align-items-center justify-content-center">
-                    Lista de Diapositivas
-                </div>
-                <div class="flex align-items-center justify-content-center">
-                    <span class="button-left">
-                        <a pButton type="button" label="Crear" [routerLink]="'/backoffice/slides/crear/'" ></a>
-                    </span>
-                </div>
-            </div>
-        </ng-template>
+<div class="col-12 md:col-10 lg:col-10 xl:col-8 m-auto mt-4">
+    <p-card>
+      <div class="w-100 pr-5" style="text-align: end">
+        <button
+          pButton
+          icon="pi pi-plus"
+          routerLink="/backoffice/slides/crear"
+          class="p-button-sm float-right"
+          pTooltip="Agregar slide"
+          tooltipPosition="top"
+        ></button>
+      </div>
+      <p-table
+        #dt
+        [value]="slides"
+        dataKey="id"
+        styleClass="p-datatable-customers"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        responsiveLayout="scroll"
+        [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [filterDelay]="0"
+        [globalFilterFields]="['slides.name', 'slides.created_at']"
+      >
         <ng-template pTemplate="header">
-            <tr>
-                <th *ngFor="let col of this.cols">
-                    {{col.header}}
-                </th>
-            </tr>
+          <tr>
+            <th pSortableColumn="name">
+              <div class="flex justify-content-center align-items-center" style="text-align: center">
+                Nombre
+                <p-sortIcon field="name"></p-sortIcon>
+                <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-center align-items-center">
+                Imagen
+                <p-columnFilter type="text" field="image" display="menu" class="ml-auto"></p-columnFilter>
+              </div>
+            </th>
+            <th pSortableColumn="created_at" style="width: 30%">
+              <div class="flex justify-content-center align-items-center">
+                Creado
+                <p-sortIcon field="created_at"></p-sortIcon>
+                <p-columnFilter type="text" field="created_at" display="menu" class="ml-auto"></p-columnFilter>
+              </div>
+            </th>
+            <th style="width: 15%"></th>
+          </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-slide>
-            <tr>
-                <td>
-                    {{slide.id}}
-                </td>
-                <td>
-                    <span class="p-column-title">Nombre</span>
-                    {{slide.name}}
-                </td>
-                <td>
-                    <span class="p-column-title">Imagen</span>
-                    <img [src]="slide.image" [alt]="slide.name" width="80">
-                </td>
-            </tr>
+        <ng-template pTemplate="body" let-slides>
+          <tr class="p-selectable-row">
+            <td>
+              {{ slides.name }}
+            </td>
+            <td>
+              <p-image
+                [src]="slides.image"
+                alt="Image"
+                width="60"
+                [preview]="true"
+                *ngIf="slides.image"
+              ></p-image>
+            </td>
+            <td>
+              <span class="image-text">{{ slides.created_at | date: 'dd/MM/YYYY HH:m:ss' }}</span>
+            </td>
+            <td style="min-width: 110px !important">
+              <button pButton icon="pi pi-pencil" class="p-button-sm p-button-primary mr-1"></button>
+              <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger"></button>
+            </td>
+          </tr>
         </ng-template>
-    </p-table>
-</div>
+      </p-table>
+    </p-card>
+  </div>
+  

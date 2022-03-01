@@ -56,7 +56,7 @@ import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slide
     ListMembersComponent,
     ActivitySelectedComponent,
     ContactComponent,
-    ContactInfoComponent
+    ContactInfoComponent,
     SlidesListComponent,
   ],
   exports: [
