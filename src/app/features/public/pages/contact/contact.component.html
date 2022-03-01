@@ -1,6 +1,9 @@
 <div class="wrapper">
     <app-upper-title [title]="title" [colorBackground]="colorBackground"></app-upper-title>
-    <app-contact-form></app-contact-form>
+    <section class="form">
+
+        <app-contact-form></app-contact-form>
+    </section>
     <div *ngIf="organization_info" style="margin-top: 100px;">
         <app-contact-info [info]="organization_info"></app-contact-info>
     </div>
