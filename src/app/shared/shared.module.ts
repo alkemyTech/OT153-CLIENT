@@ -7,8 +7,9 @@ import { UpperTitleComponent } from './components/upper-title/upper-title.compon
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { CardComponent } from './components/card/card.component';
+import { PhoneFormatPipe } from './pipes/phone-format.pipe';
 
-const componentToExport = [UpperTitleComponent, CarouselComponent, ContactFormComponent, CardComponent];
+const componentToExport = [UpperTitleComponent, CarouselComponent, ContactFormComponent, CardComponent,PhoneFormatPipe];
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
 @NgModule({
