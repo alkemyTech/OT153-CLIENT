@@ -116,7 +116,6 @@ const routes: Routes = [
         component: ListMembersComponent,
       },
       {
-        path: '',
         path: "users",
         component: UserFormComponent,
       },
