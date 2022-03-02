@@ -1,3 +1,6 @@
+
+@import "__colors";
+
 /*---------------------------------------------*/
 input {
 	outline: none;
@@ -42,7 +45,7 @@ button:hover {
 
 .container-user {
   width: 1163px;
-  background: #fff;
+  background: white;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -67,7 +70,7 @@ button:hover {
 .user-form-title {
   display: block;
   font-size: 24px;
-  color: #2e2b2b;
+  color: black;
   line-height: 1.2;
   text-align: center;
   padding-bottom: 44px;
@@ -103,10 +106,10 @@ textarea.user-input + .shadow-user-input {
 .user-input {
   display: block;
   width: 100%;
-  background: #e6e6e6;
+  background: white;
   font-size: 15px;
   line-height: 1.5;
-  color: #666666;
+  color: $gray;
 }
 
 @-webkit-keyframes anim-shadow {
