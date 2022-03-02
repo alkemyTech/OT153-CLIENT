@@ -48,12 +48,12 @@
           placeholder="Categoria"
           aria-describedby="category-help"
           [required]="true"
-          [setSelectedIdCategory]="this.isEdit ? formControl('category').value : -1"
+          [setSelectedIdCategory]="(this.isEdit) ? formControl('category_id').value : -1"
           (emitSelect)="selectedIdCategory($event)"
           (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)"
         >
         </app-category-dropdown>
-        <input type="hidden" name="fileHidden" formControlName="category" />
+        <input type="hidden" name="categoryIdHidden" formControlName="category_id" />
         <small *ngIf="categoryTouchedDirty" id="category-help" class="p-error">Seleccione una categoria.</small>
       </div>
 
@@ -81,7 +81,7 @@
         </ng-template>
 
         <small
-          *ngIf="formControl('image').touched && formControl('image').hasError('krequired')"
+          *ngIf="formControl('image').touched && formControl('image').hasError('required')"
           id="image-help"
           class="p-error"
           >Debe seleccionar una imágen</small
