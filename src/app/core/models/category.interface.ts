@@ -1,9 +1,14 @@
 export interface respSimpleCategory {
   success: boolean;
-  data: simpleCategory;
+  data: simpleCategoryData;
   message: string;
 }
-export interface simpleCategory {
-  id: number;
-  name: string;
+export interface respSimpleCategories {
+  success: boolean;
+  data: simpleCategoryData[];
+  message: string;
+}
+export interface simpleCategoryData {
+  id?: number;
+  name?: string;
 }
