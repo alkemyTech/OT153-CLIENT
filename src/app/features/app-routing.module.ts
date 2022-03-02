@@ -60,6 +60,14 @@ const routes: Routes = [
         path: "members",
         component: UsComponent,
       },
+      {
+        path: "users/create",
+        component: UserFormComponent,
+      },
+      {
+        path: "users/:id",
+        component: UserFormComponent,
+      },
 
     ],
   },
@@ -114,14 +122,6 @@ const routes: Routes = [
       {
         path: 'members',
         component: ListMembersComponent,
-      },
-      {
-        path: "users",
-        component: UserFormComponent,
-      },
-      {
-        path: "users/:id",
-        component: UserFormComponent,
       },
       {
         path: "",
