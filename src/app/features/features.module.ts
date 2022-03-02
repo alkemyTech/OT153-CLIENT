@@ -36,6 +36,7 @@ import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.com
 import { UsComponent } from "./public/pages/about/components/us/us.component";
 import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
 
+import { MembersFormComponent } from './backoffice/pages/members/members-form/members-form.component';
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -68,6 +69,7 @@ import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.
     NewUserComponent,
     UsComponent,
     UserFormComponent,
+    MembersFormComponent,
   ],
   exports: [
     ActivityFormComponent,
@@ -80,6 +82,7 @@ import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.
     TestimonialFormComponent,
     RouterModule,
     SharedModule,
+    MembersFormComponent,
   ],
   imports: [
     BrowserAnimationsModule,
