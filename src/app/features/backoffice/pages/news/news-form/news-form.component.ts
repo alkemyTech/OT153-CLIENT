@@ -83,13 +83,14 @@ export class NewsFormComponent implements OnInit {
   }
 
   patch() {
-    const { name, content, category } = this.formNews.value;
+    const { name, content } = this.formNews.value;
     let body;
+    const category_id = this._categoryId;
     if (this.uploadedFile) {
       let image = this.base64Image;
-      body = { name, content, category, image };
+      body = { name, content, category_id, image };
     } else {
-      body = { name, content, category };
+      body = { name, content, category_id };
     }
 
     let url = `${this.url}/${this.idNews}`;
@@ -106,9 +107,10 @@ export class NewsFormComponent implements OnInit {
   }
 
   post() {
-    const { name, content, category } = this.formNews.value;
+    const { name, content} = this.formNews.value;
     let image = this.base64Image;
-    const body: any = { name, content, category, image };
+    const category_id = this._categoryId;
+    const body: any = { name, content, category_id, image };
     let _resp: New;
     this.httpPrivateService.post<New>(this.url, body).subscribe({
       next: (resp) => { _resp = resp },
@@ -166,8 +168,8 @@ export class NewsFormComponent implements OnInit {
   }
 
   selectedIdCategory(newId: number) {
-    this._categoryId = newId;
-    this.formControl('category').setValue(newId);
+    this._categoryId = newId;    
+    this.categoryFormControl.setValue(newId);
   }
 
   dropdownCategoryTouchedDirty(flag: boolean) {
