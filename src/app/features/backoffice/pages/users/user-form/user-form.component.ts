@@ -18,7 +18,7 @@ export class UserFormComponent implements OnInit {
   id: string|null;
   imageFile!: ImgFile;
   imageError: boolean = false;
-  image: string = "@assets/img/img_user.png";
+  image: string = "assets/img/img_user.png";
   imgName: string = "";
   edit: boolean = false;
   ok: boolean = false;
