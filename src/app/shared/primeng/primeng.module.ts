@@ -27,6 +27,7 @@ import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [],
@@ -40,6 +41,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CommonModule,
     ConfirmDialogModule,
     DialogModule,
+    DynamicDialogModule,
     DividerModule,
     DropdownModule,
     FileUploadModule,
