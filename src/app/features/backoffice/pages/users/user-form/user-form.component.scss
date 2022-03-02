@@ -45,7 +45,7 @@ button:hover {
 
 .container-user {
   width: 1163px;
-  background: white;
+  background: $white;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -70,7 +70,7 @@ button:hover {
 .user-form-title {
   display: block;
   font-size: 24px;
-  color: black;
+  color: $black;
   line-height: 1.2;
   text-align: center;
   padding-bottom: 44px;
@@ -106,7 +106,7 @@ textarea.user-input + .shadow-user-input {
 .user-input {
   display: block;
   width: 100%;
-  background: white;
+  background: $white;
   font-size: 15px;
   line-height: 1.5;
   color: $gray;
