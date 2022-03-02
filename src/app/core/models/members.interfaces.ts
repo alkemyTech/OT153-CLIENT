@@ -4,15 +4,15 @@ export interface MembersResponse {
   message: string;
 }
 export interface Members {
-  id: number;
+  id?: number;
   name: string;
-  image: string;
+  image?: string | ArrayBuffer | null;
   description: string;
   facebookUrl: string;
   linkedinUrl: string;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string;
-  group_id: number;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string;
+  group_id?: number;
 }
 
