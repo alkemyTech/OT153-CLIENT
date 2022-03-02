@@ -1,17 +1,18 @@
+import { respSimpleCategories } from '@core/models/category.interface';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { HttpService } from '@app/core/services/http.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { respSimpleCategory, simpleCategory } from '@app/core/models/category.interface';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { respSimpleCategory, simpleCategoryData } from '@app/core/models/category.interface';
 @Component({
   selector: 'app-category-dropdown',
   templateUrl: './category-dropdown.component.html',
   styleUrls: ['./category-dropdown.component.scss'],
 })
-export class CategoryDropdownComponent implements OnInit, OnChanges {
+export class CategoryDropdownComponent implements OnInit {
   url = 'http://ongapi.alkemy.org/api/categories';
-  categories: simpleCategory[];
-  selectedCategory: simpleCategory = { name: '', id: -1 };
+  categories: simpleCategoryData[];
+  selectedCategory: simpleCategoryData;
 
   @Input() placeholder: string;
   @Input() required: boolean = false;
@@ -19,49 +20,51 @@ export class CategoryDropdownComponent implements OnInit, OnChanges {
   @Output() emitSelect = new EventEmitter<number>();
   @Output() emitTouchedDirty = new EventEmitter<boolean>();
 
-  constructor(private HttpService: HttpService, private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private HttpService: HttpService, private route: ActivatedRoute, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.getCategories();
   }
 
-  ngOnChanges() {
-    if (this.setSelectedIdCategory < 0 || this.setSelectedIdCategory.toString() == '') {
+  setSelectedCategory() {
+    if (this.setSelectedIdCategory < 0 || this.setSelectedIdCategory === null) {
     } else {
-      const id = this.setSelectedIdCategory;
-      this.selectedCategory.id = id as number;
-      this.getCategory(id);
-      this.idSelected();
+      const _id = this.setSelectedIdCategory;
+      this.selectedCategory = { }
+      this.getCategory(_id);
     }
   }
 
   getCategory(id: number) {
     if (id === undefined || id === null || id < 0) {
     } else {
+      let _category: simpleCategoryData = {}
       let _url = `${this.url}/${id}`;
-      this.HttpService.get<respSimpleCategory>(_url).subscribe(
-        (res) => {
-          const { data } = res;
-          this.selectedCategory = data;
+      this.HttpService.get<respSimpleCategory>(_url).subscribe({
+        next: (resp) => { 
+          const { data } = resp;
+          _category = data;
         },
-        (error) => {
-          alert(error.error.message);
-        }
-      );
+        error: (error:HttpErrorResponse) => { alert(error.status); },
+        complete: () => { 
+          this.selectedCategory = _category; 
+          this.idSelected(); 
+        } 
+      });
     }
   }
 
   getCategories(): void {
-    this.HttpService.get<simpleCategory[]>(`${this.url}`, true).subscribe(
-      (res: any) => {
-        const { data } = res;
-        const _categories = data;
-        this.categories = [..._categories];
-      },
-      (error) => {
-        alert(error.error.message);
+    let _data: simpleCategoryData[];
+    this.HttpService.get<respSimpleCategories>(`${this.url}`, true).subscribe({
+      next: ( resp ) => { const { data } = resp; _data = data},
+      error: ( error: HttpErrorResponse ) => { console.log( error.headers ); },
+      complete: () => { 
+        this.categories = _data;
+        this.setSelectedCategory();
       }
-    );
+    });
   }
 
   idSelected() {
