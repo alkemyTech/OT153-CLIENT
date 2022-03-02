@@ -1,0 +1,43 @@
+<div class="col-12 md:col-10 lg:col-6 m-auto mt-4 mb-4">
+  <form autocomplete="off" [formGroup]="homeForm">
+    <p-card>
+      <p-divider align="center"><b>Texto de bienvenida</b></p-divider>
+      <p-card>
+          <span class="p-float-label w-100">
+            <textarea id="float-input" pInputTextarea [autoResize]="true" class="w-100" formControlName="welcome" #welcomeText></textarea>
+            <label for="float-input">Texto de Bienvenida</label>
+          </span>
+          <span class="form-text text-danger" *ngIf="invalidField('welcome')"> Minimo 20 caracteres </span>
+
+          <!-- Button save text (organization/welcome_text) -->
+          <div class="row mt-4">
+            <p-button 
+              type="button" 
+              label="Guardar" 
+              class="p-button-sm" 
+              (onClick)="updateWelcomeText(welcomeText.value)" 
+              [loading]="loadingWelcome">
+            </p-button>
+          </div>
+      </p-card>
+    </p-card>
+  </form>
+
+      <p-divider align="center"><b>Imagenes de Slides</b></p-divider>
+
+      <!-- card update image -->
+      <p-card>
+        <!-- dropdown images -->
+        <p-dropdown 
+          styleClass="w-100"
+          [options]="slides" 
+          optionLabel="name" 
+          optionValue="id" 
+          (onChange)="selectImage($event.value)" 
+          placeholder="Seleccione una imagen">
+        </p-dropdown>
+        
+        <app-slides-form [id]="selectedId" *ngIf="selectedId"></app-slides-form>        
+      </p-card>
+
+</div>

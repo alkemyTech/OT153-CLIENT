@@ -33,10 +33,12 @@ import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slide
 import { UsersCrudComponent } from './backoffice/pages/users/users.component';
 import { EditUserComponent } from './backoffice/pages/users/edit-user/edit-user.component';
 import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.component';
-import { UsComponent } from './public/pages/about/components/us/us.component';
 import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
 import { OrganizationEditComponent } from './backoffice/pages/organization-details/organization-edit/organization-edit.component';
 import { MembersFormComponent } from './backoffice/pages/members/members-form/members-form.component';
+import { UsComponent } from "./public/pages/about/components/us/us.component";
+import { HomeComponent } from './backoffice/pages/home/home.component';
+
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -71,6 +73,7 @@ import { MembersFormComponent } from './backoffice/pages/members/members-form/me
     UserFormComponent,
     MembersFormComponent,
     OrganizationEditComponent,
+    HomeComponent
   ],
   exports: [
     ActivityFormComponent,
