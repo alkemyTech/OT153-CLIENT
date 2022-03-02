@@ -18,7 +18,7 @@ export class UserFormComponent implements OnInit {
   id: string|null;
   imageFile!: ImgFile;
   imageError: boolean = false;
-  image: string = "../../../../../assets/img/img_user.png";
+  image: string = "@assets/img/img_user.png";
   imgName: string = "";
   edit: boolean = false;
   ok: boolean = false;
@@ -114,10 +114,10 @@ export class UserFormComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = () => {               
         this.image = "data:image/png;base64,"+reader.result!.toString().split(',')[1];         
-        var img = new Image();             
+        let img = new Image();             
         img.addEventListener('load',
       function(){
-        var formElement = <HTMLFormElement>document.getElementById('imageError');     
+        let formElement = <HTMLFormElement>document.getElementById('imageError');     
        }    
       ,false);
   
