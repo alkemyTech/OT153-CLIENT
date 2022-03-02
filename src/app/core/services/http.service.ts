@@ -29,4 +29,8 @@ export class HttpService {
   public getActivity<T>(url: string, activateHeader: boolean = false): Observable<ActivityResponse> {
     return this.http.get<ActivityResponse>(url, activateHeader ? { headers: this._headers } : {});
   }
+
+  public delete<T>(url: string, activateHeader:boolean = false ):Observable<T> {   
+    return this.http.delete<T>(url, activateHeader ? { headers: this._headers }: {});
+  } 
 }
