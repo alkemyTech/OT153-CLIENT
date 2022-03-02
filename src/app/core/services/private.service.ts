@@ -8,39 +8,39 @@ export class PrivateService {
 
   constructor(private http: HttpClient) {}
 
-  router(rout: string, id?: string) {
-    let route = rout;
+  router(url: string, id?: string) {
+    let route = url;
     if (id) {
-      route = rout + "/" + id;
+      route = url + "/" + id;
     }
 
     return route;
     
   }
 
-  get(rout: string, id?: string) {
-    const urls = this.router(rout, id);
+  get(url: string, id?: string) {
+    const urls = this.router(url, id);
     return this.http.get(urls);
   }
 
-  put(rout: string, body: object, id?: string) {
+  put(url: string, body: object, id?: string) {
     const httpHeaders = new HttpHeaders({ "Content-Type": "application/json" });
-    const urls = this.router(rout, id);
+    const urls = this.router(url, id);
     return this.http.put(urls, JSON.stringify(body), { headers: httpHeaders });
   }
 
-  post(rout: string, body: object) {
+  post(url: string, body: object) {
     const httpHeaders = this.headers();
-    const urls = this.router(rout);
+    const urls = this.router(url);
     return this.http.post<any>(urls, JSON.stringify(body), {
       headers: httpHeaders,
     });
     
   }
 
-    patch(rutter: string, body: object, id?: string) {
+    patch(url: string, body: object, id?: string) {
     const httpHeaders = this.headers();
-    const urls = this.router(rutter, id);
+    const urls = this.router(url, id);
     return this.http.patch(urls, JSON.stringify(body), {
       headers: httpHeaders,
     });
