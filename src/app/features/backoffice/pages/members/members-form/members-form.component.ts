@@ -4,9 +4,9 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { getControl as getControlFunction } from '@app/core/util/getControlForm';
 import { HttpService } from '@app/core/services/http.service';
-
 import { PrivateApiService } from '@app/core/services/privateApi.service';
 import { Members } from '@app/core/models/members.interfaces';
+import { URL_HTTPS_REGEX } from '@app/core/enums/regex.enum';
 @Component({
   selector: 'alk-members-form',
   templateUrl: './members-form.component.html',
@@ -25,14 +25,14 @@ export class MembersFormComponent implements OnInit {
   public imageUrl: string | ArrayBuffer;
   public newForm: boolean = true;
 
-  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
 
   public form: FormGroup;
   public name: FormControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
   public description: FormControl = new FormControl('', [Validators.required]);
   public image: FormControl = new FormControl('', [Validators.required]);
-  public fbLink: FormControl = new FormControl('',[Validators.required,Validators.pattern(this.reg)])
-  public liLink: FormControl = new FormControl('',[Validators.required,Validators.pattern(this.reg)])
+  public fbLink: FormControl = new FormControl('',[Validators.required,Validators.pattern(URL_HTTPS_REGEX)])
+  public liLink: FormControl = new FormControl('',[Validators.required,Validators.pattern(URL_HTTPS_REGEX)])
   public getControl = getControlFunction;
 
   constructor(private formBuilder: FormBuilder,private http:HttpService, private httpPrivate:PrivateApiService) { }
