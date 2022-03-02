@@ -25,7 +25,16 @@ export class PrivateApiService {
       body, 
       activateHeader ? { headers: this._headers } : {}
       );
+    }
+
+  public put<T>(url: string, body: any, id: number, activateHeader: boolean = false): Observable<T> {
+    return this.http.put<T>(
+      `${url}/${id}`, 
+      body, 
+      activateHeader ? { headers: this._headers } : {}
+      );
   }
+
 
   public patch<T>(url: string, body : {}, activateHeader: boolean = true): Observable<T> {
     return this.http.patch<T>(
