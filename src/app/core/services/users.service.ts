@@ -9,19 +9,19 @@ import { PrivateService } from "./private.service";
 })
 export class UsersService {
 
-  environment = environment.users;
+  userApiUrl = environment.users;
   constructor(private http: PrivateService) {}
 
   getUser(id?: string): Observable<any> {
-    return this.http.get(this.environment, id);
+    return this.http.get(this.userApiUrl, id);
   }
 
   createUser(user: User): Observable<any> {
-    return this.http.post(this.environment, user);
+    return this.http.post(this.userApiUrl, user);
   }
 
   editUser(id: string, usuario: User): Observable<any> {
-    return this.http.put(this.environment, usuario, id);
+    return this.http.put(this.userApiUrl, usuario, id);
   }
   
 }
