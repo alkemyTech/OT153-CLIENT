@@ -1,106 +1,54 @@
-<p-toast></p-toast>
+<div class="grid">
+  <div class="card col-12 md:col-8 md:col-offset-2">
+    <p-table
+      #dt
+      [value]="users"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="['users']"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th width="30%" pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
 
-<div class="card">
-  <p-toolbar styleClass="mb-4">
-    <ng-template pTemplate="left">
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-      <button
-        pButton
-        pRipple
-        [label]="'Delete'"
-        icon="pi pi-trash"
-        class="p-button-danger"
-        (click)="deleteSelectedUsers()"
-        [disabled]="!users || !users.length"
-      ></button>
-    </ng-template>
+          <th width="50%" pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
 
-    <ng-template pTemplate="right">
-      <p-fileUpload
-        mode="basic"
-        accept="image/*"
-        [maxFileSize]="1000000"
-        label="Import"
-        chooseLabel="Import"
-        class="mr-2 inline-block"
-      ></p-fileUpload>
-      <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-    </ng-template>
-  </p-toolbar>
+          <th width="20%" style="text-align: end">
+            <a pButton pRipple label="New" icon="pi pi-plus" routerLink="create"></a>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-users>
+        <tr>
+          <td>{{ users.data.name }}</td>
+          <td>{{ users.data.email }}</td>
 
-  <p-table
-    #dt
-    [value]="users"
-    [rows]="10"
-    [paginator]="true"
-    [globalFilterFields]="['users']"
-    responsiveLayout="scroll"
-  >
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+          <td style="text-align: end">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              (click)="editUser(users)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              (click)="deleteUser(users)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          En total hay {{ users ? users.length : 0 }} usuarios.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
 
-        <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-
-        <th></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-users>
-      <tr>
-        <td>{{ users.data.name }}</td>
-        <td>{{ users.data.email }}</td>
-
-        <td>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success mr-2"
-            (click)="editUser(users.data)"
-          ></button>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            (click)="deleteUser()"
-          ></button>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">
-        In total there are {{ users ? users.length : 0 }} users.
-      </div>
-    </ng-template>
-  </p-table>
+  <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 </div>
-
-<p-dialog
-  [(visible)]="userDialog"
-  [style]="{ width: '450px' }"
-  header="Editar usuario"
-  [modal]="true"
-  styleClass="p-fluid"
->
-  <ng-template pTemplate="content">
-    <img [src]="'assets/backoffice/Usuarios.png'" [alt]="'users'" class="user-tumbnail" *ngIf="users" />
-    <div class="field">
-      <label for="name">Nombre</label>
-      <input type="text" pInputText id="name" [(ngModel)]="users" required autofocus />
-      <small class="p-error" *ngIf="submitted && !users">Nombre es requerido.</small>
-    </div>
-    <div class="field">
-      <label for="email">Email</label>
-      <input id="email" pInputText [(ngModel)]="users" required />
-      <small class="p-error" *ngIf="submitted && !users">Email es requerido.</small>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-  </ng-template>
-</p-dialog>
-
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

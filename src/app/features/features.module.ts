@@ -31,6 +31,8 @@ import { ContactComponent } from './public/pages/contact/contact.component';
 import { ContactInfoComponent } from './public/pages/contact/components/contact-info/contact-info.component';
 import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slides-list.component';
 import { UsersCrudComponent } from './backoffice/pages/users/users.component';
+import { EditUserComponent } from './backoffice/pages/users/edit-user/edit-user.component';
+import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { UsersCrudComponent } from './backoffice/pages/users/users.component';
     ContactInfoComponent,
     SlidesListComponent,
     UsersCrudComponent,
+    EditUserComponent,
+    NewUserComponent,
   ],
   exports: [
     ActivityFormComponent,

@@ -19,7 +19,7 @@ import { ActivitySelectedComponent } from './public/pages/activities/components/
 import { ContactComponent } from './public/pages/contact/contact.component';
 import { SlidesListComponent } from './backoffice/pages/slides/slides-list/slides-list.component';
 import { UsersCrudComponent } from './backoffice/pages/users/users.component';
-
+import { NewUserComponent } from './backoffice/pages/users/new-user/new-user.component';
 const routes: Routes = [
   {
     path: '',
@@ -98,6 +98,10 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersCrudComponent,
+      },
+      {
+        path: 'users/create',
+        component: NewUserComponent,
       },
       {
         path: 'members',
