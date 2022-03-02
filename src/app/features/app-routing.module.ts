@@ -21,6 +21,7 @@ import { ActivitiesComponent } from './public/pages/activities/activities.compon
 import { ActivitySelectedComponent } from './public/pages/activities/components/activity-selected/activity-selected.component';
 import { ContactComponent } from './public/pages/contact/contact.component';
 import { UsComponent } from './public/pages/about/components/us/us.component';
+import { HomeComponent } from './backoffice/pages/home/home.component';
 
 import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.component';
 import { OrganizationEditComponent } from './backoffice/pages/organization-details/organization-edit/organization-edit.component';
@@ -127,6 +128,10 @@ const routes: Routes = [
       {
         path: 'members',
         component: ListMembersComponent,
+      },
+      {
+        path: 'home',
+        component: HomeComponent
       },
       {
         path: '',

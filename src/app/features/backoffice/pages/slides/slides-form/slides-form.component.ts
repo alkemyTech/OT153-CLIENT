@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -13,7 +13,9 @@ import { HttpService } from '@app/core/services/http.service';
   templateUrl: './slides-form.component.html',
   styleUrls: ['./slides-form.component.scss'],
 })
-export class SlidesFormComponent implements OnInit {
+export class SlidesFormComponent implements OnInit, OnChanges {
+
+  @Input() id: number | null = null;
   @ViewChild('fileInput') fileInput: FileUpload;
   public isLoading: boolean = false;
   public Editor = ClassicEditor;
@@ -28,6 +30,7 @@ export class SlidesFormComponent implements OnInit {
   public url: string = 'http://ongapi.alkemy.org/api/slides';
   public base64Image: string | ArrayBuffer | null;
   public slideId: number;
+  public class: string = "col-12 md:col-10 lg:col-6 m-auto mt-4";
 
   slideForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(4)]],
@@ -44,11 +47,25 @@ export class SlidesFormComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.loadSlide();
-    this.slideForm.markAllAsTouched();
+    if(this.id){
+      this.class = "col-12 m-quto mt-4"
+    }else{
+      this.class = "col-12 md:col-10 lg:col-6 m-auto mt-4";
+    }
   }
 
+  ngOnInit(): void {
+    this.loadSlide();
+    if(this.id){
+      this.class = "col-12 m-quto mt-4"
+    }else{
+      this.class = "col-12 md:col-10 lg:col-6 m-auto mt-4";
+    }
+    this.slideForm.markAllAsTouched();
+  }
+  
   onSelect(event) {
     if (!event.currentFiles[0]) return;
     let file = event.currentFiles[0];
@@ -63,6 +80,8 @@ export class SlidesFormComponent implements OnInit {
     }
   }
 
+  
+
   onRemove() {
     this.slideForm.get('image')?.setValue('');
     this.base64Image = '';
@@ -75,9 +94,13 @@ export class SlidesFormComponent implements OnInit {
 
   loadSlide() {
     let id: number;
-    this.route.params.subscribe((params) => {
-      id = params['id'];
-    });
+    if(!this.id){
+      this.route.params.subscribe((params) => {
+        id = params['id'];
+      });
+    }else{
+      id = this.id;
+    }
 
     if (id!) {
       let url = `${this.url}/${id}`;
