@@ -16,7 +16,7 @@ export interface UserData {
   email: string;
   email_verified_at?: Date; //date
   password?: string;
-  role_id: number;
+  role_id?: number;
   remember_token?: string;
   created_at?: Date; //date
   updated_at?: Date; //date
