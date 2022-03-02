@@ -44,6 +44,13 @@ export class PrivateApiService {
     );
   }
 
+  public delete<T>(url: string, activateHeader: boolean = true): Observable<T> {
+    return this.http.delete<T>(
+      url,
+      activateHeader ? { headers: this._headers } : {}
+    );
+  }
+
   public patchActivity<ActivityResponse>(url: string, body : {}, activateHeader: boolean = true): Observable<ActivityResponse> {
     return this.http.patch<ActivityResponse>(
       url,
