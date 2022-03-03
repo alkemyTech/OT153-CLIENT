@@ -8,9 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { counterReducer } from './redux/reducers/counter.reducers';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FooterComponent } from './components/footer/footer/footer.component';
+import { HeaderComponent } from './components/header/header/header.component';
 
 @NgModule({
-  declarations: [NewsletterFormComponent],
+  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
   imports: [
     CommonModule, 
     HttpClientModule, 
@@ -19,10 +21,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     }), 
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-    }),   
-    
+    }), 
   ],
   providers: [HttpService, UserService],
-  exports: [NewsletterFormComponent],
+  exports: [
+    NewsletterFormComponent,
+    HeaderComponent, 
+    FooterComponent],
 })
 export class CoreModule {}
