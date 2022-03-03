@@ -1,3 +1,4 @@
+import { NgrxModule } from './ngrx/ngrx.module';
 import { PrimengModule } from './primeng/primeng.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,9 +10,9 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { CardComponent } from './components/card/card.component';
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
 
-const componentToExport = [UpperTitleComponent, CarouselComponent, ContactFormComponent, CardComponent,PhoneFormatPipe];
+const componentToExport = [UpperTitleComponent, CarouselComponent, ContactFormComponent, CardComponent, PhoneFormatPipe];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
+const modulesToExport = [CKEditorModule, PrimengModule, NgrxModule, ReactiveFormsModule];
 @NgModule({
   declarations: [...componentToExport],
   imports: [CommonModule, ...modulesToExport],
