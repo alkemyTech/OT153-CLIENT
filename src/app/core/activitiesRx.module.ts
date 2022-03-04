@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { fromRoot } from '@app/shared/store/activities.index';
+import { fromRoot } from '@app/core/store/activities/activities.index';
 
 @NgModule({
   imports: [
@@ -16,4 +16,4 @@ import { fromRoot } from '@app/shared/store/activities.index';
   ],
   declarations: []
 })
-export class NgrxModule { }
+export class ActivitiesRxModule { }
