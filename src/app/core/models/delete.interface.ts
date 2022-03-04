@@ -1,5 +1,5 @@
 export interface Delete {
-  success: true;
+  success: boolean;
   data: string;
   message: string;
 }
