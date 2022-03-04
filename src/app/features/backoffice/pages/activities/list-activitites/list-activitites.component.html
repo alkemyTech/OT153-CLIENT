@@ -12,7 +12,7 @@
     </div>
     <p-table
       #dt
-      [value]="activities"
+      [value]="(activities$)"
       dataKey="id"
       styleClass="p-datatable-customers"
       [rowHover]="true"
@@ -23,7 +23,7 @@
       [paginator]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [filterDelay]="0"
-      [globalFilterFields]="['activities.name', 'activities.created_at']"
+      [globalFilterFields]="['activity.name', 'activity.created_at']"
     >
       <ng-template pTemplate="header">
         <tr>
@@ -50,22 +50,22 @@
           <th style="width: 15%"></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-activities>
+      <ng-template pTemplate="body" let-activity>
         <tr class="p-selectable-row">
           <td>
-            {{ activities.name }}
+            {{ activity.name }}
           </td>
           <td>
             <p-image
-              [src]="activities.image"
+              [src]="activity.image"
               alt="Image"
               width="60"
               [preview]="true"
-              *ngIf="activities.image"
+              *ngIf="activity.image"
             ></p-image>
           </td>
           <td>
-            <span class="image-text">{{ activities.created_at | date: 'dd/MM/YYYY HH:m:ss' }}</span>
+            <span class="image-text">{{ activity.created_at | date: 'dd/MM/YYYY HH:m:ss' }}</span>
           </td>
           <td style="min-width: 110px !important">
             <button pButton icon="pi pi-pencil" class="p-button-sm p-button-primary mr-1"></button>
