@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { fromRoot } from '@app/shared/store/indexActivities';
+import { fromRoot } from '@app/shared/store/activities.index';
 
 @NgModule({
   imports: [
