@@ -37,7 +37,9 @@ import { UserFormComponent } from './backoffice/pages/users/user-form/user-form.
 import { OrganizationEditComponent } from './backoffice/pages/organization-details/organization-edit/organization-edit.component';
 import { MembersFormComponent } from './backoffice/pages/members/members-form/members-form.component';
 import { UsComponent } from "./public/pages/about/components/us/us.component";
-import { HomeComponent } from './backoffice/pages/home/home.component';
+import { HomeComponent } from './public/pages/home/home.component';
+import { CoreModule } from '../core/core.module';
+import { NewsComponent } from './public/pages/home/news/news.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { HomeComponent } from './backoffice/pages/home/home.component';
     UserFormComponent,
     MembersFormComponent,
     OrganizationEditComponent,
-    HomeComponent
+    HomeComponent,
+    NewsComponent
   ],
   exports: [
     ActivityFormComponent,
@@ -87,6 +90,8 @@ import { HomeComponent } from './backoffice/pages/home/home.component';
     RouterModule,
     SharedModule,
     MembersFormComponent,
+    CoreModule,
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -96,6 +101,7 @@ import { HomeComponent } from './backoffice/pages/home/home.component';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    CoreModule,
   ],
 })
 export class FeaturesModule {}
