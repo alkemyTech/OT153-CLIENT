@@ -5,10 +5,23 @@ import { HttpService } from './services/http.service';
 import { UserService } from './controllers/userService/user.service';
 import { NewsletterFormComponent } from './components/footer/components/newsletter-form/newsletter-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { counterReducer } from './redux/reducers/counter.reducers';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [NewsletterFormComponent],
-  imports: [CommonModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    CommonModule, 
+    HttpClientModule, 
+    ReactiveFormsModule,
+    StoreModule.forRoot({ count: counterReducer 
+    }), 
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),   
+    
+  ],
   providers: [HttpService, UserService],
   exports: [NewsletterFormComponent],
 })
