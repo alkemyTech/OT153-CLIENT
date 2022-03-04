@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Activities, ActivitiesResponse } from '@app/core/models/activities.interfaces';
 import { PrivateService } from '@features/services/private.service';
 import { Store } from '@ngrx/store';
-import { fromRoot } from '@app/shared/store/indexActivities'; 
+import { fromRoot } from '@app/shared/store/activities.index'; 
 
 @Component({
   selector: 'app-list-activitites',
