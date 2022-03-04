@@ -12,6 +12,8 @@ import { UpperTitleComponent } from './components/upper-title/upper-title.compon
 
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NgrxModule } from './ngrx.module';
+
 
 const componentToExport = [
   CarouselComponent, 
@@ -22,7 +24,7 @@ const componentToExport = [
   UpperTitleComponent, 
 ];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
+const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, NgrxModule];
 @NgModule({
   declarations: [...componentToExport],
   imports: [CommonModule, ...modulesToExport],
