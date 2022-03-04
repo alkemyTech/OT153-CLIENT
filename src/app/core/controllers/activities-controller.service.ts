@@ -13,11 +13,11 @@ export class ActivitiesControllerService {
 
   private url: string = "http://ongapi.alkemy.org/api/activities";
 
-  getAllActivities(): Observable<ActivitiesResponse>{
+  getAll(): Observable<ActivitiesResponse>{
     return this.privateService.get<ActivitiesResponse>(this.url)
   }
 
-  getOneActivity(id: number): Observable<ActivitiesResponse>{
+  getOne(id: number): Observable<ActivitiesResponse>{
     return this.privateService.get<ActivitiesResponse>(this.url, id)
   }
 
@@ -45,7 +45,7 @@ export class ActivitiesControllerService {
     return this.privateService.patch<ActivitiesResponse>(this.url, newBody, id)
   }
 
-  deleteActivity(id: number): Observable<ActivitiesResponse>{
+  delete(id: number): Observable<ActivitiesResponse>{
     return this.privateService.delete(this.url, id)
   }
 
