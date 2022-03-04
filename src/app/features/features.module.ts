@@ -91,7 +91,7 @@ import { NewsComponent } from './public/pages/home/news/news.component';
     SharedModule,
     MembersFormComponent,
     CoreModule,
-    
+    ListActivititesComponent,
   ],
   imports: [
     BrowserAnimationsModule,
