@@ -1,7 +1,7 @@
 export interface ActivitiesResponse {
-  success: boolean;
-  data: Activities[];
-  message: string;
+  success?: boolean;
+  data?: Activities[];
+  message?: string;
 }
 
 export interface ActivityResponse {
