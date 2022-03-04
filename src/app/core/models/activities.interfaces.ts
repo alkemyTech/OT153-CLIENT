@@ -1,13 +1,13 @@
 export interface ActivitiesResponse {
-  success?: boolean;
+  success: boolean;
   data?: Activities[];
   message?: string;
 }
 
 export interface ActivityResponse {
-    success: boolean | null;
-    data: Activities;
-    message: string;
+    success: boolean;
+    data?: Activities;
+    message?: string;
   }
 
 export interface Activities {

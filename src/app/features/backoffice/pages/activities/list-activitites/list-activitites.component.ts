@@ -1,13 +1,10 @@
-import { mergeMap } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-import { getAllActivities } from '@app/shared/store/activities.actions';
-import { activitiesState } from '@app/shared/store/activities.reducer';
-import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Activities, ActivitiesResponse } from '@app/core/models/activities.interfaces';
+import { Activities } from '@app/core/models/activities.interfaces';
 import { PrivateService } from '@features/services/private.service';
 import { Store } from '@ngrx/store';
-import { fromRoot } from '@app/shared/store/activities.index'; 
+import { map } from 'rxjs/operators';
+import { activitiesState } from '@app/core/store/activities/activities.reducer';
+import { fromRoot } from '@app/core/store/activities/activities.index'; 
 
 @Component({
   selector: 'app-list-activitites',
@@ -29,7 +26,7 @@ export class ListActivititesComponent implements OnInit {
   getAllActivities(){
     this.activityStore.dispatch(fromRoot.getAllActivities())
     this.activityStore.subscribe(resp => {
-      resp.activitiesState.response.data?.map(a => this.activities$.push(a) );
+      resp.activitiesState.responseAll.data?.map( (a: Activities) => this.activities$.push(a) );
     });
   }
 

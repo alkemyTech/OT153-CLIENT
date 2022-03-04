@@ -33,7 +33,7 @@ export class ActivitiesControllerService {
     return this.privateService.post<ActivitiesResponse>(this.url, newBody)
   }
 
-  async updateActivity(body: NewActivity, id: number): Promise<Observable<ActivitiesResponse>>{
+  async updateActivity(id: number, body: NewActivity): Promise<Observable<ActivitiesResponse>>{
     const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
     if (!allowedFormat.test(body.image.name)) {
       throw new Error ("format not allowed")
