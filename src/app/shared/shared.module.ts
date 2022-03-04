@@ -24,7 +24,7 @@ const componentToExport = [
   UpperTitleComponent, 
 ];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, NgrxModule];
+const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
 @NgModule({
   declarations: [...componentToExport],
   imports: [CommonModule, ...modulesToExport],

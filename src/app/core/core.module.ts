@@ -10,9 +10,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
-
+import { ActivitiesRxModule } from './activitiesRx.module';
 @NgModule({
-  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
+  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent, ActivitiesRxModule ],
   imports: [
     CommonModule, 
     HttpClientModule, 
