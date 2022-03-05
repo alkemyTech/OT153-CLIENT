@@ -1,6 +1,7 @@
+import { Delete } from './../models/delete.interface';
 import { Injectable } from '@angular/core';
 import { PrivateService } from '../../features/services/private.service';
-import { ActivitiesResponse, Activities, NewActivity, NewActivityPost } from '../models/activities.interfaces';
+import { ActivitiesResponse, Activities, NewActivity, NewActivityPost, ActivityResponse } from '../models/activities.interfaces';
 import { delay, map, switchMap, take } from 'rxjs/operators';
 import { ObservableInput, Observable, Subject, ReplaySubject } from 'rxjs';
 
@@ -17,35 +18,44 @@ export class ActivitiesControllerService {
     return this.privateService.get<ActivitiesResponse>(this.url)
   }
 
-  getOne(id: number): Observable<ActivitiesResponse>{
-    return this.privateService.get<ActivitiesResponse>(this.url, id)
+  getOne(id: number): Observable<ActivityResponse>{
+    return this.privateService.get<ActivityResponse>(this.url, id)
   }
 
-  async insertActivity(body: NewActivity): Promise<Observable<ActivitiesResponse>>{
-    const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
-    if (!allowedFormat.test(body.image.name)) {
-      throw new Error ("format not allowed")
-    }
-    const image = await this.fileToBase64(body.image);
-    const newBody: NewActivityPost = body;
-    newBody.image = image;
+  // async insertActivity(body: NewActivity): Promise<Observable<ActivitiesResponse>>{
+  //   const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
+  //   if (!allowedFormat.test(body.image.name)) {
+  //     throw new Error ("format not allowed")
+  //   }
+  //   const image = await this.fileToBase64(body.image);
+  //   const newBody: NewActivityPost = body;
+  //   newBody.image = image;
 
-    return this.privateService.post<ActivitiesResponse>(this.url, newBody)
+  //   return this.privateService.post<ActivitiesResponse>(this.url, newBody)
+  // }
+
+  insertActivity(body: Activities): Observable<ActivityResponse>{
+    return this.privateService.post<ActivityResponse>(this.url, body);
   }
 
-  async updateActivity(id: number, body: NewActivity): Promise<Observable<ActivitiesResponse>>{
-    const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
-    if (!allowedFormat.test(body.image.name)) {
-      throw new Error ("format not allowed")
-    }
-    const image = await this.fileToBase64(body.image);
-    const newBody: NewActivityPost = body;
-    newBody.image = image;
 
-    return this.privateService.patch<ActivitiesResponse>(this.url, newBody, id)
+  // async updateActivity(id: number, body: NewActivity): Promise<Observable<ActivitiesResponse>>{
+  //   const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
+  //   if (!allowedFormat.test(body.image.name)) {
+  //     throw new Error ("format not allowed")
+  //   }
+  //   const image = await this.fileToBase64(body.image);
+  //   const newBody: NewActivityPost = body;
+  //   newBody.image = image;
+
+  //   return this.privateService.patch<ActivitiesResponse>(this.url, newBody, id)
+  // }
+
+  updateActivity(id: number, body: Activities): Observable<ActivityResponse>{
+    return this.privateService.patch<ActivityResponse>(this.url, body, id);
   }
 
-  delete(id: number): Observable<ActivitiesResponse>{
+  delete(id: number): Observable<Delete>{
     return this.privateService.delete(this.url, id)
   }
 
