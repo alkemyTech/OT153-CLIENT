@@ -55,11 +55,14 @@
             </ckeditor>
             <ng-template #ckeditorSpinner>
               <div class="editorSpinnerContainer">
-                <p-progressSpinner
-                  class="m-auto editorSpinner"
-                  [style]="{ width: '70px', height: '70px', opacity: '.75' }"
-                >
-                </p-progressSpinner>
+                <app-spinner 
+                  [class]="'m-auto editorSpinner'" 
+                  [strokeWidth]="'5'" 
+                  [fillColor]="'white'" 
+                  [width]="100" 
+                  [height]="100" 
+                  [opacity]="0.75"
+                ></app-spinner>
               </div>
             </ng-template>
           </div>
