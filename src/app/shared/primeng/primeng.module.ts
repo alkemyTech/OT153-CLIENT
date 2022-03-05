@@ -51,7 +51,6 @@ import { TooltipModule } from 'primeng/tooltip';
     InputTextModule,
     MessageModule,
     PaginatorModule,
-    ProgressSpinnerModule,
     PasswordModule,
     ProgressSpinnerModule,
     RadioButtonModule,
