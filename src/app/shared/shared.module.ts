@@ -1,15 +1,26 @@
-import { PrimengModule } from './primeng/primeng.module';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpperTitleComponent } from './components/upper-title/upper-title.component';
+
+import { PrimengModule } from './primeng/primeng.module';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { CardComponent } from './components/card/card.component';
-import { PhoneFormatPipe } from './pipes/phone-format.pipe';
+import { UpperTitleComponent } from './components/upper-title/upper-title.component';
 
-const componentToExport = [UpperTitleComponent, CarouselComponent, ContactFormComponent, CardComponent, PhoneFormatPipe];
+import { PhoneFormatPipe } from './pipes/phone-format.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+
+const componentToExport = [
+  CarouselComponent, 
+  ContactFormComponent, 
+  CardComponent, 
+  PhoneFormatPipe,
+  SpinnerComponent,
+  UpperTitleComponent, 
+];
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
 @NgModule({
