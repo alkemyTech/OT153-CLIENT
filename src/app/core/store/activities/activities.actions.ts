@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Delete } from '@app/core/models/delete.interface';
 import { Activities, NewActivity } from '@core/models/activities.interfaces';
 import { createAction, props } from '@ngrx/store';
@@ -29,11 +28,11 @@ export const getOneActivities = createAction(type.GET_ONE_ACTIVITY, props<{id: n
 export const GetOneActivity_Fail= createAction(type.GET_ONE_ACTIVITY_FAIL, props<{ error: any }>());
 export const GetOneActivity_Success = createAction(type.GET_ALL_ACTIVITIES_SUCCESS, props<{ activity: Activities }>());
 
-export const insertActivities = createAction(type.INSERT_ACTIVITY, props<{body: Activities}>());
+export const insertActivities = createAction(type.INSERT_ACTIVITY, props<{body: NewActivity}>());
 export const InsertActivities_Fail = createAction(type.INSERT_ACTIVITY_FAIL , props<{ error: any }>());
 export const InsertActivities_Success = createAction(type.INSERT_ACTIVITY_SUCCESS , props<{ activity: Activities }>());
 
-export const updateActivities = createAction(type.UPDATE_ACTIVITY, props<{id: number, body: Activities}>());
+export const updateActivities = createAction(type.UPDATE_ACTIVITY, props<{id: number, body: NewActivity}>());
 export const UpdateActivities_Fail = createAction(type.UPDATE_ACTIVITY_FAIL, props<{ error: any }>());
 export const UpdateActivities_Success = createAction(type.UPDATE_ACTIVITY_SUCCESS, props<{ activity: Activities }>());
 
