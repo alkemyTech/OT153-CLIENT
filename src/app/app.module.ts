@@ -8,7 +8,6 @@ import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-// import { fromRoot } from './indexActivities';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,12 +19,6 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserAnimationsModule, 
     ToastModule,
     StoreModule,
-    // StoreModule.forRoot({ 
-    //   activitiesState: fromRoot.activityReducer
-    // }),
-    // EffectsModule.forRoot([
-    //   fromRoot.ActivitiesEffects
-    // ])
   ],
   providers: [MessageService, BrowserAnimationsModule],
   bootstrap: [AppComponent],
