@@ -22,51 +22,42 @@ export class ActivitiesControllerService {
     return this.privateService.get<ActivityResponse>(this.url, id)
   }
 
-  // async insertActivity(body: NewActivity): Promise<Observable<ActivitiesResponse>>{
-  //   const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
-  //   if (!allowedFormat.test(body.image.name)) {
-  //     throw new Error ("format not allowed")
-  //   }
-  //   const image = await this.fileToBase64(body.image);
-  //   const newBody: NewActivityPost = body;
-  //   newBody.image = image;
-
-  //   return this.privateService.post<ActivitiesResponse>(this.url, newBody)
-  // }
-
-  insertActivity(body: Activities): Observable<ActivityResponse>{
-    return this.privateService.post<ActivityResponse>(this.url, body);
+  insertActivity(body: NewActivity): Observable<ActivityResponse>{
+    const _body64: NewActivityPost = this.toBase64(body);
+    return this.privateService.post<ActivityResponse>(this.url, _body64);
   }
 
-
-  // async updateActivity(id: number, body: NewActivity): Promise<Observable<ActivitiesResponse>>{
-  //   const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i
-  //   if (!allowedFormat.test(body.image.name)) {
-  //     throw new Error ("format not allowed")
-  //   }
-  //   const image = await this.fileToBase64(body.image);
-  //   const newBody: NewActivityPost = body;
-  //   newBody.image = image;
-
-  //   return this.privateService.patch<ActivitiesResponse>(this.url, newBody, id)
-  // }
-
-  updateActivity(id: number, body: Activities): Observable<ActivityResponse>{
-    return this.privateService.patch<ActivityResponse>(this.url, body, id);
+  updateActivity(id: number, body: NewActivity): Observable<ActivityResponse>{
+    const _body64: NewActivityPost = this.toBase64(body);
+    return this.privateService.patch<ActivityResponse>(this.url, _body64, id);
   }
 
   delete(id: number): Observable<Delete>{
     return this.privateService.delete(this.url, id)
   }
 
-  
-  fileToBase64(file: File): Promise<string | ArrayBuffer | undefined>{
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result?.toString())
-      reader.onerror = (error) => resolve("Error convert to base64" )
-    })
+  private toBase64(body: NewActivity) {
+    const allowedFormat = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedFormat.test(body.image.name)) {
+      throw new Error("format not allowed");
+    }
+    const image = this.fileToBase64(body.image);
+    const newBody: NewActivityPost = body;
+    newBody.image = image;
+    return newBody;
+  }
+
+  private fileToBase64(file: File): string | ArrayBuffer | undefined{
+    const reader = new FileReader();
+    reader.readAsDataURL(file)
+    reader.onload = function () {
+      return reader.result?.toString()
+    };
+    reader.onerror = function (error) {
+      return "Error convert to base64"
+    };
+    return undefined;
   }
 
 }
+

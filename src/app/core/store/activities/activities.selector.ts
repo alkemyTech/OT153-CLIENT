@@ -12,6 +12,10 @@ const selectAllData = (state: activitiesState) => state.responseAll;
 
 const selectOneData = (state: activitiesState) => state.response;
 
+const selectDataDelete = (state: activitiesState) => state.delete;
+
+const selectErrorActivity = (state: activitiesState) => state.error;
+
 const SelectStateAllData = createSelector(
     (state: appState ) => state.activitiesState, selectAllData
 );
@@ -19,4 +23,4 @@ const SelectStateOneData = createSelector(
     (state: appState) => state.activitiesState, selectOneData
 )
 
-export { SelectStateAllData, SelectStateOneData };
+export { SelectStateAllData, SelectStateOneData, selectDataDelete, selectErrorActivity };
