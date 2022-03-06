@@ -12,11 +12,12 @@ import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { ActivitiesRxModule } from './activitiesRx.module';
 @NgModule({
-  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent, ActivitiesRxModule ],
+  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
   imports: [
     CommonModule, 
     HttpClientModule, 
     ReactiveFormsModule,
+    ActivitiesRxModule,
     StoreModule.forRoot({ count: counterReducer 
     }), 
     StoreDevtoolsModule.instrument({
