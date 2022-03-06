@@ -23,7 +23,7 @@ export enum type {
 
 export const getAllActivities = createAction(type.GET_ALL_ACTIVITIES);
 export const GetAllActivities_Fail= createAction(type.GET_ALL_ACTIVITIES_FAIL, props<{ error: any }>());
-export const GetAllActivities_Success = createAction(type.GET_ALL_ACTIVITIES_SUCCESS, props<{ activities: Array<Activities> }>());
+export const GetAllActivities_Success = createAction(type.GET_ALL_ACTIVITIES_SUCCESS, props<{ activities: Activities[] }>());
 
 export const getOneActivities = createAction(type.GET_ONE_ACTIVITY, props<{id: number}>());
 export const GetOneActivity_Fail= createAction(type.GET_ONE_ACTIVITY_FAIL, props<{ error: any }>());

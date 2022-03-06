@@ -1,16 +1,22 @@
-import { ActivitiesResponse, ActivityResponse } from '@app/core/models/activities.interfaces';
+import { Activities} from '@app/core/models/activities.interfaces';
 import { createSelector } from "@ngrx/store";
 import { activitiesState } from './activities.reducer';
 
-const getAllData = (state: activitiesState): ActivitiesResponse | {} => state.responseAll;
-const getOneData = (state: activitiesState): ActivityResponse | {} => state.response;
+export interface appState {
+    activitiesState: activitiesState
+}
 
-const getStateAllData = createSelector(
-    (state: { activityState: activitiesState }) => state.activityState, getAllData
+const selectFeature = (state: appState) => state.activitiesState
+
+const selectAllData = (state: activitiesState) => state.responseAll;
+
+const selectOneData = (state: activitiesState) => state.response;
+
+const SelectStateAllData = createSelector(
+    (state: appState ) => state.activitiesState, selectAllData
 );
-const getStateOneData = createSelector(
-    (state: { activityState: activitiesState }) => state.activityState, getOneData
+const SelectStateOneData = createSelector(
+    (state: appState) => state.activitiesState, selectOneData
 )
 
-
-export { getStateAllData };
+export { SelectStateAllData, SelectStateOneData };
