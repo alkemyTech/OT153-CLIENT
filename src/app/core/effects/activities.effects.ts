@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { ActivitiesControllerService } from '@app/core/controllers/activities-controller.service'; 
 import { 
   getAllActivities, GetAllActivities_Success, GetAllActivities_Fail, 
@@ -19,9 +19,8 @@ export class ActivitiesEffects {
       ofType(getAllActivities),
       mergeMap((action) => {  
         return this.activitiesService.getAll().pipe(
-          map( response => GetAllActivities_Success( {activities:response.data})),
+          map( response => GetAllActivities_Success( {activities: response.data})),
           catchError( (error) => of( GetAllActivities_Fail ({ error: error })))
-
         )
       })
     )
