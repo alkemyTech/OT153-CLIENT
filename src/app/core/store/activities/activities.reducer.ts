@@ -1,21 +1,14 @@
 import { 
-  deleteActivities, DeleteActivity_Success, GetAllActivities_Success, 
-  GetOneActivity_Success, InsertActivities_Success, UpdateActivities_Success, 
-  GetAllActivities_Fail, GetOneActivity_Fail, DeleteActivity_Fail, 
-  InsertActivities_Fail, UpdateActivities_Fail, getAllActivities 
+  DeleteActivity_Success, GetAllActivities_Success, 
+  GetOneActivity_Success, InsertActivities_Success, 
+  UpdateActivities_Success, GetAllActivities_Fail, 
+  GetOneActivity_Fail, DeleteActivity_Fail, 
+  InsertActivities_Fail, UpdateActivities_Fail,
 } from './activities.actions';
 import {  } from '@app/core/store/activities/activities.actions';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Activities } from '@app/core/models/activities.interfaces';
-import { Delete } from '@app/core/models/delete.interface';
 import { createReducer, on } from '@ngrx/store';
-
-export interface activitiesState {
-    responseAll : Activities[];
-    response : Activities;
-    delete : Delete;
-    error : HttpErrorResponse;
-};
+import { activitiesState } from '@app/core/store/activities/activityState.interface';
 
 const emptyArray= [];
 const emptyOne=  {id: 0, name: '', description:''};
