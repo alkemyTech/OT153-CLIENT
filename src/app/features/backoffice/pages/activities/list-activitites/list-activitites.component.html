@@ -12,7 +12,7 @@
     </div>
     <p-table
       #dt
-      [value]="(activities$)"
+      [value]="(activities$ | async)"
       dataKey="id"
       styleClass="p-datatable-customers"
       [rowHover]="true"
