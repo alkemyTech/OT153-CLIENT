@@ -1,6 +1,3 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ICard } from '@core/models/card.interfaces' 
-
 /**
  * @description 
  * Reusable card component, Receives an interface to display a title, 
@@ -13,6 +10,9 @@ import { ICard } from '@core/models/card.interfaces'
  * @param width Receives type number. It isn't required attribute. If 'fixedWidth' is true, this field will define the width.
  * @param heightDescription Receives type number. It isn't required attribute. Don't require 'fixedWidth'= true, this field will define the height of the panel.
  */
+import { Component, Input, OnInit } from '@angular/core';
+import { Activities } from '@app/core/models/activities.interfaces';
+import { ICard } from '@core/models/card.interfaces' 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -42,7 +42,5 @@ export class CardComponent implements OnInit {
     };
 
   }
-
   
-
 }
