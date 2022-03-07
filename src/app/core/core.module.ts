@@ -8,6 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { RootReduxModule } from './redux/root.redux.module';
+import { authReducer } from './redux/reducers/auth.reducers';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 @NgModule({
   declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
   imports: [
@@ -15,6 +19,13 @@ import { RootReduxModule } from './redux/root.redux.module';
     HttpClientModule, 
     ReactiveFormsModule,
     RootReduxModule,
+    StoreModule.forRoot({ 
+      authReducer: authReducer,
+    }), 
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),   
+    
   ],
   providers: [HttpService, UserService],
   exports: [
