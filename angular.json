@@ -18,7 +18,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "alk", 
+      "prefix": "alk",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -39,7 +39,7 @@
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": [ "./src/styles/" ]
+              "includePaths": ["./src/styles/"]
             }
           },
           "configurations": {
@@ -64,16 +64,23 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+
+            "local": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "local"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -81,11 +88,11 @@
             "production": {
               "browserTarget": "base-ong-angular-client:build:production"
             },
-            "development": {
-              "browserTarget": "base-ong-angular-client:build:development"
+            "local": {
+              "browserTarget": "base-ong-angular-client:build:local"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
