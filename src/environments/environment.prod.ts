@@ -3,5 +3,7 @@ export const environment = {
   apiUrl: '',
   apiUrlOrganization: '',
   apiUrlActivities: '',
-  membersApiUrl: "",
+  apiUrlCategories: '',
+  membersApiUrl: '',
+  users: ''
 };

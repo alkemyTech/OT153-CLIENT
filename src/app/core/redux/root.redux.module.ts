@@ -4,6 +4,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ActivitiesReducer, ActivitiesEffects } from './activities/activities.index';
+import { categoriesReducer } from './categories/categories.reducer';
+import { CategoriesEffects } from './categories/categories.effects';
+import { listCategories } from './categories/categories.actions';
 
 
 
@@ -12,11 +15,11 @@ import { ActivitiesReducer, ActivitiesEffects } from './activities/activities.in
     CommonModule,
     StoreModule.forRoot({ 
       activitiesState: ActivitiesReducer.activityReducer,
-
+      listCategories: categoriesReducer
     }),
     EffectsModule.forRoot([
       ActivitiesEffects,
-
+      CategoriesEffects
     ]),
     StoreDevtoolsModule.instrument({
       name: 'REDUX STATES - devtools',
