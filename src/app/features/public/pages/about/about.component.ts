@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpService } from '../../../../core/services/http.service';
-import { Organization } from '../../../../core/models/organization.interfaces';
+import { HttpService } from '@core/services/http.service';
+import { Organization } from '@core/models/organization.interfaces';
 import { environment } from '@env/environment';
 @Component({
   selector: 'app-about',
