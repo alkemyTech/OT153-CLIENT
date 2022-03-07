@@ -40,6 +40,7 @@ import { UsComponent } from "./public/pages/about/components/us/us.component";
 import { HomeComponent } from './public/pages/home/home.component';
 import { CoreModule } from '../core/core.module';
 import { NewsComponent } from './public/pages/home/news/news.component';
+import { PublicComponent } from './public/public.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { NewsComponent } from './public/pages/home/news/news.component';
     MembersFormComponent,
     OrganizationEditComponent,
     HomeComponent,
-    NewsComponent
+    NewsComponent,
+    PublicComponent
   ],
   exports: [
     ActivityFormComponent,

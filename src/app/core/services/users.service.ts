@@ -9,7 +9,7 @@ import { PrivateService } from "./private.service";
 })
 export class UsersService {
 
-  userApiUrl = environment.users;
+  userApiUrl = environment.apiUrl;
   constructor(private http: PrivateService) {}
 
   getUser(id?: string): Observable<any> {

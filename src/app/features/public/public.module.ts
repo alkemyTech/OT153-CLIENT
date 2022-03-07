@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
-import { AboutComponent } from '../about/about.component';
-import { ActivitiesComponent } from '../activities/activities.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
 import { UserFormComponent } from '@app/features/backoffice/pages/users/user-form/user-form.component';
-import { UsComponent } from '../about/components/us/us.component';
-import { ActivitySelectedComponent } from '../activities/components/activity-selected/activity-selected.component';
-import { ContactComponent } from '../contact/contact.component';
-import { DonationsComponent } from '../donations/donations.component';
-import { ThanksComponent } from '../donations/thanks/thanks.component';
+import { UsComponent } from './pages/about/components/us/us.component';
+import { ActivitySelectedComponent } from './pages/activities/components/activity-selected/activity-selected.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { DonationsComponent } from './pages/donations/donations.component';
+import { ThanksComponent } from './pages/donations/thanks/thanks.component';
+import { PublicComponent } from './public.component';
 
 const routes: Routes = [
 
   {
     path: '',
+    component: PublicComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         component: HomeComponent,
         pathMatch: 'full',
       },
@@ -34,7 +36,7 @@ const routes: Routes = [
         component: AboutComponent,
       },
       {
-        path: 'donacion',
+        path: 'donar',
         component: DonationsComponent,
       },
       {
@@ -58,7 +60,10 @@ const routes: Routes = [
         component: UserFormComponent,
       },
     ],
-  },
+  }, 
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '' },
+
 ];
 
 @NgModule({
@@ -70,4 +75,4 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ]
 })
-export class HomeModule { }
+export class PublicModule { }

@@ -10,11 +10,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
   imports: [
     CommonModule, 
+    RouterModule,
     HttpClientModule, 
     ReactiveFormsModule,
     StoreModule.forRoot({ count: counterReducer 
