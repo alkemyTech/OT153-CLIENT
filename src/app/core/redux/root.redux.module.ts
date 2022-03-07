@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { fromRoot as activitiesRoot} from './activities/activities.index';
+import { ActivitiesReducer, ActivitiesEffects } from './activities/activities.index';
+
+
 
 @NgModule({
   imports: [
     CommonModule,
     StoreModule.forRoot({ 
-      activitiesState: activitiesRoot.activityReducer,
+      activitiesState: ActivitiesReducer.activityReducer,
 
     }),
     EffectsModule.forRoot([
-      activitiesRoot.ActivitiesEffects,
+      ActivitiesEffects,
 
     ]),
     StoreDevtoolsModule.instrument({

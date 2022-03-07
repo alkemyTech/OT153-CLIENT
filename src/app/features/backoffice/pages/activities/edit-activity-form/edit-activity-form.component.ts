@@ -1,12 +1,11 @@
-import { NewActivity, Activities } from '@core/models/activities.interfaces';
+import { Activities } from '@core/models/activities.interfaces';
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivityResponse } from "@app/core/models/activities.interfaces";
-import { HttpService } from "@app/core/services/http.service";
 import { activitiesState } from '@app/core/models/activities-state.interface';
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
-import { fromRoot } from "@app/core/redux/activities/activities.index";
+import { ActivitiesSelector as Selector } from '@app/core/redux/activities/activities.index';
 
 @Component({
   selector: 'app-edit-activity-form',
@@ -37,7 +36,7 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   }
 
   getActivity() {
-    this.activity$ = this.Store.select(fromRoot.SelectStateOneData);
+    this.activity$ = this.Store.select(Selector.SelectStateOneData);
     const activitySubscribe = this.activity$.subscribe({
         next: (activity) => {
           this.description = activity.description;
