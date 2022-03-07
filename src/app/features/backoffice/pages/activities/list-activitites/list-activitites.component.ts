@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Activities } from '@app/core/models/activities.interfaces';
-import { activitiesState } from '@app/core/models/activities-state.interface';
+import { activitiesState } from '@core/models/activities-state.interface';
 import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@app/core/redux/activities/activities.index';
 @Component({
   selector: 'app-list-activitites',

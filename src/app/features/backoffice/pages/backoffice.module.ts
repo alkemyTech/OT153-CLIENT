@@ -13,9 +13,9 @@ import { SlidesFormComponent } from './slides/slides-form/slides-form.component'
 import { SlidesListComponent } from './slides/slides-list/slides-list.component';
 import { NewUserComponent } from './users/new-user/new-user.component';
 import { UsersCrudComponent } from './users/users.component';
+import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 
 const routes: Routes = [
-
   {
     path: '',
     children: [
@@ -74,7 +74,11 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+      },
+      {
+        path: 'categorias',
+        component: CategoriesFormComponent,
       },
       {
         path: '',
@@ -87,9 +91,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class BackofficeModule { }
+export class BackofficeModule {}
