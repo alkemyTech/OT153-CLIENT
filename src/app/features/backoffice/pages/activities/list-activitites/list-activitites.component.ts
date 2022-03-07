@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
-import { fromRoot } from '@app/core/redux/activities/activities.index';
+import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@app/core/redux/activities/activities.index';
 
 @Component({
   selector: 'app-list-activitites',
@@ -28,19 +28,19 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   }
 
   getAllActivities(){
-    this.activities$ = this.Store.select(fromRoot.SelectStateAllData);
+    this.activities$ = this.Store.select(Selector.SelectStateAllData);
     this.subscribe = this.activities$.subscribe(
       (a:Activities[]) => this.activities = a
     );
-    this.Store.dispatch(fromRoot.getAllActivities());
+    this.Store.dispatch(Action.getAllActivities());
   }
 
   editActivity(_idActivity){
-    this.Store.dispatch(fromRoot.getOneActivities( {id: _idActivity} ));    
+    this.Store.dispatch(Action.getOneActivities( {id: _idActivity} ));    
   }
 
   deleteActivity(_id: number){
-    this.Store.dispatch(fromRoot.deleteActivities( {id: _id} ));
+    this.Store.dispatch(Action.deleteActivities( {id: _id} ));
     this.filterActivity(_id)
   }
 

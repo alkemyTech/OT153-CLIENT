@@ -1,18 +1,4 @@
-import { getAllActivities, getOneActivities, insertActivities, updateActivities, deleteActivities } from './activities.actions';
-import { activityReducer } from './activities.reducer';
-import { SelectStateAllData, SelectStateOneData, SelectStateDelete, SelectStateError } from './activities.selector';
-import { ActivitiesEffects } from '@app/core/redux/activities/activities.effects';
-
-export const fromRoot = {
-    getAllActivities,
-    getOneActivities,
-    insertActivities,
-    updateActivities,
-    deleteActivities,
-    activityReducer,
-    SelectStateAllData,
-    SelectStateOneData,
-    SelectStateDelete,
-    SelectStateError,
-    ActivitiesEffects,
-}
+export * as ActivitiesActions from './activities.actions';
+export * as ActivitiesReducer from './activities.reducer';
+export * as ActivitiesSelector from './activities.selector';
+export { ActivitiesEffects } from '@app/core/redux/activities/activities.effects';
