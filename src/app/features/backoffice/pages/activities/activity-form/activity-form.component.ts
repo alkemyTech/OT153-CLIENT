@@ -1,3 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Activities } from '@app/core/models/activities.interfaces';
+import { NewActivity } from '@core/models/activities.interfaces';
+import { activitiesState } from '@core/store/activities/activityState.interface';
 import {
   Component,
   Input,
@@ -12,10 +16,11 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { HttpService } from "@app/core/services/http.service";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { MessageService } from "primeng/api";
 import { PrivateApiService } from "@app/core/services/privateApi.service";
-
+import { Store } from '@ngrx/store';
+import { fromRoot } from '@app/core/store/activities/activities.index';
 @Component({
   selector: 'app-activity-form',
   templateUrl: './activity-form.component.html',
@@ -48,13 +53,20 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   displaySubmitSpinner: boolean = false;
   subscription: Subscription;
 
+  error$: Observable<HttpErrorResponse> = new Observable();
+  activity$: Observable<Activities> = new Observable();
+  
   constructor(
     private http: HttpService,
     private httpPrivate: PrivateApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private Store: Store<{activitiesState: activitiesState}>
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activity$ = this.Store.select(fromRoot.SelectStateOneData);
+    this.error$ = this.Store.select(fromRoot.SelectStateError);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     // listen to async @Input changes from parent data binding
@@ -113,11 +125,22 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
       severity: 'info',
       summary: 'Cargando actividad...',
     });
+    const _body: NewActivity = {
+      name: form.get('name')?.value,
+      description: form.get('description')?.value,
+      image: form.get('image')?.value,
+    } 
+    
+    let _id;
+    this.activity$.subscribe( response => {
+      _id = response.id
+    })
+    this.defaultName
+    ? this.Store.dispatch(fromRoot.updateActivities( { id:_id, body:_body} ) )
+    : this.Store.dispatch(fromRoot.insertActivities( {body: _body} )) ;
 
     this.subscription = (
-      this.defaultName
-        ? this.httpPrivate.patchActivity(url, form.value)
-        : this.http.post(url, form.value)
+      this.Store.select(fromRoot.SelectStateOneData)
     ).subscribe(
       (response) => {
         this.displaySubmitSpinner = false;

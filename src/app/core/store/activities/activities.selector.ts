@@ -8,11 +8,8 @@ export interface appState {
 const selectFeature = (state: appState) => state.activitiesState
 
 const selectAllData = (state: activitiesState) => state.responseAll;
-
 const selectOneData = (state: activitiesState) => state.response;
-
 const selectDelete = (state: activitiesState) => state.delete;
-
 const selectErrorActivity = (state: activitiesState) => state.error;
 
 const SelectStateAllData = createSelector(
@@ -28,4 +25,9 @@ const SelectStateError = createSelector(
     (state: appState) => state.activitiesState, selectErrorActivity
 );
 
-export { SelectStateAllData, SelectStateOneData, SelectStateDelete, SelectStateError };
+export { 
+    SelectStateAllData, 
+    SelectStateOneData, 
+    SelectStateDelete, 
+    SelectStateError,
+};

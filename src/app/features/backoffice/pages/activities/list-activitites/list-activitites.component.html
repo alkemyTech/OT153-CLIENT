@@ -12,11 +12,11 @@
     </div>
     <p-table
       #dt
-      [value]="(activities$ | async)"
+      [value]="activities"
       dataKey="id"
       styleClass="p-datatable-customers"
       [rowHover]="true"
-      [rows]="10"
+      [rows]="rows"
       [showCurrentPageReport]="true"
       [rowsPerPageOptions]="[10, 25, 50]"
       responsiveLayout="scroll"
@@ -50,8 +50,8 @@
           <th style="width: 15%"></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-activity>
-        <tr class="p-selectable-row">
+      <ng-template pTemplate="body" let-activity >
+        <tr class="p-selectable-row" [id]="activity.id">
           <td>
             {{ activity.name }}
           </td>
@@ -69,7 +69,7 @@
           </td>
           <td style="min-width: 110px !important">
             <button pButton name="edit" (click)="this.editActivity(activity.id)" icon="pi pi-pencil" class="p-button-sm p-button-primary mr-1"></button>
-            <button pButton name="delete" icon="pi pi-trash" class="p-button-sm p-button-danger"></button>
+            <button pButton name="delete" (click)="this.deleteActivity(activity.id)" icon="pi pi-trash" class="p-button-sm p-button-danger"></button>
           </td>
         </tr>
       </ng-template>
