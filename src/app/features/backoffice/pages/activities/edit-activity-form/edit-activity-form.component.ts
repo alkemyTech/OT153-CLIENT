@@ -3,10 +3,10 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivityResponse } from "@app/core/models/activities.interfaces";
 import { HttpService } from "@app/core/services/http.service";
-import { activitiesState } from "@app/core/store/activities/activityState.interface";
+import { activitiesState } from '@app/core/models/activities-state.interface';
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
-import { fromRoot } from "@app/core/store/activities/activities.index";
+import { fromRoot } from "@app/core/redux/activities/activities.index";
 
 @Component({
   selector: 'app-edit-activity-form',

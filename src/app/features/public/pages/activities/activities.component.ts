@@ -13,7 +13,7 @@ export class ActivitiesComponent implements OnInit {
   public textColor = '#fff';
   public text: string = '';
 
-  constructor(private httpService: HttpService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }
