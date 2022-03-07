@@ -1,8 +1,13 @@
+import { NewActivity, Activities } from '@core/models/activities.interfaces';
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivityResponse } from "@app/core/models/activities.interfaces";
 import { HttpService } from "@app/core/services/http.service";
-import { BehaviorSubject, Subscription } from "rxjs";
+import { activitiesState } from "@app/core/store/activities/activityState.interface";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { Store } from "@ngrx/store";
+import { fromRoot } from "@app/core/store/activities/activities.index";
+
 @Component({
   selector: 'app-edit-activity-form',
   templateUrl: './edit-activity-form.component.html',
@@ -16,35 +21,39 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   description: string | undefined = "";
   description$ = new BehaviorSubject<string | undefined | null>(this.name);
 
+  activity$: Observable<Activities> = new Observable()
+
   activityResponse: ActivityResponse = {
     success: true,
     data: { id: "", name: "", description: "", image: "" },
     message: "",
   };
-  subscription: Subscription;
+  subscription: Array<Subscription> = [];
 
-  constructor(private http: HttpService, private router: Router) {}
+  constructor( private router: Router, private Store: Store<{ activitiesState: activitiesState }>) {}
 
   ngOnInit(): void {
     this.getActivity();
   }
 
   getActivity() {
-    this.activityResponse.data.id = this.router.url.split("/").pop(); 
-
-    this.subscription = this.http
-      .getActivity(`http://ongapi.alkemy.org/api/activities/${this.activityResponse.data.id}`)
-      .subscribe((activity) => {
-        this.description = activity.data.description;
-        this.description$.next(this.description);
-        this.name = activity.data.name;
-        this.name$.next(this.name);
-        this.image = activity.data.image;
-        this.image$.next(this.image);
-      });
+    this.activity$ = this.Store.select(fromRoot.SelectStateOneData);
+    const activitySubscribe = this.activity$.subscribe({
+        next: (activity) => {
+          this.description = activity.description;
+          this.description$.next(this.description);
+          this.name = activity.name;
+          this.name$.next(this.name);
+          this.image = activity.image;
+          this.image$.next(this.image);
+        },
+        error: (error) => { error },
+        complete: () => { },
+    })
+    this.subscription.push(activitySubscribe);
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription.forEach(elem => elem.unsubscribe);
   }
 }
