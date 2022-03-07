@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@app/core/services/http.service';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
-import { fromRoot } from '@app/core/redux/activities/activities.index';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICard } from '@app/core/models/card.interfaces';
-import { map } from 'rxjs/operators';
+import { ActivitiesSelector as Selector, ActivitiesActions as Actions } from '@app/core/redux/activities/activities.index';
+
+
 @Component({
   selector: 'app-activities-card',
   templateUrl: './activities-card.component.html',
@@ -20,8 +21,8 @@ export class ActivitiesCardComponent implements OnInit {
   constructor(private Store: Store<{ activitiesState: activitiesState }>) {}
 
   ngOnInit() {
-    this.activities$ = this.Store.select(fromRoot.SelectStateAllData)
-    this.Store.dispatch(fromRoot.getAllActivities());
+    this.activities$ = this.Store.select(Selector.SelectStateAllData)
+    this.Store.dispatch(Actions.getAllActivities());
   }
 
   ActivitieToICard(activitie:Activities){

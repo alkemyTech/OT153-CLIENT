@@ -2,16 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { NewActivity } from '@core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-  TemplateRef,
-  ViewChild,
-} from "@angular/core";
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { HttpService } from "@app/core/services/http.service";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
@@ -20,7 +11,8 @@ import { Observable, Subscription } from "rxjs";
 import { MessageService } from "primeng/api";
 import { PrivateApiService } from "@app/core/services/privateApi.service";
 import { Store } from '@ngrx/store';
-import { fromRoot } from '@app/core/redux/activities/activities.index';
+import { ActivitiesSelector as Selector, ActivitiesActions as Actions } from '@app/core/redux/activities/activities.index';
+
 @Component({
   selector: 'app-activity-form',
   templateUrl: './activity-form.component.html',
@@ -64,8 +56,8 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.activity$ = this.Store.select(fromRoot.SelectStateOneData);
-    this.error$ = this.Store.select(fromRoot.SelectStateError);
+    this.activity$ = this.Store.select(Selector.SelectStateOneData);
+    this.error$ = this.Store.select(Selector.SelectStateError);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -136,11 +128,11 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
       _id = response.id
     })
     this.defaultName
-    ? this.Store.dispatch(fromRoot.updateActivities( { id:_id, body:_body} ) )
-    : this.Store.dispatch(fromRoot.insertActivities( {body: _body} )) ;
+    ? this.Store.dispatch(Actions.updateActivities( { id:_id, body:_body} ) )
+    : this.Store.dispatch(Actions.insertActivities( {body: _body} )) ;
 
     this.subscription = (
-      this.Store.select(fromRoot.SelectStateOneData)
+      this.Store.select(Selector.SelectStateOneData)
     ).subscribe(
       (response) => {
         this.displaySubmitSpinner = false;
