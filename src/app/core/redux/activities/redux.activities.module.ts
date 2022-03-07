@@ -15,7 +15,6 @@ import { environment } from '@env/environment';
     EffectsModule.forRoot([
       fromRoot.ActivitiesEffects
     ]),
-    StoreDevtoolsModule.instrument({name : 'test'})
   ],
   declarations: []
 })
