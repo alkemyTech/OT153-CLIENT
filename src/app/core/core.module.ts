@@ -5,21 +5,26 @@ import { HttpService } from './services/http.service';
 import { UserService } from './controllers/userService/user.service';
 import { NewsletterFormComponent } from './components/footer/components/newsletter-form/newsletter-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { counterReducer } from './redux/reducers/counter.reducers';
+import { aboutUsReducer } from './redux/reducers/about.reducers';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { RootReduxModule } from './redux/root.redux.module';
 @NgModule({
-  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
+  declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent],
   imports: [
-    CommonModule, 
-    HttpClientModule, 
+    CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RootReduxModule,
+    StoreModule.forRoot({ count: counterReducer, members: aboutUsReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
   ],
   providers: [HttpService, UserService],
-  exports: [
-    NewsletterFormComponent,
-    HeaderComponent, 
-    FooterComponent],
+  exports: [NewsletterFormComponent, HeaderComponent, FooterComponent],
 })
 export class CoreModule {}
