@@ -1,5 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { activitiesState } from '@app/core/store/activities/activityState.interface';
+import { activitiesState } from '@app/core/models/activities-state.interface';
 
 export interface appState {
     activitiesState: activitiesState

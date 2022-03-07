@@ -9,7 +9,7 @@ import {
   insertActivities, InsertActivities_Success, InsertActivities_Fail,
   updateActivities, UpdateActivities_Success, UpdateActivities_Fail,
   deleteActivities, DeleteActivity_Success, DeleteActivity_Fail
-} from '@app/core/store/activities/activities.actions'; 
+} from '@app/core/redux/activities/activities.actions'; 
 
 @Injectable()
 export class ActivitiesEffects {

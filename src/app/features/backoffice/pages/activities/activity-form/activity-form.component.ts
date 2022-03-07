@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { NewActivity } from '@core/models/activities.interfaces';
-import { activitiesState } from '@core/store/activities/activityState.interface';
+import { activitiesState } from '@app/core/models/activities-state.interface';
 import {
   Component,
   Input,
@@ -20,7 +20,7 @@ import { Observable, Subscription } from "rxjs";
 import { MessageService } from "primeng/api";
 import { PrivateApiService } from "@app/core/services/privateApi.service";
 import { Store } from '@ngrx/store';
-import { fromRoot } from '@app/core/store/activities/activities.index';
+import { fromRoot } from '@app/core/redux/activities/activities.index';
 @Component({
   selector: 'app-activity-form',
   templateUrl: './activity-form.component.html',

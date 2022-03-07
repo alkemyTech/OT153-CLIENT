@@ -5,10 +5,9 @@ import {
   GetOneActivity_Fail, DeleteActivity_Fail, 
   InsertActivities_Fail, UpdateActivities_Fail,
 } from './activities.actions';
-import {  } from '@app/core/store/activities/activities.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createReducer, on } from '@ngrx/store';
-import { activitiesState } from '@app/core/store/activities/activityState.interface';
+import { activitiesState } from '@app/core/models/activities-state.interface';
 
 const emptyArray= [];
 const emptyOne=  {id: 0, name: '', description:''};

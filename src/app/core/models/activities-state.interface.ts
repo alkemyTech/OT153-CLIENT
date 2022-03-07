@@ -1,5 +1,5 @@
-import { Activities } from '../../models/activities.interfaces';
-import { Delete } from '../../models/delete.interface';
+import { Activities } from './activities.interfaces';
+import { Delete } from './delete.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export interface activitiesState {

@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
-import { ActivitiesRxModule } from './activitiesRx.module';
+import { ActivitiesRxModule } from './activities.redux.module';
 @NgModule({
   declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
   imports: [
@@ -18,8 +18,8 @@ import { ActivitiesRxModule } from './activitiesRx.module';
     HttpClientModule, 
     ReactiveFormsModule,
     ActivitiesRxModule,
-    StoreModule.forRoot({ count: counterReducer 
-    }), 
+    // StoreModule.forRoot({ count: counterReducer 
+    // }), 
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }), 
