@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@app/core/services/http.service';
 import { Activities } from '@app/core/models/activities.interfaces';
-import { activitiesState } from '@app/core/store/activities/activityState.interface';
-import { fromRoot } from '@app/core/store/activities/activities.index';
+import { activitiesState } from '@app/core/models/activities-state.interface';
+import { fromRoot } from '@app/core/redux/activities/activities.index';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICard } from '@app/core/models/card.interfaces';
