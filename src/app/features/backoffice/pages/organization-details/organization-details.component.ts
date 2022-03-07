@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Organization } from '@app/core/models/organization.interfaces';
+import { environment } from '@env/environment';
 import { HttpService } from 'src/app/core/services/http.service';
 
 @Component({
@@ -37,8 +38,7 @@ export class OrganizationDetailsComponent implements OnInit {
   }
 
   getOrganization() {
-    const url = `http://ongapi.alkemy.org/public/api/organization/`;
-    this.httpSvc.get<Organization>(url, true).subscribe(
+    this.httpSvc.get<Organization>(environment.apiUrlOrganization, true).subscribe(
       (res) => {
         this.organization = res;
         console.log(res);

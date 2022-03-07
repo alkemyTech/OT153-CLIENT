@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '../../../../core/services/http.service';
 import { Organization } from '../../../../core/models/organization.interfaces';
-
+import { environment } from '@env/environment';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit {
   constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
-    this.httpService.get<Organization>('http://ongapi.alkemy.org/api/organization').subscribe((resp) => {
+    this.httpService.get<Organization>(environment.apiUrlOrganization).subscribe((resp) => {
       this.text = resp.data.long_description;
     });
   }
