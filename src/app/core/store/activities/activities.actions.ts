@@ -26,7 +26,7 @@ export const GetAllActivities_Success = createAction(type.GET_ALL_ACTIVITIES_SUC
 
 export const getOneActivities = createAction(type.GET_ONE_ACTIVITY, props<{id: number}>());
 export const GetOneActivity_Fail= createAction(type.GET_ONE_ACTIVITY_FAIL, props<{ error: any }>());
-export const GetOneActivity_Success = createAction(type.GET_ALL_ACTIVITIES_SUCCESS, props<{ activity: Activities }>());
+export const GetOneActivity_Success = createAction(type.GET_ONE_ACTIVITY_SUCCESS, props<{ activity: Activities }>());
 
 export const insertActivities = createAction(type.INSERT_ACTIVITY, props<{body: NewActivity}>());
 export const InsertActivities_Fail = createAction(type.INSERT_ACTIVITY_FAIL , props<{ error: any }>());
