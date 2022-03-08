@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PublicapiService } from '@app/core/services/publicApi.service';
 import { ActivityResponse } from '@app/core/models/activities.interfaces';
 import { Subscription } from 'rxjs';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-activity-selected',
@@ -17,7 +18,7 @@ export class ActivitySelectedComponent implements OnInit, OnDestroy {
   ActivityId: string | undefined;
   activity: ActivityResponse;
   subscription: Subscription;
-  url: string = `http://ongapi.alkemy.org/api/activities`;
+  url: string = environment.apiUrlActivities;
 
   constructor(private httpPublic: PublicapiService, private router: Router) {}
 
