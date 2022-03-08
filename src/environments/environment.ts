@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiUrl: '',
   apiUrlOrganization: '',
+  apiUrlActivities: '',
+  users:'',
 };
 
 /*

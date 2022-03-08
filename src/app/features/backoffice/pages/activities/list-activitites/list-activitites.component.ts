@@ -4,20 +4,17 @@ import { Observable, Subscription } from 'rxjs';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
 import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@app/core/redux/activities/activities.index';
-
 @Component({
   selector: 'app-list-activitites',
   templateUrl: './list-activitites.component.html',
   styleUrls: ['./list-activitites.component.scss'],
 })
 export class ListActivititesComponent implements OnInit, OnDestroy {
-  public url = 'http://ongapi.alkemy.org/api/activities';
   public activities$: Observable<any> = new Observable();
   public activities: Activities[];
   public activity$: Observable<Activities> = new Observable();
   public rows: number = 10;
   private subscribe: Subscription;
-
 
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>
