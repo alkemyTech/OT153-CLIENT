@@ -8,6 +8,7 @@ export const environment = {
   apiUrlOrganization: '',
   apiUrlActivities: '',
   users:'',
+  membersApiUrl: "",
 };
 
 /*
