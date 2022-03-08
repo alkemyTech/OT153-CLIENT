@@ -14,6 +14,7 @@
  import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
  import { PrivateApiService } from '@app/core/services/privateApi.service';
  import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '@env/environment';
  @Component({
    selector: 'app-news-form',
    templateUrl: './news-form.component.html',
@@ -25,7 +26,7 @@
    @Input() idNews: number; //idNews <= -1 --> create // idNews >= 0 --> edit
    public isEditFlag: boolean;
    private title: string = 'Crear';
-   private url: string = 'http://ongapi.alkemy.org/api/news';
+   private url: string = environment.apiUrlNews;
    public isLoading: boolean = false;
    private frmNews: FormGroup;
    public getControl = getControlFunction;
