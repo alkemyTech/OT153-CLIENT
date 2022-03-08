@@ -37,7 +37,7 @@ export class LoginFormComponent implements OnInit {
 
     this.authentication$.subscribe( auth => {
       if(auth){
-        this._router.navigate(["home"]);
+        this._router.navigate(["/"]);
       }
     });
   }
