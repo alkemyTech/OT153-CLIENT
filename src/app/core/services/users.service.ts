@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { User } from "src/app/core/models/user.models";
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environment.local";
 import { PrivateService } from "./private.service";
 
 @Injectable({
@@ -9,7 +9,7 @@ import { PrivateService } from "./private.service";
 })
 export class UsersService {
 
-  userApiUrl = environment.users;
+  userApiUrl = environment.apiUrlUsers;
   constructor(private http: PrivateService) {}
 
   getUser(id?: string): Observable<any> {

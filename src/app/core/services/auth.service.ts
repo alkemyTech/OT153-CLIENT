@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.local';
 import { PrivateService } from './private.service';
 
 
@@ -9,7 +9,7 @@ import { PrivateService } from './private.service';
 })
 
 export class AuthService {
-  urlApi = environment.login;
+  urlApi = environment.apiUrlLogin;
  
   constructor(private privateService: PrivateService) { }
 
