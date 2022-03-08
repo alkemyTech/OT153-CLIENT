@@ -5,5 +5,11 @@ export const environment = {
   apiUrlActivities: '',
   apiUrlCategories: '',
   membersApiUrl: '',
-  users: ''
+  users: '',
+  apiUrlNews: "",
+  apiUrlNewsList: "",
+  apiUrlNewsListById: "",
+  apiUrlNewsPost: "",
+  apiUrlNewsUpdate: "",
+  apiUrlNewsDelete: "",
 };
