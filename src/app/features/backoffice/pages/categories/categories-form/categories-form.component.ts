@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fullCategoryDate } from '@core/models/category.interface';
-import { listCategories } from '@core/redux/categories/categories.actions';
 import { SelectAllCategories } from '@core/redux/categories/categories.selector'
+import { listCategories } from '@app/core/redux/categories/categories.actions';
 
 @Component({
   selector: 'app-categories-form',
