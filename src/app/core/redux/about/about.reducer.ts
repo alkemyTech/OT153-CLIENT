@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as AboutActions from '../actions/about.actions';
+import * as AboutActions from './about.actions';
 
 export interface State {
   id: number;
@@ -10,6 +10,7 @@ export interface State {
   welcome_text: string;
   address: string;
   phone: string;
+  ReactiveFormsModule;
   cellphone: string;
   created_at: Date;
   updated_at: Date;

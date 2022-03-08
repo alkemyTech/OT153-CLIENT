@@ -6,7 +6,7 @@ import { UserService } from './controllers/userService/user.service';
 import { NewsletterFormComponent } from './components/footer/components/newsletter-form/newsletter-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { counterReducer } from './redux/reducers/counter.reducers';
-import { aboutUsReducer } from './redux/reducers/about.reducers';
+import { aboutUsReducer } from './redux/about/about.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FooterComponent } from './components/footer/footer/footer.component';
