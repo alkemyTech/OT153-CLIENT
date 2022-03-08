@@ -4,7 +4,7 @@ import { PrivateService } from '../../features/services/private.service';
 import { ActivitiesResponse, Activities, NewActivity, NewActivityPost, ActivityResponse } from '../models/activities.interfaces';
 import { delay, map, switchMap, take } from 'rxjs/operators';
 import { ObservableInput, Observable, Subject, ReplaySubject } from 'rxjs';
-
+import { environment } from '@env/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +12,7 @@ export class ActivitiesControllerService {
 
   constructor(private privateService: PrivateService) { }
 
-  private url: string = "http://ongapi.alkemy.org/api/activities";
+  private url: string = environment.apiUrlActivities;
 
   getAll(): Observable<ActivitiesResponse>{
     return this.privateService.get<ActivitiesResponse>(this.url)
