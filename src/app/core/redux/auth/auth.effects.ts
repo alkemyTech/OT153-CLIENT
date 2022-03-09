@@ -13,9 +13,9 @@ export class AuthEffects {
     
     login$ = createEffect(() => this.actions$.pipe(
         ofType(login),
-        exhaustMap( loginAction =>
-            this.authService.auth({email:loginAction.email, password: loginAction.password}).pipe(
-                map( (resp:any) => setAuthState({success: resp.success, token: resp.data.token, data: resp.data.user}))
+        exhaustMap( ({email,password}) =>
+            this.authService.auth({email,password}).pipe(
+                map( ({success,data:{token,user}}) => setAuthState({success,token,data:user}))
             ))            
     ));
 

@@ -8,6 +8,6 @@ interface AuthResponse {
 }
 
 export const login        = createAction('[Authentication] Login', props<{ email: string; password: string }>() );
-export const logout       = createAction('[Authentication] Logout');
+export const logout       = createAction('[Authentication] Logout', props<any>());
 export const register     = createAction('[Authentication] Register', props<{name: string, email: string, password: string}>() );
 export const setAuthState = createAction('[Authentication] Auth State Modified', props<AuthResponse>() );

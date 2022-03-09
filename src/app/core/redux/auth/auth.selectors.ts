@@ -13,3 +13,12 @@ export const getAuthOk = createSelector(
     getAuthState,
     (state: AuthState) => state
 );  
+
+export const cleanAuth = createSelector(
+    getAuthState,
+    () => ({
+        auth: false,
+        user: null,
+        token: null        
+    })
+);

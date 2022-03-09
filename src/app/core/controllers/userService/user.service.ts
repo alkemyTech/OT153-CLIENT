@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   private _groupId: string = '153';
   private _headers!: HttpHeaders;
-  private _baseUrl: string = environment.users;
+  private _baseUrl: string = environment.apiUrlUsers;
 
   constructor(private http: HttpClient) {}
 
