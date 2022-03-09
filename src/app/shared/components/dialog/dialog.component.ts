@@ -2,7 +2,7 @@ import { MessageService } from 'primeng/api';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { DialogExampleComponent } from './components/dialog-example/dialog-template.component';
+import { DialogTemplateComponent } from './components/dialog-template/dialog-template.component';
 import { DialogService } from '@core/services/dialog.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(DialogExampleComponent, {
+    let dialogRef = this.dialog.open(DialogTemplateComponent, {
       width: '30vw',
       //disableClose: true, //force close with buttons
     })

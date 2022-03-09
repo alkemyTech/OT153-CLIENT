@@ -6,10 +6,10 @@ import { DialogService } from '@app/core/services/dialog.service';
 import { DialogType } from '@core/enums/dialog.enum';
 
 @Component({
-  selector: 'dialog-example',
+  selector: 'dialog-template',
   templateUrl: 'dialog-template.component.html',
 })
-export class DialogExampleComponent{
+export class DialogTemplateComponent{
   public data$: Observable<DialogData>;
   public dialogData: DialogData;
   public type: DialogType;

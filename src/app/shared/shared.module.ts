@@ -12,7 +12,7 @@ import { CardComponent } from './components/card/card.component';
 import { UpperTitleComponent } from './components/upper-title/upper-title.component';
 
 import { DialogComponent } from './components/dialog/dialog.component';
-import { DialogExampleComponent } from './components/dialog/components/dialog-example/dialog-template.component'
+import { DialogTemplateComponent } from './components/dialog/components/dialog-template/dialog-template.component'
 
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -25,7 +25,7 @@ const componentToExport = [
   SpinnerComponent,
   UpperTitleComponent, 
   DialogComponent,
-  DialogExampleComponent,
+  DialogTemplateComponent,
 ];
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule];
