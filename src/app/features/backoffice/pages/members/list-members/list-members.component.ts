@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Members, MembersResponse } from '@models/members.interfaces';
+import { Member, MembersResponse } from '@models/members.interfaces';
 import { PrivateService } from '@features/services/private.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { PrivateService } from '@features/services/private.service';
 })
 export class ListMembersComponent implements OnInit {
   public url = 'http://ongapi.alkemy.org/api/members';
-  public members: Members[];
+  public members: Member[];
 
   constructor(private privateService: PrivateService) {}
 

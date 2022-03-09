@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Members } from '@app/core/models/members.interfaces';
+import { Member } from '@app/core/models/members.interfaces';
 import { HttpService } from '@app/core/services/http.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { HttpService } from '@app/core/services/http.service';
   styleUrls: ['./us.component.scss']
 })
 export class UsComponent implements OnInit {
-  members  : Members[];
+  members  : Member[];
   url = 'http://ongapi.alkemy.org/api/members';
   constructor(private httpService: HttpService) { }
 
