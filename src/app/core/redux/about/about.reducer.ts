@@ -1,7 +1,30 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { AboutMembersState } from '@app/core/models/about-state.interface';
+import { Members } from '@app/core/models/members.interfaces';
 import * as AboutActions from './about.actions';
+import { HttpErrorResponse } from '@angular/common/http';
+import { getMembersSuccess } from './about.actions';
 
-export interface State {
+const empty = [];
+const errorEmpty = new HttpErrorResponse({});
+
+const initialState: AboutMembersState = {
+  response: empty,
+  error: errorEmpty,
+};
+
+export const _aboutReducer = createReducer(
+  initialState,
+  on(getMembersSuccess, (state, action) => {
+    return { ...state, response: action.members };
+  })
+);
+
+export function aboutReducer(state, action) {
+  return _aboutReducer(state, action);
+}
+
+/* export interface State {
   id: number;
   name: string;
   logo: string;
@@ -63,4 +86,4 @@ export const aboutUsReducer = createReducer(
     instagram_url: state.instagram_url,
     twitter_url: state.twitter_url,
   }))
-);
+); */

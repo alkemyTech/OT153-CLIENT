@@ -14,7 +14,7 @@ export class AboutEffects {
         return this.publicApiService.getPublicMembers().pipe(
           map((response) =>
             getMembersSuccess({
-              membersResponse: response,
+              members: response.data,
             })
           ),
           catchError((error) => of(getMembersError({ error: error })))

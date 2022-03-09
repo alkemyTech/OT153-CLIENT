@@ -1,26 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Members } from '@app/core/models/members.interfaces';
-import { HttpService } from '@app/core/services/http.service';
+import { Members, MembersResponse } from '@app/core/models/members.interfaces';
+import { AboutSelector as Selector, AboutActions as Actions } from '@app/core/redux/about/about.index';
+import { Store } from '@ngrx/store';
+import { AboutMembersState } from '@app/core/models/about-state.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-us',
   templateUrl: './us.component.html',
-  styleUrls: ['./us.component.scss']
+  styleUrls: ['./us.component.scss'],
 })
 export class UsComponent implements OnInit {
-  members  : Members[];
-  url = 'http://ongapi.alkemy.org/api/members';
-  constructor(private httpService: HttpService) { }
+  members$: Observable<Members[]> = new Observable();
+
+  constructor(private Store: Store<{ aboutMembersState: AboutMembersState }>) {}
 
   ngOnInit(): void {
-    this.getMembers();
+    this.members$ = this.Store.select(Selector.SelectStateAllMembers);
+    this.Store.dispatch(Actions.getMembers());
   }
-
-  getMembers(){
-    this.httpService.get<any>(this.url).subscribe((response)=>{
-      const { data } = response
-      this.members = data;
-    });
-  }
-
 }

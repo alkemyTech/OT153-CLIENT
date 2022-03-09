@@ -4,6 +4,9 @@ import { Organization } from '@core/models/organization.interfaces';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Members } from '@app/core/models/members.interfaces';
+import { AboutSelector as Selector, AboutActions as Actions } from '@app/core/redux/about/about.index';
+import { AboutOrganizationState } from '@app/core/models/about-state.interface';
 
 @Component({
   selector: 'app-about',
@@ -16,7 +19,7 @@ export class AboutComponent implements OnInit {
   public textColor = '#fff';
 
   public text: string = '';
-  movies$: Observable<Organization> = this.store.select((state) => state.organization);
+  organization$: Observable<Organization> = this.store.select((state) => state.organization);
 
   constructor(private httpService: HttpService, private store: Store<{ organization: Organization }>) {}
 
