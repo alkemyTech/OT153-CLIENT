@@ -1,0 +1,50 @@
+#!/bin/bash
+# The script below adds the branch name automatically to
+# every one of your commit messages. The regular expression
+# below searches for JIRA issue key's. The issue key will
+# be extracted out of your branch name
+
+LC_ALL=C
+
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REGEX="^(develop|master|release|((feature|squash|task|merge|hotfix|OT153-[0-9]))).*"
+
+    echo "===================== validating branch ========================="
+
+if ! [[ $BRANCH =~ $REGEX ]]; 
+then
+    echo "           "
+    echo "      📢 There is something wrong with your branch name"
+    echo "   Branch names in this project must adhere to this contract:"
+    echo ""
+    echo "         👉  OT153-[TicketNumber]_description   👈           "
+    echo ""
+    echo "             ❗Your commit will be rejected."
+    echo "You should rename your branch to a valid name and try again.🤕"
+    echo ""
+    echo "================================================================"
+    exit 1
+else 
+    echo ""
+    echo "correct format! 👍"
+    echo ""
+fi
+
+REGEX_ISSUE_ID="[a-zA-Z0-9,\.\_\-]+-[0-9]+"
+
+# Find current branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+if [[ -z "$BRANCH_NAME" ]]; then
+    echo "No branch name... "; exit 1
+fi
+
+# Extract issue id from branch name
+ISSUE_ID=$(echo "$BRANCH_NAME" | grep -o -E "$REGEX_ISSUE_ID")
+
+echo "========================== Commit ==============================="
+echo ""
+echo "Success! 🏄"
+echo ""
+echo "$ISSUE_ID" $(cat "$1") > "$1" 

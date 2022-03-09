@@ -1,0 +1,85 @@
+<div class="grid">
+  <p-card class="col-12 lg:col-8 lg:col-offset-2">
+    <div class="text-left pl-5 my-4">
+      <h1>
+        {{ formTitle }}
+      </h1>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="formgrid grid mx-auto bg-faded">
+      <div class="col-12 justify-content-center align-items-center lg:col-3 pl-3 lg:col-offset-0 pt-4 flex text-center">
+        <div class="field">
+          <label class="pl-3"><strong>Imagen de portada *</strong></label>
+          <div class="image-container mb-2 mx-auto">
+            <img [src]="imageBuffer" *ngIf="imageBuffer" />
+          </div>
+          <button pButton type="button" (click)="image.click()" label="Choose File" class="p-button-warning"></button>
+          <input accept=".jpg,.png" hidden #image type="file" (change)="selectFile($event)" />
+
+          <p-message *ngIf="imageBuffer" severity="success" styleClass="ml-2 mt-1 "></p-message>
+          <p-message *ngIf="submitted === true && !imageBuffer" severity="error" text="requerido" class="ml-2">
+          </p-message>
+          <div class="mt-2" style="font-weight: 600" [innerHtml]="imgMessage" *ngIf="imgMessage"></div>
+        </div>
+      </div>
+
+      <div class="col-12 lg:col-9 pl-4 mt-2">
+        <div class="field">
+          <label><strong>Nombre de la actividad *</strong></label>
+          <div class="p-inputgroup">
+            <input
+              formControlName="name"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              pInputText
+              placeholder="..."
+            />
+          </div>
+          <small *ngIf="submitted === true && form.controls['name'].errors" severity="error" class="p-error"
+            >Nombre de la actividad es requerido.</small
+          >
+        </div>
+
+        <div class="field">
+          <div class="mt-4">
+            <label
+              ><strong><u>Descripción:</u></strong></label
+            >
+            <ckeditor
+              *ngIf="defaultDescription || voidCKeditor; else ckeditorSpinner"
+              (change)="ckeditorChange($event)"
+              data="{{ defaultDescription }}"
+              [editor]="Editor"
+            >
+            </ckeditor>
+            <ng-template #ckeditorSpinner>
+              <div class="editorSpinnerContainer">
+                <app-spinner 
+                  [class]="'m-auto editorSpinner'" 
+                  [strokeWidth]="'5'" 
+                  [fillColor]="'white'" 
+                  [width]="100" 
+                  [height]="100" 
+                  [opacity]="0.75"
+                ></app-spinner>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 my-5 text-center">
+        <button pButton pRipple class="p-button-raised" label="Submit" type="submit"></button>
+      </div>
+      <p-progressSpinner
+        class="m-auto"
+        [style]="{ width: '50px', height: '50px', opacity: '.7' }"
+        *ngIf="displaySubmitSpinner"
+      >
+      </p-progressSpinner>
+    </form>
+  </p-card>
+</div>
+
+<p-toast position="bottom-center"></p-toast>

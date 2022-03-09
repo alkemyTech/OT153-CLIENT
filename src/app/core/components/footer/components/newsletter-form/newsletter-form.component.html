@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="content" *ngIf="!user_email">
+    <h3>Suscribete a nuestra Newsletter</h3>
+    <p>Para recibir informacion semanalmente sobre nosotros !</p>
+    <form (submit)="submit()" [formGroup]="form">
+      <div>
+        <div class="field">
+          <input
+            [class.has-error]="
+              getControl(form, 'email')?.touched &&
+              getControl(form, 'email')?.dirty &&
+              getControl(form, 'email')?.invalid
+            "
+            formControlName="email"
+            type="email"
+            placeholder="ejemplo@email.com"
+          />
+          <button
+            type="submit"
+            pButton
+            pRipple
+            icon="pi pi-check"
+            styleClass="p-button-warn"
+            [disabled]="!form.valid"
+            [class.invalid]="getControl(form, 'email')?.invalid"
+          >
+            Suscribete
+          </button>
+          <div *ngIf="getControl(form, 'email')?.invalid">
+            <small
+              *ngIf="getControl(form, 'email')?.touched && getControl(form, 'email')?.hasError('hasEmail')"
+              id="email-help"
+              class="p-error"
+              >Email invalido</small
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="content" *ngIf="user_email">
+    <h3>Newsletter</h3>
+    <p>Ya te encuentras suscrito para recibir nuestras noticias semanales</p>
+  </div>
+</div>

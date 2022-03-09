@@ -1,0 +1,49 @@
+<div class="container">
+  <p-card header="Inicio de sesión">
+    <div class="grid p-fluid">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <input
+              type="text"
+              [ngClass]="{
+                'ng-invalid ng-dirty':
+                  getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched
+              }"
+              formControlName="email"
+              aria-describedby="email-help"
+              pInputText
+              placeholder="Correo electrónico"
+            />
+          </div>
+          <div class="field" *ngIf="getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched">
+            <small id="email-help" class="p-error block">Correo electrónico inválido.</small>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <input
+              id="password"
+              formControlName="password"
+              type="password"
+              aria-describedby="password-help"
+              pInputText
+              placeholder="Contraseña"
+            />
+          </div>
+          <div
+            class="field"
+            *ngIf="getControl(loginForm, 'password')?.invalid && getControl(loginForm, 'password')?.touched"
+          >
+            <small id="password-help" class="p-error block">Contraseña obligatoria.</small>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button pButton type="submit" label="Enviar" [disabled]="!loginForm.valid"></button>
+        </div>
+      </form>
+    </div>
+  </p-card>
+</div>

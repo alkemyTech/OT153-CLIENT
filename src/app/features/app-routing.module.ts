@@ -1,21 +1,23 @@
-import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { 
-    path: "actividades", 
-    component: ActivityFormComponent },
   {
     path: "",
-    redirectTo: "actividades",
+    redirectTo: "home",
     pathMatch: "full",
   },
+
   {
-    path: "**",
-    redirectTo: "actividades",
-    pathMatch: "full",
+    path: "",
+    loadChildren: () =>
+      import("./public/pages/home/home.module").then((m) => m.HomeModule),
+  },
+  {
+    path: "backoffice",
+    loadChildren: () =>
+      import("./backoffice/pages/backoffice.module").then((m) => m.BackofficeModule),
   },
 ];
 

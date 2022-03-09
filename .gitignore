@@ -46,3 +46,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Custom workspace local vscode settings
+.vscode/settings.json
+
+environment.local.ts

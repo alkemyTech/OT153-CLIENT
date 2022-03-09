@@ -1,0 +1,13 @@
+<p-card id='Card' header="" [styleClass]="'p-card-shadow card'" [style]="style">
+    <ng-template pTemplate="header">
+        <img alt="" [src]="data['image']" class="image image-placeholder" />
+    </ng-template> 
+    <ng-template pTemplate="content">
+        <p-divider align="left">
+            <b>{{data['name'] | uppercase}}</b>
+        </p-divider>
+        <p-scrollPanel [style]="styleDescription">
+            {{data['description']}} 
+        </p-scrollPanel>
+    </ng-template>
+</p-card>

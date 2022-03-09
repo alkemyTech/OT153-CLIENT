@@ -1,0 +1,40 @@
+<div class="grid">
+  <p-card class="col-12 md:col-10 md:col-offset-1">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid formgrid">
+      <div class="col-12 flex justify-content-center">
+        <img [src]="'assets/backoffice/Usuarios.png'" height="150px" [alt]="'users'" class="user-tumbnail" />
+      </div>
+
+      <div class="field col-12 md:col-10 mx-auto">
+        <label for="name"><strong>Nombre *</strong></label>
+        <input
+          class="p-inputgroup"
+          formControlName="name"
+          autocomplete="off"
+          type="text"
+          pInputText
+          id="name"
+          autofocus
+        />
+        <small class="p-error" *ngIf="submitted && !form.get('name')?.value">Nombre es requerido.</small>
+      </div>
+
+      <div class="field col-12 md:col-10 mx-auto">
+        <label for="email"><strong>Email *</strong></label>
+        <input class="p-inputgroup" formControlName="email" id="email" pInputText />
+        <small class="p-error" *ngIf="submitted && !form.get('email')?.value">Email es requerido.</small>
+      </div>
+
+      <div class="field col-12 md:col-10 mx-auto">
+        <label for="email"><strong>Password *</strong></label>
+        <input type="password" class="p-inputgroup" formControlName="password" id="password" pInputText />
+        <small class="p-error" *ngIf="submitted && !form.get('password')?.value">Password es requerido.</small>
+      </div>
+
+      <div class="col-12 flex justify-content-center mt-3">
+        <a routerLink="/backoffice/users" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"></a>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" type="submit"></button>
+      </div>
+    </form>
+  </p-card>
+</div>

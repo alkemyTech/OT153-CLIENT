@@ -2,19 +2,25 @@ import { FeaturesModule } from './features/features.module';
 import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { DialogService } from '@app/core/services/dialog.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    CoreModule,
-    FeaturesModule
+    BrowserModule, 
+    CoreModule, 
+    FeaturesModule, 
+    ToastModule, 
+    BrowserAnimationsModule, 
+    ToastModule,
+    StoreModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MessageService, DialogService, BrowserAnimationsModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

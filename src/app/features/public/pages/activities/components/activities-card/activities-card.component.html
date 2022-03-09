@@ -1,0 +1,13 @@
+<p-card header="" styleClass="p-card-shadow m-auto">
+  <div class="grid">
+    <div *ngFor="let activitie of activities$ | async" class="col-6">
+      <a routerLink="{{activitie.id}}">
+
+        <app-card 
+          [data]="ActivitieToICard(activitie)" >
+        </app-card>
+
+      </a>
+    </div>
+  </div>
+</p-card>

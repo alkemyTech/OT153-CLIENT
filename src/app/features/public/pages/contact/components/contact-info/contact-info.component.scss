@@ -1,0 +1,42 @@
+.wrapper {
+  text-align: center;
+  border: 2px solid rgba(61, 61, 61, 0.767);
+  width: 100vw;
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  border-radius: 15px;
+  h2{
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: white;
+    padding: 0 20px;
+  }
+}
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 600px;
+  margin: 40px auto 10px;
+  opacity: .85;
+}
+.cell{
+  h4{
+    padding: 0;
+    margin: 0;
+  }
+  img{
+    width: 52px ;
+  }
+}
+
+@media screen and (max-width:900px) {
+  .cell{
+  img{
+    width: 32px ;
+  }
+}
+
+}

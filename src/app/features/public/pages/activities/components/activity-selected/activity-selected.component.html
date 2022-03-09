@@ -1,0 +1,21 @@
+
+<div class="container text-center">
+    <div class="col-12 md:col-10 m-auto">
+        <p-card header="" styleClass="p-card-shadow m-auto">
+   
+            <app-upper-title [title]="title" [colorBackground]="backgroundColor" [colorText]="textColor"></app-upper-title>
+
+            <div *ngIf="activity; else skeleton">
+                <img class="w-100 pt-3 px-2" src="{{activity.data?.image}}" alt="image-actividad">
+                <h3>{{activity.data?.name}}</h3>
+                
+                <div class="activityDescription" [innerHtml]="activity.data?.description"></div>
+            </div>
+            
+            <ng-template #skeleton>
+                <p-skeleton  width="100%" height="70vh"></p-skeleton>
+            </ng-template>
+
+        </p-card>
+    </div>
+</div>

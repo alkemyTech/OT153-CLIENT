@@ -1,0 +1,16 @@
+<div class="container">
+  <p-card
+    header="{{ organization?.name }}"
+    subheader="{{ organization?.short_description }}"
+    [style]="{ width: '360px' }"
+    styleClass="p-card-shadow"
+  >
+    <ng-template pTemplate="header">
+      <img [alt]="organization?.name" [src]="organization?.logo" />
+    </ng-template>
+    <div [innerHTML]="organization?.name"></div>
+    <ng-template pTemplate="footer">
+      <p-button [routerLink]="'/backoffice/organization/edit/'" label="Editar" icon="pi pi-pencil"></p-button>
+    </ng-template>
+  </p-card>
+</div>
