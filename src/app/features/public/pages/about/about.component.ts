@@ -28,6 +28,6 @@ export class AboutComponent implements OnInit {
       this.text = resp.data.long_description;
     });
 
-    this.store.dispatch({ type: '[About Page] Load Organization' });
+    // this.store.dispatch({ type: '[About Page] Load Organization' });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Members, MembersResponse } from '@app/core/models/members.interfaces';
 import { AboutSelector as Selector, AboutActions as Actions } from '@app/core/redux/about/about.index';
 import { Store } from '@ngrx/store';
@@ -11,12 +11,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./us.component.scss'],
 })
 export class UsComponent implements OnInit {
-  members$: Observable<Members[]> = new Observable();
+  members$: Observable<MembersResponse> = new Observable();
 
   constructor(private Store: Store<{ aboutMembersState: AboutMembersState }>) {}
 
   ngOnInit(): void {
     this.members$ = this.Store.select(Selector.SelectStateAllMembers);
-    this.Store.dispatch(Actions.getMembers());
+
+
+  }
+  clg(){
+    console.log(this.members$);
   }
 }

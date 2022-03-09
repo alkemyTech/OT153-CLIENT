@@ -22,4 +22,5 @@ export class PublicapiService {
   public getPublicMembers<T>(): Observable<MembersResponse> {
     return this.http.get<MembersResponse>(environment.membersApiUrl);
   }
+
 }

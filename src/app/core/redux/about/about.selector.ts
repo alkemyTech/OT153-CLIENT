@@ -3,13 +3,15 @@ import { AboutMembersState, AboutOrganizationState } from '@app/core/models/abou
 
 export interface appState {
   aboutMembersState: AboutMembersState;
-  // aboutOrganizationState: AboutOrganizationState;
 }
 
-const selectAllMembers = (state: AboutMembersState) => state.response;
-// const selectOrganization = (state: AboutOrganizationState) => state.response;
+const selectAllMembers = (state: AboutMembersState) => state.membersResponse;
 
 const SelectStateAllMembers = createSelector((state: appState) => state.aboutMembersState, selectAllMembers);
-// const SelectStateOrganization = createSelector((state: appState) => state.aboutOrganizationState, selectOrganization);
 
 export { SelectStateAllMembers /* , SelectStateOrganization */ };
+
+
+// aboutOrganizationState: AboutOrganizationState;
+// const selectOrganization = (state: AboutOrganizationState) => state.response;
+// const SelectStateOrganization = createSelector((state: appState) => state.aboutOrganizationState, selectOrganization);

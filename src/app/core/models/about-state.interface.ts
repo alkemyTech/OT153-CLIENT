@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Organization } from './organization.interfaces';
 
 export interface AboutMembersState {
-  response: Members[];
+  membersResponse: MembersResponse;
   error: HttpErrorResponse;
 }
 

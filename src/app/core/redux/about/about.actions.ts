@@ -1,4 +1,4 @@
-import { Members } from '@app/core/models/members.interfaces';
+import { Members, MembersResponse } from '@app/core/models/members.interfaces';
 import { createAction, props } from '@ngrx/store';
 
 export enum type {
@@ -9,4 +9,4 @@ export enum type {
 
 export const getMembers = createAction(type.GET_ALL_MEMBERS);
 export const getMembersError = createAction(type.GET_ALL_MEMBERS_ERROR, props<{ error: any }>());
-export const getMembersSuccess = createAction(type.GET_ALL_MEMBERS_SUCCESS, props<{ members: Members[] }>());
+export const getMembersSuccess = createAction(type.GET_ALL_MEMBERS_SUCCESS, props<{ membersResponse: MembersResponse }>());

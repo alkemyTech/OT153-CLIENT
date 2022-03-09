@@ -5,18 +5,18 @@ import * as AboutActions from './about.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { getMembersSuccess } from './about.actions';
 
-const empty = [];
+const empty = {success: false, data: [], message: ''};
 const errorEmpty = new HttpErrorResponse({});
 
 const initialState: AboutMembersState = {
-  response: empty,
+  membersResponse: empty,
   error: errorEmpty,
 };
 
 export const _aboutReducer = createReducer(
   initialState,
   on(getMembersSuccess, (state, action) => {
-    return { ...state, response: action.members };
+    return { ...state, membersResponse: action.membersResponse };
   })
 );
 
