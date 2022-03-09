@@ -19,7 +19,7 @@ export class CategoriesFormComponent implements OnInit {
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.store.select(SelectAllCategories).subscribe( ({categories, error, loaded, loading}) => {
+    this.store.select(SelectAllCategories).subscribe( ({categories, loading, loaded, error}) => {
       this.categories = categories;
       this.loading = loading;
       this.loaded = loaded;
