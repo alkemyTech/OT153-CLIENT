@@ -1,14 +1,15 @@
-import { createSelector } from "@ngrx/store";
-import { categoriesState } from '../../models/category.interface';
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { categoriesState } from '@models/category.interface';
 
-export interface appState {
-  categoriesState: categoriesState
-}
+const featureKey = 'listCategories';
+
+const getCategoriesState = createFeatureSelector<categoriesState>(featureKey);
 
 const getAllCategories = (state: categoriesState) => state
 
 const SelectAllCategories = createSelector(
-  (state: appState) => state.categoriesState, getAllCategories
+  getCategoriesState,
+  (state: categoriesState) => state,
 );
 
 export { 

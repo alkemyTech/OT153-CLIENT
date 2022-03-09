@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { fullCategoryDate } from '../../models/category.interface';
+import { fullCategoryDate } from '@models/category.interface';
 
 export const listCategories = createAction('[Categories] List Categories');
 
