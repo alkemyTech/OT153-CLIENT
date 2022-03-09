@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
-import {MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from '@core/models/dialog.inteface';
 import { DialogService } from '@app/core/services/dialog.service';
 import { DialogType } from '@core/enums/dialog.enum';

@@ -11,13 +11,12 @@ import { DialogService } from '@core/services/dialog.service';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-  message = 'algo'
   public show$: Observable<boolean>;
 
   constructor(public dialog: MatDialog, public ds: DialogService, public messageService: MessageService) {
     this.show$ = ds.DialogShowObservable;
   }
-
+  
   ngOnInit(): void {
     this.show$.subscribe( resp => { resp? this.openDialog(): null; } )
   }

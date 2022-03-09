@@ -49,14 +49,12 @@ export class DialogService {
             case DialogType.CONFIRM:
                 this.messageService.add(ToasterComplete)
                 break;
-            case DialogType.ERROR:
-                break;
-            case DialogType.INFO:
-                break;
             case DialogType.CANCEL:
                 this.messageService.add(ToasterCancel)
                 break;
-        }        
+            default:
+                break
+        }
     }
 
     public show(data:DialogData){
