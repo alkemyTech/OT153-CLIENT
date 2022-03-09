@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{dialogData.header}}</h1>
+<div mat-dialog-content>{{this.dialogData.content}}</div>
+<div mat-dialog-actions>
+    <button 
+        mat-button [mat-dialog-close]="true" 
+        class="p-button-primary p-button-text"
+        cdkFocusInitial
+        pButton
+        label="{{dialogData.btnOk}}"
+    ></button>
+    <button 
+        mat-button [mat-dialog-close]="false" 
+        class="p-button-secondary p-button-text" 
+        pButton
+        label="{{dialogData.btnCancel}}" 
+    ></button>
+</div>
