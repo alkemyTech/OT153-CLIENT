@@ -31,17 +31,17 @@ export class MemberService {
     return this.http.post<MemberResponse>(this._baseUrl, body, { headers: this.headers() });
   }
 
-  public getUserById(id: number): Observable<MemberResponse> {
+  public getMemberById(id: number): Observable<MemberResponse> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.get<MemberResponse>(url);
   }
 
-  public updateUserById(id: number, body: Member): Observable<MemberResponse> {
+  public updateMemberById(id: number, body: Member): Observable<MemberResponse> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.put<MemberResponse>(url, body, { headers: this.headers() });
   }
 
-  public deleteUserById(id: number): Observable<Delete> {
+  public deleteMemberById(id: number): Observable<Delete> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.delete<Delete>(url);
   }
