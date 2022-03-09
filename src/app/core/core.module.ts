@@ -8,11 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { RootReduxModule } from './redux/root.redux.module';
-import { authReducer } from './redux/reducers/auth.reducers';
+import { authReducer } from './redux/auth/auth.reducers';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './redux/effects/auth.effects';
+import { AuthEffects } from './redux/auth/auth.effects';
 
 @NgModule({
   declarations: [NewsletterFormComponent, HeaderComponent, FooterComponent ],
