@@ -4,12 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { PrimengModule } from './primeng/primeng.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MaterialModule } from './material/material.module';
 
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { CardComponent } from './components/card/card.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { UpperTitleComponent } from './components/upper-title/upper-title.component';
+
+import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogTemplateComponent } from './components/dialog/components/dialog-template/dialog-template.component'
 
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -22,9 +26,11 @@ const componentToExport = [
   SkeletonComponent,
   SpinnerComponent,
   UpperTitleComponent, 
+  DialogComponent,
+  DialogTemplateComponent,
 ];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
+const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule];
 @NgModule({
   declarations: [...componentToExport],
   imports: [CommonModule, ...modulesToExport],

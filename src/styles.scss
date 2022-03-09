@@ -1,9 +1,11 @@
+@import "__colors";
+@import "__material_styles";
+
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0!important;
     padding: 0!important;
 }
-@import "__colors";
 
 .w-100{
     width: 100%;
