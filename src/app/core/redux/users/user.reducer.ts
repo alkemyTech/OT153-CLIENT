@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Delete } from '@app/core/models/delete.interface';
 import { createReducer, on } from '@ngrx/store';
 import { User, Users, UserData } from '@app/core/models/users.interfaces';
-import * as action from '@app/core/redux/actions/user.actions';
-import { userState } from '@app/core/redux/states-interfaces/user-state.interface';
+import * as action from '@app/core/redux/users/user.actions';
+import { userState } from '@app/core/models/user-state.interface';
 
 
 const userEmpty: UserData = { name: '', email: '' };
@@ -22,6 +22,17 @@ const initialState: userState = {
 export const _userReducer = createReducer(
   initialState,
   on(action.getUsersSuccess, (state,action) => {return {...state, responseAll: action.users}}),
+  on(action.getUsersFail, (state,action)=> {return {...state,error:action.error}}),
+
+  on(action.getUserSuccess, (state,action) => {return {...state, response:action.user}}),
+  on(action.getUserFail, (state,action) => {return {...state, error:action.error}}),
+
+  on(action.updateUserSuccess,(state,action) => {return {...state,response:action.user}}),
+  on(action.updateUserFail, (state,action) => {return {...state,error:action.error}}),
+
+  on(action.deleteUserSuccess,(state,action) => {return {...state,delete: action.delete}}),
+  on(action.deleteUserFail,(state,action) => {return {...state,error: action.error}})
+
 );
 
 export function userReducer(state,action){

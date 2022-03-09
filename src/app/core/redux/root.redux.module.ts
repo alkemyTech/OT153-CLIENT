@@ -6,26 +6,22 @@ import { StoreModule } from '@ngrx/store';
 import { ActivitiesReducer, ActivitiesEffects } from './activities/activities.index';
 import { categoriesReducer } from './categories/categories.reducer';
 import { CategoriesEffects } from './categories/categories.effects';
-import { listCategories } from './categories/categories.actions';
-
-
+import { UserReducer, UsersEffects } from './users/user.index';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forRoot({ 
+    StoreModule.forRoot({
       activitiesState: ActivitiesReducer.activityReducer,
-      listCategories: categoriesReducer
+      listCategories: categoriesReducer,
+      userState: UserReducer.userReducer,
     }),
-    EffectsModule.forRoot([
-      ActivitiesEffects,
-      CategoriesEffects
-    ]),
+    EffectsModule.forRoot([ActivitiesEffects, CategoriesEffects, UsersEffects]),
     StoreDevtoolsModule.instrument({
       name: 'REDUX STATES - devtools',
       maxAge: 25, // Retains last 25 states
     }),
   ],
-  declarations: []
+  declarations: [],
 })
-export class RootReduxModule{ }
+export class RootReduxModule {}
