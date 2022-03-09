@@ -1,0 +1,24 @@
+<div class="custom-skeleton p-4" *ngIf="skeletonType === 'skeleton'">
+  <p-skeleton 
+    [width]="skeleton.width" 
+    [height]="skeleton.height" 
+    *ngFor="let skeleton of skeletons"
+    styleClass="mb-2"
+  >
+  </p-skeleton>
+</div>
+
+<div class="custom-skeleton p-4" *ngIf="skeletonType === 'table'">
+  <p-table [value]="rowsData" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr >
+          <th *ngFor="let header of headers">{{ header }}</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+          <td *ngFor="let header of headers"><p-skeleton></p-skeleton></td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>

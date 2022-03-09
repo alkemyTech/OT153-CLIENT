@@ -8,6 +8,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { CardComponent } from './components/card/card.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { UpperTitleComponent } from './components/upper-title/upper-title.component';
 
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
@@ -18,13 +19,14 @@ const componentToExport = [
   ContactFormComponent, 
   CardComponent, 
   PhoneFormatPipe,
+  SkeletonComponent,
   SpinnerComponent,
   UpperTitleComponent, 
 ];
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
 @NgModule({
-  declarations: [...componentToExport],
+  declarations: [...componentToExport, SkeletonComponent],
   imports: [CommonModule, ...modulesToExport],
   exports: [...modulesToExport, ...componentToExport],
 })
