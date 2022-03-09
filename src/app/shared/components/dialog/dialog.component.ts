@@ -25,7 +25,7 @@ export class DialogComponent implements OnInit {
   openDialog() {
     let dialogRef = this.dialog.open(DialogExampleComponent, {
       width: '30vw',
-      disableClose: true, //force disable with buttons
+      //disableClose: true, //force close with buttons
     })
     dialogRef.afterClosed().subscribe(result => {
       this.ds.DialogSelection=result

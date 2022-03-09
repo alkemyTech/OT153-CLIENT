@@ -2,16 +2,15 @@
 <div mat-dialog-content>{{this.dialogData.content}}</div>
 <div mat-dialog-actions>
     <button 
-        mat-button [mat-dialog-close]="true" 
-        class="p-button-primary p-button-text"
-        cdkFocusInitial
-        pButton
-        label="{{dialogData.btnOk}}"
+        *ngIf="dialogData.btnOk !== undefined"
+        mat-button [mat-dialog-close]="type" 
+        class="p-button-{{type}} p-button-text"
+        pButton label="{{dialogData.btnOk}}"
     ></button>
     <button 
-        mat-button [mat-dialog-close]="false" 
-        class="p-button-secondary p-button-text" 
-        pButton
-        label="{{dialogData.btnCancel}}" 
+        *ngIf="isConfirm$ && dialogData.btnCancel !== undefined"
+        mat-button [mat-dialog-close]="cancel" 
+        class="p-button-secondary p-button-text"
+        pButton label="{{dialogData.btnCancel}}"
     ></button>
 </div>

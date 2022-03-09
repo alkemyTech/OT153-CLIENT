@@ -38,13 +38,25 @@ export class DialogService {
         return this.SelectionObservable.asObservable()
     }
     
-    set DialogSelection(selection: boolean){
-        if (selection) {
-            this.messageService.add(ToasterComplete)
-        }else{
-            this.messageService.add(ToasterCancel)
-        }
-        this.SelectionObservable.next(selection)
+    set DialogSelection(selection){
+        let bool = selection===DialogType.CANCEL? false: true;
+        this.toastByType(selection)
+        this.SelectionObservable.next(bool)
+    }
+
+    toastByType(selection){
+        switch (selection) {
+            case DialogType.CONFIRM:
+                this.messageService.add(ToasterComplete)
+                break;
+            case DialogType.ERROR:
+                break;
+            case DialogType.INFO:
+                break;
+            case DialogType.CANCEL:
+                this.messageService.add(ToasterCancel)
+                break;
+        }        
     }
 
     public show(data:DialogData){

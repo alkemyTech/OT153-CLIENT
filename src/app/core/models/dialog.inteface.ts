@@ -2,7 +2,6 @@ import { DialogType } from '@core/enums/dialog.enum';
 
 export const ToasterComplete = { key:'toastMessage', severity:'success', summary:'Completado' }
 export const ToasterCancel = { key:'toastMessage', severity:'warn', summary:'Cancelado' }
-
 export interface Dialog {
     show: boolean,
     data: DialogData,
@@ -27,14 +26,14 @@ export let DialogConfirm: DialogData = {
 } 
 
 export let DialogError: DialogData = {
-    btnCancel: "Ok",
+    btnOk: "Ok",
     header: 'Error',
     content: "Se ha producido un error!",
     type: DialogType.ERROR
 } 
 
 export let DialogInfo: DialogData = {
-    btnCancel: "Ok",
+    btnOk: "Ok",
     header: "Información",
     type: DialogType.INFO,
 

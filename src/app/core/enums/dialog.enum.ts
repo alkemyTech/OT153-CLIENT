@@ -1,6 +1,6 @@
 export enum DialogType {
-    CONFIRM = 'confirm',
-    ERROR = 'error',
+    CONFIRM = 'primary',
+    ERROR = 'danger',
     INFO = 'info',
-    CANCEL = 'cancel'
+    CANCEL = 'warn'
 }

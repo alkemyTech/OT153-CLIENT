@@ -13,6 +13,7 @@ export class DialogExampleComponent{
   public data$: Observable<DialogData>;
   public dialogData: DialogData;
   public type: DialogType;
+  public isConfirm$ :boolean;
   public cancel = DialogType.CANCEL;
   
   constructor(public dialog: MatDialog, ds: DialogService) {
@@ -20,6 +21,7 @@ export class DialogExampleComponent{
     this.data$.subscribe({
       next: (data:DialogData) => {
         this.dialogData = data;
+        this.isConfirm$ = (data.type===DialogType.CONFIRM);
         this.type = data.type;
       },
       error: error => {
