@@ -51,3 +51,4 @@ Thumbs.db
 .vscode/settings.json
 
 environment.local.ts
+src/environments/environment.local.ts

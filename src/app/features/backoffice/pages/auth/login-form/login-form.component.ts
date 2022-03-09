@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { getControl as getControlFunction } from '@app/core/util/getControlForm';
 import { emailValidator } from '@app/core/util/validators/form.validators';
 import { select, Store } from '@ngrx/store';
-import { AuthState } from '@core/redux/reducers/auth.reducers';
+import { AuthState } from '@app/core/redux/auth/auth.reducers';
 import { Observable } from 'rxjs';
-import { getAuth } from '@core/redux/selectors/auth.selectors';
-import { login } from '@app/core/redux/actions/auth.actions';
+import { getAuth } from '@app/core/redux/auth/auth.selectors';
+import { login } from '@app/core/redux/auth/auth.actions';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -37,7 +37,7 @@ export class LoginFormComponent implements OnInit {
 
     this.authentication$.subscribe( auth => {
       if(auth){
-        this._router.navigate(["home"]);
+        this._router.navigate(["/"]);
       }
     });
   }
