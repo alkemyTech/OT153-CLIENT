@@ -26,7 +26,7 @@ const componentToExport = [
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule];
 @NgModule({
-  declarations: [...componentToExport, SkeletonComponent],
+  declarations: [...componentToExport],
   imports: [CommonModule, ...modulesToExport],
   exports: [...modulesToExport, ...componentToExport],
 })
