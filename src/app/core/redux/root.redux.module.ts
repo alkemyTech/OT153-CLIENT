@@ -4,7 +4,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ActivitiesReducer, ActivitiesEffects } from './activities/activities.index';
-
+import {UserReducer, UsersEffects} from './users/user.index'
 
 
 @NgModule({
@@ -12,10 +12,12 @@ import { ActivitiesReducer, ActivitiesEffects } from './activities/activities.in
     CommonModule,
     StoreModule.forRoot({ 
       activitiesState: ActivitiesReducer.activityReducer,
+      userState: UserReducer.userReducer
 
     }),
     EffectsModule.forRoot([
       ActivitiesEffects,
+      UsersEffects
 
     ]),
     StoreDevtoolsModule.instrument({
