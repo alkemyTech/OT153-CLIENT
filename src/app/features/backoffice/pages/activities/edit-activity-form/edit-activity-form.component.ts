@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ActivityResponse } from "@app/core/models/activities.interfaces";
 import { HttpService } from "@app/core/services/http.service";
+import { ProgressBarService } from "@app/features/services/progressbar.service";
 import { BehaviorSubject, Subscription } from "rxjs";
 @Component({
   selector: 'app-edit-activity-form',
@@ -23,10 +24,11 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   };
   subscription: Subscription;
 
-  constructor(private http: HttpService, private router: Router) {}
+  constructor(private http: HttpService, private router: Router, private progressBar: ProgressBarService) {}
 
   ngOnInit(): void {
     this.getActivity();
+    this.progressBar.showProgressbar();
   }
 
   getActivity() {
