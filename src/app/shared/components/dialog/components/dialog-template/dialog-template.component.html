@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{dialogData.header}}</h1>
+<div mat-dialog-content>{{this.dialogData.content}}</div>
+<div mat-dialog-actions>
+    <button 
+        *ngIf="dialogData.btnOk !== undefined"
+        mat-button [mat-dialog-close]="type" 
+        class="p-button-{{type}} p-button-text"
+        pButton label="{{dialogData.btnOk}}"
+    ></button>
+    <button 
+        *ngIf="isConfirm$ && dialogData.btnCancel !== undefined"
+        mat-button [mat-dialog-close]="cancel" 
+        class="p-button-secondary p-button-text"
+        pButton label="{{dialogData.btnCancel}}"
+    ></button>
+</div>

@@ -5,9 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { DialogService } from '@app/core/services/dialog.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +20,7 @@ import { EffectsModule } from '@ngrx/effects';
     ToastModule,
     StoreModule,
   ],
-  providers: [MessageService, BrowserAnimationsModule],
+  providers: [MessageService, DialogService, BrowserAnimationsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
