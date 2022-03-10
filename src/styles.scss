@@ -3,6 +3,11 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+@mixin max-container($width, $height) {
+    max-height: $height;
+    max-width: $width; 
+} 
+
 body {
     margin: 0!important;
     padding: 0!important;
@@ -19,4 +24,16 @@ body {
     color: red;
     font-size: .8rem;
     font-weight: 400;
+}
+
+.max {  
+    // no style
+    &-60vh {
+      @extend .max;
+      @include max-container( 60vh, 60vh);
+    }
+}
+
+.fit-cover{
+    object-fit: cover;
 }

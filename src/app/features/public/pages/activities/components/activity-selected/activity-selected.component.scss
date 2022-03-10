@@ -1,6 +1,7 @@
 .container {
+    min-height: 100vh;
+    max-height: 100vh;
     background-color: rgb(226, 226, 226);// should be $background when created 'app/styles/colors.scss' file
-    
     & h3 {
         font-size: 2em;
     }
