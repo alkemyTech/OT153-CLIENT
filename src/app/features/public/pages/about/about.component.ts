@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Members } from '@app/core/models/members.interfaces';
 import { AboutSelector as Selector, AboutActions as Actions } from '@app/core/redux/about/about.index';
-import { AboutOrganizationState } from '@app/core/models/about-state.interface';
+// import { AboutOrganizationState } from '@app/core/models/about-state.interface';
 
 @Component({
   selector: 'app-about',

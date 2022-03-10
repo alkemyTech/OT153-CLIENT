@@ -3,87 +3,26 @@ import { AboutMembersState } from '@app/core/models/about-state.interface';
 import { Members } from '@app/core/models/members.interfaces';
 import * as AboutActions from './about.actions';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getMembersSuccess } from './about.actions';
+import { getMembersSuccess, getMembersError } from './about.actions';
 
-const empty = {success: false, data: [], message: ''};
+const empty = [];
 const errorEmpty = new HttpErrorResponse({});
 
 const initialState: AboutMembersState = {
-  membersResponse: empty,
+  success: empty,
   error: errorEmpty,
 };
 
 export const _aboutReducer = createReducer(
   initialState,
   on(getMembersSuccess, (state, action) => {
-    return { ...state, membersResponse: action.membersResponse };
+    return { ...state, success: action.success };
+  }),
+  on(getMembersError, (state, action) => {
+    return { ...state, error: action.error };
   })
 );
 
 export function aboutReducer(state, action) {
   return _aboutReducer(state, action);
 }
-
-/* export interface State {
-  id: number;
-  name: string;
-  logo: string;
-  short_description: string;
-  long_description: string;
-  welcome_text: string;
-  address: string;
-  phone: string;
-  ReactiveFormsModule;
-  cellphone: string;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: null;
-  group_id: null;
-  facebook_url: string;
-  linkedin_url: string;
-  instagram_url: string;
-  twitter_url: string;
-}
-
-export const initialState: State = {
-  id: 0,
-  name: '',
-  logo: '',
-  short_description: '',
-  long_description: '',
-  welcome_text: '',
-  address: '',
-  phone: '',
-  cellphone: '',
-  created_at: new Date(),
-  updated_at: new Date(),
-  deleted_at: null,
-  group_id: null,
-  facebook_url: '',
-  linkedin_url: '',
-  instagram_url: '',
-  twitter_url: '',
-};
-
-export const aboutUsReducer = createReducer(
-  initialState,
-  on(AboutActions.getMembers, (state) => ({
-    id: state.id,
-    name: state.name,
-    logo: state.logo,
-    short_description: state.short_description,
-    long_description: state.long_description,
-    welcome_text: state.welcome_text,
-    address: state.address,
-    phone: state.phone,
-    cellphone: state.cellphone,
-    created_at: state.created_at,
-    updated_at: state.updated_at,
-    deleted_at: state.deleted_at,
-    group_id: state.group_id,
-    facebook_url: state.facebook_url,
-    linkedin_url: state.linkedin_url,
-    instagram_url: state.instagram_url,
-    twitter_url: state.twitter_url,
-  }))
-); */

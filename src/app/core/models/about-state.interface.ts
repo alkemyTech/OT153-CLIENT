@@ -3,11 +3,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Organization } from './organization.interfaces';
 
 export interface AboutMembersState {
-  membersResponse: MembersResponse;
+  success: Members[];
   error: HttpErrorResponse;
 }
 
-export interface AboutOrganizationState {
+/* export interface AboutOrganizationState {
   response: Organization;
   error: HttpErrorResponse;
 }
+ */

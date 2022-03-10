@@ -20,7 +20,7 @@ export class PublicapiService {
   }
 
   public getPublicMembers<T>(): Observable<MembersResponse> {
-    return this.http.get<MembersResponse>(environment.membersApiUrl);
+    return this.http.get<MembersResponse>('https://ongapi.alkemy.org/api/members');
   }
 
 }
