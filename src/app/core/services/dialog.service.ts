@@ -12,11 +12,11 @@ export class DialogService {
         show: false,
         selection: false,
         data: {
-            type: DialogType.INFO,
+            type: DialogType.ERROR,
             btnOk: 'ok',
             btnCancel: '',
-            header: '',
-            content: '',
+            header: 'Error',
+            content: 'Se produjo un error en blablabla',
         },
 
     }
