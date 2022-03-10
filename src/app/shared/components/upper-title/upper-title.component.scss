@@ -47,11 +47,3 @@ p {
     }
   }
 }
-
-  &:hover{
-    filter: brightness(1.2);
-    .text-title{    
-      filter: $dropShadow_;
-    }
-  }
-}
