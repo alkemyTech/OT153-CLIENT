@@ -1,30 +1,44 @@
+@import '__fonts';
+
 $colorText: black;
-$fontFamily: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif',
-  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$fontFamily: $Montserrat, $roboto;
 $bgColor: rgba(47, 85, 209, 0.74);
+$dropShadow_111b: drop-shadow(1px 1px 1px black) ; 
+$dropShadow_: drop-shadow(0px 1px 2px black) ;  
 
 p {
   margin: 0;
 }
 
+.f-ds-1black{
+  filter: $dropShadow_111b;
+}
+
+.transition-easyout-1{
+  transition: 0.6s ease-out 0.1s;
+}
+
 .text-title {
   font-family: $fontFamily;
-  font-weight: 800;
+  // font-style: italic;
+  font-weight: 300;
   font-size: 2rem;
   text-align: left;
   color: $colorText;
 }
 
 .container-title {
-  transition: 0.6s ease-out 0.1s;
   padding: 2rem 3rem 1rem 3rem ;
   margin: 0;
   border-radius: 0px;
   background-color: $bgColor ;
   background-position: center;
   border-bottom: gray solid 1px;
-}
 
-.container-title:hover{
-  filter: brightness(1.5);
+  &:hover{
+    filter: brightness(1.2);
+    .text-title{    
+      filter: $dropShadow_;
+    }
+  }
 }
