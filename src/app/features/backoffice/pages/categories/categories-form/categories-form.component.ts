@@ -16,27 +16,10 @@ export class CategoriesFormComponent implements OnInit {
   loaded: boolean = false;
   error: any = null;
 
-  skeletons = [
-    {
-      height: '200px',
-      width: '100%'
-    },
-    {
-      height: '100px',
-      width: '100%'
-    },
-    {
-      height: '300px',
-      width: '100%'
-    },
-  ]
-
-  headers: string[] = ['Nombre', 'Imagen', 'Creado', ''];
-
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.store.select(SelectAllCategories).subscribe( ({categories, loading, loaded, error}) => {
+    this.store.select(SelectAllCategories).subscribe( ({categories, error, loaded, loading}) => {
       this.categories = categories;
       this.loading = loading;
       this.loaded = loaded;
