@@ -97,3 +97,9 @@ export interface ImgFile {
     id: string;
     imgFile?:string;
 }
+
+export interface HTTPResp<T> {
+  success: boolean;
+  data:    T;
+  message: string;
+}
