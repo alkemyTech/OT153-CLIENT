@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '@app/core/services/http.service';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
 import { Store } from '@ngrx/store';
@@ -14,7 +13,6 @@ import { ActivitiesSelector as Selector, ActivitiesActions as Actions } from '@a
   styleUrls: ['./activities-card.component.scss'],
 })
 export class ActivitiesCardComponent implements OnInit {
-  url = 'http://ongapi.alkemy.org/api/activities';
   public activities$: Observable<Activities[]> = new Observable();
   public cards: ICard[]
 
