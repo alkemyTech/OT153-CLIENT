@@ -1,13 +1,14 @@
 <div>
   <div
-    [style]="{
-      color: [colorText],
+    [style]="{     
       'background-image': 'url(' + [pathBackground] + ')',
       'background-color': [colorBackground]
     }"
-    ngClass="p-card-shadow container-title text-title {{ class }}"
+    ngClass="transition-easyout-1 p-card-shadow container-title"
   >
-    <p>{{ title | uppercase }}</p>
+    <p 
+      class="transition-easyout-1 f-ds-1black text-title" 
+      [style]="{ color: [colorText] }"
+    >{{ title | uppercase }}</p>
   </div>
-  <div></div>
 </div>
