@@ -1,10 +1,10 @@
 import { Delete } from '@app/core/models/delete.interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MemberResponse, MembersResponse } from './members.interfaces';
+import { Member, MemberResponse, MembersResponse } from './members.interfaces';
 
 export interface memberState {
-  responseAll: MembersResponse;
-  response: MemberResponse;
+  responseAll: Member[];
+  response: Member;
   delete: Delete;
   error: HttpErrorResponse;
 }

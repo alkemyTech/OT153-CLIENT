@@ -25,19 +25,19 @@ export enum type {
 }
 
 export const getMembers = createAction(type.GET_MEMBERS);
-export const getMembersSuccess = createAction(type.GET_MEMBERS_SUCCESS, props<{ members: MembersResponse }>());
+export const getMembersSuccess = createAction(type.GET_MEMBERS_SUCCESS, props<{ members: Member[] }>());
 export const getMembersFail = createAction(type.GET_MEMBERS_FAIL, props<{ error: any }>());
 
 export const getMember = createAction(type.GET_MEMBER, props<{ id: number }>());
-export const getMemberSuccess = createAction(type.GET_MEMBER_SUCCESS, props<{ member: MemberResponse }>());
+export const getMemberSuccess = createAction(type.GET_MEMBER_SUCCESS, props<{ member: Member }>());
 export const getMemberFail = createAction(type.GET_MEMBER_FAIL, props<{error: any}>())
 
 export const postMember = createAction(type.POST_MEMBER, props<{ body: Member }>());
-export const postMemberSuccess = createAction(type.POST_MEMBER_SUCCESS, props<{ member: MemberResponse }>())
+export const postMemberSuccess = createAction(type.POST_MEMBER_SUCCESS, props<{ member: Member }>())
 export const postMemberFail = createAction(type.POST_MEMBER_FAIL, props<{error:any}>())
 
 export const updateMember = createAction(type.UPDATE_MEMBER, props<{  body: Member, id: number }>());
-export const updateMemberSuccess = createAction(type.UPDATE_MEMBER_SUCCESS, props<{ member: MemberResponse }>());
+export const updateMemberSuccess = createAction(type.UPDATE_MEMBER_SUCCESS, props<{ member: Member }>());
 export const updateMemberFail = createAction(type.UPDATE_MEMBER_FAIL, props<{ error: any }>());
 
 export const deleteMember = createAction(type.DELETE_MEMBER, props<{ id: number }>());

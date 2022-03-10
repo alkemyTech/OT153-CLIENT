@@ -23,11 +23,11 @@ export class MemberService {
     return httpHeaders;
   }
 
-  public getAllUsers(): Observable<MembersResponse> {
+  public getAllMembers(): Observable<MembersResponse> {
     return this.http.get<MembersResponse>(this._baseUrl, { headers: this.headers() });
   }
 
-  public createUser(body: Member): Observable<MemberResponse> {
+  public createMember(body: Member): Observable<MemberResponse> {
     return this.http.post<MemberResponse>(this._baseUrl, body, { headers: this.headers() });
   }
 

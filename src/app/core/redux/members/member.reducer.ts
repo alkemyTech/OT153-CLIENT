@@ -14,15 +14,15 @@ const deleteEmpty: Delete = { success: false, data: '', message: '' };
 const errorEmpty = new HttpErrorResponse({});
 
 const initialState: memberState = {
-  responseAll: membersResponseEmpty,
-  response: memberResponseEmpty,
+  responseAll: membersEmpty,// membersResponseEmpty,
+  response: memberEmpty,
   error: errorEmpty,
   delete: deleteEmpty,
 };
 
 export const _memberReducer = createReducer(
   initialState,
-  on(action.getMembersSuccess, (state,action) => {return {...state, responseAll: action.members}}),
+  on(action.getMembersSuccess, (state, action) => {return {...state, responseAll: action.members}}),
   on(action.getMembersFail, (state,action)=> {return {...state,error: action.error}}),
 
   on(action.getMemberSuccess, (state,action) => {return {...state, response: action.member}}),

@@ -8,19 +8,18 @@ import { MemberService } from '@app/core/controllers/member-controller.service';
 @Injectable()
 export class MemberEffects {
 
-  getAllMembers$ = createEffect(() => {
+  getAllMembers$ = createEffect( () => {
     return this.actions$.pipe(
       ofType(action.getMembers),
       mergeMap(() =>{
-        return this.memberService.getAllUsers().pipe(
+        return this.memberService.getAllMembers().pipe(
           map(
-            response => action.getMembersSuccess({members: response}),
-            )
+            response => action.getMembersSuccess({members: response.data}),
+            ),
+          catchError( (error) => of( action.getMembersFail({error: error}) ) )
         )
       }
-      ),
-      catchError((error)=> of(action.getMembersFail({error: error})))
-    );
+    )
   });
 
   getMember$ = createEffect(() => {
@@ -29,7 +28,7 @@ export class MemberEffects {
       mergeMap((act) => {
         return this.memberService.getMemberById(act.id).pipe(
           map(
-            response => action.getMemberSuccess({member: response}),
+            response => action.getMemberSuccess({member: response.data}),
           )
         )
       }),
@@ -42,9 +41,9 @@ export class MemberEffects {
     return this.actions$.pipe(
       ofType(action.postMember),
       mergeMap((act)=> {
-        return this.memberService.createUser(act.body).pipe(
+        return this.memberService.createMember(act.body).pipe(
           map(
-            response => action.postMemberSuccess({member: response})
+            response => action.postMemberSuccess({member: response.data})
           )
         )
       }),
@@ -58,7 +57,7 @@ export class MemberEffects {
       mergeMap((act)=> {
         return this.memberService.updateMemberById(act.id, act.body).pipe(
           map(
-            response => action.updateMemberSuccess({member: response})
+            response => action.updateMemberSuccess({member: response.data})
           )
         )
       }),
