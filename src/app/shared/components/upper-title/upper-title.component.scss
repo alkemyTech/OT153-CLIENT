@@ -48,6 +48,10 @@ p {
   }
 }
 
-.container-title:hover{
-  filter: brightness(1.5);
+  &:hover{
+    filter: brightness(1.2);
+    .text-title{    
+      filter: $dropShadow_;
+    }
+  }
 }
