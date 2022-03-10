@@ -10,7 +10,6 @@ export class UpperTitleComponent implements OnInit {
   @Input() pathBackground!: string;
   @Input() colorBackground!: string;
   @Input() colorText!: string;
-  @Input() class!: string;
 
   constructor() {}
 
