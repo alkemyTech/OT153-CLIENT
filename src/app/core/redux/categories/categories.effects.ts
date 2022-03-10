@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import * as categoriesActions from './categories.actions';
 import { of } from "rxjs";
-import { HttpService } from '@core/services/http.service';
+import { HttpService } from '../../services/http.service';
 import { environment } from '@env/environment.local';
-import { respFullCategories } from '@models/category.interface';
+import { respFullCategories } from '../../models/category.interface';
 
 @Injectable()
 export class CategoriesEffects{

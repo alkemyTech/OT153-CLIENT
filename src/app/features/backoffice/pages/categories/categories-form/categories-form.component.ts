@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fullCategoryDate } from '@core/models/category.interface';
+import { listCategories } from '@core/redux/categories/categories.actions';
 import { SelectAllCategories } from '@core/redux/categories/categories.selector'
-import { listCategories } from '@app/core/redux/categories/categories.actions';
 
 @Component({
   selector: 'app-categories-form',
@@ -19,7 +19,7 @@ export class CategoriesFormComponent implements OnInit {
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.store.select(SelectAllCategories).subscribe( ({categories, loading, loaded, error}) => {
+    this.store.select(SelectAllCategories).subscribe( ({categories, error, loaded, loading}) => {
       this.categories = categories;
       this.loading = loading;
       this.loaded = loaded;

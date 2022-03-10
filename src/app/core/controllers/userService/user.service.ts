@@ -5,13 +5,14 @@ import { Delete } from '@app/core/models/delete.interface';
 import { HttpService } from '@app/core/services/http.service';
 import { Observable, Observer, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private _groupId: string = '153';
   private _headers!: HttpHeaders;
-  private _baseUrl: string = 'http://ongapi.alkemy.org/api/users';
+  private _baseUrl: string = environment.apiUrlUsers;
 
   constructor(private http: HttpClient) {}
 

@@ -8,14 +8,18 @@ export const environment = {
   apiUrlOrganization: '',
   apiUrlActivities: '',
   apiUrlCategories: '',
-  membersApiUrl: '', 
-  users: '',
+  apiUrlmembers: '', 
+  apiUrlusers: '',
   apiUrlNews: "",
   apiUrlNewsList: "",
   apiUrlNewsListById: "",
   apiUrlNewsPost: "",
   apiUrlNewsUpdate: "",
   apiUrlNewsDelete: "",
+  apiUrlMembers: "",
+  apiUrlLogin: "",
+  apiUrlRegister: "",
+  apiUrlUsers: "",
 };
 
 /*
