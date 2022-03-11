@@ -4,12 +4,17 @@
       <img src="assets/img/logo.png" alt="logo de la ONG" />
     </a>
     <ul class="navbar-links" [ngClass]="openNavbar ? 'active': ''">
+
       <li *ngFor="let link of links">
-        <a (click)="openNavbar = false" *ngIf="link.render" [routerLinkActive]="['active']" [routerLink]="[link.link]">{{link.text}}</a>
+        <a (click)="openNavbar = false" [routerLinkActive]="['active']" [routerLink]="[link.link]">{{link.text}}</a>
       </li>
+
+
     </ul>
-      <div id="menu-btn" class="menu" (click)="openNavbar = !openNavbar">
-        menu
+      <div id="menu-btn" class="menu" (click)="openNavbar = !openNavbar" >
+          <div class="bar1" [ngClass]="openNavbar ? 'change1': ''"></div>
+          <div class="bar2" [ngClass]="openNavbar ? 'change2': ''"></div>
+          <div class="bar3" [ngClass]="openNavbar ? 'change3': ''"></div>
       </div>
   </nav>
 

@@ -1,5 +1,7 @@
 @import '__colors';
 $navColor: #373946;
+$hamburgerMenuColor:  rgb(64, 62, 80);
+
 header {
   .navbar {
     display: flex;
@@ -11,11 +13,12 @@ header {
     margin: 0;
     #menu-btn {
       display: none;
-      color: #ef233c;
       cursor: pointer;
     }
-    .navbar-logo{
+    .navbar-logo {
       display: block;
+      margin-left: 25px;
+      margin-top: 5px;
       img {
         width: 115px;
       }
@@ -54,7 +57,7 @@ header {
   outline: inherit;
 }
 .active {
-  color: #373946 !important;
+  color: $navColor !important;
   background-color: rgba(255, 255, 255, 0.616);
 }
 
@@ -69,19 +72,43 @@ header {
         margin: 0;
         list-style: none;
         width: 100vw;
-        background: black;
-        li{
-            text-align: center;
+        background: $navColor;
+        li {
+          text-align: center;
         }
-
       }
-      .active{
+      .active {
         display: block !important;
-        display: grid  !important;
+        display: grid !important;
         grid-template-columns: 1fr;
+        li {
+          width: 100%;
+          height: 100%;
+          margin: 10px;
+        }
       }
       #menu-btn {
         display: inline-block;
+        .bar1,
+        .bar2,
+        .bar3 {
+          width: 35px;
+          height: 5px;
+          background-color: $hamburgerMenuColor;
+          margin: 6px 0;
+          transition: 0.4s;
+        }
+        .change1{
+          -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+          transform: rotate(-45deg) translate(-9px, 6px);
+        }
+        .change2{
+          opacity: 0;
+        }
+        .change3 {
+          -webkit-transform: rotate(45deg) translate(-8px, -8px);
+          transform: rotate(45deg) translate(-8px, -8px);
+        }
       }
     }
   }
