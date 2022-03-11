@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { link } from '@app/core/models/link.interface';
+import { AuthState } from '@app/core/redux/auth/auth.reducers';
+import { getAuth } from '@app/core/redux/auth/auth.selectors';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'alk-header',
@@ -7,7 +11,10 @@ import { link } from '@app/core/models/link.interface';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private Store: Store<AuthState>) {
+     this.authentication$ = this.Store.pipe(select(getAuth));
+  }
+  authentication$: Observable<boolean>;
   links: link[];
   linksHome: link[] = [
     { link: '/home', text: 'Inicio' },
@@ -29,21 +36,14 @@ export class HeaderComponent implements OnInit {
     this.loadLinks();
   }
 
-  loadLinks():void{
-    let linksAux: link[] = this.linksHome
-    let loged = this.checkIfLoged();
-    if (loged){
-      linksAux = [...this.linksHome, ...this.linksBackoffice];
-    }
-    this.links = linksAux
-  }
-  
-  checkIfLoged(): boolean {
-    let key: string | null = localStorage.getItem('test'); // localStorage item needs to be changed for the real key
-    if (key) {
-      return true;
-    } else {
-      return false;
-    }
+  loadLinks(): void {
+    this.authentication$.subscribe(auth =>{
+      if (auth) {
+        this.links = [...this.linksHome, ...this.linksBackoffice];
+      } else {
+        this.links = this.linksHome;
+      }
+    })
+ 
   }
 }
