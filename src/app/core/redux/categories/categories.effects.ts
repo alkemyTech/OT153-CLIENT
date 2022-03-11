@@ -4,7 +4,7 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 import * as categoriesActions from './categories.actions';
 import { of } from "rxjs";
 import { HttpService } from '@core/services/http.service';
-import { environment } from '@env/environment.local';
+import { environment } from '@env/environment';
 import { respFullCategories } from '@models/category.interface';
 
 @Injectable()

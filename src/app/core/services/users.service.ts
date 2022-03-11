@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { User } from "src/app/core/models/user.models";
-import { environment } from "src/environments/environment.local";
+import { environment } from "src/environments/environment";
 import { PrivateService } from "./private.service";
 
 @Injectable({

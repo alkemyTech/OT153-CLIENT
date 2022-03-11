@@ -14,7 +14,7 @@ import { Member, MemberResponse, MembersResponse } from '../models/members.inter
 export class MemberService {
   private _groupId: string = '153';
   private _headers!: HttpHeaders;
-  private _baseUrl: string = environment.membersApiUrl;
+  private _baseUrl: string = environment.apiUrlmembers;
 
   constructor(private http: HttpClient) {}
 
