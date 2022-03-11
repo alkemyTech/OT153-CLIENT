@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="topbox-container">
+    <div class="grid flex align-items-center justify-content-between">
+      <div class="col-4 md:col-2 pl-5">
+        <img src="../../../../../assets/campaign/logo-juguetes-campaign.png" class="logo-img" alt="logo-juguetes" />
+      </div>
+      <div class="col-5 md:col-8 text-center campaign-title">
+        <h2>Juguetes por más sonrisas</h2>
+      </div>
+
+      <div class="col-3 md:col-2 text-right md:text-center">
+        <img src="../../../../../assets/img/logo.png" class="logo-img" alt="logo-ong" />
+      </div>
+    </div>
+  </div>
+
+  <div class="grid text-center">
+      
+    <div class="col-12 image-container">
+      <img src="../../../../../assets/campaign/img-juguetes-campaign.jpg" alt="content-img" />
+    </div>
+    <div class="col-12">
+    <div class="description-container">
+      <p>
+        {{ campaign.date.getDay() | weekdayFormat }} {{ campaign.date.getDate() }} de
+        {{ campaign.date.getMonth() | monthNumberFormat }} de
+        {{ campaign.date.getFullYear() }}
+      </p>
+      <p>{{ campaign.place }}</p>
+
+      <div class="countdown-container">
+          <p>Te quedan {{daysLeft}}d {{hoursLeft}}h {{minutesLeft}}m para participar.</p>
+      </div>
+      
+
+        <div class="description">
+          <h3>Descripción:</h3>
+          <p>{{ campaign.description }}</p>
+        </div>
+        <img src="../../../../../assets/campaign/related-juguetes-campaign-1.png" alt="toys-1" class="related-img related-1"/>
+        <img src="../../../../../assets/campaign/related-juguetes-campaign-2.png" alt="toys-2" class="related-img related-2"/>
+        <img src="../../../../../assets/campaign/related-juguetes-campaign-3.png" alt="toys-3" class="related-img related-3"/>
+        <img src="../../../../../assets/campaign/related-juguetes-campaign-4.png" alt="toys-4" class="related-img related-4"/>
+        <img src="../../../../../assets/campaign/related-juguetes-campaign-5.png" alt="toys-5" class="related-img related-5"/>
+        <img src="../../../../../assets/campaign/related-juguetes-campaign-6.png" alt="toys-6" class="related-img related-6"/>
+      </div>
+    </div>
+  </div>
+</div>
