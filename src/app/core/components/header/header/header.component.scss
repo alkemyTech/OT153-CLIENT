@@ -1,6 +1,7 @@
 @import '__colors';
-$navColor: #373946;
-$hamburgerMenuColor:  rgb(64, 62, 80);
+$navColor: #f1f4fd;
+$linkSelected: #d5d8df;
+$hamburgerMenuColor: rgb(64, 62, 80);
 
 header {
   .navbar {
@@ -30,17 +31,18 @@ header {
       list-style: none;
       li {
         display: inline;
+        width: 0;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 15px;
         a {
-          margin-right: 15px;
-          color: $white;
+          color: $black;
           cursor: pointer;
           text-decoration: none;
-          padding: 5px 10px;
-          border-radius: 5px;
         }
-        a:hover {
-          background-color: rgba(206, 206, 206, 0.349);
-        }
+      }
+      li:hover {
+        background-color: rgba(206, 206, 206, 0.349);
       }
     }
   }
@@ -56,9 +58,8 @@ header {
   cursor: pointer;
   outline: inherit;
 }
-.active {
-  color: $navColor !important;
-  background-color: rgba(255, 255, 255, 0.616);
+.activeLink {
+  background-color: $linkSelected !important;
 }
 
 @media screen and (max-width: 868px) {
@@ -81,10 +82,17 @@ header {
         display: block !important;
         display: grid !important;
         grid-template-columns: 1fr;
+        background-color: $navColor !important;
         li {
           width: 100%;
-          height: 100%;
-          margin: 10px;
+          padding: 10px;
+          margin: 2px;
+          border-radius: 5px;
+          a {
+            width: 100%;
+            background-color: transparent !important;
+            color: black;
+          }
         }
       }
       #menu-btn {
@@ -98,11 +106,11 @@ header {
           margin: 6px 0;
           transition: 0.4s;
         }
-        .change1{
+        .change1 {
           -webkit-transform: rotate(-45deg) translate(-9px, 6px);
           transform: rotate(-45deg) translate(-9px, 6px);
         }
-        .change2{
+        .change2 {
           opacity: 0;
         }
         .change3 {

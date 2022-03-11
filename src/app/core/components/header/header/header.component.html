@@ -5,8 +5,8 @@
     </a>
     <ul class="navbar-links" [ngClass]="openNavbar ? 'active': ''">
 
-      <li *ngFor="let link of links">
-        <a (click)="openNavbar = false" [routerLinkActive]="['active']" [routerLink]="[link.link]">{{link.text}}</a>
+      <li *ngFor="let link of links" [routerLinkActive]="['activeLink']" [routerLink]="[link.link]">
+        <a (click)="openNavbar = false" >{{link.text}}</a>
       </li>
 
 
