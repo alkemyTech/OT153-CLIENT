@@ -25,10 +25,7 @@ export class ListMembersComponent implements OnInit {
 
   getMembers() {
     this.members$.subscribe( (members) => {
-      console.log(members)
-
       this.members = members.data;
-      console.log(members)
     });
   }
 }
