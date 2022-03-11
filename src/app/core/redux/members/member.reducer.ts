@@ -14,8 +14,8 @@ const deleteEmpty: Delete = { success: false, data: '', message: '' };
 const errorEmpty = new HttpErrorResponse({});
 
 const initialState: memberState = {
-  responseAll: membersEmpty,// membersResponseEmpty,
-  response: memberEmpty,
+  responseAll: membersResponseEmpty,
+  response: memberResponseEmpty,
   error: errorEmpty,
   delete: deleteEmpty,
 };

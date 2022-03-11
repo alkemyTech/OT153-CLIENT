@@ -15,17 +15,20 @@ export class ListMembersComponent implements OnInit {
   public members$: Observable<any> = new Observable();
   public members: Member[];
 
-  constructor(private Store: Store<{ membersState: memberState }>) {}
+  constructor(private Store: Store<{ memberState: memberState }>) {}
 
   ngOnInit(): void {
     this.Store.dispatch(Action.getMembers());
-    this.Store.select(Selector.errorStateData);
+    this.members$ = this.Store.select(Selector.SelectStateAllData);
     this.getMembers();
   }
 
   getMembers() {
-    this.members$.subscribe((members) => {
+    this.members$.subscribe( (members) => {
+      console.log(members)
+
       this.members = members.data;
+      console.log(members)
     });
   }
 }

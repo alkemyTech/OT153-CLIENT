@@ -14,13 +14,13 @@ export class MemberEffects {
       mergeMap(() =>{
         return this.memberService.getAllMembers().pipe(
           map(
-            response => action.getMembersSuccess({members: response.data}),
+            response => action.getMembersSuccess({members: response}),
             ),
           catchError( (error) => of( action.getMembersFail({error: error}) ) )
         )
       }
     )
-  });
+  )});
 
   getMember$ = createEffect(() => {
     return this.actions$.pipe(
@@ -28,7 +28,7 @@ export class MemberEffects {
       mergeMap((act) => {
         return this.memberService.getMemberById(act.id).pipe(
           map(
-            response => action.getMemberSuccess({member: response.data}),
+            response => action.getMemberSuccess({member: response}),
           )
         )
       }),
@@ -43,7 +43,7 @@ export class MemberEffects {
       mergeMap((act)=> {
         return this.memberService.createMember(act.body).pipe(
           map(
-            response => action.postMemberSuccess({member: response.data})
+            response => action.postMemberSuccess({member: response})
           )
         )
       }),
@@ -57,7 +57,7 @@ export class MemberEffects {
       mergeMap((act)=> {
         return this.memberService.updateMemberById(act.id, act.body).pipe(
           map(
-            response => action.updateMemberSuccess({member: response.data})
+            response => action.updateMemberSuccess({member: response})
           )
         )
       }),

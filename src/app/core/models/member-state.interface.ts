@@ -3,8 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Member, MemberResponse, MembersResponse } from './members.interfaces';
 
 export interface memberState {
-  responseAll: Member[];
-  response: Member;
+  responseAll: MembersResponse;
+  response: MemberResponse;
   delete: Delete;
   error: HttpErrorResponse;
 }
