@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Members, MembersResponse } from '@models/members.interfaces';
-import { PrivateService } from '@features/services/private.service';
+import { memberState } from '@app/core/models/member-state.interface';
+import { Member, MembersResponse } from '@models/members.interfaces';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { MemberSelector as Selector, MemberActions as Action } from '@app/core/redux/members/member.index';
+
 
 @Component({
   selector: 'app-list-members',
@@ -8,18 +12,20 @@ import { PrivateService } from '@features/services/private.service';
   styleUrls: ['./list-members.component.scss'],
 })
 export class ListMembersComponent implements OnInit {
-  public url = 'http://ongapi.alkemy.org/api/members';
-  public members: Members[];
+  public members$: Observable<any> = new Observable();
+  public members: Member[];
 
-  constructor(private privateService: PrivateService) {}
+  constructor(private Store: Store<{ memberState: memberState }>) {}
 
   ngOnInit(): void {
+    this.Store.dispatch(Action.getMembers());
+    this.members$ = this.Store.select(Selector.SelectStateAllData);
     this.getMembers();
   }
 
   getMembers() {
-    this.privateService.get<MembersResponse>(this.url).subscribe((response) => {
-      this.members = response.data;
+    this.members$.subscribe( (members) => {
+      this.members = members.data;
     });
   }
 }

@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { getControl as getControlFunction } from '@app/core/util/getControlForm';
 import { HttpService } from '@app/core/services/http.service';
 import { PrivateApiService } from '@app/core/services/privateApi.service';
-import { Members } from '@app/core/models/members.interfaces';
+import { Member } from '@app/core/models/members.interfaces';
 import { URL_HTTPS_REGEX } from '@app/core/enums/regex.enum';
 @Component({
   selector: 'alk-members-form',
@@ -94,7 +94,7 @@ export class MembersFormComponent implements OnInit {
 
   getMembers(id:number | null):void{
     let url = `${this.url}/${id}`;
-    this.http.get<Members>(url).subscribe((res)=>{
+    this.http.get<Member>(url).subscribe((res)=>{
       const data = res;
       this.form.get('name')?.setValue(data.name);
       this.form.get('description')?.setValue(data.description);
@@ -108,14 +108,14 @@ export class MembersFormComponent implements OnInit {
   postMember():void{
     const { name, description , fbLink ,liLink} = this.form.value;
     let image = this.base64Image;
-    const body:Members = {
+    const body:Member = {
       name:name,
       description: description,
       facebookUrl:fbLink, 
       linkedinUrl:liLink,
       image:image
     }
-    this.httpPrivate.post<Members>(this.url,body).subscribe(
+    this.httpPrivate.post<Member>(this.url,body).subscribe(
       (res)=>{
       this.fileInput.clear();
       this.form.reset();
@@ -129,7 +129,7 @@ export class MembersFormComponent implements OnInit {
   patchMember():void{
     let url = `${this.url}/${this.id}`;
     const { name, description, fbLink ,liLink } = this.form.value;
-    let body: Members;
+    let body: Member;
     if (this.uploadedFile) {
       let image = this.base64Image;
       body =  {
@@ -147,7 +147,7 @@ export class MembersFormComponent implements OnInit {
       linkedinUrl:liLink,
     };
     }
-    this.httpPrivate.patch<Members>(url,body).subscribe(
+    this.httpPrivate.patch<Member>(url,body).subscribe(
       (res)=>{
       // Alerta de exito
     },

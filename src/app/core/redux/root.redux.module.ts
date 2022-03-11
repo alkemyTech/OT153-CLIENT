@@ -9,6 +9,9 @@ import { categoriesReducer } from './categories/categories.reducer';
 import { CategoriesEffects } from './categories/categories.effects';
 import { authReducer } from './auth/auth.reducers';
 import { AuthEffects } from './auth/auth.effects';
+import { MemberEffects, MemberReducer } from './members/member.index';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,13 +21,14 @@ import { AuthEffects } from './auth/auth.effects';
       userState: UserReducer.userReducer,
       authReducer: authReducer,
 
+      memberState: MemberReducer.memberReducer
     }),
     EffectsModule.forRoot([
       ActivitiesEffects,
       CategoriesEffects,
       UsersEffects,
       AuthEffects,
-
+      MemberEffects,
     ]),
     StoreDevtoolsModule.instrument({
       name: 'REDUX STATES - devtools',

@@ -15,6 +15,7 @@ import { NewUserComponent } from './users/new-user/new-user.component';
 import { UsersCrudComponent } from './users/users.component';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { MembersFormComponent } from './members/members-form/members-form.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path: 'members',
         component: ListMembersComponent,
+      },
+      {
+        path: 'members/crear',
+        component: MembersFormComponent,
       },
       {
         path: 'home',
