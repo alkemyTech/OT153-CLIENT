@@ -55,3 +55,7 @@ src/environments/environment.local.ts
 
 # Local Netlify folder
 .netlify
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

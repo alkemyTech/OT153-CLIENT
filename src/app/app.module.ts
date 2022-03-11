@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent,DialogComponent],
@@ -22,6 +25,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ToastModule,
     StoreModule,
     LeafletModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [MessageService, DialogService, BrowserAnimationsModule],
   bootstrap: [AppComponent],
