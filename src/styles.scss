@@ -1,5 +1,6 @@
 @import "__colors";
 @import "__material_styles";
+@import "__map";
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -8,7 +9,8 @@
     max-width: $width; 
 } 
 
-body {
+html, body {
+    height: 100%;
     margin: 0!important;
     padding: 0!important;
 }
