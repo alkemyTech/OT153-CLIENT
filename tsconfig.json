@@ -16,7 +16,8 @@
       "@pages/*": ["src/app/pages/*"],
       "@public/*": ["src/app/features/public/*"],
       "@shared/*": ["src/app/shared"],
-      "@util/*": ["src/app/core/util/*"]
+      "@util/*": ["src/app/core/util/*"],
+      "@coreComponents" :["src/app/core/components"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

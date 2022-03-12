@@ -29,7 +29,7 @@ const componentToExport = [
   SkeletonComponent,
   SpinnerComponent,
   UpperTitleComponent, 
-  DialogComponent,
+  // DialogComponent,
   DialogTemplateComponent,
 ];
 
