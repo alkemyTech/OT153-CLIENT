@@ -103,7 +103,6 @@ export class DonationsComponent implements OnInit {
       window.location.href = r.sandbox_init_point;
   
     });
-      
       return true;
     }
   
