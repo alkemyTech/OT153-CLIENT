@@ -15,7 +15,7 @@ const routes: Routes = [
       import("./public/pages/home/home.module").then((m) => m.HomeModule),
   },
   {
-    path: "backoffice",
+    path: "admin",
     loadChildren: () =>
       import("./backoffice/pages/backoffice.module").then((m) => m.BackofficeModule),
   },

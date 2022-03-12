@@ -10,31 +10,39 @@ import { ActivitySelectedComponent } from '../activities/components/activity-sel
 import { ContactComponent } from '../contact/contact.component';
 import { DonationsComponent } from '../donations/donations.component';
 import { ThanksComponent } from '../donations/thanks/thanks.component';
+import { LoginFormComponent } from '@app/features/backoffice/pages/auth/login-form/login-form.component';
+import { RegisterFormComponent } from '@app/features/backoffice/pages/auth/register-form/register-form.component';
 
 const routes: Routes = [
 
   {
     path: '',
+    // component: PublicComponent, // Add Component whit header/sidebar/footer when developed
     children: [
       {
-        path: 'home',
+        path: '',
         component: HomeComponent,
         pathMatch: 'full',
       },
       {
         path: 'actividades',
-        component: ActivitiesComponent,
+        children: [
+          {
+            path: '',
+            component: ActivitiesComponent,
+          },
+          {
+            path: ':id',
+            component: ActivitySelectedComponent,
+          },
+        ]
       },
       {
-        path: 'actividades/:id',
-        component: ActivitySelectedComponent,
+        path: 'contacto',
+        component: ContactComponent,
       },
       {
-        path: 'nosotros',
-        component: AboutComponent,
-      },
-      {
-        path: 'donacion',
+        path: 'donar',
         component: DonationsComponent,
       },
       {
@@ -42,20 +50,29 @@ const routes: Routes = [
         component: ThanksComponent,
       },
       {
-        path: 'contacto',
-        component: ContactComponent,
+        path: 'iniciar-sesion',
+        component: LoginFormComponent,
       },
       {
-        path: 'members',
+        path: 'miembros',
         component: UsComponent,
       },
       {
-        path: 'users/create',
-        component: UserFormComponent,
+        path: 'nosotros',
+        component: AboutComponent,
       },
       {
-        path: 'users/:id',
-        component: UserFormComponent,
+        path: 'registrarse',
+        component: RegisterFormComponent,
+      },
+      {
+        path: 'usuarios',
+        children: [
+          {
+            path: 'crear',
+            component: UserFormComponent,
+          }
+        ]
       },
     ],
   },

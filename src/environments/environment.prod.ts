@@ -1,19 +1,17 @@
 export const environment = {
   production: true,
   apiUrl: '',
-  apiUrlOrganization: '',
   apiUrlActivities: '',
   apiUrlCategories: '',
-  apiUrlmembers: '', 
-  apiUrlusers: '',
+  apiUrlLogin: "",
+  apiUrlMembers: '', 
   apiUrlNews: "",
   apiUrlNewsList: "",
   apiUrlNewsListById: "",
   apiUrlNewsPost: "",
   apiUrlNewsUpdate: "",
   apiUrlNewsDelete: "",
-  apiUrlMembers: "",
-  apiUrlLogin: "",
+  apiUrlOrganization: '',
   apiUrlRegister: "",
   apiUrlUsers: ""
 };

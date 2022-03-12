@@ -20,13 +20,36 @@ import { MembersFormComponent } from './members/members-form/members-form.compon
 const routes: Routes = [
   {
     path: '',
+    // component: BackofficeComponent, // Add whenever component is created
     children: [
       {
-        path: 'organization',
-        component: OrganizationDetailsComponent,
+        path: '',
+        component: DashboardComponent,
+        pathMatch: 'full',
       },
       {
-        path: 'slides',
+        path: 'actividades',
+        children: [
+          {
+            path: '', 
+            component: ListActivititesComponent,
+          },
+          {
+            path: 'crear',
+            component: NewActivityFormComponent,
+          },
+          {
+            path: 'editar/:id',
+            component: EditActivityFormComponent,
+          },
+        ]
+      },
+      {
+        path: 'categorias',
+        component: CategoriesFormComponent,
+      },
+      {
+        path: 'diapositivas',
         children: [
           {
             path: '',
@@ -36,65 +59,47 @@ const routes: Routes = [
             path: 'crear',
             component: SlidesFormComponent,
           },
-          {
-            path: ':id',
-            component: SlidesFormComponent, // Replace with SlideDetailComponent once created
-          },
         ],
       },
       {
+        path: 'miembros',
+        children: [
+          {
+            path: '',
+            component: ListMembersComponent,
+          },
+          {
+            path: 'crear',
+            component: MembersFormComponent,
+          },
+        ]
+      },
+      {
         path: 'organizacion',
-        component: OrganizationDetailsComponent,
+        children: [
+          {
+            path: '',
+            component: OrganizationDetailsComponent,
+          },
+          {
+            path: 'editar',
+            component: OrganizationEditComponent,
+          },
+        ]
       },
       {
-        path: 'organization/editar',
-        component: OrganizationEditComponent,
-      },
-      {
-        path: 'actividades',
-        component: ListActivititesComponent,
-      },
-      {
-        path: 'actividades/crear',
-        component: NewActivityFormComponent,
-      },
-      {
-        path: 'actividades/editar/:id',
-        component: EditActivityFormComponent,
-      },
-      {
-        path: 'users',
-        component: UsersCrudComponent,
-      },
-      {
-        path: 'users/create',
-        component: NewUserComponent,
-      },
-      {
-        path: 'members',
-        component: ListMembersComponent,
-      },
-      {
-        path: 'members/crear',
-        component: MembersFormComponent,
-      },
-      {
-        path: 'home',
-        component: HomeComponent,
-      },
-      {
-        path: 'categorias',
-        component: CategoriesFormComponent,
-      },
-      {
-        path: 'login',
-        component: LoginFormComponent,
-      },
-      {
-        path: '',
-        component: DashboardComponent,
-        pathMatch: 'full',
-      },
+        path: 'usuarios',
+        children: [
+          {
+            path: '',
+            component: UsersCrudComponent,
+          },
+          {
+            path: 'crear',
+            component: NewUserComponent,
+          },
+        ]
+      }
     ],
   },
 ];
