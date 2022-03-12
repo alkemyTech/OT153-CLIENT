@@ -1,4 +1,4 @@
-name: Deploy to Netlify on commits to master
+name: Deploy to Netlify on commits
 on:
   push:
     branches: [deploy]
@@ -19,8 +19,11 @@ jobs:
         run: npm run build
 
       # Deploy the site with netlify-cli
-      - name: Deploy Site
+      - name: Deploy to netlify
+        uses: netlify/actions/cli@master
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: netlify deploy --dir=public --prod
+          NETLIFY_SITE_ID: ${{ secrets.DEV_NETLIFY_SITE_ID }}
+        with:
+          args: deploy --dir=build --prod
+          secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
