@@ -1,0 +1,9 @@
+[build]
+    command = "npm run build"
+    publish = "/dist/base-ong-angular-client"
+    base = "/"
+
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
