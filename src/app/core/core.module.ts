@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/header/header/header.component';
 import { RootReduxModule } from './redux/root.redux.module';
 import { RouterModule } from '@angular/router';
 @NgModule({
-  declarations: [NewsletterFormComponent,  FooterComponent ],
+  declarations: [NewsletterFormComponent ],
   imports: [
     CommonModule, 
     HttpClientModule, 
@@ -21,6 +21,6 @@ import { RouterModule } from '@angular/router';
   providers: [HttpService, UserService],
   exports: [
     NewsletterFormComponent,
-    FooterComponent],
+    ],
 })
 export class CoreModule {}

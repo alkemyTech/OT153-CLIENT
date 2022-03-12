@@ -25,6 +25,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
   declarations: [
     PublicComponent,
     HeaderComponent,
+    FooterComponent,
     AboutComponent,
     AboutTextComponent,
     DonationsComponent,
