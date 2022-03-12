@@ -249,7 +249,7 @@ select.form-control:not([size]):not([multiple]) {
 .Cl-GrisOscuro {
   color: #404041 !important;
 }
-.TitleFont3 {
+.BoxTitleDonation {
   font-size: 2rem !important;
   line-height: 2.2rem !important;
   font-weight: 700 !important;
@@ -270,6 +270,7 @@ select.form-control:not([size]):not([multiple]) {
   font-size: 0.9rem;
   max-height: 48px;
   z-index: 1;
+  cursor: pointer;
 }
 .BtnDefault:hover {
   background: #404041;
@@ -310,6 +311,7 @@ select.form-control:not([size]):not([multiple]) {
   .BoxTitleDonation {
     font-size: 1.6rem !important;
     line-height: 1.8rem !important;
+    color: white;
   }
 }
 @media (max-width: 767px) {
