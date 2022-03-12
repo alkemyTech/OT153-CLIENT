@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '@env/environment';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
@@ -11,5 +12,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+
+    console.table({...environment})
   }
+
+
 }
