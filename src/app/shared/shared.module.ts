@@ -29,7 +29,6 @@ const componentToExport = [
   SkeletonComponent,
   SpinnerComponent,
   UpperTitleComponent, 
-  DialogComponent,
   DialogTemplateComponent,
 ];
 

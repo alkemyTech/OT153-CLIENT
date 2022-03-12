@@ -8,9 +8,10 @@ import { MessageService } from 'primeng/api';
 import { DialogService } from '@app/core/services/dialog.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { DialogComponent } from './shared/components/dialog/dialog.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,DialogComponent],
   imports: [
     BrowserModule, 
     CoreModule, 
