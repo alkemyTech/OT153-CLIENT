@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start:local": "ng serve --proxy-config proxy.config.json",
-    "build:prod": "ng build -c=production",
+    "build": "ng build -c=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "p:fix": "prettier --config ./.prettierrc --write \"src/{app,environments,styles,scss}/**/*{.ts,.html,.scss}\""
