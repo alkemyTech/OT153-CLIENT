@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 export interface Campaign {
+  title: string;
   description: string;
   date: Date;
   place: string;
+  img: string;
+  imgTitle: string;
 }
 
 @Component({
@@ -13,36 +16,49 @@ export interface Campaign {
 })
 export class CampaignsComponent implements OnInit {
   campaign: Campaign;
-  daysLeft: number;
-  hoursLeft: number;
-  minutesLeft: number;
+  timeleft = {
+    days: '',
+    hours: '',
+    minutes: '',
+  };
 
   constructor() {
     this.campaign = {
+      title: 'Juguetes por más sonrisas',
       description:
         'Incididunt dolore nisi nostrud in irure mollit velit est voluptate. Eu ipsum labore nulla id amet. Laboris laborum ipsum in do ex adipisicing labore qui anim occaecat dolore minim.',
       date: new Date(),
       place: 'Calle 123, Localidad, Provincia',
+      img: '../../../../../assets/campaign/img-juguetes-campaign.jpg',
+      imgTitle: 'Campaña de juguetes',
     };
   }
 
   ngOnInit(): void {
-    this.campaign.date.setDate(this.campaign.date.getDate() + 5); //mocked day
-    this.setTimeLeft();
+    this.setDateTo();
+    this.timeleft = this.getTimeLeft(this.campaign.date);
+    console.log(this.timeleft);
   }
 
-  setTimeLeft(): void {
-    this.campaign.date.getDate() < new Date().getDate()
-      ? (this.daysLeft = 0)
-      : (this.daysLeft = this.campaign.date.getDate() - new Date().getDate());
+  setDateTo(): void {
+    this.campaign.date.setDate(this.campaign.date.getDate() + 5); //mocked day
+    this.campaign.date.setHours(this.campaign.date.getHours() + 3); //mocked hour
+    this.campaign.date.setMinutes(this.campaign.date.getMinutes() + 24); //mocked minutes
+  }
 
-    this.campaign.date.getHours() < new Date().getHours()
-      ? (this.hoursLeft = 0)
-      : (this.hoursLeft = this.campaign.date.getHours() - new Date().getDate());
-      
-    this.campaign.date.getMinutes() < new Date().getMinutes()
-      ? (this.minutesLeft = 0)
-      : (this.minutesLeft = 60 - this.campaign.date.getMinutes());
-        
+  getTimeLeft(dateTo): { days: string; hours: string; minutes: string } {
+    let now = new Date();
+    let time = (new Date(dateTo).valueOf() - now.valueOf() + 1000) / 1000; //transform timeleft to number to use Math
+    let days = Math.floor(time / (3600 * 24)).toString();
+    let hours = Math.floor((time / 3600) % 24).toString();
+    let minutes = Math.floor((time / 60) % 60).toString();
+
+    console.log(time, minutes, hours, days);
+
+    return {
+      days,
+      hours,
+      minutes,
+    };
   }
 }

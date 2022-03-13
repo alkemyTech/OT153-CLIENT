@@ -1,91 +1,89 @@
 @import '@../../../../../../../styles/_colors';
 
-.topbox-container {
-    background: $bgColor;
-  }
-
-.campaign-title > h2 {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 2.2em;
-  text-shadow: 1px 2px 2px rgba(95, 95, 95, 0.89);
-  color: $gold;
-
-  @media screen and (max-width: 991px) {
-    //medium devices
-    font-size: 1.5em;
-  }
-
-  @media screen and (max-width: 575px) {
-    // small devices
-    letter-spacing: 2px;
-    font-size: 1em;
-  }
-}
-
-.logo-img {
-  width: 70%;
-  @media screen and (max-width: 576px) {
-    // small devices
-    width: 100%;
+@media screen and (min-width: 2048px) {
+  //smart tv background overlay
+  .campaign-container {
+    background: $bgColorOverlay;
   }
 }
 
 .image-container {
   max-height: 60vh;
   & img {
-      object-fit: cover;
-      height: 100%;
-      max-width: 100vw;
+    object-fit: cover;
+    height: 100%;
+    max-width: 100vw;
+  }
+
+  & figcaption {
+    transform: translateY(-32px);
+    background: rgba(185, 185, 185, 0.616);
+    padding: 3px;
+    font-weight: 500;
+    position: absolute;
+    width: 26%;
+    left: 37%;
   }
 }
 
 .description-container {
-    position: relative;
+  position: relative;
 
-    & .related-img { 
-     display: none; //display only on desktop or bigger
-    }
+  & .related-img {
+    display: none; //display only on desktop or bigger
+  }
 
   @media screen and (min-width: 992px) {
     & .related-img {
-       display: block;
-       height: 80px;
-       position: absolute;
-       
-    &.related-1 {
+      display: block;
+      height: 80px;
+      position: absolute;
+      &.related-1 {
+        left: 8%;
+        top: -35%;
+        transform: rotate(-5deg);
+      }
+      &.related-2 {
+        right: 9%;
+        top: -28%;
+        transform: rotate(-5deg);
+      }
+      //.description-container
+      &.related-3 {
         left: 17%;
         top: 5%;
         transform: rotate(20deg);
-     }
-    &.related-2 {
+      }
+      &.related-4 {
         left: 4%;
         top: 15%;
         transform: rotate(-15deg);
-     }
-    &.related-3 {
-        right: 18%;
+      }
+      &.related-5 {
+        right: 20%;
         top: 6%;
         transform: rotate(-5deg);
-     }
-    &.related-4 {
-        right: 7%;
+      }
+      &.related-6 {
+        right: 5%;
         top: 18%;
         transform: rotate(-5deg);
-     }
-    &.related-5 {
+      }
+      &.related-7 {
         right: 17%;
         top: 65%;
         transform: rotate(10deg);
-     }
-    &.related-6 {
+      }
+      &.related-8 {
         left: 15%;
         top: 70%;
-        transform: rotate(-5deg);
-     }  
+        transform: rotate(135deg);
+        height: 60px;
+      }
     }
 
-    & .description { 
+    & .description,
+    .countdown-container {
       position: relative;
       width: 46%;
       left: 27%;
@@ -93,3 +91,14 @@
   }
 }
 
+.countdown-container {
+  padding: 2px;
+  border: 1px solid rgb(150, 149, 149);
+  border-radius: 2%;
+  box-shadow: 3px 2px 5px 1px rgb(153, 153, 153);
+  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(187, 150, 2, 0.425));
+
+  @media screen and (max-width: 992px) {
+    margin: 0 5% 0 5%;
+  }
+}
