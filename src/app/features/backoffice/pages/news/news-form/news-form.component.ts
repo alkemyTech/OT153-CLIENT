@@ -8,7 +8,7 @@
  import { getControl } from '@app/core/util/getControlForm';
  import { getControl as getControlFunction } from '@app/core/util/getControlForm';
  import { HttpService } from '@app/core/services/http.service';
- import { New, NewData, News } from '@app/core/models/news.interfaces';
+ import { New, NewResponse } from '@app/core/models/news.interfaces';
  import { MessageService } from 'primeng/api';
  import { FileUpload } from 'primeng/fileupload';
  import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -67,8 +67,8 @@ import { environment } from '@env/environment';
  
    getNews(id: number) {
      let url = `${this.url}/${id}`;
-     let _newdata: NewData;
-     this.httpService.get<New>(url).subscribe({
+     let _newdata: New;
+     this.httpService.get<NewResponse>(url).subscribe({
        next: (response) => { _newdata = response.data },
        error: (error:HttpErrorResponse) => { 
          this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al cargar el formulario.'); },
@@ -113,8 +113,8 @@ import { environment } from '@env/environment';
      }
  
      let url = `${this.url}/${this.idNews}`;
-     let _response: New;     
-     this.httpPrivateService.patch<New>(url, body).subscribe({
+     let _response: NewResponse;     
+     this.httpPrivateService.patch<NewResponse>(url, body).subscribe({
        next: (response) => { _response = response },
        error: (error: HttpErrorResponse) => { 
          this.addToastMessage('error', 'Error: '+error.headers );
@@ -137,8 +137,8 @@ import { environment } from '@env/environment';
      let image = this.base64Image;
      const category_id = this._categoryId;
      const body: any = { name, content, category_id, image };
-     let _resp: New;
-     this.httpPrivateService.post<New>(this.url, body).subscribe({
+     let _resp: NewResponse;
+     this.httpPrivateService.post<NewResponse>(this.url, body).subscribe({
        next: (resp) => { _resp = resp },
        error: (error:HttpErrorResponse) => { 
          this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al' + this.title + 'la Novedad!');

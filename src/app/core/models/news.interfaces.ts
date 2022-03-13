@@ -1,16 +1,16 @@
+export interface NewResponse {
+  success: boolean;
+  data: New;
+  message: string;
+}
+
+export interface NewsResponse {
+  success: boolean;
+  data: New[];
+  message: string;
+}
+
 export interface New {
-  success: boolean;
-  data: NewData;
-  message: string;
-}
-
-export interface News {
-  success: boolean;
-  data: NewData[];
-  message: string;
-}
-
-export interface NewData {
   id: number;
   name: string;
   slug: string;
