@@ -25,6 +25,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
+import { ListNewsComponent } from './pages/news/list-news/list-news.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SharedModule } from '@app/shared/shared.module';
     MembersFormComponent,
     OrganizationEditComponent,
     HomeComponent,
+    ListNewsComponent,
   ],
   imports: [
     CommonModule,
