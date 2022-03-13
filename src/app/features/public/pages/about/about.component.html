@@ -1,6 +1,14 @@
 <div class="container">
-  <div class="col-10 m-auto">
-    <app-upper-title [title]="title" [colorBackground]="backgroundColor" [colorText]="textColor"></app-upper-title>
-    <app-about-text [text]="text"></app-about-text>
-  </div>
+  <ng-container  *ngIf="load">
+    <div class="col-10 m-auto spinner">
+      <p-progressSpinner class="spinner"></p-progressSpinner>
+    </div>
+  </ng-container>
+  <ng-container  *ngIf="!load">
+    <div class="col-12 m-auto">
+      <app-upper-title [title]="title" [colorBackground]="backgroundColor" [colorText]="textColor"></app-upper-title>
+      <app-about-text [text]="text"></app-about-text>
+    </div>
+  </ng-container>
+  <p-toast position="center"></p-toast>
 </div>

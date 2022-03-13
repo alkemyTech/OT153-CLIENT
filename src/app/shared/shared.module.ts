@@ -18,6 +18,7 @@ import { DialogTemplateComponent } from './components/dialog/components/dialog-t
 
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SuccessDialogTemplateComponent } from './components/dialog/components/success-dialog-template/success-dialog-template.component';
 
 const componentToExport = [
   CarouselComponent, 
@@ -30,6 +31,7 @@ const componentToExport = [
   UpperTitleComponent, 
   DialogTemplateComponent,
   SimpleListComponent,
+  SuccessDialogTemplateComponent
 ];
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule];

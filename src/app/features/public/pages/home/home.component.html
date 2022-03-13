@@ -1,5 +1,12 @@
-
 <div class="container">
+  <ng-container  *ngIf="load">
+    <div class="grid">
+      <div class="col-6 md:col-3 lg:col-12">
+        <p-progressSpinner></p-progressSpinner>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!load">
     <h1> Bienvenidos</h1>
     <h2> {{description }}</h2>
     <div class="grid">
@@ -10,4 +17,5 @@
         <alk-news></alk-news>
       </div>
     </div>
+  </ng-container>
 </div>
