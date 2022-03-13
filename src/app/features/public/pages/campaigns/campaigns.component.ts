@@ -18,7 +18,13 @@ export class CampaignsComponent implements OnInit {
     this.campaign = {
       title: 'Juguetes por más sonrisas',
       description:
-        'Incididunt dolore nisi nostrud in irure mollit velit est voluptate. Eu ipsum labore nulla id amet. Laboris laborum ipsum in do ex adipisicing labore qui anim occaecat dolore minim.',
+        `Incididunt dolore nisi nostrud in irure mollit velit est voluptate. 
+
+        Eu ipsum labore nulla id amet. Laboris laborum ipsum 
+        in do ex adipisicing labore qui anim occaecat dolore minim. Velit est voluptate. 
+
+         Eu ipsum labore nulla id amet. Laboris laborum 
+         ipsum in do ex adipisicing in do ex adipisicing labore`,
       date: new Date(),
       place: 'Calle 123, Localidad, Provincia',
       img: '../../../../../assets/campaign/img-juguetes-campaign.jpg',
@@ -29,7 +35,6 @@ export class CampaignsComponent implements OnInit {
   ngOnInit(): void {
     this.setDateTo();
     this.timeleft = this.getTimeLeft(this.campaign.date);
-    console.log(this.timeleft);
   }
 
   setDateTo(): void {
@@ -44,8 +49,6 @@ export class CampaignsComponent implements OnInit {
     let days = Math.floor(time / (3600 * 24)).toString();
     let hours = Math.floor((time / 3600) % 24).toString();
     let minutes = Math.floor((time / 60) % 60).toString();
-
-    console.log(time, minutes, hours, days);
 
     return {
       days,

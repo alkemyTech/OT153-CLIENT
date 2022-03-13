@@ -7,15 +7,9 @@
       <img src="{{ this.campaign.img }}" alt="content-img" />
       <figcaption *ngIf="this.campaign.imgTitle">{{ this.campaign.imgTitle }}</figcaption>
     </div>
-    <div class="col-12">
-      <div class="description-container">
-        <p>
-          {{ campaign.date.getDay() | weekdayFormat }} {{ campaign.date.getDate() }} de
-          {{ campaign.date.getMonth() | monthNumberFormat }} de
-          {{ campaign.date.getFullYear() }}
-        </p>
-        <p>{{ campaign.place }}</p>
 
+    <div class="col-12 py-2">
+      <div class="description-container">
         <div class="countdown-container">
           <p>
             Te quedan
@@ -25,8 +19,14 @@
         </div>
 
         <div class="description">
-          <h3>Descripción:</h3>
-          <p>{{ campaign.description }}</p>
+          <p>
+            <i><u>Fecha y lugar</u></i>: <br> {{ campaign.date.getDay() | weekdayFormat }} {{ campaign.date.getDate() }} de
+             {{ campaign.date.getMonth() | monthNumberFormat }} de
+             {{ campaign.date.getFullYear() }}  |       
+           {{ campaign.place }}</p>
+
+          <h3 class="mt-4"><u><i>Descripción</i></u></h3>
+          <p [innerText]="campaign.description"></p>
         </div>
         <img
           src="../../../../../assets/campaign/related-juguetes-campaign-1.png"

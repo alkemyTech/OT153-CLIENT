@@ -8,8 +8,9 @@ export const environment = {
   apiUrlOrganization: '',
   apiUrlActivities: '',
   apiUrlCategories: '',
-  apiUrlmembers: '', 
+  apiUrlmembers: '',
   apiUrlusers: '',
+<<<<<<< HEAD
   apiUrlNews: "",
   apiUrlNewsList: "",
   apiUrlNewsListById: "",
@@ -22,6 +23,19 @@ export const environment = {
   apiUrlUsers: "",
   apiUrlSlides: "",
   wikimediaMap: "",
+=======
+  apiUrlNews: '',
+  apiUrlNewsList: '',
+  apiUrlNewsListById: '',
+  apiUrlNewsPost: '',
+  apiUrlNewsUpdate: '',
+  apiUrlNewsDelete: '',
+  apiUrlMembers: '',
+  apiUrlLogin: '',
+  apiUrlRegister: '',
+  apiUrlUsers: '',
+  apiUrlSlides: '',
+>>>>>>> fixed with remote version - add updated description styles & text rendering - added to routing
 };
 
 /*

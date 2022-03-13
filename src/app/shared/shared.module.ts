@@ -34,7 +34,6 @@ const componentToExport = [
   SpinnerComponent,
   UpperTitleComponent,
   WeekdayFormatPipe,
-  DialogComponent,
   DialogTemplateComponent,
   SimpleListComponent,
   SuccessDialogTemplateComponent,

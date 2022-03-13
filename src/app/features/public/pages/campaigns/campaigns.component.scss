@@ -1,9 +1,9 @@
 @import '@../../../../../../../styles/_colors';
 
-@media screen and (min-width: 2048px) {
-  //smart tv background overlay
-  .campaign-container {
-    background: $bgColorOverlay;
+.campaign-container {
+  background: $bgColorSoftYellow;
+  @media screen and (min-width: 2048px) {  //smart tv background overlay
+    background: $bgColorSoftYellowOverlay;
   }
 }
 
@@ -32,6 +32,7 @@
     object-fit: cover;
     height: 100%;
     max-width: 100vw;
+    box-shadow: 0px -1px 7px 7px rgba(39, 17, 99, 0.267);
   }
 
   & figcaption {
@@ -47,27 +48,50 @@
 
 .description-container {
   position: relative;
+  font-weight: 500;
+  
+  font-size: 1.4em;
+  & .description {
+    border: 2px solid rgba(173, 172, 172, 0.452);
+    padding: 4px;
+    background: rgba(202, 202, 202, 0.384);
+    box-shadow: 1px 1px 2px rgba(201, 236, 250, 0.808);
+    backdrop-filter: blur(2px);
 
+      font-size: .8em;
+      & h3 {
+      font-size: 1.4em;
+      opacity: .9;
+      }
+    }  
+  
   & .related-img {
     display: none; //display only on desktop or bigger
   }
 
   @media screen and (min-width: 992px) {
-    & .related-img {
+    & .related-img { // floating related images styles
       display: block;
       height: 80px;
       position: absolute;
+
+      @media screen and (min-width: 1200px) {
+        height: 120px;
+      }
+      @media screen and (min-width: 2048px) {
+        height: 150px;
+      }
+
       &.related-1 {
         left: 8%;
         top: -35%;
         transform: rotate(-5deg);
       }
       &.related-2 {
-        right: 9%;
+        right: 8%;
         top: -28%;
         transform: rotate(-5deg);
       }
-      //.description-container
       &.related-3 {
         left: 17%;
         top: 5%;
@@ -100,24 +124,28 @@
         height: 60px;
       }
     }
-
+    
     & .description,
-    .countdown-container {
+    .countdown-container { //move to center 
       position: relative;
       width: 46%;
       left: 27%;
+   
     }
   }
 }
-
 .countdown-container {
   padding: 2px;
   border: 1px solid rgb(150, 149, 149);
   border-radius: 2%;
   box-shadow: 3px 2px 5px 1px rgb(153, 153, 153);
-  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(187, 150, 2, 0.425));
-
-  @media screen and (max-width: 992px) {
-    margin: 0 5% 0 5%;
-  }
+  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(187, 150, 2, 0.315));
+  font-size: 120%;
 }
+.countdown-container,.description{ //some padding to boxes on mobile devices
+@media screen and (max-width: 992px) {
+  margin: 0 5% 0 5%;
+}
+}
+
+
