@@ -1,13 +1,13 @@
 @import "__colors";
 @import "__material_styles";
-@import "__map";
+@import "__mixin";
 
 /* You can add global styles to this file, and also import other style files */
 
-@mixin max-container($width, $height) {
-    max-height: $height;
-    max-width: $width; 
-} 
+*{
+    padding: 0;
+    margin: 0;
+}
 
 html, body {
     height: 100%;
@@ -42,4 +42,8 @@ html, body {
 
 .fit-cover{
     object-fit: cover;
+}
+
+.grid{
+    @extend .w-100;
 }

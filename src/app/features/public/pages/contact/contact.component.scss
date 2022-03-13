@@ -1,6 +1,39 @@
-.wrapper{
-    margin-top: 100px;
+@import "__colors";
+
+body{
+    background: $purple;
 }
-.form{
-    margin-top: 40px;
+
+.wrapped{
+    margin-top: 0rem;
 }
+
+section{
+    margin-top: 3.2rem;
+}
+
+.contact-padding{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.map-container{
+    
+}
+
+.info-container{
+    margin-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+
+
+// @media only screen
+//   and (max-device-width: 480px)
+//   and (-webkit-min-device-pixel-ratio: 2) {
+//     .contact-padding, .map-container{
+//         width: 100%;
+//         padding: 0px; 
+//         display: block;
+//     }
+// }

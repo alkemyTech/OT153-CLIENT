@@ -1,0 +1,4 @@
+@mixin max-container($width, $height) {
+    max-height: $height;
+    max-width: $width; 
+} 
