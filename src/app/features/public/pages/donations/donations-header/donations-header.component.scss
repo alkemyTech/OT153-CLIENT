@@ -1,3 +1,4 @@
+@import "__colors";
 
 .banner{
     height: 650px;
@@ -18,7 +19,7 @@
     padding:0 3em;
     position: absolute;
     width: 100%;
-    color: #fff;
+    color: $white;
     margin: auto;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .banner_title_yellow{
-    color: #ffce35;
+    color: $gold;
 }
 
 .banner_p{
@@ -51,7 +52,7 @@
     content: "";
     height: 100%;
     width: 100%;
-    background:#1c1d1d;
+    background:$black;
     opacity: 0.3;
 }
 
