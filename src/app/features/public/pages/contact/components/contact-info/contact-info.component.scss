@@ -1,11 +1,9 @@
 .wrapper {
-  text-align: center;
-  // border: 2px solid rgba(61, 61, 61, 0.767);
+  position: relative;
   width: 100vw;
   max-width: 600px;
-  margin: auto;
-  position: relative;
-  // border-radius: 15px;
+  margin: 0 auto;
+  text-align: center;
   h2{
     position: relative;
     top: 3px;
@@ -21,21 +19,29 @@
   max-width: 600px;
   margin: 0 auto;
   opacity: .85;
+  padding: 2rem 0;
 }
 .cell{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
   h4{
     padding: 0;
     margin: 0;
   }
-  img{
-    width: 52px ;
+  figure{
+    max-height: 4rem;
+  }
+  &:hover{
+  }
+  img:hover{
   }
 }
 
 @media screen and (max-width:900px) {
   .cell{
   img{
-    width: 32px ;
+    width: 2rem ;
   }
 }
 

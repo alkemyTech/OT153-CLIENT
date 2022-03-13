@@ -1,19 +1,15 @@
 <div class="wrapped">
     <app-upper-title [title]="title" [colorBackground]="colorBackground"></app-upper-title>
     
-    <section class="w-100 map-container">
+    <div class="w-100 map-container">
         <app-leaflet-map></app-leaflet-map>
+    </div>
+
+    <section class="col-8 contact-padding m-auto">
+        <app-contact-form></app-contact-form>
     </section>
 
-    <div class="grid">
-        <section class="col-6">
-            <div *ngIf="organization_info" class="col-6 info-container">
-                <app-contact-info [info]="organization_info"></app-contact-info>
-            </div>
-        </section>
-        <section class="col-6 contact-padding">
-            <app-contact-form></app-contact-form>
-        </section>
-    </div>   
-
+    <div *ngIf="organization_info" class="col-8 m-auto info-container">
+        <app-contact-info [info]="organization_info"></app-contact-info>
+    </div>
 </div>

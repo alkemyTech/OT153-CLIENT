@@ -9,7 +9,7 @@ body{
 }
 
 section{
-    margin-top: 3rem;
+    margin-top: 5rem;
 }
 
 .contact-padding{
@@ -18,24 +18,12 @@ section{
 }
 
 .map-container{
-    
+
 }
 
 .info-container{
-    margin-top: 5rem;
+    padding-top: 0;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 5rem;
 }
-
-
-
-// @media only screen
-//   and (max-device-width: 480px)
-//   and (-webkit-min-device-pixel-ratio: 2) {
-//     .contact-padding, .map-container{
-//         width: 100%;
-//         padding: 0px; 
-//         display: block;
-//     }
-// }

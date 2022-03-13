@@ -1,20 +1,32 @@
-<div class="wrapper">
+<p-card class="wrapper">
     <h2>Ponte en contacto</h2>
     <div class="info">
         <div class="cell">
-            <img src="assets/contact/address.png" alt="">
-            <h4>Celular</h4>
-            <p>{{info.data.cellphone}}</p>
+            <figure>
+                <img src="assets/contact/address.png" alt="">
+                <figcaption>
+                    <h4>Celular</h4>
+                </figcaption>
+                <p>{{info.data.cellphone | phoneFormat}}</p> 
+            </figure>
         </div>
         <div class="cell">
-            <img src="assets/contact/telephone.png" alt="">
-            <h4>Telefono</h4>
-            <p>{{info.data.phone | phoneFormat}}</p>
+            <figure>
+                <img src="assets/contact/telephone.png" alt="">
+                <figcaption>
+                    <h4>Telefono</h4>
+                </figcaption>
+                <p>{{info.data.phone | phoneFormat}}</p> 
+            </figure>
         </div>
         <div class="cell">
-            <img src="assets/contact/address.png" alt="">
-            <h4>Direccion</h4>
-            <p>{{info.data.address}}</p>
+            <figure>
+                <img src="assets/contact/address.png" alt="">
+                <figcaption>
+                    <h4>Direccion</h4>
+                </figcaption>
+                <p>{{info.data.address}}</p> 
+            </figure>
         </div>
     </div>
-</div>
+</p-card>

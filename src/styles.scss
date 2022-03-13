@@ -3,6 +3,7 @@
 @import "__mixin";
 
 /* You can add global styles to this file, and also import other style files */
+$simple-shadow: 0 0px 3px gray;
 
 *{
     padding: 0;
@@ -19,10 +20,14 @@ html, body {
     padding: 0;
   }
 
-input{
+input, textarea, .cell, .cell img{
+    @extend .transition-easyout-1;
+}
+
+input, textarea{
     &:hover{
-        @extend .transition-easyout-1;
-        border-color: rgba(86, 174, 233, 0.685) !important;
+        @extend .shadow-black;
+        background-color: #f0f0f065;
     }
 }
 
@@ -61,4 +66,10 @@ input{
 
 .transition-easyout-2{
     transition: 0.3s ease-out 0.1s;
+}
+
+.shadow-black{
+    -moz-box-shadow: $simple-shadow;
+    -webkit-box-shadow: $simple-shadow;
+    box-shadow: $simple-shadow; 
 }
