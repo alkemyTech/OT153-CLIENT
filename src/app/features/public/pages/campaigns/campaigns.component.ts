@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Campaign {
-  title: string;
-  description: string;
-  date: Date;
-  place: string;
-  img: string;
-  imgTitle: string;
-}
+import { Campaign } from '@app/core/models/campaign.inteface';
 
 @Component({
   selector: 'app-campaigns',
