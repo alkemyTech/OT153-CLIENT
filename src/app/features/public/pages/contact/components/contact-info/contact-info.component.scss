@@ -29,20 +29,20 @@
     padding: 0;
     margin: 0;
   }
-  figure{
-    max-height: 4rem;
+  img{
+    max-height: 3rem;
   }
   &:hover{
+    zoom: 1.1;
   }
-  img:hover{
-  }
+
 }
 
 @media screen and (max-width:900px) {
   .cell{
-  img{
-    width: 2rem ;
+    img{
+      width: 2rem ;
+    }
   }
-}
 
 }

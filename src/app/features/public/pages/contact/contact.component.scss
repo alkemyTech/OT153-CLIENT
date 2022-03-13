@@ -12,18 +12,41 @@ section{
     margin-top: 5rem;
 }
 
+.max-contact{
+    max-width: 750px;
+}
+
+.contact-container{
+    @extend .max-contact;
+    @extend .contact-padding;
+    padding-top: 2rem;
+}
+
 .contact-padding{
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.info-container{
+    @extend .max-contact;
+    padding-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 5rem;
 }
 
 .map-container{
 
 }
 
-.info-container{
-    padding-top: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 5rem;
+@media screen and (max-width:900px) {
+    .info-container, .contact-container{
+        width: 100%;
+        padding: 0;
+        padding-bottom: 1rem;
+    }
+    .contact-container{
+        padding-top: 1rem;
+    }
+
 }
