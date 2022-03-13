@@ -8,14 +8,11 @@
             <form [formGroup]="form"  (ngSubmit)="donation()">
             <h4 class="Title BoxTitleDonation text-center Cl-GrisOscuro mb-4">Hacé tu donación ahora</h4>
   
-            <div class="BoxTypeDonation BoxTypeDonation-Mensual mt-4 mt-lg-5 option-selection option-selection-module-mensual active">
-              <div>
-                <a (click)="donar1()"  class="BtnDonationImport BtnDefault">$500</a>
-                <a (click)="donar2()"  class="BtnDonationImport BtnDefault">$1000</a>
-                <a (click)="donar3()"  class="BtnDonationImport BtnDefault">$1500</a>
-                <a (click)="donar4()"  class="BtnDonationImport BtnDefault">$2000</a>
-                <a (click)="donar5()"  class="BtnDonationImport BtnDefault">$2500</a>
-                <a (click)="donar6()"  class="BtnDonationImport BtnDefault">Otro Importe</a>
+              <div class="BoxTypeDonation BoxTypeDonation-Mensual mt-4 mt-lg-5 option-selection option-selection-module-mensual active">
+                <div>
+                  <div *ngFor="let item of importeFijo; let i=index">
+                    <a (click)="donar(i)"  class="BtnDonationImport BtnDefault">{{item}}</a>
+                  </div>
               </div>
 
               <input type="hidden" class="form-control mb-4"  formControlName="value"  id="value"  name="value" placeholder="Ingrese el importe y luego haga click en el boton Donar." >

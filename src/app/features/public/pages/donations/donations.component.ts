@@ -43,39 +43,18 @@ export class DonationsComponent implements OnInit {
     this.donationVariable = false;
     }
   
-    donar1(){
+    donar(id:number){
       this.hiddenInput();
-      this.importe = parseInt(this.importeFijo[0]);
-      this.mp();
+      this.importe = parseInt(this.importeFijo[id]);
+      if(this.importeFijo[id] === "Otro Importe"){
+        this.donationVariable = true;
+        let others:any = document.getElementById('value');
+        others.type = 'text';
+      }else{
+        this.mp();
+      }
+      
     }
-  
-    donar2(){
-      this.hiddenInput();
-      this.importe = parseInt(this.importeFijo[1]);
-      this.mp();
-    }
-  
-    donar3(){
-      this.hiddenInput();
-      this.importe = parseInt(this.importeFijo[2]);
-      this.mp();
-    }
-  
-    donar4(){
-      this.importe = parseInt(this.importeFijo[3]);
-      this.mp();
-    }
-  
-    donar5(){
-      this.importe = parseInt(this.importeFijo[4]);
-      this.mp();
-    }
-  
-    donar6(){
-      this.donationVariable = true;
-      let others:any = document.getElementById('value');
-      others.type = 'text';
-  }
   
     mp(){
       let preference = {
