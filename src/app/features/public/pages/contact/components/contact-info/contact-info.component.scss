@@ -1,14 +1,14 @@
 .wrapper {
   text-align: center;
-  border: 2px solid rgba(61, 61, 61, 0.767);
+  // border: 2px solid rgba(61, 61, 61, 0.767);
   width: 100vw;
   max-width: 600px;
   margin: auto;
   position: relative;
-  border-radius: 15px;
+  // border-radius: 15px;
   h2{
-    position: absolute;
-    top: -25px;
+    position: relative;
+    top: 3px;
     left: 50%;
     transform: translate(-50%,-50%);
     background: white;
@@ -19,7 +19,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   max-width: 600px;
-  margin: 40px auto 10px;
+  margin: 0 auto;
   opacity: .85;
 }
 .cell{
