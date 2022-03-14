@@ -31,16 +31,20 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
     this.Store.dispatch(Action.getAllActivities());
   }
 
-  editActivity(_idActivity){
-    this.Store.dispatch(Action.getOneActivities( {id: _idActivity} ));    
+  delete(_id: number){
+    //dialog.show(...)
+    //if
+      this.Store.dispatch(Action.deleteActivities( {id: _id} ));
+      this.filterList(_id);
+    //else
+      //...
   }
 
-  deleteActivity(_id: number){
-    this.Store.dispatch(Action.deleteActivities( {id: _id} ));
-    this.filterActivity(_id)
+  edit(_id: number){
+    this.Store.dispatch(Action.getOneActivities( {id: _id} )); 
   }
 
-  filterActivity(_id: number){
+  filterList(_id: number){
     this.activities = this.activities.filter(val => val.id != _id)
   }
 

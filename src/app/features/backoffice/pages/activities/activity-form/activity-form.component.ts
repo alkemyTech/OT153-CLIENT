@@ -1,17 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Activities } from '@app/core/models/activities.interfaces';
-import { NewActivity } from '@core/models/activities.interfaces';
+import { NewActivity, Activities } from '@core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { HttpService } from "@app/core/services/http.service";
 import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Observable, Subscription } from "rxjs";
 import { MessageService } from "primeng/api";
-import { PrivateApiService } from "@app/core/services/privateApi.service";
 import { Store } from '@ngrx/store';
 import { ActivitiesSelector as Selector, ActivitiesActions as Actions } from '@app/core/redux/activities/activities.index';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity-form',
@@ -48,16 +46,19 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   error$: Observable<HttpErrorResponse> = new Observable();
   activity$: Observable<Activities> = new Observable();
   
+  public backLink = '/backoffice/actividades';
+
   constructor(
-    private http: HttpService,
-    private httpPrivate: PrivateApiService,
     private messageService: MessageService,
-    private Store: Store<{activitiesState: activitiesState}>
+    private Store: Store<{activitiesState: activitiesState}>,
+    private router: Router,
+
   ) {}
 
   ngOnInit(): void {
     this.activity$ = this.Store.select(Selector.SelectStateOneData);
     this.error$ = this.Store.select(Selector.SelectStateError);
+    this.initializeForm();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -106,12 +107,11 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
       this.submitted = true;
     } else {
       this.submitted = false;
-      let url = 'http://ongapi.alkemy.org/api/activities';
-      this.httpSendActivity(url, form);
+      this.httpSendActivity(form);
     }
   }
 
-  httpSendActivity(url: string, form: FormGroup) {
+  httpSendActivity(form: FormGroup) {
     this.displaySubmitSpinner = true;
     this.messageService.add({
       severity: 'info',
@@ -124,17 +124,25 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
     } 
     
     let _id;
-    this.activity$.subscribe( response => {
-      _id = response.id
+    this.activity$.subscribe( {
+      next: (response:Activities) => {
+        _id = response.id;
+      },
+      error: (error) => {
+        
+      },
+      complete: () => { 
+      },
     })
-    this.defaultName
-    ? this.Store.dispatch(Actions.updateActivities( { id:_id, body:_body} ) )
-    : this.Store.dispatch(Actions.insertActivities( {body: _body} )) ;
+    
+    if(this.defaultName){
+      this.Store.dispatch(Actions.updateActivities( { id: _id, body:_body} ) ) 
+    } else {
+      this.Store.dispatch(Actions.insertActivities( {body: _body} )) ;
+    }
 
-    this.subscription = (
-      this.Store.select(Selector.SelectStateOneData)
-    ).subscribe(
-      (response) => {
+    this.subscription = (this.Store.select(Selector.SelectStateOneData)).subscribe({
+      next: (response) => {
         this.displaySubmitSpinner = false;
         this.messageService.add({
           severity: 'success',
@@ -142,18 +150,21 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
           detail: 'La actividad fue cargada exitosamente.',
         });
       },
-      (err) => {
+      error: (err) => {
         this.displaySubmitSpinner = false;
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: `${err.status} ${err.statusText}`,
         });
+      },
+      complete: () => { 
+        this.router.navigateByUrl(this.backLink, { });
       }
-    );
+    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription.unsubscribe;
   }
 }
