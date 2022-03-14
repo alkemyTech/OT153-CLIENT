@@ -5,10 +5,10 @@
             <app-upper-title [title]="title" [colorBackground]="backgroundColor" [colorText]="textColor"></app-upper-title>
 
             <div *ngIf="activity; else skeleton">
-                <img class="w-100 pt-3 px-2 max-60vh fit-cover" src="{{activity.data?.image}}" alt="image-actividad">
-                <h3>{{activity.data?.name}}</h3>
+                <img class="w-100 pt-3 px-2 max-60vh fit-cover" src="{{activity.image}}" alt="image-actividad">
+                <h3>{{activity.name}}</h3>
                 
-                <div class="activityDescription" [innerHtml]="activity.data?.description"></div>
+                <div class="activityDescription" [innerHtml]="activity.description"></div>
             </div>
             
             <ng-template #skeleton>
