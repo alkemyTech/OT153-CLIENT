@@ -1,10 +1,11 @@
+import { NewsFormComponent } from './pages/news/components/news-form/news-form.component';
+import { EditNewsFormComponent } from './pages/news/edit-news-form/edit-news-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
 import { BackofficeComponent } from './backoffice.component';
 import { ActivityFormComponent } from './pages/activities/activity-form/activity-form.component';
 import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
-import { NewsFormComponent } from './pages/news/news-form/news-form.component';
 import { CategoryDropdownComponent } from './pages/news/components/category-dropdown/category-dropdown.component';
 import { SlidesFormComponent } from './pages/slides/slides-form/slides-form.component';
 import { TestimonialFormComponent } from './pages/testimonials/testimonial-form/testimonial-form.component';
@@ -26,13 +27,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { ListNewsComponent } from './pages/news/list-news/list-news.component';
+import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
+
 
 @NgModule({
   declarations: [
     BackofficeComponent,
     ActivityFormComponent,
     CategoriesFormComponent,
-    NewsFormComponent,
     CategoryDropdownComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
@@ -51,6 +53,9 @@ import { ListNewsComponent } from './pages/news/list-news/list-news.component';
     OrganizationEditComponent,
     HomeComponent,
     ListNewsComponent,
+    NewNewsFormComponent,
+    EditNewsFormComponent,
+    NewsFormComponent,
   ],
   imports: [
     CommonModule,
@@ -65,7 +70,6 @@ import { ListNewsComponent } from './pages/news/list-news/list-news.component';
     SharedModule,
     ActivityFormComponent,
     CategoriesFormComponent,
-    NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
     RouterModule,

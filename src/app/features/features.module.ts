@@ -22,7 +22,7 @@ import { BackofficeModule } from './backoffice/backoffice.module';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    BackofficeModule
+    BackofficeModule,
   ],
 })
 export class FeaturesModule {}

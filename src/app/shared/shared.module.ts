@@ -11,10 +11,9 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { CardComponent } from './components/card/card.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { UpperTitleComponent } from './components/upper-title/upper-title.component';
-
+import { SimpleListComponent } from './components/simple-list/simple-list.component';
 
 import { ErrorDialogTemplateComponent } from './components/dialog/components/error-dialog-template/error-dialog-template.component';
-import { DialogComponent } from './components/dialog/dialog.component';
 import { DialogTemplateComponent } from './components/dialog/components/dialog-template/dialog-template.component'
 
 import { PhoneFormatPipe } from './pipes/phone-format.pipe';
@@ -30,6 +29,7 @@ const componentToExport = [
   SpinnerComponent,
   UpperTitleComponent, 
   DialogTemplateComponent,
+  SimpleListComponent,
 ];
 
 const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule];
