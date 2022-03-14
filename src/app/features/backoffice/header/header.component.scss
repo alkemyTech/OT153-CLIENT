@@ -1,0 +1,18 @@
+@import '__colors';
+
+header .container {
+    padding: 0 25px 0 35px;
+    border-bottom: 1px solid rgba(175, 175, 175, 0.5);
+    box-shadow: 2px 3px 5px rgba(175, 175, 175, 0.5);
+    background-color: $bgColor;
+    backdrop-filter: blur 2px;
+    & i {
+        font-size: 1.5em;
+        padding-right: 10px;
+        color: $hamburgerMenuColor;
+    }
+}
+button {
+    all: unset;
+    cursor: pointer;
+  }
