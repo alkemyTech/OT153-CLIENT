@@ -10,6 +10,7 @@ import { MessageService } from "primeng/api";
 import { Store } from '@ngrx/store';
 import { ActivitiesSelector as Selector, ActivitiesActions as Actions } from '@app/core/redux/activities/activities.index';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-activity-form',
@@ -41,12 +42,12 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   imgMessage: string;
   submitted: boolean = false;
   displaySubmitSpinner: boolean = false;
-  subscription: Subscription;
+  subscription: Subscription = new Subscription();
 
   error$: Observable<HttpErrorResponse> = new Observable();
   activity$: Observable<Activities> = new Observable();
   
-  public backLink = '/backoffice/actividades';
+  backLink = '/backoffice/actividades';
 
   constructor(
     private messageService: MessageService,
@@ -143,28 +144,30 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
 
     this.subscription = (this.Store.select(Selector.SelectStateOneData)).subscribe({
       next: (response) => {
-        this.displaySubmitSpinner = false;
         this.messageService.add({
           severity: 'success',
           summary: 'Enviado!',
           detail: 'La actividad fue cargada exitosamente.',
         });
+        delay(10000)
+        this.displaySubmitSpinner = false;
       },
       error: (err) => {
-        this.displaySubmitSpinner = false;
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: `${err.status} ${err.statusText}`,
         });
+        delay(10000)
+        this.displaySubmitSpinner = false;
       },
       complete: () => { 
-        this.router.navigateByUrl(this.backLink, { });
       }
     });
+
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe;
+    this.subscription.closed? null : this.subscription.unsubscribe();
   }
 }

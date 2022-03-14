@@ -16,7 +16,7 @@ export class DialogService {
             btnOk: 'ok',
             btnCancel: '',
             header: 'Error',
-            content: 'Se produjo un error en blablabla',
+            content: 'Se produjo un error ',
         },
 
     }
