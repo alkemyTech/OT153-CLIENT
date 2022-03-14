@@ -6,7 +6,7 @@ import { NewsControllerService } from '@app/core/controllers/news-controller.ser
 @Component({
   selector: 'app-list-news',
   templateUrl: './list-news.component.html',
-  styleUrls: ['./list-news.component.css']
+  styleUrls: ['./list-news.component.scss']
 })
 export class ListNewsComponent implements OnInit, OnDestroy {
   public news$: Observable<NewsResponse> = new Observable();
@@ -27,11 +27,7 @@ export class ListNewsComponent implements OnInit, OnDestroy {
     });
   }
 
-  editActivity(_idActivity){
-    return _idActivity;  
-  }
-
-  deleteActivity(_id: number){
+  delete(_id: number){
     this.controller.delete(_id);
     this.filterList(_id);
   }

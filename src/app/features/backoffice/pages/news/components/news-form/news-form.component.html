@@ -1,0 +1,119 @@
+<p-card header="{{ this.pageTitle }} Novedades" styleClass="p-card-shadow m-auto col-10 mt-2">
+  <div class="grid p-fluid">
+    <form (ngSubmit)="submit()" [formGroup]="formNews" class="w-100">
+      <!-- section NAME -->
+      <div class="field col-12" [class.has-error]="formControl('name').touched && formControl('name').dirty">
+        <input
+          pInputText
+          id="name-input"
+          placeholder="Titulo"
+          type="text"
+          formControlName="name"
+          aria-describedby="name-help"
+        />
+        <div *ngIf="formControl('name').invalid">
+          <small
+            *ngIf="formControl('name').touched && formControl('name').hasError('required')"
+            id="name-help"
+            class="p-error"
+            >*El campo es obligatorio</small
+          >
+          <small
+            *ngIf="formControl('name').touched && formControl('name').hasError('minlength')"
+            id="name-help"
+            class="p-error"
+            >*Minimo 4 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <!-- section CONTENT  -->
+      <div class="field col-12">
+        <div class="col-sm-9">
+          <ckeditor [editor]="editor" [config]="config" formControlName="content"></ckeditor>
+        </div>
+        <div *ngIf="formControl('content').invalid">
+          <small
+            *ngIf="formControl('content').touched && formControl('content').hasError('required')"
+            id="title-help"
+            class="p-error"
+            >*El campo es obligatorio</small
+          >
+        </div>
+      </div>
+
+      <!-- section CATEGORY -->
+      <div class="field col-12">
+        <app-category-dropdown
+          placeholder="Categoria"
+          aria-describedby="category-help"
+          [required]="true"
+          [setSelectedIdCategory]="(this.isEdit) ? formControl('category_id').value : -1"
+          (emitSelect)="selectedIdCategory($event)"
+          (emitTouchedDirty)="dropdownCategoryTouchedDirty($event)"
+        >
+        </app-category-dropdown>
+        <input type="hidden" name="categoryIdHidden" formControlName="category_id" />
+        <small *ngIf="categoryTouchedDirty" id="category-help" class="p-error">Seleccione una categoria.</small>
+      </div>
+
+      <!-- section IMAGE IMG -->
+      <div class="field col-12">
+        <p-fileUpload
+          #fileInput
+          [showUploadButton]="false"
+          [showCancelButton]="false"
+          chooseLabel="Elija una imagen"
+          invalidFileTypeMessageDetail="Archivos permitidos: jpeg y png"
+          accept="image/jpeg, image/png"
+          [auto]="false"
+          (onRemove)="onRemove()"
+          (onSelect)="onSelect($event)"
+        >
+        </p-fileUpload>
+
+        <input type="hidden" name="fileHidden" formControlName="image" />
+
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFile">
+            <li>{{ uploadedFile.name }} - {{ uploadedFile.size }} bytes</li>
+          </ul>
+        </ng-template>
+
+        <small
+          *ngIf="formControl('image').touched && formControl('image').hasError('required')"
+          id="image-help"
+          class="p-error"
+          >Debe seleccionar una imágen</small
+        >
+
+        <p-card *ngIf="formControl('image')?.value" header="Imagen Actual" class="col-12">
+          <p-image [src]="imageUrl" alt="Image" width="100vh" [preview]="true"></p-image>
+        </p-card>
+      </div>
+
+      <!-- section BUTTONS -->
+      <div class="row flex">
+        <div class="col-6">
+          <button
+            pButton
+            type="submit"
+            label="{{ this.pageTitle }}"
+            class="p-button-primary box"
+            [loading]="isLoading"
+          ></button>
+        </div>
+
+        <div class="col-6">
+          <button
+            pButton
+            type="button"
+            routerLink="/novedades"
+            label="Atras"
+            class="p-button-secondary box"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</p-card>
