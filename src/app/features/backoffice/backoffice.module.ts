@@ -28,6 +28,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { ListNewsComponent } from './pages/news/list-news/list-news.component';
 import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
+import { HeaderBackofficeComponent } from './header/header.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.c
     NewNewsFormComponent,
     EditNewsFormComponent,
     NewsFormComponent,
+    HeaderBackofficeComponent,
   ],
   imports: [
     CommonModule,
