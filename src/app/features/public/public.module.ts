@@ -20,6 +20,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NewsComponent } from './pages/home/news/news.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
+import { DonationsHeaderComponent } from './pages/donations/donations-header/donations-header.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
     HomeComponent,
     NewsComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    DonationsHeaderComponent
   ],
   imports: [CommonModule, PublicRoutingModule, SharedModule],
   exports: [SharedModule]

@@ -1,0 +1,58 @@
+@import "__colors";
+
+.banner{
+    height: 650px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner_img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+}
+
+.banner_info{
+    padding:0 3em;
+    position: absolute;
+    width: 100%;
+    color: $white;
+    margin: auto;
+}
+
+.banner_title{
+    text-align: left;
+    line-height: 1.5;
+    font-size: 4.5em;
+}
+
+.banner_title_yellow{
+    color: $gold;
+}
+
+.banner_p{
+    line-height: 2;
+    font-size: 1.5em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.banner{
+    height: 700px;
+    background: url("/assets/public/donations/donations-banner.jpg") fixed center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background:$black;
+    opacity: 0.3;
+}
+
