@@ -1,14 +1,15 @@
+import { EventEmitter } from '@angular/core';
 /**
  * -- @param idNews: number. ------ If idNews >= 1 then EDIT else CREATE end.
  * -- @param routerLink: string.--- Back button path.
  *
  */
  import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
- import { Component, Input, OnInit, ViewChild } from '@angular/core';
+ import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
  import { getControl } from '@app/core/util/getControlForm';
  import { getControl as getControlFunction } from '@app/core/util/getControlForm';
  import { HttpService } from '@app/core/services/http.service';
- import { New, NewData, News } from '@app/core/models/news.interfaces';
+ import { New, NewResponse } from '@app/core/models/news.interfaces';
  import { MessageService } from 'primeng/api';
  import { FileUpload } from 'primeng/fileupload';
  import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -22,7 +23,6 @@ import { environment } from '@env/environment';
  })
  export class NewsFormComponent implements OnInit {
    @ViewChild('fileInput') fileInput: FileUpload;
-   @Input() routerLink: string;
    @Input() idNews: number; //idNews <= -1 --> create // idNews >= 0 --> edit
    public isEditFlag: boolean;
    private title: string = 'Crear';
@@ -67,8 +67,8 @@ import { environment } from '@env/environment';
  
    getNews(id: number) {
      let url = `${this.url}/${id}`;
-     let _newdata: NewData;
-     this.httpService.get<New>(url).subscribe({
+     let _newdata: New;
+     this.httpService.get<NewResponse>(url).subscribe({
        next: (response) => { _newdata = response.data },
        error: (error:HttpErrorResponse) => { 
          this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al cargar el formulario.'); },
@@ -113,8 +113,8 @@ import { environment } from '@env/environment';
      }
  
      let url = `${this.url}/${this.idNews}`;
-     let _response: New;     
-     this.httpPrivateService.patch<New>(url, body).subscribe({
+     let _response: NewResponse;     
+     this.httpPrivateService.patch<NewResponse>(url, body).subscribe({
        next: (response) => { _response = response },
        error: (error: HttpErrorResponse) => { 
          this.addToastMessage('error', 'Error: '+error.headers );
@@ -137,8 +137,8 @@ import { environment } from '@env/environment';
      let image = this.base64Image;
      const category_id = this._categoryId;
      const body: any = { name, content, category_id, image };
-     let _resp: New;
-     this.httpPrivateService.post<New>(this.url, body).subscribe({
+     let _resp: NewResponse;
+     this.httpPrivateService.post<NewResponse>(this.url, body).subscribe({
        next: (resp) => { _resp = resp },
        error: (error:HttpErrorResponse) => { 
          this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al' + this.title + 'la Novedad!');
@@ -157,7 +157,7 @@ import { environment } from '@env/environment';
        },
      });
    }
- 
+
    onSelect(event) {
      if (!event.currentFiles[0]) return;
      let file = event.currentFiles[0];

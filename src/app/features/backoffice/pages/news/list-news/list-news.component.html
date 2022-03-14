@@ -1,0 +1,6 @@
+<app-simple-list 
+  [data]="news" 
+  [createLink]="'novedades/crear'"
+  [editLink]="'novedades/editar'"
+  (emitDelete)="delete($event)" 
+></app-simple-list>

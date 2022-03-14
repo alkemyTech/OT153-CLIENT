@@ -12,6 +12,9 @@ import { SlidesFormComponent } from './pages/slides/slides-form/slides-form.comp
 import { SlidesListComponent } from './pages/slides/slides-list/slides-list.component';
 import { NewUserComponent } from './pages/users/new-user/new-user.component';
 import { UsersCrudComponent } from './pages/users/users.component';
+import { ListNewsComponent } from './pages/news/list-news/list-news.component';
+import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
+import { EditNewsFormComponent } from './pages/news/edit-news-form/edit-news-form.component';
 
 const routes: Routes = [
   {
@@ -29,6 +32,14 @@ const routes: Routes = [
           { path: 'crear', component: NewActivityFormComponent },
           { path: 'editar/:id', component: EditActivityFormComponent },
         ],
+      },
+      {
+        path: 'novedades',
+        children:[
+          { path:'', component: ListNewsComponent },
+          { path:'crear', component: NewNewsFormComponent },
+          { path:'editar/:id', component: EditNewsFormComponent },
+        ]
       },
       {
         path: 'categorias',
