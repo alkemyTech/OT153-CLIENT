@@ -29,15 +29,19 @@ section{
 
 .info-container{
     @extend .max-contact;
+    filter: opacity(0.5);
     padding-top: 0;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 5rem;
+    &:hover{
+        filter: opacity(1);
+    }
 }
 
-.map-container{
-
-}
+// .map-container{
+    
+// }
 
 @media screen and (max-width:900px) {
     .info-container, .contact-container{

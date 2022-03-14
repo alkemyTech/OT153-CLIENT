@@ -9,10 +9,10 @@
     top: 3px;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: white;
     padding: 0 20px;
   }
 }
+
 .info {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -21,6 +21,7 @@
   opacity: .85;
   padding: 2rem 0;
 }
+
 .cell{
   margin: 0 auto;
   display: flex;
@@ -36,6 +37,10 @@
     zoom: 1.1;
   }
 
+}
+
+.invert{
+  filter: grayscale(2);
 }
 
 @media screen and (max-width:900px) {
