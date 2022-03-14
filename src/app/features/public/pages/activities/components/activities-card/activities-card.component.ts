@@ -45,7 +45,6 @@ export class ActivitiesCardComponent implements OnInit {
   alerts(): void {
     this.error$.subscribe((e) => {
       if (e.error) {
-        console.log(e);
         let dialog: DialogData = { type: DialogType.ERROR, header: 'ERROR', content: e.message };
         this.dialogService.show(dialog);
       }
