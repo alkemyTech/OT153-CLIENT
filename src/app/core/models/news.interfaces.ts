@@ -16,6 +16,7 @@ export interface New {
   slug: string;
   content: string;
   image: string;
+  created_at?:  string | null;
   user_id: number;
   category_id: number;
 }

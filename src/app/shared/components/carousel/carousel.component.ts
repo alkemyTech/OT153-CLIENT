@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SlideData } from '@app/core/models/slide.interfaces';
 
 @Component({
@@ -7,7 +7,7 @@ import { SlideData } from '@app/core/models/slide.interfaces';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-  slides: SlideData[];
+  @Input()slides:SlideData[];
 
   constructor() {}
 

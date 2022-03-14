@@ -1,0 +1,59 @@
+@import '__fonts';
+@import '__colors';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container-card {
+  font-family: $Montserrat;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-block: 2rem;
+  gap: 2rem;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: clamp(20rem, calc(20rem + 2vw), 22rem);
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  background: $white;
+  background: linear-gradient(to right, $white, $bgColor);
+
+}
+
+.card_body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.card_body h4 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.card_footer {
+  display: flex;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.user {
+  display: flex;
+  gap: .5rem;
+}
