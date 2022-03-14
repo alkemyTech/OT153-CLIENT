@@ -6,3 +6,10 @@ img {
     height:200px;
     object-fit: contain;
 }
+
+.loading{
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    margin: 200px 0;
+}
