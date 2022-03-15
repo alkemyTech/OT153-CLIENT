@@ -17,42 +17,42 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: "Inicio",
-        icon: "pi pi-fw pi-plus",
-        url: 'admin/'
-      },
-      {
         label: "Actividades",
         items: [
           {
             label: "Ver",
-            icon: "pi pi-fw pi-plus",
-            url: "admin/actividades"
+            icon: "pi pi-fw pi-eye",
+            url: "backoffice/actividades"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "admin/actividades/crear"
+            url: "backoffice/actividades/crear"
           }
         ]
       },
       {
         label: "Categorías",
-        icon: "pi pi-fw pi-plus",
-        url: 'admin/categorias'
+        items: [
+          {
+            label: "Ver",
+            icon: "pi pi-fw pi-eye",
+            url: "backoffice/categorias"
+          }
+        ]
       },
       {
         label: "Diapositivas",
         items: [
           {
             label: "Ver",
-            icon: "pi pi-fw pi-plus",
-            url: "admin/diapositivas"
+            icon: "pi pi-fw pi-eye",
+            url: "backoffice/diapositivas"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "admin/diapositivas/crear"
+            url: "backoffice/diapositivas/crear"
           }
         ]
       },
@@ -61,39 +61,31 @@ export class SidebarComponent implements OnInit {
         items: [
           {
             label: "Ver",
-            icon: "pi pi-fw pi-plus",
-            url: "admin/miembros"
+            icon: "pi pi-fw pi-eye",
+            url: "backoffice/miembros"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "admin/miembros/crear"
+            url: "backoffice/miembros/crear"
           }
         ]
-      },
-      {
-        label: "Organización",
-        icon: "pi pi-fw pi-plus",
-        url: "admin/organizacion"
       },
       {
         label: "Usuarios",
         items: [
           {
             label: "Ver",
-            icon: "pi pi-fw pi-plus",
-            url: "admin/usuarios"
+            icon: "pi pi-fw pi-eye",
+            url: "backoffice/usuarios"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "admin/usuarios/crear"
+            url: "backoffice/usuarios/crear"
           }
         ]
       },
     ]
-
   }
-  
-
 }
