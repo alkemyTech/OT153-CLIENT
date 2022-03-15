@@ -1,1 +1,18 @@
-<p>news works!</p>
+<div class="container-card">
+    <div class="card" *ngFor="let item of news">
+      <div class="card_header">
+        <img src={{item.image}} alt="card_image" class="card_image" width="600">
+      </div>
+      <div class="card_body">
+        <h4>{{item.name}}</h4>
+        {{item.content}}
+      </div>
+      <div class="card_footer">
+        <div class="user">
+          <div>
+           Publicado {{item.created_at | date: 'dd-MM-yyyy' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
