@@ -16,9 +16,8 @@ export class CampaignsComponent implements OnInit {
 
   constructor() {
     this.campaign = {
-      title: 'Juguetes por más sonrisas',
-      description:
-        `Incididunt dolore nisi nostrud in irure mollit velit est voluptate. 
+      title: 'Juntos en la vuelta al cole',
+      description: `Incididunt dolore nisi nostrud in irure mollit velit est voluptate. 
 
         Eu ipsum labore nulla id amet. Laboris laborum ipsum 
         in do ex adipisicing labore qui anim occaecat dolore minim. Velit est voluptate. 
@@ -27,8 +26,6 @@ export class CampaignsComponent implements OnInit {
          ipsum in do ex adipisicing in do ex adipisicing labore`,
       date: new Date(),
       place: 'Calle 123, Localidad, Provincia',
-      img: '../../../../../assets/campaign/img-juguetes-campaign.jpg',
-      imgTitle: 'Campaña de juguetes',
     };
   }
 

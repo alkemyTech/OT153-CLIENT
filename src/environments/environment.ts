@@ -10,20 +10,6 @@ export const environment = {
   apiUrlCategories: '',
   apiUrlmembers: '',
   apiUrlusers: '',
-<<<<<<< HEAD
-  apiUrlNews: "",
-  apiUrlNewsList: "",
-  apiUrlNewsListById: "",
-  apiUrlNewsPost: "",
-  apiUrlNewsUpdate: "",
-  apiUrlNewsDelete: "",
-  apiUrlMembers: "",
-  apiUrlLogin: "",
-  apiUrlRegister: "",
-  apiUrlUsers: "",
-  apiUrlSlides: "",
-  wikimediaMap: "",
-=======
   apiUrlNews: '',
   apiUrlNewsList: '',
   apiUrlNewsListById: '',
@@ -35,7 +21,7 @@ export const environment = {
   apiUrlRegister: '',
   apiUrlUsers: '',
   apiUrlSlides: '',
->>>>>>> fixed with remote version - add updated description styles & text rendering - added to routing
+  wikimediaMap: '',
 };
 
 /*

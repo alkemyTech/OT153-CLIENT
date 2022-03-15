@@ -3,6 +3,4 @@ export interface Campaign {
   description: string;
   date: Date;
   place: string;
-  img: string;
-  imgTitle: string;
 }

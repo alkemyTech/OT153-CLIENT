@@ -1,8 +1,10 @@
 @import '@../../../../../../../styles/_colors';
+@import '@../../../../../../../styles/_fonts';
 
 .campaign-container {
-  background: $bgColorSoftYellow;
-  @media screen and (min-width: 2048px) {  //smart tv background overlay
+  background: $bgColorSoft;
+  @media screen and (min-width: 2048px) {
+    //smart tv background overlay
     background: $bgColorSoftYellowOverlay;
   }
 }
@@ -10,7 +12,7 @@
 .campaign-title > h2 {
   text-transform: uppercase;
   letter-spacing: 4px;
-  font-size: 2.2em;
+  font-size: 1.8em;
   text-shadow: 1px 2px 2px rgba(95, 95, 95, 0.89);
   color: $gold;
 
@@ -26,57 +28,42 @@
   }
 }
 
-.image-container {
-  max-height: 60vh;
-  & img {
-    object-fit: cover;
-    height: 100%;
-    max-width: 100vw;
-    box-shadow: 0px -1px 7px 7px rgba(39, 17, 99, 0.267);
-  }
-
-  & figcaption {
-    transform: translateY(-32px);
-    background: rgba(185, 185, 185, 0.616);
-    padding: 3px;
-    font-weight: 500;
-    position: absolute;
-    width: 26%;
-    left: 37%;
-  }
-}
-
 .description-container {
   position: relative;
-  font-weight: 500;
-  
   font-size: 1.4em;
+
   & .description {
+    box-shadow: 0px 2px 6px 5px rgba(196, 196, 196, 0.418);
     border: 2px solid rgba(173, 172, 172, 0.452);
     padding: 4px;
-    background: rgba(202, 202, 202, 0.384);
-    box-shadow: 1px 1px 2px rgba(201, 236, 250, 0.808);
-    backdrop-filter: blur(2px);
+    background: rgb(228, 228, 228);
+    font-size: 0.8em;
+    position: relative;
+    z-index: 2;
+  }
 
-      font-size: .8em;
-      & h3 {
-      font-size: 1.4em;
-      opacity: .9;
-      }
-    }  
-  
+  & .description-subtitle {
+    font-size: 1.2em;
+    opacity: 0.9;
+    letter-spacing: 2px;
+    background-color: rgba(182, 182, 182, 0.7);
+    padding: 3px;
+  }
+
   & .related-img {
     display: none; //display only on desktop or bigger
   }
 
   @media screen and (min-width: 992px) {
-    & .related-img { // floating related images styles
+    & .related-img {
+      // floating related images styles
       display: block;
       height: 80px;
       position: absolute;
+      z-index: 1;
 
       @media screen and (min-width: 1200px) {
-        height: 120px;
+        height: 90px;
       }
       @media screen and (min-width: 2048px) {
         height: 150px;
@@ -84,68 +71,73 @@
 
       &.related-1 {
         left: 8%;
-        top: -35%;
+        top: -15%;
         transform: rotate(-5deg);
       }
       &.related-2 {
         right: 8%;
-        top: -28%;
+        top: -7%;
         transform: rotate(-5deg);
       }
       &.related-3 {
-        left: 17%;
-        top: 5%;
-        transform: rotate(20deg);
+        left: 5%;
+        top: 19%;
+        transform: rotate(-20deg);
       }
       &.related-4 {
         left: 4%;
-        top: 15%;
-        transform: rotate(-15deg);
+        top: 55%;
+        transform: rotate(5deg);
       }
       &.related-5 {
-        right: 20%;
-        top: 6%;
-        transform: rotate(-5deg);
+        right: 18%;
+        top: 26%;
+        transform: rotate(7deg);
       }
       &.related-6 {
         right: 5%;
-        top: 18%;
-        transform: rotate(-5deg);
+        top: 28%;
+        transform: rotate(-270deg);
       }
       &.related-7 {
-        right: 17%;
+        right: 14%;
         top: 65%;
         transform: rotate(10deg);
       }
       &.related-8 {
         left: 15%;
-        top: 70%;
-        transform: rotate(135deg);
-        height: 60px;
+        top: 80%;
+        transform: rotate(230deg);
+        height: 80px;
       }
     }
-    
+
     & .description,
-    .countdown-container { //move to center 
+    .countdown-container {
+      //move to center
       position: relative;
       width: 46%;
       left: 27%;
-   
     }
   }
 }
 .countdown-container {
+  @media screen and (max-width: 767px) {
+    //hide on mobile
+    display: none;
+  }
   padding: 2px;
-  border: 1px solid rgb(150, 149, 149);
+  border: 3px solid rgb(224, 224, 224);
   border-radius: 2%;
   box-shadow: 3px 2px 5px 1px rgb(153, 153, 153);
-  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(187, 150, 2, 0.315));
+  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(239, 255, 15, 0.315));
   font-size: 120%;
+  font-weight: 400;
 }
-.countdown-container,.description{ //some padding to boxes on mobile devices
-@media screen and (max-width: 992px) {
-  margin: 0 5% 0 5%;
+.countdown-container,
+.description {
+  //some padding to boxes on mobile devices
+  @media screen and (max-width: 992px) {
+    margin: 0 5% 0 5%;
+  }
 }
-}
-
-
