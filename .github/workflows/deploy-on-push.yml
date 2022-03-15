@@ -23,5 +23,5 @@ jobs:
 
       # Deploy the site with netlify-cli
       - name: Deploy to netlify
-        run: netlify deploy --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --dir dist/base-ong-angular-client --site=${{secrets.NETLIFY_SITE_ID}} --prod
+        run: netlify deploy --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --dir dist/base-ong-angular-client --site=${{secrets.NETLIFY_SITE_ID}} --prod --message "Deployed on $(date)"
         
