@@ -36,6 +36,7 @@ export class AuthService {
   register(newUser:User): Observable<any> {
     const body = {
       name: newUser.name,
+      address: newUser.address,
       email: newUser.email,
       password: newUser.password,
     };

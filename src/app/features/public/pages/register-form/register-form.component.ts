@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { register } from '@app/core/redux/auth/auth.actions';
 import {
   wordValidator,
   digitValidator,
@@ -10,6 +11,9 @@ import { passwordMatchValidator } from '@app/core/util/validators/password.valid
 import { DialogService } from '@app/core/services/dialog.service';
 import { DialogData } from '@app/core/models/dialog.inteface';
 import { DialogType } from '@app/core/enums/dialog.enum';
+import { Store } from '@ngrx/store';
+import { GooglePlaceDirective } from "ngx-google-places-autocomplete";
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-register-form',
@@ -18,10 +22,16 @@ import { DialogType } from '@app/core/enums/dialog.enum';
 })
 export class RegisterFormComponent implements OnInit {
   private frmSignup: FormGroup;
+  private usernameFormControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
   private useremailFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(6),
     emailValidator(),
+  ]);
+  private userdirectionFormControl: FormControl = new FormControl('', [
+    Validators.required,
   ]);
   private passwordFormControl: FormControl = new FormControl('', [
     Validators.required,
@@ -30,12 +40,28 @@ export class RegisterFormComponent implements OnInit {
     wordValidator(),
     symbolValidator(),
   ]);
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective | null = null;
+  directions: string = "";
+  title = 'Mapa de Dirección'
+  label = {
+    color: 'red',
+    text: "Mi ubicacion",
+  };
+
+  position = {
+    lat: -32.947639465,
+    lng: -60.630649567,
+  };
+
+  viewMap: boolean = false;
+
   private confirmPasswordFormControl = [null, Validators.compose([Validators.required])];
   termsAccepted = false;
   termsFilePath = '/assets/backoffice/terminos-y-condiciones.pdf'
 
-  constructor(private formBuilder: FormBuilder, private dialogService: DialogService) {
+  constructor(private formBuilder: FormBuilder, private dialogService: DialogService, private _store:Store) {
     this.frmSignup = this.registerForm();
+    
   }
 
   ngOnInit(): void {}
@@ -43,14 +69,18 @@ export class RegisterFormComponent implements OnInit {
   registerForm(): FormGroup {
     return this.formBuilder.group(
       {
+        name: this.usernameFormControl,
         useremail: this.useremailFormControl,
+        userdirection: this.userdirectionFormControl,
         password: this.passwordFormControl,
         confirmPassword: this.confirmPasswordFormControl,
       },
+      
       {
         validator: passwordMatchValidator,
       }
     );
+    
   }
 
   submit() {
@@ -72,10 +102,54 @@ export class RegisterFormComponent implements OnInit {
     };
     this.dialogService.show(dialog);
     this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
+    const {name, useremail , userdirection, password, confirmPassword } = this.frmSignup.value;
+    try {
+      if (password === confirmPassword) {
+        this._store.dispatch(
+          register({name:name, email: useremail, address:userdirection, password: password})
+        );
+      } else {
+        this.frmSignup.get("confirmPassword")?.setErrors({ repeat: true });
+        this.frmSignup.get("password")?.setErrors({ repeat: true });
+        alert("Las contraseñas no coinciden");
+      }
+    } catch (error) {
+      alert("Error en el registro");
+      this.frmSignup.reset();
+    }
+  }
+
+  
+  public handleAdressChange(adress: any) {
+    this.viewMap = false;
+    if (!adress.geometry) {
+      this.frmSignup.get("userdirection")?.setErrors({ require: true });
+      this.viewMap = false;
+      this.frmSignup.get("userdirection")?.setValue("");
+    } else {
+      this.directions   = adress.formatted_adress;
+      this.position.lat = adress.geometry.location.lat();
+      this.position.lng = adress.geometry.location.lng();
+      timer(500).subscribe(() => {
+        this.viewMap = true;
+      });
+    }
+  }
+
+  get direction() {
+    return this.frmSignup.get("userdirection");
   }
 
   get formSignup(): FormGroup {
     return this.frmSignup;
+  }
+
+  get usernameControl(): FormControl {
+    return this.frmSignup.controls['name'] as FormControl;
+  }
+
+  get userdirectionControl(): FormControl {
+    return this.frmSignup.controls['userdirection'] as FormControl;
   }
 
   get useremailControl(): FormControl {
