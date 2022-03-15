@@ -15,5 +15,6 @@ export const environment = {
   apiUrlMembers: "",
   apiUrlLogin: "",
   apiUrlRegister: "",
-  apiUrlUsers: ""
+  apiUrlUsers: "",
+  apiUrlSlides: ""
 };
