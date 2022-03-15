@@ -1,8 +1,16 @@
 .map {
     min-height: 30vh;
     padding: 0;
-
+    margin: 2vh 10vw;
+    border: 2px solid white ;
     &:hover{
         min-height: 32vh;
+    }
+}
+
+@media screen and (max-width:900px){
+    .map{
+        width: 100%;
+        margin: 0vh 0vw;
     }
 }
