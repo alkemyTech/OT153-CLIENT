@@ -12,12 +12,12 @@ const routes: Routes = [
   {
     path: "",
     loadChildren: () =>
-      import("./public/pages/home/home.module").then((m) => m.HomeModule),
+      import("./public/public.module").then((m) => m.PublicModule),
   },
   {
     path: "backoffice",
     loadChildren: () =>
-      import("./backoffice/pages/backoffice.module").then((m) => m.BackofficeModule),
+      import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
   },
 ];
 

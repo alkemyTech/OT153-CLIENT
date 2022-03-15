@@ -4,13 +4,14 @@ import { HttpService } from '@app/core/services/http.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { respSimpleCategory, simpleCategoryData } from '@app/core/models/category.interface';
+import { environment } from '@env/environment';
 @Component({
   selector: 'app-category-dropdown',
   templateUrl: './category-dropdown.component.html',
   styleUrls: ['./category-dropdown.component.scss'],
 })
 export class CategoryDropdownComponent implements OnInit {
-  url = 'http://ongapi.alkemy.org/api/categories';
+  url = environment.apiUrlCategories;
   categories: simpleCategoryData[];
   selectedCategory: simpleCategoryData;
 

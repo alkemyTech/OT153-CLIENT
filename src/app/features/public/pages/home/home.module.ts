@@ -10,6 +10,7 @@ import { ActivitySelectedComponent } from '../activities/components/activity-sel
 import { ContactComponent } from '../contact/contact.component';
 import { DonationsComponent } from '../donations/donations.component';
 import { ThanksComponent } from '../donations/thanks/thanks.component';
+import { ErrorComponent } from '../donations/error/error.component';
 
 const routes: Routes = [
 
@@ -34,12 +35,16 @@ const routes: Routes = [
         component: AboutComponent,
       },
       {
-        path: 'donacion',
+        path: 'donar',
         component: DonationsComponent,
       },
       {
         path: 'gracias',
         component: ThanksComponent,
+      },
+      {
+        path: 'error',
+        component: ErrorComponent,
       },
       {
         path: 'contacto',

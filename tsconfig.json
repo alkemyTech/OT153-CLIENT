@@ -7,6 +7,7 @@
       "@admin/*": ["src/app/pages/*"],
       "@app/*": ["src/app/*"],
       "@assets/*": ["src/assets/*"],
+      "@assetsPublic/*": ["src/assets/public/*"],
       "@auth/*": ["src/app/pages/auth/*"],
       "@backoffice/*": ["src/app/features/backoffice/*"],
       "@core/*": ["src/app/core/*"],
@@ -16,7 +17,8 @@
       "@pages/*": ["src/app/pages/*"],
       "@public/*": ["src/app/features/public/*"],
       "@shared/*": ["src/app/shared"],
-      "@util/*": ["src/app/core/util/*"]
+      "@util/*": ["src/app/core/util/*"],
+      "@coreComponents" :["src/app/core/components"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

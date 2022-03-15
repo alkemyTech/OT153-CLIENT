@@ -1,3 +1,4 @@
+import { NewResponse } from './../models/news.interfaces';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
@@ -59,8 +60,8 @@ export class PrivateApiService {
     );
   }
 
-  public patchNews<New>(url: string, body : {}, activateHeader: boolean = true): Observable<New> {
-    return this.http.patch<New>(
+  public patchNews<NewResponse>(url: string, body : {}, activateHeader: boolean = true): Observable<NewResponse> {
+    return this.http.patch<NewResponse>(
       url,
       body ? body : {},
       activateHeader ? { headers: this._headers } : {}

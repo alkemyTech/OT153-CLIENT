@@ -12,7 +12,6 @@ import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@ap
 export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities$: Observable<any> = new Observable();
   public activities: Activities[];
-  public activity$: Observable<Activities> = new Observable();
   public rows: number = 10;
   private subscribe: Subscription;
 
