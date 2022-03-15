@@ -35,7 +35,6 @@ export class LeafletMapComponent implements OnInit {
   layersControl = {
     baseLayers: {
       'Wikimedia Maps': this.wMaps,
-      'OpenStreet Maps': this.streetMaps
     },
     overlays: {
       'Somos Mas': this.organization,
