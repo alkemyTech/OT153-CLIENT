@@ -13,6 +13,7 @@ export class DialogTemplateComponent{
 
   @ViewChild('infoTemplate') infoTemplate: TemplateRef<any>;
   @ViewChild('errorTemplate') errorTemplate: TemplateRef<any>;
+  @ViewChild('successTemplate') successTemplate: TemplateRef<any>;
 
   public data$: Observable<DialogData>;
   public dialogData: DialogData;
@@ -31,6 +32,7 @@ export class DialogTemplateComponent{
       error: error => {
         console.warn('ERROR in 16: dialog-template.component.ts -.',error);
       },
+      
     })
   }
 
@@ -39,7 +41,9 @@ export class DialogTemplateComponent{
       case 'info':
         return this.infoTemplate
       case 'danger':
-        return this.errorTemplate      
+        return this.errorTemplate  
+      case 'success':
+        return this.successTemplate        
       default:
         return this.infoTemplate;
     }

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SlideData, Slides } from '@app/core/models/slide.interfaces';
 import { PrivateService } from '@app/features/services/private.service';
 import { environment } from '@env/environment';
-import { MessageService } from 'primeng/api';
+import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +16,7 @@ export class HomeComponent implements OnInit {
   public description:string = 'Somos Más es una organización que trabaja para dar respuesta a las problemáticas sociales que derivan de la pobreza.';
   public urlSlides = environment.apiUrlSlides;
   public slides: SlideData[];
-  constructor(private privateService: PrivateService, private msjService:MessageService) { }
+  constructor(private privateService: PrivateService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.getSlides();
@@ -26,12 +28,10 @@ export class HomeComponent implements OnInit {
       this.load = false;
   },error=>{
     this.load = false;
-    this.msjService.add({
-      severity: 'error',
-      summary: 'Ocurrio un Error',
-      detail: 'Error al cargar Carousel',
-    });
+    let dialog: DialogData = { type: DialogType.ERROR, header:  'Error al procesar la operación', content: 'El Carousel de imagenes no pudo ser cargado.'};
+    this.dialogService.show(dialog);
   });
+
   }
 
 

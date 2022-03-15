@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NewData } from '@app/core/models/news.interfaces';
 import { PrivateService } from '@app/features/services/private.service';
 import { environment } from '@env/environment';
-import { MessageService } from 'primeng/api';
+import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
 
 @Component({
   selector: 'alk-news',
@@ -13,7 +15,7 @@ export class NewsComponent implements OnInit {
   load: boolean = true;
   public urlNews = environment.apiUrlNews;
   public news:NewData [];
-  constructor(private privateService: PrivateService, private msjService:MessageService) { }
+  constructor(private privateService: PrivateService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.getNews();
@@ -24,14 +26,10 @@ export class NewsComponent implements OnInit {
       this.news = response.data;
       this.news = this.news.slice(0, 3);
       this.load = false;
-      console.log(this.news)
   },(error:any)=>{
     this.load = false;
-    this.msjService.add({
-      severity: 'error',
-      summary: 'Ocurrio un Error',
-      detail: 'Error al cargar Noticias',
-    });
+    let dialog: DialogData = { type: DialogType.ERROR, header:  'Error al procesar la operación', content: 'Error al cargar las noticias.'};
+    this.dialogService.show(dialog);
   });
   }
 }

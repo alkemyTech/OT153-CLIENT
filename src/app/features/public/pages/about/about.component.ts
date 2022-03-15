@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import { Organization } from '@core/models/organization.interfaces';
 import { environment } from '@env/environment';
-import { MessageService } from 'primeng/api';
+import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -16,21 +19,16 @@ export class AboutComponent implements OnInit {
   public error = '';
   public text: string = '';
 
-  constructor(private httpService: HttpService, private msjService:MessageService) {}
+  constructor(private httpService: HttpService, private dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.httpService.get<Organization>(environment.apiUrlOrganization).subscribe((resp) => {
       this.text = resp.data.long_description;
       this.load = false;
-    },
-    
-    error=>{
+    },(error)=>{
       this.load = false;
-      this.msjService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: `${error.status} ${error.statusText}`,
-      });
+      let dialog: DialogData = { type: DialogType.ERROR, header:  'Error al procesar la operación', content: 'El listado de miembros de la organización no se ha encontrado.'};
+      this.dialogService.show(dialog);
     }
     );
   }

@@ -1,15 +1,5 @@
-<h1 class ="mat-dialog-title text-center">{{title}}</h1>
-<div mat-dialog-content>
-    <p class="text-center">{{message}}</p>
-</div>
-<div class="icon">
-  <div class="icon-success">
-    <div class="icon-success-tip"></div>
-    <div class="icon-success-long"></div>
-    <div class="icon-success-placeholder"></div>
-    <div class="icon-success-fix"></div>
-  </div>
- </div>
-<div  mat-dialog-actions > 
-  <button  mat-button  mat-dialog-close class="btn-large"> Aceptar </button > 
-</div >
+<h2 mat-dialog-title class="text-center">{{ title }}</h2>
+<mat-dialog-content>{{ message }}</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true" class="btn">Aceptar</button>
+</mat-dialog-actions>

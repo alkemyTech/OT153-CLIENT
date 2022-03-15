@@ -7,21 +7,20 @@
     </div>
   </ng-container>
   <ng-container *ngIf="!load">
-    <div class="col-12 md:col-12 lg:col-12">
-      <h1> Bienvenidos</h1>
-      <h2> {{description }}</h2>
-    </div>
     <div class="grid">
-      <div class="col-12 md:col-12 lg:col-12">
-        <app-carousel [slides]=slides></app-carousel>
+      <div class="col-12">
+          <div>
+            <h1> Bienvenidos</h1>
+            <h2> {{description }}</h2>
+          </div>
+          <div>
+            <app-carousel [slides]=slides></app-carousel>
+          </div>
       </div>
-      <div class="col-12 md:col-12 lg:col-12">
-        <h1> Noticias</h1>
+      <div class="col-12 md:col-6 lg:col-12">
+          <h1> Noticias</h1>
+          <alk-news></alk-news>
       </div>
-      <div class="col-12 md:col-12 lg:col-12">
-        <alk-news></alk-news>
-      </div>
-    </div>
+  </div>
   </ng-container>
-  <p-toast position="center"></p-toast>
 </div>
