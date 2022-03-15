@@ -37,7 +37,6 @@ export class LeafletMapComponent implements OnInit {
       'Wikimedia Maps': this.wMaps,
     },
     overlays: {
-      'Somos Mas': this.organization,
     }, 
   };
 
