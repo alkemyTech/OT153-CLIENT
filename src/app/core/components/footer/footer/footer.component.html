@@ -4,7 +4,7 @@
       <div class="col-4">
         <img src="../../../../../assets/img/logo.png" alt="logo-somosmas" />
       </div>
-      <div class="col-4">
+      <div class="col-4 navigation">
         <ul>
           <li><a routerLink="/home">Inicio</a></li>
           <li><a routerLink="/nosotros">Nosotros</a></li>
@@ -17,9 +17,9 @@
         </ul>
       </div>
       <div class="col-4 flex flex-column justify-content-evenly">
-        <h3>{{ facebookLink }}</h3>
-        <h3>{{ instagramLink }}</h3>
-        <h3>{{ twitterLink }}</h3>
+        <a href="{{ facebookLink }}"><i class="pi pi-facebook"></i> {{ facebookLink }}</a>
+        <a href="{{ instagramLink }}"><i class="pi pi-instagram"></i> {{ instagramLink }}</a>
+        <a href="{{ twitterLink }}"><i class="pi pi-twitter"></i> {{ twitterLink }}</a>
       </div>
     </div>
   </div>

@@ -24,7 +24,12 @@ footer {
     position: relative;
     transition: 0.2s ease-in-out all;
   }
-  & a::before {
+
+  & a:hover {
+    color: rgba(255, 255, 255);
+  }
+
+  & .navigation a::before {
     position: absolute;
     bottom: 0;
     content: '';
@@ -36,11 +41,7 @@ footer {
     transition: 0.2s ease-in-out all;
   }
 
-  & a:hover {
-    color: rgba(255, 255, 255);
-  }
-
-  & a:hover::before {
+  & .navigation a:hover::before {
     transform: scaleX(1);
   }
 }
