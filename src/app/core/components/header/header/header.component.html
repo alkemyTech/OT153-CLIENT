@@ -9,6 +9,22 @@
         <a (click)="openNavbar = false" >{{link.text}}</a>
       </li>
 
+      <li>
+        <button 
+          *ngIf="!loggedIn"
+          pButton
+          class="p-button-primary p-button-sm"
+          [routerLink]="['iniciar-sesion']"
+        >
+        Login</button>
+        <button 
+          pButton
+          *ngIf="loggedIn"
+          class="p-button-secondary p-button-sm ml-2"
+          (click)="logout()"
+        >
+        Logout</button>
+      </li>
 
     </ul>
       <div id="menu-btn" class="menu" (click)="openNavbar = !openNavbar" >

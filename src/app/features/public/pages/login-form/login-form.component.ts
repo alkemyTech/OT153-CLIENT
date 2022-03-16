@@ -7,7 +7,8 @@ import { select, Store } from '@ngrx/store';
 import { AuthState } from '@app/core/redux/auth/auth.reducers';
 import { Observable } from 'rxjs';
 import { getAuth } from '@app/core/redux/auth/auth.selectors';
-import { login } from '@app/core/redux/auth/auth.actions';
+import { googlelogin, login } from '@app/core/redux/auth/auth.actions';
+import { getAuthToken } from '@core/redux/auth/auth.selectors';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -42,5 +43,13 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  loginGoogle(){
+    this._store.dispatch(googlelogin());
+    this._store.select(getAuthToken).subscribe( token => {
+      if(!token) return
+
+      this._router.navigateByUrl('/')
+    })
+  }
   
 }

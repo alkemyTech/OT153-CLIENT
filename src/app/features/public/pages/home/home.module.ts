@@ -12,11 +12,18 @@ import { DonationsComponent } from '../donations/donations.component';
 import { ThanksComponent } from '../donations/thanks/thanks.component';
 import { ErrorComponent } from '../donations/error/error.component';
 
+import { DonationGuard } from '@features/guards/donations.guard';
+import { LoginFormComponent } from '../login-form/login-form.component';
+
 const routes: Routes = [
 
   {
     path: '',
     children: [
+      {
+        path: 'login',
+        component: LoginFormComponent
+      },
       {
         path: 'home',
         component: HomeComponent,
@@ -37,6 +44,7 @@ const routes: Routes = [
       {
         path: 'donar',
         component: DonationsComponent,
+        canActivate: [DonationGuard]
       },
       {
         path: 'gracias',

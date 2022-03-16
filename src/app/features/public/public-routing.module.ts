@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
 import { PublicComponent } from './public.component';
+import { DonationGuard } from '@core/guards/donations.guard';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
       {
         path: 'donar',
         component: DonationsComponent,
+        canActivate: [DonationGuard]
       },
       {
         path: 'gracias',

@@ -22,3 +22,13 @@ export const cleanAuth = createSelector(
         token: null        
     })
 );
+
+export const getAuthToken = createSelector(
+    getAuthState,
+    (state: AuthState) => state.token
+);
+
+export const getIsGoogleAuth = createSelector(
+    getAuthState,
+    (state: AuthState) => state.isGoogleAuth
+);
