@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
       map(
         ({auth}) => {
           if(!auth) {
-            console.log('BLOCKED BY AUTH GUARD, YOU MUST BE LOGGED IN');
             this.router.navigateByUrl('/login');
             return false
           }else{

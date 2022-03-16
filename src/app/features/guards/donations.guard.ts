@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../../core/redux/auth/auth.reducers';
-import { getAuthToken, getIsGoogleAuth, getAuthOk } from '../../core/redux/auth/auth.selectors';
+import { getAuthOk } from '../../core/redux/auth/auth.selectors';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -19,7 +19,6 @@ export class DonationGuard implements CanActivate {
       map(
         ({auth, isGoogleAuth}) => {
           if(!isGoogleAuth && !auth){
-            console.log('BLOCKED DONATIONS GUARD');
             this.router.navigateByUrl('/')
             return false
           } 
