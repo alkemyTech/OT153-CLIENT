@@ -57,6 +57,13 @@ const routes: Routes = [
         path: 'registrarse',
         component: RegisterFormComponent,
       },
+      {
+        path: 'campañas',
+        children: [
+          { path: 'vuelta-al-cole', component: HomeComponent },
+          { path: 'juguetes', component: HomeComponent },
+        ],
+      },
     ],
   },
 ];

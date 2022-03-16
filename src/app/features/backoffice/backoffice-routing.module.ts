@@ -18,7 +18,7 @@ import { EditNewsFormComponent } from './pages/news/edit-news-form/edit-news-for
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'backoffice',
     component: BackofficeComponent,
     children: [
       {

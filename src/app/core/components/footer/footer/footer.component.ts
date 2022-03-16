@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthState } from '@app/core/redux/auth/auth.reducers';
 import { PublicapiService } from '@app/core/services/publicApi.service';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'alk-footer',
@@ -13,6 +15,8 @@ export class FooterComponent implements OnInit, OnDestroy {
   instagramLink: string;
   twitterLink: string;
   subscription: Subscription;
+  isAuth: boolean = false;
+  // isAuth$: Observable;
 
   constructor(private publicService: PublicapiService) {}
 
@@ -22,6 +26,8 @@ export class FooterComponent implements OnInit, OnDestroy {
       this.instagramLink = organization.data.instagram_url;
       this.twitterLink = organization.data.twitter_url;
     });
+
+    // this.isAuth$ = this.Store.select(Selection.getCurrentUser());
   }
 
   ngOnDestroy(): void {

@@ -4,16 +4,15 @@
       <div class="col-4">
         <img src="assets/img/logo.png" alt="logo-somosmas" />
       </div>
-      <div class="col-4 navigation">
+      <div class="col-4 navigation flex flex-column justify-content-evenly">
         <ul>
           <li><a routerLink="/home">Inicio</a></li>
           <li><a routerLink="/nosotros">Nosotros</a></li>
           <li><a routerLink="/actividades">Actividades</a></li>
-          <li><a routerLink="/novedades">Novedades</a></li>
-          <li><a routerLink="/testimonios">Testiomios</a></li>
           <li><a routerLink="/contacto">Contacto</a></li>
-          <li><a routerLink="/donaciones">Contribuye</a></li>
-          <li><a routerLink="/campañas">Campañas</a></li>
+          <li><a routerLink="/campañas/vuelta-al-cole">Campaña escolar</a></li>
+          <li><a routerLink="/campañas/juguetes">Campaña juguetes</a></li>
+          <li *ngIf="isAuth"><a routerLink="/donar">Contribuye</a></li>
         </ul>
       </div>
       <div class="col-4 flex flex-column justify-content-evenly">
