@@ -12,24 +12,29 @@ import {
 
 const initialState: OrganizationState = {
   response: {
-    id: 0,
-    name: '',
-    logo: '',
-    short_description: '',
-    long_description: '',
-    welcome_text: '',
-    address: '',
-    phone: '',
-    cellphone: '',
-    created_at: new Date(),
-    updated_at: new Date(),
-    deleted_at: null,
-    group_id: null,
-    facebook_url: '',
-    linkedin_url: '',
-    instagram_url: '',
-    twitter_url: '',
+    success: false,
+    data: {
+      id: 0,
+      name: '',
+      logo: '',
+      short_description: '',
+      long_description: '',
+      welcome_text: '',
+      address: '',
+      phone: '',
+      cellphone: '',
+      created_at: new Date(),
+      updated_at: new Date(),
+      deleted_at: null,
+      group_id: null,
+      facebook_url: '',
+      linkedin_url: '',
+      instagram_url: '',
+      twitter_url: '',
+    },
+    message: '',
   },
+
   error: new HttpErrorResponse({}),
 };
 
@@ -40,16 +45,15 @@ export const _organizationReducer = createReducer(
   }),
   on(getOrganizationError, (state, action) => {
     return { ...state, error: action.error };
-  })
-  /*   on(postOrganizationSuccess, (state, action) => {
-    return { ...state, response: action };
+  }),
+  on(postOrganizationSuccess, (state, action) => {
+    return { ...state, response: action.response };
   }),
   on(postOrganizationError, (state, action) => {
     return { ...state, error: action.error };
-  }) */
+  })
 );
 
 export function organizationReducer(state, action) {
-  console.log(_organizationReducer(state, action));
   return _organizationReducer(state, action);
 }

@@ -1,105 +1,143 @@
 <div class="grid">
-    <p-card class="col-12 lg:col-8 lg:col-offset-2">
-        <div class="text-center pl-5 my-4">
-            <h1>
-                Editar datos de la organización
-            </h1>
+  <p-card class="col-12 lg:col-8 lg:col-offset-2 mt-4">
+    <div class="text-center pl-5 my-4">
+      <h1>Editar datos de la organización</h1>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="formgrid grid mt-5 ml-4 m-auto bg-faded">
+      <div class="col-6 m-auto mt-5 text-center">
+        <div class="field flex flex-column align-items-center">
+          <label><strong>Logo *</strong></label>
+          <div class="image-container mb-2">
+            <img [src]="imageBuffer" *ngIf="imageBuffer" />
+          </div>
+          <button pButton type="button" (click)="image.click()" label="Choose File" class="p-button-warning"></button>
+          <input accept=".jpg,.png" hidden #image type="file" (change)="selectFile($event)" />
+
+          <p-message *ngIf="imageBuffer" severity="success" styleClass="ml-2 mt-1 "></p-message>
+          <p-message *ngIf="submitted && !imageBuffer" severity="error" text="requerido" class="ml-2"> </p-message>
+          <div class="mt-2" [innerHtml]="imgMessage" *ngIf="imgMessage"></div>
+        </div>
+      </div>
+
+      <div class="col-12 lg:col-6">
+        <div class="field">
+          <label><strong>Nombre de la organización *</strong></label>
+          <div class="p-inputgroup">
+            <input
+              formControlName="name"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              pInputText
+              placeholder="..."
+            />
+          </div>
+          <small *ngIf="submitted && !this.form.get('name')?.value" severity="error" class="p-error"
+            >Nombre de la organización es requerido.</small
+          >
         </div>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="formgrid grid mt-5 ml-4 m-auto bg-faded">
+        <div class="field">
+          <label><strong>Descripción corta *</strong></label>
+          <div class="p-inputgroup">
+            <input
+              formControlName="shortDescription"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              pInputText
+              placeholder="..."
+            />
+          </div>
+          <small *ngIf="submitted && !this.form.get('shortDescription')?.value" severity="error" class="p-error"
+            >Descripción corta es requerida.</small
+          >
+        </div>
 
-            <div class="col-6 m-auto mt-5 text-center">
-                <div class="field flex flex-column align-items-center">
+        <div class="field">
+          <label><strong>Enlace a Facebook</strong></label>
+          <div class="p-inputgroup">
+            <input
+              formControlName="facebookLink"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              pInputText
+              placeholder="..."
+            />
+          </div>
+          <small
+            *ngIf="getControl(form, 'facebookLink')?.invalid && getControl(form, 'facebookLink')?.touched"
+            severity="error"
+            class="p-error"
+            >Ops! Hay algo incorrecto en el enlace...</small
+          >
+        </div>
 
-                    <label><strong>Logo *</strong></label>
-                    <div class="image-container mb-2">
-                        <img [src]="imageBuffer" *ngIf="imageBuffer">
-                    </div>
-                    <button pButton type="button" (click)="image.click()" label="Choose File"
-                        class="p-button-warning"></button>
-                    <input accept=".jpg,.png" formControlName="logo" hidden #image type="file"
-                        (change)="selectFile($event)">
+        <div class="field">
+          <label><strong>Enlace a Instagram</strong></label>
+          <div class="p-inputgroup">
+            <input
+              formControlName="instagramLink"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              pInputText
+              placeholder="..."
+            />
+          </div>
+          <small
+            *ngIf="getControl(form, 'instagramLink')?.invalid && getControl(form, 'instagramLink')?.touched"
+            severity="error"
+            class="p-error"
+            >Ops! Hay algo incorrecto en el enlace...</small
+          >
+        </div>
 
-                    <p-message *ngIf="imageBuffer" severity="success" styleClass="ml-2 mt-1 "></p-message>
-                    <p-message *ngIf="submitted && !imageBuffer" severity="error" text="requerido" class="ml-2">
-                    </p-message>
-                    <div class="mt-2" [innerHtml]='imgMessage' *ngIf="imgMessage"></div>
-                </div>
-            </div>
+        <div class="field">
+          <label><strong>Enlace a Twitter</strong></label>
+          <div class="p-inputgroup">
+            <input
+              formControlName="twitterLink"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              pInputText
+              placeholder="..."
+            />
+          </div>
+          <small
+            *ngIf="getControl(form, 'twitterLink')?.invalid && getControl(form, 'twitterLink')?.touched"
+            severity="error"
+            class="p-error"
+            >Ops! Hay algo incorrecto en el enlace...</small
+          >
+        </div>
+      </div>
 
-            <div class="col-12 lg:col-6">
-                <div class="field">
-                    <label><strong>Nombre de la organización *</strong></label>
-                    <div class="p-inputgroup">
-                        <input formControlName="name" class="form-control" type="text" autocomplete="off" pInputText
-                            placeholder="...">
-                    </div>
-                    <small *ngIf="submitted && !this.form.get('name')?.value" severity="error" class="p-error">Nombre de
-                        la organización es requerido.</small>
-                </div>
+      <div class="col-12 mt-4 text-center pt-4 mt-2">
+        <div class="field">
+          <label><strong>Descripción de la organización *</strong></label>
+          <ckeditor (change)="ckeditorChange($event)" data="{{ defaultLongDescription }}" [editor]="Editor"> </ckeditor>
+          <small *ngIf="submitted && !this.form.get('longDescription')?.value" severity="error" class="p-error"
+            >Descripción de la organización es requerida.</small
+          >
+        </div>
+      </div>
 
-                <div class="field">
-                    <label><strong>Descripción corta *</strong></label>
-                    <div class="p-inputgroup">
-                        <input formControlName="shortDescription" class="form-control" type="text" autocomplete="off"
-                            pInputText placeholder="...">
-                    </div>
-                    <small *ngIf="submitted && !this.form.get('shortDescription')?.value" severity="error"
-                        class="p-error">Descripción corta es requerida.</small>
-                </div>
-
-                <div class="field">
-                    <label><strong>Enlace a Facebook</strong></label>
-                    <div class="p-inputgroup">
-                        <input formControlName="facebookLink" class="form-control" type="text" autocomplete="off"
-                            pInputText placeholder="...">
-                    </div>
-                    <small
-                        *ngIf="getControl(form, 'facebookLink')?.invalid && getControl(form, 'facebookLink')?.touched"
-                        severity="error" class="p-error">Ops! Hay
-                        algo incorrecto en el enlace...</small>
-                </div>
-
-                <div class="field">
-                    <label><strong>Enlace a Instagram</strong></label>
-                    <div class="p-inputgroup">
-                        <input formControlName="instagramLink" class="form-control" type="text" autocomplete="off"
-                            pInputText placeholder="...">
-                    </div>
-                    <small
-                        *ngIf="getControl(form, 'instagramLink')?.invalid && getControl(form, 'instagramLink')?.touched"
-                        severity="error" class="p-error">Ops! Hay algo incorrecto en el enlace...</small>
-                </div>
-
-                <div class="field">
-                    <label><strong>Enlace a Twitter</strong></label>
-                    <div class="p-inputgroup">
-                        <input formControlName="twitterLink" class="form-control" type="text" autocomplete="off"
-                            pInputText placeholder="...">
-                    </div>
-                    <small *ngIf="getControl(form, 'twitterLink')?.invalid && getControl(form, 'twitterLink')?.touched"
-                        severity="error" class="p-error">Ops! Hay
-                        algo incorrecto en el enlace...</small>
-                </div>
-            </div>
-
-            <div class="col-12 mt-4 text-center pt-4 mt-2">
-                <div class="field">
-                    <label><strong>Descripción de la organización *</strong></label>
-                    <ckeditor (change)="ckeditorChange($event)" data="{{defaultLongDescription}}" [editor]="Editor">
-                    </ckeditor>
-                    <small *ngIf="submitted && !this.form.get('longDescription')?.value" severity="error"
-                        class="p-error">Descripción
-                        de la organización es requerida.</small>
-                </div>
-            </div>
-
-            <div class="col-12 my-5 text-center">
-                <button pButton pRipple class="p-button-raised" label="Submit" type="submit"></button>
-            </div>
-            <p-progressSpinner class="m-auto" [style]="{width: '50px', height: '50px', opacity: '.7'}"
-                *ngIf="displaySubmitSpinner">
-            </p-progressSpinner>
-        </form>
-    </p-card>
+      <div class="col-12 my-5 text-center">
+        <button pButton pRipple class="p-button-raised" label="Submit" type="submit"></button>
+        <p class="mt-3">
+          <strong>{{ responseMessage }}</strong>
+        </p>
+      </div>
+      <p-progressSpinner
+        class="m-auto"
+        [style]="{ width: '50px', height: '50px', opacity: '.7' }"
+        *ngIf="displaySubmitSpinner"
+      >
+      </p-progressSpinner>
+    </form>
+  </p-card>
 </div>

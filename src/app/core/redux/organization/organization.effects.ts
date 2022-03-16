@@ -17,10 +17,9 @@ export class OrganizationEffects {
   getOrganization$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(getOrganization),
-      tap(() => console.log('getOrganization')),
       mergeMap(() => {
         return this.organizationService.getPublicOrganization().pipe(
-          map((response) => getOrganizationSuccess({ response: response.data })),
+          map((response) => getOrganizationSuccess({ response: response })),
           catchError((error) => of(getOrganizationError({ error: error })))
         );
       })

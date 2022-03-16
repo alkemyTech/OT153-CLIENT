@@ -13,10 +13,7 @@ export enum type {
 
 export const getOrganization = createAction(type.GET_ORGANIZATION);
 export const getOrganizationError = createAction(type.GET_ORGANIZATION_ERROR, props<{ error: any }>());
-export const getOrganizationSuccess = createAction(
-  type.GET_ORGANIZATION_SUCCESS,
-  props<{ response: OrganizationData }>()
-);
+export const getOrganizationSuccess = createAction(type.GET_ORGANIZATION_SUCCESS, props<{ response: Organization }>());
 
 export const postOrganization = createAction(type.POST_ORGANIZATION, props<{ body: OrganizationData }>());
 export const postOrganizationSuccess = createAction(

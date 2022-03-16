@@ -25,9 +25,9 @@ export class AboutComponent implements OnInit, OnDestroy {
   public backgroundColor = '#DB5752';
   public textColor = '#fff';
   public text: string = '';
-  public organization$: Observable<OrganizationData> = new Observable();
+  public organization$: Observable<Organization> = new Observable();
   public error$: Observable<HttpErrorResponse> = new Observable();
-  public subscriptions: Subscription[];
+  public subscriptions: Subscription[] = [];
   public organization: OrganizationData;
 
   constructor(private Store: Store<{ organizationState: OrganizationState }>, private dialogService: DialogService) {}
@@ -41,9 +41,9 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   getOrganization() {
     this.organization$.subscribe((organization) => {
-      this.text = organization.long_description;
+      this.text = organization.data.long_description;
       this.load = false;
-      this.organization = organization;
+      this.organization = organization.data;
     });
 
     this.error$.subscribe((error) => {
