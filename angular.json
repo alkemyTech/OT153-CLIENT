@@ -29,14 +29,20 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [    
+            "assets": [
+              "src/favicon.ico", 
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              },
               {
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "leaflet/"
-              },
-              "src/favicon.ico", 
-              "src/assets"],
+              }
+            ],
             "styles": [
               "node_modules/primeflex/primeflex.css",
               "node_modules/primeng/resources/themes/fluent-light/theme.css",
