@@ -29,6 +29,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { ListNewsComponent } from './pages/news/list-news/list-news.component';
 import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
 import { HeaderBackofficeComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -58,6 +59,8 @@ import { HeaderBackofficeComponent } from './header/header.component';
     EditNewsFormComponent,
     NewsFormComponent,
     HeaderBackofficeComponent,
+    SidebarComponent,
+
   ],
   imports: [
     CommonModule,

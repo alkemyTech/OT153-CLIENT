@@ -17,6 +17,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from "primeng/message";
 import { PaginatorModule } from 'primeng/paginator';
+import { PanelMenuModule } from 'primeng/panelmenu';
 import { PasswordModule } from 'primeng/password';
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -51,6 +52,7 @@ import { TooltipModule } from 'primeng/tooltip';
     InputTextModule,
     MessageModule,
     PaginatorModule,
+    PanelMenuModule,
     PasswordModule,
     ProgressSpinnerModule,
     RadioButtonModule,
