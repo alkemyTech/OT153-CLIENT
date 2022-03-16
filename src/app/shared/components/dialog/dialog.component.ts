@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogTemplateComponent, {
-      width: '30vw',
+      width: '50vw',
       //disableClose: true, //force close with buttons
     })
     dialogRef.afterClosed().subscribe(result => {
