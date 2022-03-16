@@ -1,0 +1,144 @@
+@import '_colors';
+@import '_fonts';
+
+.campaign-container {
+  background: $bgColorSoft;
+  @media screen and (min-width: 2048px) {
+    //smart tv background overlay
+    background: $bgColorSoftYellowOverlay;
+  }
+}
+
+.campaign-title > h2 {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 1.8em;
+  text-shadow: 1px 2px 2px rgba(95, 95, 95, 0.89);
+  color: $gold;
+
+  @media screen and (max-width: 991px) {
+    //medium devices
+    font-size: 1.5em;
+  }
+
+  @media screen and (max-width: 575px) {
+    // small devices
+    letter-spacing: 2px;
+    font-size: 1em;
+  }
+}
+
+.description-container {
+  position: relative;
+  font-size: 1.4em;
+  min-height: 65vh;
+
+  & .description {
+    box-shadow: 0px 2px 6px 5px rgba(196, 196, 196, 0.418);
+    border: 2px solid rgba(173, 172, 172, 0.452);
+    padding: 4px;
+    background: rgb(228, 228, 228);
+    font-size: 0.8em;
+    position: relative;
+    z-index: 2;
+  }
+
+  & .description-subtitle {
+    font-size: 1.2em;
+    opacity: 0.9;
+    letter-spacing: 2px;
+    background-color: rgba(182, 182, 182, 0.7);
+    padding: 3px;
+  }
+
+  & .related-img {
+    display: none; //display only on desktop or bigger
+  }
+
+  @media screen and (min-width: 992px) {
+    & .related-img {
+      // floating related images styles
+      display: block;
+      height: 80px;
+      position: absolute;
+      z-index: 1;
+
+      @media screen and (min-width: 1200px) {
+        height: 90px;
+      }
+      @media screen and (min-width: 2048px) {
+        height: 150px;
+      }
+
+      &.related-1 {
+        left: 8%;
+        top: -11%;
+        transform: rotate(-5deg);
+      }
+      &.related-2 {
+        right: 8%;
+        top: -7%;
+        transform: rotate(-5deg);
+      }
+      &.related-3 {
+        left: 5%;
+        top: 19%;
+        transform: rotate(-20deg);
+      }
+      &.related-4 {
+        left: 4%;
+        top: 55%;
+        transform: rotate(5deg);
+      }
+      &.related-5 {
+        right: 18%;
+        top: 26%;
+        transform: rotate(7deg);
+      }
+      &.related-6 {
+        right: 5%;
+        top: 28%;
+        transform: rotate(-270deg);
+      }
+      &.related-7 {
+        right: 14%;
+        top: 65%;
+        transform: rotate(10deg);
+      }
+      &.related-8 {
+        left: 15%;
+        top: 80%;
+        transform: rotate(230deg);
+        height: 80px;
+      }
+    }
+
+    & .description,
+    .countdown-container {
+      //move to center
+      position: relative;
+      width: 46%;
+      left: 27%;
+    }
+  }
+}
+.countdown-container {
+  @media screen and (max-width: 767px) {
+    //hide on mobile
+    display: none;
+  }
+  padding: 2px;
+  border: 3px solid rgb(224, 224, 224);
+  border-radius: 2%;
+  box-shadow: 3px 2px 5px 1px rgb(153, 153, 153);
+  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(239, 255, 15, 0.315));
+  font-size: 120%;
+  font-weight: 400;
+}
+.countdown-container,
+.description {
+  //some padding to boxes on mobile devices
+  @media screen and (max-width: 992px) {
+    margin: 0 5% 0 5%;
+  }
+}

@@ -1,0 +1,80 @@
+<div class="container campaign-container">
+  <div class="grid text-center">
+    <div class="col-12 text-center campaign-title">
+      <h2>{{ this.campaign.title }}</h2>
+    </div>
+
+    <div class="col-12 py-2">
+      <div class="description-container">
+        <div class="description pt-3">
+          &bull;
+          <span class="description-subtitle">
+            <i><u>Fecha y lugar</u></i></span
+          >
+          <p class="mt-4 mb-3">
+            {{ campaign.date.getDay() | weekdayFormat }} {{ campaign.date.getDate() }} de
+            {{ campaign.date.getMonth() | monthNumberFormat }} de {{ campaign.date.getFullYear() }} a las
+            {{ campaign.date.getHours() }}:{{ campaign.date.getMinutes() }} <br />
+            {{ campaign.place }}
+          </p>
+
+          &bull;
+          <span class="description-subtitle mt-4">
+            <u><i>Descripción</i></u></span
+          >
+          <p class="mt-5 mb-3" [innerText]="campaign.description"></p>
+        </div>
+
+        <div class="countdown-container">
+          <p>
+            <i>
+              Te quedan
+              <span>{{ timeleft.days }}d {{ timeleft.hours }}h {{ timeleft.minutes }}m</span>
+              para participar.</i
+            >
+          </p>
+        </div>
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-1.png"
+          alt="toys-3"
+          class="related-img related-1"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-2.png"
+          alt="toys-4"
+          class="related-img related-2"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-3.png"
+          alt="toys-3"
+          class="related-img related-3"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-4.png"
+          alt="toys-4"
+          class="related-img related-4"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-5.png"
+          alt="toys-5"
+          class="related-img related-5"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-6.png"
+          alt="toys-6"
+          class="related-img related-6"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-7.png"
+          alt="toys-7"
+          class="related-img related-7"
+        />
+        <img
+          src="assets/campaign/campaña-escolar/related-escolar-campaign-8.png"
+          alt="toys-8"
+          class="related-img related-8"
+        />
+      </div>
+    </div>
+  </div>
+</div>
