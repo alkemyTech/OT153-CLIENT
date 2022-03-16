@@ -7,14 +7,16 @@ export interface AuthState {
   auth: boolean;
   user: User | null;
   googleUser?: GoogleUser | Object | null | undefined,
-  token: string | null;
+  token: string | null,
+  isGoogleAuth: boolean | undefined
 }
 
 export const initialState: AuthState = {
   auth: false,
   user: null,
   googleUser: null,
-  token!: null
+  token!: null,
+  isGoogleAuth: false
 }
  
 const _authReducer = createReducer(
@@ -24,6 +26,7 @@ const _authReducer = createReducer(
     auth: setAuthState.success,
     user: setAuthState.data,
     googleUser: setAuthState.googleUser,
+    isGoogleAuth: setAuthState.isGoogleAuth,
     token: setAuthState.token
   })),
   
@@ -32,6 +35,7 @@ const _authReducer = createReducer(
     auth: false, 
     user: null, 
     googleUser: null, 
+    isGoogleAuth: false,
     token: null   
   })),
 );

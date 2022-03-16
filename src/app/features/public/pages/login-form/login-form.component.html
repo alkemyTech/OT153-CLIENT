@@ -43,6 +43,11 @@
         <div class="col-12">
           <button pButton type="submit" label="Enviar" [disabled]="!loginForm.valid"></button>
         </div>
+
+        <div class="col-12">
+          <button pButton type="button" icon="pi pi-google" iconPos="right" label="Google Login" (click)="loginGoogle()"></button>
+        </div>
+
       </form>
     </div>
   </p-card>

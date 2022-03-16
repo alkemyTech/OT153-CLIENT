@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { RootReduxModule } from './redux/root.redux.module';
 import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [NewsletterFormComponent ],
   imports: [

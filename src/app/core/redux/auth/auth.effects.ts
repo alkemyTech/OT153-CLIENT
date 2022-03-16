@@ -36,7 +36,7 @@ export class AuthEffects {
         ofType( googlelogin ),
             mergeMap(
                 () => this.authService.googleLogin().pipe(
-                    map( (googleData) => setAuthState({ googleUser: googleData.additionalUserInfo?.profile, success: true, data: null, token: googleData.credential?.['accessToken'] } ) )
+                    map( (googleData) => setAuthState({ googleUser: googleData.additionalUserInfo?.profile, success: true, data: null, token: googleData.credential?.['accessToken'], isGoogleAuth: true } ) )
                 )
             )
         )
