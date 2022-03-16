@@ -7,6 +7,9 @@ import {
   emailValidator,
 } from '@app/core/util/validators/form.validators';
 import { passwordMatchValidator } from '@app/core/util/validators/password.validators';
+import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
 
 @Component({
   selector: 'app-register-form',
@@ -28,8 +31,9 @@ export class RegisterFormComponent implements OnInit {
     symbolValidator(),
   ]);
   private confirmPasswordFormControl = [null, Validators.compose([Validators.required])];
+  termsAccepted = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private dialogService: DialogService) {
     this.frmSignup = this.registerForm();
   }
 
@@ -49,8 +53,19 @@ export class RegisterFormComponent implements OnInit {
   }
 
   submit() {
-    const email = this.frmSignup.get('useremail')?.value;
-    const password = this.frmSignup.get('password')?.value;
+    if(this.termsAccepted == false){
+      this.getTermsAcceptance();
+    }
+    if(this.termsAccepted){
+      const email = this.frmSignup.get('useremail')?.value;
+      const password = this.frmSignup.get('password')?.value;
+    }
+  }
+
+  getTermsAcceptance(){
+    let dialog: DialogData = { type: DialogType.SUCCESS, header: 'Términos y condiciones', content: 'Blabla' };
+    this.dialogService.show(dialog);
+    this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
   }
 
   get formSignup(): FormGroup {
