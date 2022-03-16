@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { PublicapiService } from '@core/services/publicApi.service';
 import {
   getOrganization,
   getOrganizationError,
@@ -11,7 +10,6 @@ import {
   postOrganizationError,
   postOrganizationSuccess,
 } from '@core/redux/organization/organization.actions';
-import { PrivateApiService } from '@app/core/services/privateApi.service';
 import { OrganizationControllerService } from '@app/core/controllers/organization-controller.service';
 
 @Injectable()
