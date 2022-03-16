@@ -19,7 +19,7 @@ export class AuthEffects {
         ofType(login),
         exhaustMap( ({email,password}) =>
             this.authService.auth({email,password}).pipe(
-                map( ({success,data:{token,user}}) => setAuthState({success,token,data:user,googleUser:null}))
+                map( ({success,data:{token,user}}) => setAuthState({ auth: true, success,token,data:user,googleUser:false}))
             ))            
     ));
 
@@ -27,7 +27,7 @@ export class AuthEffects {
         ofType(register),
         exhaustMap( registerAction =>
             this.authService.auth({name: registerAction.name,email:registerAction.email, password: registerAction.password}).pipe(
-                map( (resp:any) => setAuthState({success: resp.success, token: resp.data.token, data: resp.data.user, googleUser: null}))
+                map( (resp:any) => setAuthState({ auth: true, success: resp.success, token: resp.data.token, data: resp.data.user, googleUser: false}))
             ))            
     ));
 
@@ -36,7 +36,7 @@ export class AuthEffects {
         ofType( googlelogin ),
             mergeMap(
                 () => this.authService.googleLogin().pipe(
-                    map( (googleData) => setAuthState({ googleUser: googleData.additionalUserInfo?.profile, success: true, data: null, token: googleData.credential?.['accessToken'], isGoogleAuth: true } ) )
+                    map( (googleData) => setAuthState({ auth: false, googleUser: googleData.additionalUserInfo?.profile, success: true, data: null, token: googleData.credential?.['accessToken'], isGoogleAuth: true } ) )
                 )
             )
         )

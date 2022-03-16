@@ -21,9 +21,9 @@ export class DonationGuard implements CanActivate {
           if(!isGoogleAuth && !auth){
             this.router.navigateByUrl('/')
             return false
-          } 
-          
-          return true
+          }else{
+            return true
+          }          
         }
       )
     )

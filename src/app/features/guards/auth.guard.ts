@@ -13,15 +13,18 @@ export class AuthGuard implements CanActivate {
   constructor( private store: Store<AuthState>, private router: Router ){}
 
   canActivate(): Observable<boolean> | boolean {
-    
     return this.store.select(getAuthOk).pipe(
       map(
-        ({auth}) => {
+        ({auth, isGoogleAuth}) => {
           if(!auth) {
             this.router.navigateByUrl('/login');
             return false
           }else{
-            return true
+            if(isGoogleAuth){
+              return false
+            }else{
+              return true
+            }
           }
         }
       )
