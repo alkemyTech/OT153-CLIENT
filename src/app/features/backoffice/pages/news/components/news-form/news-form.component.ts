@@ -16,6 +16,11 @@ import { EventEmitter } from '@angular/core';
  import { PrivateApiService } from '@app/core/services/privateApi.service';
  import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@env/environment';
+import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
+
+
  @Component({
    selector: 'app-news-form',
    templateUrl: './news-form.component.html',
@@ -38,7 +43,13 @@ import { environment } from '@env/environment';
    public base64Image: string | ArrayBuffer | null;
    public uploadedFile: File | null;
  
-   constructor( private messageService: MessageService, private httpService: HttpService, private httpPrivateService: PrivateApiService, private formBuilder: FormBuilder ) { }
+   constructor( 
+      private messageService: MessageService, 
+      private httpService: HttpService, 
+      private httpPrivateService: PrivateApiService, 
+      private dialogService: DialogService,
+      private formBuilder: FormBuilder 
+      ) { }
  
    ngOnInit(): void {
      this.frmNews = this.newsForm();
@@ -71,8 +82,16 @@ import { environment } from '@env/environment';
      this.httpService.get<NewResponse>(url).subscribe({
        next: (response) => { _newdata = response.data },
        error: (error:HttpErrorResponse) => { 
-         this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al cargar el formulario.'); },
-       complete: () => {
+
+        let dialog: DialogData = { 
+          type: DialogType.ERROR, 
+          header: 'Error', 
+          content: 'Error:' + error.status +'. Hubo un error al cargar el formulario.'
+        };
+        this.dialogService.show(dialog);
+      },
+
+         complete: () => {
          this.formControl('name').setValue(_newdata.name);
          this.formControl('content').setValue(_newdata.content);
          this.formControl('image').setValue(_newdata.image);
@@ -116,9 +135,14 @@ import { environment } from '@env/environment';
      let _response: NewResponse;     
      this.httpPrivateService.patch<NewResponse>(url, body).subscribe({
        next: (response) => { _response = response },
-       error: (error: HttpErrorResponse) => { 
-         this.addToastMessage('error', 'Error: '+error.headers );
-       },
+       error: (error:HttpErrorResponse) => { 
+        let dialog: DialogData = { 
+          type: DialogType.ERROR, 
+          header: 'Error', 
+          content: 'Error:' + error.headers,
+        };
+        this.dialogService.show(dialog);
+      },
        complete: () => {
          if(_response.success){
            this.addToastMessage('success', 'Edicion exitosa!');
@@ -141,8 +165,14 @@ import { environment } from '@env/environment';
      this.httpPrivateService.post<NewResponse>(this.url, body).subscribe({
        next: (resp) => { _resp = resp },
        error: (error:HttpErrorResponse) => { 
-         this.addToastMessage('error', "Error: "+ error.status +'. Hubo un error al' + this.title + 'la Novedad!');
-       },
+        let dialog: DialogData = { 
+          type: DialogType.ERROR, 
+          header: 'Error', 
+          content: "Error: "+ error.status +'. Hubo un error al ' + this.title + ' la Novedad!'
+        };
+        this.dialogService.show(dialog);
+      },
+
        complete: () => { 
          if (_resp.success) {
            this.addToastMessage('success', 'Creacion exitosa!');
