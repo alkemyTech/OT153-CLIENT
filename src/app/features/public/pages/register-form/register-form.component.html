@@ -102,6 +102,12 @@
         </div>
       </div>
 
+      <div *ngIf="!termsAccepted" class="terms">
+        <button pButton pRipple type="button" (click)="getTermsAcceptance()" label="Leer términos y condiciones." class="p-button-warning p-button-text"></button>
+      </div>
+      <div *ngIf="termsAccepted" class="terms">
+        <button pButton pRipple type="button" disabled label="Acepto los términos y condiciones." class="p-button-success p-button-text"></button>
+      </div>
       <div>
         <button pButton type="submit" label="Registrar" class="p-button-primary col-"></button>
 

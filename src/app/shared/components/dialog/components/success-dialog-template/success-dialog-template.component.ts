@@ -11,6 +11,7 @@ export class SuccessDialogTemplateComponent implements OnInit {
 
   @Input() title: string | undefined = "Procedimiento Exitoso";
   @Input() message: string | undefined = "La operación se efectuo correctamente";
+  @Input() filePDF: string | undefined;
   constructor(
   ) { }
 
