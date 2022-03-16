@@ -158,11 +158,12 @@
       <div *ngIf="termsAccepted" class="terms">
         <button pButton pRipple type="button" disabled label="Acepto los términos y condiciones." class="p-button-success p-button-text"></button>
       <div class="mt-4 col-12" *ngIf="viewMap && direction?.valid">
-        <google-map width="100%" [center]="position" [zoom]="15">
+        <google-map width="100%" [center]="position" [zoom]="15" [options]="mapOptions">
           <map-marker
           [position]="position"
           [label]="label"
           [title]="title"
+          [options]="markerOptions"
           > </map-marker>
         </google-map>
       </div>

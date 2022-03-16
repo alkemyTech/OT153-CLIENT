@@ -40,7 +40,11 @@ export class RegisterFormComponent implements OnInit {
     wordValidator(),
     symbolValidator(),
   ]);
+
+    // google Maps configs
+    
   @ViewChild("placesRef") placesRef: GooglePlaceDirective | null = null;
+
   directions: string = "";
   title = 'Mapa de Dirección'
   label = {
@@ -51,6 +55,25 @@ export class RegisterFormComponent implements OnInit {
   position = {
     lat: -32.947639465,
     lng: -60.630649567,
+  };
+
+  icon = {
+    url: "/assets/public/maps/house.png", 
+    scaledSize: new google.maps.Size(50, 50), 
+    origin: new google.maps.Point(0,0), 
+    anchor: new google.maps.Point(0, 0),
+    labelOrigin: new google.maps.Point(25, 60)
+};
+
+
+mapOptions = {
+  zoom: 8,
+  mapId: 'fadc1ec7936b54d3'
+};
+
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false,
+    icon: this.icon,
   };
 
   viewMap: boolean = false;
