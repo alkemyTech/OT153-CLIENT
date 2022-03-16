@@ -81,18 +81,6 @@ hr {
   opacity: 0.4;
 }
 
-.logo img{
-  transition: 0.6s ease-out 0.1s;
-  filter: contrast(0);
-
-  &:hover{
-    filter: contrast(1);
-  }
-}
-
-
-
-
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .topfooter{
@@ -195,11 +183,32 @@ hr {
   }
 
   .logo img{
+    transition: 0.6s ease-out 0.1s;
     padding-left: 10px;
+    filter: contrast(0);
+  
+    &:hover{
+      filter: contrast(1);
+    }
   }
+  
 }
 
 // /* Extra large devices (large laptops and desktops, 1200px and up) */
 // @media only screen and (min-width: 1200px) {
   
 // }
+
+@media only screen and (max-width: 992px){
+  .facebook{
+    color: $facebook-color !important;
+  }
+  
+  .twitter{
+    color: $twitter-color !important;
+  }
+  
+  .instagram{
+    color: $instagram-color !important;
+  }
+}

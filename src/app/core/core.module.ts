@@ -7,11 +7,12 @@ import { NewsletterFormComponent } from './components/footer/components/newslett
 import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { HeaderComponent } from './components/header/header/header.component';
+import { FooterSchoolComponent } from './components/footer/footer-school/footer-school.component'
 import { RootReduxModule } from './redux/root.redux.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [NewsletterFormComponent ],
+  declarations: [NewsletterFormComponent],
   imports: [
     CommonModule, 
     HttpClientModule, 
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
   providers: [HttpService, UserService],
   exports: [
     NewsletterFormComponent,
+    
     ],
 })
 export class CoreModule {}
