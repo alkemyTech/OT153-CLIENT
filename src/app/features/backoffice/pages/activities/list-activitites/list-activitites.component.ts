@@ -15,7 +15,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities$: Observable<any> = new Observable();
   public dialogSelection$: Observable<boolean>;
   private subscribeActivity: Subscription;
-  private subscribeDialogSelection: Subscription
+  private subscribeDialogSelection: Subscription;
   public activities: Activities[];
   private _idDelete: number;
   public rows: number = 10;
@@ -26,8 +26,8 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   ) {}  
 
   ngOnInit(): void {
-    this.delete_dialogSubscribe();
     this.setDialogObservables();
+    this.delete_dialogSubscribe();
     this.getAllActivities();
   }
 
