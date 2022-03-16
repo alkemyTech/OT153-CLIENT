@@ -24,7 +24,7 @@ export class ContactComponent implements OnInit {
   }
 
   getContactInfo(): void {
-    this.http.get<Organization>(this.organization_link).subscribe(
+    this.http.getPublicOrganization().subscribe(
       (res) => {
         this.organization_info = res;
       },
