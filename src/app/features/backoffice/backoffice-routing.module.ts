@@ -15,7 +15,7 @@ import { UsersCrudComponent } from './pages/users/users.component';
 import { ListNewsComponent } from './pages/news/list-news/list-news.component';
 import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
 import { EditNewsFormComponent } from './pages/news/edit-news-form/edit-news-form.component';
-import { AuthGuard } from '../guards/auth.guard';
+import { AuthGuard } from '@core/guards/auth.guard';
 
 const routes: Routes = [
   {
