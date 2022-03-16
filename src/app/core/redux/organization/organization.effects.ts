@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import {
   getOrganization,
   getOrganizationError,
@@ -17,12 +17,13 @@ export class OrganizationEffects {
   getOrganization$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(getOrganization),
+      tap(() => console.log('getOrganization')),
       mergeMap(() => {
-        return this.organizationService
-          .getPublicOrganization()
-          .pipe(map(({ data }) => getOrganizationSuccess({ response: data })));
-      }),
-      catchError((error) => of(getOrganizationError({ error: error })))
+        return this.organizationService.getPublicOrganization().pipe(
+          map((response) => getOrganizationSuccess({ response: response.data })),
+          catchError((error) => of(getOrganizationError({ error: error })))
+        );
+      })
     );
   });
 

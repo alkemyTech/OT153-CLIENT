@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Organization } from './organization.interfaces';
+import { Organization, OrganizationData } from './organization.interfaces';
 
 export interface OrganizationState {
-  response: Organization;
+  response: OrganizationData;
   error: HttpErrorResponse;
 }

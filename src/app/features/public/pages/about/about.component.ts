@@ -25,7 +25,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   public backgroundColor = '#DB5752';
   public textColor = '#fff';
   public text: string = '';
-  public organization$: Observable<Organization> = new Observable();
+  public organization$: Observable<OrganizationData> = new Observable();
   public error$: Observable<HttpErrorResponse> = new Observable();
   public subscriptions: Subscription[];
   public organization: OrganizationData;
@@ -33,19 +33,17 @@ export class AboutComponent implements OnInit, OnDestroy {
   constructor(private Store: Store<{ organizationState: OrganizationState }>, private dialogService: DialogService) {}
 
   ngOnInit(): void {
-    this.Store.dispatch(Action.getOrganization());
-
     this.organization$ = this.Store.select(Selector.SelectStateOrganization);
     this.error$ = this.Store.select(Selector.SelectStateOrganizationError);
     this.getOrganization();
+    this.Store.dispatch(Action.getOrganization());
   }
 
   getOrganization() {
     this.organization$.subscribe((organization) => {
-      this.text = organization.data.long_description;
+      this.text = organization.long_description;
       this.load = false;
-      this.organization = organization.data;
-      console.log(organization.data);
+      this.organization = organization;
     });
 
     this.error$.subscribe((error) => {
