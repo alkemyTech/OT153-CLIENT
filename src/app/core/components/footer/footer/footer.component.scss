@@ -1,4 +1,5 @@
 @import '__colors';
+@import '__fonts';
 
 footer {
   position: relative;
@@ -9,18 +10,6 @@ footer {
   box-shadow: 0 -2px 10px 4px $grey200;
 }
 
-.col.footer{
-  width: 100vw;
-}
-
-.logo{
-
-}
-
-.navigation{
-  display: none;
-}
-
 .social{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -29,25 +18,11 @@ footer {
   flex-direction: row;
   align-items: center;
   margin-bottom: 2vh;
-
-  & .col-4{
-  }
-
-  & a{ 
-  }
-
-  & p{
-    display: none;
-  }
-
-  & i{
-    font-size: 10vw;
-  }
 }
 
 .topfooter {
   flex-wrap: wrap;
-  display: block;
+  width: 100vw;
   padding: 3vh 0vw 5vh 0vw;
   backdrop-filter: blur(10px);
   border-top: 1px solid $grey300;
@@ -71,7 +46,6 @@ footer {
   }
 
   & .navigation a::before {
-    
     position: absolute;
     bottom: 0;
     content: '';
@@ -94,7 +68,12 @@ footer {
   justify-content: center;
   height: 30px;
   opacity: 0.8;
-  padding-top: 5px;
+  & span{
+
+    margin-top: 10px;
+    padding-bottom: 20px;
+  }
+  
 }
 
 hr {
@@ -104,16 +83,67 @@ hr {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  .topfooter{
+    display: block;
+  }
+
+
+  .col-footer{
+    width: 100vw;
+  }
+
+
+  .navigation{
+    display: none;
+  }
+  
+  .social{
+    & p{
+      display: none;
+    }
+  
+    & i{
+      font-size: 15vw;
+    }
+
+  }
 
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  .topfooter{
+    display: flex;  
+    justify-content: space-around;
+  }
+
+  .col-footer{
+    width: 30vw;
+  }
+  
+  .navigation{
+    padding-top: 2px;
+  }
+  
+  .social{
+    justify-content: space-between;
+    & p{
+      display: none;
+    }
+
+    & i{
+      font-size: 8vw;
+    }
+  }
+
+  // .logo{
+  // }
 
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+
 
 }
 

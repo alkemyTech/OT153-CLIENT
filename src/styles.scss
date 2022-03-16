@@ -1,6 +1,7 @@
 @import "__colors";
 @import "__material_styles";
 @import "__mixin";
+@import '__fonts';
 
 /* You can add global styles to this file, and also import other style files */
 $simple-shadow: 0 0px 3px gray;
@@ -16,10 +17,10 @@ html, body {
     margin: 0!important;
     padding: 0!important;
 }
-* {
-    margin:  0;
-    padding: 0;
-  }
+
+a{
+    font-family: $Montserrat, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 
 input, textarea, .cell, .cell img{
     @extend .transition-easyout-1;
