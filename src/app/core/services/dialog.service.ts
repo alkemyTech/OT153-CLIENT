@@ -12,7 +12,7 @@ export class DialogService {
         show: false,
         selection: false,
         data: {
-            type: DialogType.ERROR,
+            type: DialogType.INFO,
             btnOk: 'ok',
             btnCancel: '',
             header: 'Error',
@@ -20,6 +20,7 @@ export class DialogService {
         },
 
     }
+
     private DataObservable: BehaviorSubject<DialogData> = new BehaviorSubject<DialogData>(this.baseDialog.data);
     private ShowObservable: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.baseDialog.show);
     private SelectionObservable: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.baseDialog.selection);
