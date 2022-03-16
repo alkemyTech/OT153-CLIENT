@@ -13,48 +13,55 @@ import { DialogType } from '@app/core/enums/dialog.enum';
 })
 export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities$: Observable<any> = new Observable();
-  public activities: Activities[];
-  public rows: number = 10;
-  private subscribe: Subscription;
   public dialogSelection$: Observable<boolean>;
+  private subscribeActivity: Subscription;
+  private subscribeDialogSelection: Subscription
+  public activities: Activities[];
+  private _idDelete: number;
+  public rows: number = 10;
+
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>, 
     public dialog: DialogService
   ) {}  
 
   ngOnInit(): void {
-    this.dialogSelection$ = this.dialog.DialogSelectionObservable;
+    this.delete_dialogSubscribe();
+    this.setDialogObservables();
     this.getAllActivities();
   }
 
-  getAllActivities(){
+  private setDialogObservables(){
+    this.dialogSelection$ = this.dialog.DialogSelectionObservable;
+  }
+
+  private getAllActivities(){
     this.activities$ = this.Store.select(Selector.SelectStateAllData);
-    this.subscribe = this.activities$.subscribe(
+    this.subscribeActivity = this.activities$.subscribe(
       (a:Activities[]) => this.activities = a
     );
     this.Store.dispatch(Action.getAllActivities());
   }
 
-  
+  private delete_dialogSubscribe(){
+    this.subscribeDialogSelection = this.dialogSelection$.subscribe(
+      resp => {
+        if (resp) {
+          this.Store.dispatch(Action.deleteActivities( {id: this._idDelete} ));
+          this.filterList(this._idDelete);
+        }
+        this._idDelete=-1
+      }
+    )
+  }
+
   deleteDialog(_id: number){
+    this._idDelete = _id;
     this.dialog.show({ 
       type: DialogType.CONFIRM, 
       header: 'Eliminar Actividad '+_id, content:'Seguro que quiere eliminar esta actividad?', 
       btnOk:'Eliminar', btnCancel:'Cancelar'
     })
-    
-    this.delete(_id);
-  }
-
-  private delete(_id){
-    this.dialogSelection$.subscribe(
-      resp => {
-        if (resp) {
-          this.Store.dispatch(Action.deleteActivities( {id: _id} ));
-          this.filterList(_id);
-        }
-      }
-    )
   }
 
   edit(_id: number){
@@ -66,7 +73,8 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribe.unsubscribe;
+    this.subscribeActivity.unsubscribe;
+    this.subscribeDialogSelection.unsubscribe;
   }
 
 }
