@@ -1,5 +1,4 @@
 # ONG Somos Nosotros
-[![Netlify Status](https://api.netlify.com/api/v1/badges/694c6240-3a86-44a0-9776-5246dd5ce276/deploy-status)](https://app.netlify.com/sites/ngdevs/deploys)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.6.
 
