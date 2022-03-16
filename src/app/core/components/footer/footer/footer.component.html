@@ -1,4 +1,31 @@
 <footer>
-    <span>© {{ date | date: "yyyy" }} SOMOS MÁS - All rights reserved</span>
+  <div class="container">
+    <div class="topfooter grid text-center">
+      <div class="col-4">
+        <img src="assets/img/logo.png" alt="logo-somosmas" />
+      </div>
+      <div class="col-4 navigation">
+        <ul>
+          <li><a routerLink="/home">Inicio</a></li>
+          <li><a routerLink="/nosotros">Nosotros</a></li>
+          <li><a routerLink="/actividades">Actividades</a></li>
+          <li><a routerLink="/novedades">Novedades</a></li>
+          <li><a routerLink="/testimonios">Testiomios</a></li>
+          <li><a routerLink="/contacto">Contacto</a></li>
+          <li><a routerLink="/donaciones">Contribuye</a></li>
+          <li><a routerLink="/campañas">Campañas</a></li>
+        </ul>
+      </div>
+      <div class="col-4 flex flex-column justify-content-evenly">
+        <a href="{{ facebookLink }}"><i class="pi pi-facebook"></i> {{ facebookLink }}</a>
+        <a href="{{ instagramLink }}"><i class="pi pi-instagram"></i> {{ instagramLink }}</a>
+        <a href="{{ twitterLink }}"><i class="pi pi-twitter"></i> {{ twitterLink }}</a>
+      </div>
+    </div>
+  </div>
+  <hr />
+
+  <div class="subfooter">
+    <span>© {{ date | date: 'yyyy' }} SOMOS MÁS - All rights reserved</span>
+  </div>
 </footer>
-  
