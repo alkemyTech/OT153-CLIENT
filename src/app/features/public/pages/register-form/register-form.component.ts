@@ -32,6 +32,7 @@ export class RegisterFormComponent implements OnInit {
   ]);
   private confirmPasswordFormControl = [null, Validators.compose([Validators.required])];
   termsAccepted = false;
+  termsFilePath = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'
 
   constructor(private formBuilder: FormBuilder, private dialogService: DialogService) {
     this.frmSignup = this.registerForm();
