@@ -58,12 +58,18 @@ const routes: Routes = [
         component: RegisterFormComponent,
       },
       {
+<<<<<<< HEAD
         path: 'campañas',
         children: [
           { path: 'vuelta-al-cole', component: HomeComponent },
           { path: 'juguetes', component: HomeComponent },
         ],
       },
+=======
+        path: 'login',
+        component: LoginFormComponent
+      }
+>>>>>>> 457a4a8 (fixed google interface - delete features/backoffice/pages/backoffice.module.ts)
     ],
   },
 ];

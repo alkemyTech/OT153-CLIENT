@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { User } from '@core/models/user.models';
 import { login, logout, setAuthState } from './auth.actions';
-import { GoogleUser } from '@app/core/models/google.interface';
+import { GoogleUser } from '@app/core/models/google.interfaces';
  
 export interface AuthState {
   auth: boolean;

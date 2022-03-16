@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '@core/models/user.models';
-import { GoogleUser } from '@models/google.interface';
+import { GoogleUser } from '@app/core/models/google.interfaces';
+
 
 interface AuthResponse {
     success: boolean,
