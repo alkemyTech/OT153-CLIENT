@@ -1,7 +1,6 @@
 import { Activities } from '@core/models/activities.interfaces';
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ActivityResponse } from "@app/core/models/activities.interfaces";
 import { activitiesState } from '@app/core/models/activities-state.interface';
 import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
@@ -17,16 +16,11 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   name$ = new BehaviorSubject<string | undefined>(this.name);
   image: string | undefined = "";
   image$ = new BehaviorSubject<string | undefined>(this.name);
-  description: string | undefined = "";
+  description: string = "";
   description$ = new BehaviorSubject<string | undefined | null>(this.name);
 
   activity$: Observable<Activities> = new Observable()
 
-  activityResponse: ActivityResponse = {
-    success: true,
-    data: { id: "", name: "", description: "", image: "" },
-    message: "",
-  };
   subscription: Array<Subscription> = [];
 
   constructor( private router: Router, private Store: Store<{ activitiesState: activitiesState }>) {}

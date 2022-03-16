@@ -8,7 +8,7 @@ import { DialogService } from '@core/services/dialog.service';
 @Component({
   selector: 'custom-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
   public show$: Observable<boolean>;
