@@ -6,12 +6,12 @@
 
     <div class="col-12 py-2">
       <div class="description-container">
-        <div class="description">
+        <div class="description pt-3">
           &bull;
-          <span class="description-subtitle mt-2">
+          <span class="description-subtitle">
             <i><u>Fecha y lugar</u></i></span
           >
-          <p>
+          <p class="mt-4 mb-3">
             {{ campaign.date.getDay() | weekdayFormat }} {{ campaign.date.getDate() }} de
             {{ campaign.date.getMonth() | monthNumberFormat }} de {{ campaign.date.getFullYear() }} a las
             {{ campaign.date.getHours() }}:{{ campaign.date.getMinutes() }} <br />
@@ -22,7 +22,7 @@
           <span class="description-subtitle mt-4">
             <u><i>Descripción</i></u></span
           >
-          <p [innerText]="campaign.description"></p>
+          <p class="mt-5 mb-3" [innerText]="campaign.description"></p>
         </div>
 
         <div class="countdown-container">

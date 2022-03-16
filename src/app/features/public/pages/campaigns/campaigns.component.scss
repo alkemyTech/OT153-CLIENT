@@ -1,5 +1,5 @@
-@import '@../../../../../../../styles/_colors';
-@import '@../../../../../../../styles/_fonts';
+@import '_colors';
+@import '_fonts';
 
 .campaign-container {
   background: $bgColorSoft;
@@ -31,6 +31,7 @@
 .description-container {
   position: relative;
   font-size: 1.4em;
+  min-height: 65vh;
 
   & .description {
     box-shadow: 0px 2px 6px 5px rgba(196, 196, 196, 0.418);
@@ -71,7 +72,7 @@
 
       &.related-1 {
         left: 8%;
-        top: -15%;
+        top: -11%;
         transform: rotate(-5deg);
       }
       &.related-2 {
