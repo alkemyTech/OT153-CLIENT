@@ -16,5 +16,6 @@ export const environment = {
   apiUrlLogin: "",
   apiUrlRegister: "",
   apiUrlUsers: "",
-  apiUrlSlides: ""
+  apiUrlSlides: "",
+  wikimediaMap: "",
 };
