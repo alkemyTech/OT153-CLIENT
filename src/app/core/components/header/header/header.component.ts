@@ -3,8 +3,9 @@ import { link } from '@app/core/models/link.interface';
 import { AuthState } from '@app/core/redux/auth/auth.reducers';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { logout, isGoogleAuth } from '../../../redux/auth/auth.actions';
-import { getAuthOk } from '../../../redux/auth/auth.selectors';
+import { logout, isGoogleAuth } from '@core/redux/auth/auth.actions';
+import { getAuthOk } from '@core/redux/auth/auth.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'alk-header',
@@ -12,7 +13,7 @@ import { getAuthOk } from '../../../redux/auth/auth.selectors';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor( private store: Store<AuthState>) {
+  constructor( private store: Store<AuthState>, private router: Router) {
     this.authState$ = this.store.select(getAuthOk);
   }
 
@@ -74,5 +75,6 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.store.dispatch(logout());
+    this.router.navigateByUrl('/')
   }
 }

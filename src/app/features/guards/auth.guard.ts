@@ -4,7 +4,7 @@ import { AuthState } from '@app/core/redux/auth/auth.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { getAuthOk } from '../../core/redux/auth/auth.selectors';
+import { getAuthOk } from '@core/redux/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AuthState } from '../../core/redux/auth/auth.reducers';
-import { getAuthOk } from '../../core/redux/auth/auth.selectors';
+import { AuthState } from '@core/redux/auth/auth.reducers';
+import { getAuthOk } from '@core/redux/auth/auth.selectors';
 import { map } from 'rxjs/operators';
 
 @Injectable({

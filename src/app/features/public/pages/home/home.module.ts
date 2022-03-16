@@ -12,7 +12,7 @@ import { DonationsComponent } from '../donations/donations.component';
 import { ThanksComponent } from '../donations/thanks/thanks.component';
 import { ErrorComponent } from '../donations/error/error.component';
 
-import { DonationGuard } from '../../../guards/donations.guard';
+import { DonationGuard } from '@features/guards/donations.guard';
 import { LoginFormComponent } from '../login-form/login-form.component';
 
 const routes: Routes = [
