@@ -46,12 +46,4 @@ export class PrivateApiService {
   public patchNews<NewResponse>(url: string, body: {}, activateHeader: boolean = true): Observable<NewResponse> {
     return this.http.patch<NewResponse>(url, body ? body : {}, activateHeader ? { headers: this._headers } : {});
   }
-
-  public postOrganization<OrganizationData>(body: {}, activateHeader: boolean = true): Observable<OrganizationData> {
-    return this.http.post<OrganizationData>(
-      environment.apiUrlOrganization,
-      body ? body : {},
-      activateHeader ? { headers: this._headers } : {}
-    );
-  }
 }

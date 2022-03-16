@@ -18,8 +18,4 @@ export class PublicapiService {
   public getPublicActivity<T>(url: string, id: string | number | null = null): Observable<ActivityResponse> {
     return this.http.get<ActivityResponse>(`${url}/${id ? id : ''}`);
   }
-
-  public getPublicOrganization<T>(): Observable<Organization> {
-    return this.http.get<Organization>(environment.apiUrlOrganization);
-  }
 }

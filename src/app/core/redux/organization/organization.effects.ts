@@ -3,38 +3,42 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { PublicapiService } from '@core/services/publicApi.service';
-import * as action from '@app/core/redux/organization/organization.actions';
+import {
+  getOrganization,
+  getOrganizationError,
+  getOrganizationSuccess,
+  postOrganization,
+  postOrganizationError,
+  postOrganizationSuccess,
+} from '@core/redux/organization/organization.actions';
 import { PrivateApiService } from '@app/core/services/privateApi.service';
+import { OrganizationControllerService } from '@app/core/controllers/organization-controller.service';
 
 @Injectable()
 export class OrganizationEffects {
   getOrganization$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(action.getOrganization),
+      ofType(getOrganization),
       mergeMap(() => {
-        return this.publicApiService
+        return this.organizationService
           .getPublicOrganization()
-          .pipe(map((response) => action.getOrganizationSuccess({ response: response.data })));
+          .pipe(map(({ data }) => getOrganizationSuccess({ response: data })));
       }),
-      catchError((error) => of(action.getOrganizationError({ error: error })))
+      catchError((error) => of(getOrganizationError({ error: error })))
     );
   });
 
   postOrganization$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(action.postOrganization),
+      ofType(postOrganization),
       mergeMap((state) => {
-        return this.privateApiService
+        return this.organizationService
           .postOrganization(state.body)
-          .pipe(map((response) => action.postOrganizationSuccess({ response: response })));
+          .pipe(map((response) => postOrganizationSuccess({ response: response })));
       }),
-      catchError((error) => of(action.postOrganizationError({ error: error })))
+      catchError((error) => of(postOrganizationError({ error: error })))
     );
   });
 
-  constructor(
-    private actions$: Actions,
-    private publicApiService: PublicapiService,
-    private privateApiService: PrivateApiService
-  ) {}
+  constructor(private actions$: Actions, private organizationService: OrganizationControllerService) {}
 }
