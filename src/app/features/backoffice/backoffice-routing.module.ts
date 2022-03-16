@@ -35,11 +35,11 @@ const routes: Routes = [
       },
       {
         path: 'novedades',
-        children:[
-          { path:'', component: ListNewsComponent },
-          { path:'crear', component: NewNewsFormComponent },
-          { path:'editar/:id', component: EditNewsFormComponent },
-        ]
+        children: [
+          { path: '', component: ListNewsComponent },
+          { path: 'crear', component: NewNewsFormComponent },
+          { path: 'editar/:id', component: EditNewsFormComponent },
+        ],
       },
       {
         path: 'categorias',
@@ -78,6 +78,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BackofficeRoutingModule { }
+export class BackofficeRoutingModule {}
