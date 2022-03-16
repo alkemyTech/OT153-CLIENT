@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { New } from '@app/core/models/news.interfaces';
 import { _RESOLVED_META_REDUCERS } from '@ngrx/store/src/tokens';
 
@@ -18,7 +18,10 @@ export class SimpleListComponent implements OnInit {
 
   public rows: number = 10;
 
-  constructor( private router: Router) { }
+  constructor( private router: Router ) { }
+
+  ngOnInit() {
+  }
 
   create(){
     this.router.navigate([this.createLink], { })
@@ -34,7 +37,5 @@ export class SimpleListComponent implements OnInit {
     this.emitDelete.emit(id);
   }
 
-  ngOnInit() {
-  }
 
 }

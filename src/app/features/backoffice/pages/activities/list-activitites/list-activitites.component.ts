@@ -1,9 +1,11 @@
+import { DialogService } from '@core/services/dialog.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@core/models/activities-state.interface';
 import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@app/core/redux/activities/activities.index';
+import { DialogType } from '@app/core/enums/dialog.enum';
 @Component({
   selector: 'app-list-activitites',
   templateUrl: './list-activitites.component.html',
@@ -11,41 +13,68 @@ import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@ap
 })
 export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities$: Observable<any> = new Observable();
+  public dialogSelection$: Observable<boolean>;
+  private subscribeActivity: Subscription;
+  private subscribeDialogSelection: Subscription;
   public activities: Activities[];
+  private _idDelete: number;
   public rows: number = 10;
-  private subscribe: Subscription;
 
   constructor(
-    private Store: Store<{ activitiesState: activitiesState }>
+    private Store: Store<{ activitiesState: activitiesState }>, 
+    public dialog: DialogService
   ) {}  
 
   ngOnInit(): void {
+    this.setDialogObservables();
+    this.delete_dialogSubscribe();
     this.getAllActivities();
   }
 
-  getAllActivities(){
+  private setDialogObservables(){
+    this.dialogSelection$ = this.dialog.DialogSelectionObservable;
+  }
+
+  private getAllActivities(){
     this.activities$ = this.Store.select(Selector.SelectStateAllData);
-    this.subscribe = this.activities$.subscribe(
+    this.subscribeActivity = this.activities$.subscribe(
       (a:Activities[]) => this.activities = a
     );
     this.Store.dispatch(Action.getAllActivities());
   }
 
-  editActivity(_idActivity){
-    this.Store.dispatch(Action.getOneActivities( {id: _idActivity} ));    
+  private delete_dialogSubscribe(){
+    this.subscribeDialogSelection = this.dialogSelection$.subscribe(
+      resp => {
+        if (resp) {
+          this.Store.dispatch(Action.deleteActivities( {id: this._idDelete} ));
+          this.filterList(this._idDelete);
+        }
+        this._idDelete=-1
+      }
+    )
   }
 
-  deleteActivity(_id: number){
-    this.Store.dispatch(Action.deleteActivities( {id: _id} ));
-    this.filterActivity(_id)
+  deleteDialog(_id: number){
+    this._idDelete = _id;
+    this.dialog.show({ 
+      type: DialogType.CONFIRM, 
+      header: 'Eliminar Actividad '+_id, content:'Seguro que quiere eliminar esta actividad?', 
+      btnOk:'Eliminar', btnCancel:'Cancelar'
+    })
   }
 
-  filterActivity(_id: number){
+  edit(_id: number){
+    this.Store.dispatch(Action.getOneActivities( {id: _id} )); 
+  }
+
+  filterList(_id: number){
     this.activities = this.activities.filter(val => val.id != _id)
   }
 
   ngOnDestroy(): void {
-    this.subscribe.unsubscribe;
+    this.subscribeActivity.unsubscribe;
+    this.subscribeDialogSelection.unsubscribe;
   }
 
 }
