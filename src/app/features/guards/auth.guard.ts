@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
       map(
         ({auth, isGoogleAuth}) => {
           if(!auth) {
-            this.router.navigateByUrl('/login');
+            this.router.navigateByUrl('/iniciar-sesion');
             return false
           }else{
             if(isGoogleAuth){
@@ -29,7 +29,6 @@ export class AuthGuard implements CanActivate {
         }
       )
     )
-    
   }
   
 }
