@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BackofficeModule } from './backoffice/backoffice.module';
+import { CoreModule } from '@app/core/core.module';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { BackofficeModule } from './backoffice/backoffice.module';
     SharedModule,
     ReactiveFormsModule,
     BackofficeModule,
+    CoreModule,
+    LeafletModule,
   ],
 })
 export class FeaturesModule {}

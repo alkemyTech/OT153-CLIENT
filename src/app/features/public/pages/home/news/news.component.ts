@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { New } from '@app/core/models/news.interfaces';
+import { New, NewsResponse } from '@app/core/models/news.interfaces';
 import { PrivateService } from '@app/features/services/private.service';
 import { environment } from '@env/environment';
 import { DialogService } from '@app/core/services/dialog.service';
@@ -22,7 +22,7 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(){
-    this.privateService.get<New>(this.urlNews).subscribe((response:any) => {
+    this.privateService.get<NewsResponse>(this.urlNews).subscribe((response:any) => {
       this.news = response.data;
       this.news = this.news.slice(0, 3);
       this.load = false;

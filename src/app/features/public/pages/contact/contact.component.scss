@@ -1,6 +1,56 @@
-.wrapper{
-    margin-top: 100px;
+@import "__colors";
+
+body{
+    background: $purple;
 }
-.form{
-    margin-top: 40px;
+
+.wrapped{
+    margin-top: 0rem;
+}
+
+section{
+    margin-top: 5rem;
+}
+
+.max-contact{
+    max-width: 750px;
+}
+
+.contact-container{
+    @extend .max-contact;
+    @extend .contact-padding;
+    padding-top: 2rem;
+}
+
+.contact-padding{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.info-container{
+    @extend .max-contact;
+    filter: opacity(0.5);
+    padding-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 5rem;
+    &:hover{
+        filter: opacity(1);
+    }
+}
+
+// .map-container{
+    
+// }
+
+@media screen and (max-width:900px) {
+    .info-container, .contact-container{
+        width: 100%;
+        padding: 0;
+        padding-bottom: 1rem;
+    }
+    .contact-container{
+        padding-top: 1rem;
+    }
+
 }

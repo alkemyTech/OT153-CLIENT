@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { emailValidator, digitValidator, allDigitValidator } from '@app/core/util/validators/form.validators';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-contact-form',
@@ -23,7 +24,7 @@ export class ContactFormComponent implements OnInit {
   private email: string;
   private message: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private toastMessage: MessageService) {}
 
   ngOnInit(): void {
     this.frmContact = this.registerForm();
@@ -44,7 +45,12 @@ export class ContactFormComponent implements OnInit {
       this.phone = this.phoneControl.value;
       this.email = this.emailControl.value;
       this.message = this.messageControl.value;
+      this.toast();
     }
+  }
+    
+  private toast(){
+    this.toastMessage.add({ key:'toastMessage', severity:'success', summary:'Enviado' });
   }
 
   controlForm(key: string): FormControl {

@@ -9,6 +9,7 @@ import { DialogService } from '@app/core/services/dialog.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [AppComponent,DialogComponent],
@@ -20,6 +21,7 @@ import { DialogComponent } from './shared/components/dialog/dialog.component';
     BrowserAnimationsModule, 
     ToastModule,
     StoreModule,
+    LeafletModule,
   ],
   providers: [MessageService, DialogService, BrowserAnimationsModule],
   bootstrap: [AppComponent],

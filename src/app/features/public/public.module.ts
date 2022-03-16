@@ -21,7 +21,8 @@ import { NewsComponent } from './pages/home/news/news.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
 import { DonationsHeaderComponent } from './pages/donations/donations-header/donations-header.component';
-
+import { LeafletMapComponent } from './pages/contact/components/leaflet-map/leaflet-map.component'
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 @NgModule({
   declarations: [
     PublicComponent,
@@ -42,9 +43,10 @@ import { DonationsHeaderComponent } from './pages/donations/donations-header/don
     NewsComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    DonationsHeaderComponent
+    DonationsHeaderComponent,
+    LeafletMapComponent
   ],
-  imports: [CommonModule, PublicRoutingModule, SharedModule],
+  imports: [CommonModule, PublicRoutingModule, SharedModule, LeafletModule],
   exports: [SharedModule]
 })
 export class PublicModule {}
