@@ -16,6 +16,8 @@ import { ListNewsComponent } from './pages/news/list-news/list-news.component';
 import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
 import { EditNewsFormComponent } from './pages/news/edit-news-form/edit-news-form.component';
 import { AuthGuard } from '@core/guards/auth.guard';
+import { OrganizationDetailsComponent } from './pages/organization-details/organization-details.component';
+import { OrganizationEditComponent } from './pages/organization-details/organization-edit/organization-edit.component';
 
 const routes: Routes = [
   {
@@ -60,6 +62,14 @@ const routes: Routes = [
           { path: '', component: ListMembersComponent },
           { path: 'crear', component: MembersFormComponent },
         ],
+      },
+      {
+        path: 'organizacion',
+        component: OrganizationDetailsComponent,
+      },
+      {
+        path: 'organizacion/editar',
+        component: OrganizationEditComponent,
       },
       {
         path: 'usuarios',

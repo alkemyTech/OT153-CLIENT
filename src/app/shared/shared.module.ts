@@ -22,6 +22,7 @@ import { WeekdayFormatPipe } from './pipes/weekday-format.pipe';
 import { MonthNumberFormatPipe } from './pipes/monthnumber-format.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SuccessDialogTemplateComponent } from './components/dialog/components/success-dialog-template/success-dialog-template.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 const componentToExport = [
   CarouselComponent,
@@ -39,7 +40,7 @@ const componentToExport = [
   SuccessDialogTemplateComponent,
 ];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule];
+const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule, NgxExtendedPdfViewerModule];
 @NgModule({
   declarations: [...componentToExport, SkeletonComponent],
   imports: [CommonModule, ...modulesToExport],

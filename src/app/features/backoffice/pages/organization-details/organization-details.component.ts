@@ -1,30 +1,50 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Organization } from '@app/core/models/organization.interfaces';
-import { environment } from '@env/environment';
-import { HttpService } from 'src/app/core/services/http.service';
-
+import { OrganizationState } from '@app/core/models/organization-state.interface';
+import { Organization, OrganizationData } from '@app/core/models/organization.interfaces';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import {
+  OrganizationSelector as Selector,
+  OrganizationActions as Action,
+} from '@app/core/redux/organization/organization.index';
 @Component({
   selector: 'app-organization-details',
   templateUrl: './organization-details.component.html',
   styleUrls: ['./organization-details.component.scss'],
 })
 export class OrganizationDetailsComponent implements OnInit {
-  organization: any;
+  public organization$: Observable<Organization> = new Observable();
+  public error$: Observable<HttpErrorResponse> = new Observable();
+  public subscriptions: Subscription[] = [];
+  public organization: OrganizationData;
 
-  constructor(private httpSvc: HttpService) {}
+  constructor(private Store: Store<{ organizationState: OrganizationState }>) {}
 
   ngOnInit(): void {
+    this.organization$ = this.Store.select(Selector.SelectStateOrganization);
+    this.error$ = this.Store.select(Selector.SelectStateOrganizationError);
     this.getOrganization();
+    this.Store.dispatch(Action.getOrganization());
   }
 
   getOrganization() {
-    this.httpSvc.get<Organization>(environment.apiUrlOrganization, true).subscribe(
-      (res) => {
-        this.organization = res.data;
-      },
-      (error) => {
-        // console.log(error);
-      }
+    this.subscriptions.push(
+      this.organization$.subscribe((organization) => {
+        this.organization = organization.data;
+      })
     );
+
+    this.subscriptions.push(
+      this.error$.subscribe((error) => {
+        // error...
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((element) => {
+      element.unsubscribe();
+    });
   }
 }
