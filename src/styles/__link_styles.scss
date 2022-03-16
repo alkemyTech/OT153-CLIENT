@@ -1,0 +1,21 @@
+$facebook-color: #1299f6;
+$twitter-color: #188edd;
+$instagram-color: #cc3a64;
+
+.f-facebook{
+    &:hover{
+        color: $facebook-color !important;
+    }
+}
+
+.f-twitter{
+    &:hover{
+        color: $twitter-color !important;
+    }
+}
+
+.f-instagram{
+    &:hover{
+        color: $instagram-color !important;
+    }
+}

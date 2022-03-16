@@ -22,7 +22,7 @@ a{
     font-family: $Montserrat, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-input, textarea, .cell, .cell img{
+input, textarea, .cell, .cell img, .logo img{
     @extend .transition-easyout-1;
 }
 
