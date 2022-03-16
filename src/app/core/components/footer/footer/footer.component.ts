@@ -26,11 +26,8 @@ export class FooterComponent implements OnInit, OnDestroy {
       this.instagramLink = organization.data.instagram_url;
       this.twitterLink = organization.data.twitter_url;
     });
-<<<<<<< HEAD
-=======
 
     // this.isAuth$ = this.Store.select(Selection.getCurrentUser());
->>>>>>> fix routing
   }
 
   ngOnDestroy(): void {
