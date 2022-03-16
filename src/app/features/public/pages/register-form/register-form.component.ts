@@ -32,7 +32,7 @@ export class RegisterFormComponent implements OnInit {
   ]);
   private confirmPasswordFormControl = [null, Validators.compose([Validators.required])];
   termsAccepted = false;
-  termsFilePath = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'
+  termsFilePath = '/assets/backoffice/terminos-y-condiciones.pdf'
 
   constructor(private formBuilder: FormBuilder, private dialogService: DialogService) {
     this.frmSignup = this.registerForm();
@@ -64,7 +64,12 @@ export class RegisterFormComponent implements OnInit {
   }
 
   getTermsAcceptance(){
-    let dialog: DialogData = { type: DialogType.SUCCESS, header: 'Términos y condiciones', content: 'Blabla' };
+    let dialog: DialogData = { 
+      type: DialogType.SUCCESS, 
+      header: 'Términos y condiciones', 
+      content:'Hola', 
+      filePDF: this.termsFilePath 
+    };
     this.dialogService.show(dialog);
     this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
   }

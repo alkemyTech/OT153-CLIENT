@@ -14,4 +14,5 @@ export interface DialogData {
     btnCancel?: string,
     header: string,
     content?: string,
+    filePDF?: string,
 }
