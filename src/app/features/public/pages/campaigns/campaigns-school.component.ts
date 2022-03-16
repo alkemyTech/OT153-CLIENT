@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Campaign } from '@app/core/models/campaign.inteface';
 
 @Component({
-  selector: 'app-campaigns',
-  templateUrl: './campaigns.component.html',
-  styleUrls: ['./campaigns.component.scss'],
+  selector: 'app-campaigns-school',
+  templateUrl: './campaigns-school.component.html',
+  styleUrls: ['./campaigns-school.component.scss'],
 })
-export class CampaignsComponent implements OnInit {
+export class CampaignsSchoolComponent implements OnInit {
   campaign: Campaign;
   timeleft = {
     days: '',

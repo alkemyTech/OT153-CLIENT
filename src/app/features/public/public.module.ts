@@ -23,7 +23,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
 import { DonationsHeaderComponent } from './pages/donations/donations-header/donations-header.component';
 import { LeafletMapComponent } from './pages/contact/components/leaflet-map/leaflet-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { CampaignsSchoolComponent } from './pages/campaigns/campaigns-school.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { CampaignsComponent } from './pages/campaigns/campaigns.component';
     FooterComponent,
     AboutComponent,
     AboutTextComponent,
-    CampaignsComponent,
+    CampaignsSchoolComponent,
     DonationsComponent,
     ThanksComponent,
     ErrorComponent,
