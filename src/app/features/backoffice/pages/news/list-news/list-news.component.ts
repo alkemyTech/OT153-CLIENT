@@ -3,7 +3,9 @@ import { New, NewResponse, NewsResponse } from '@app/core/models/news.interfaces
 import { Observable, Subscription } from 'rxjs';
 import { NewsControllerService } from '@app/core/controllers/news-controller.service';
 import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
 import { DialogType } from '@app/core/enums/dialog.enum';
+
 
 @Component({
   selector: 'app-list-news',
@@ -21,7 +23,7 @@ export class ListNewsComponent implements OnInit, OnDestroy {
 
   constructor( 
     private controller:NewsControllerService,
-    public dialog: DialogService
+    public dialogService: DialogService
   ) {}  
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   }
 
   delete_dialogSubscribe() {
-    this.dialogSelection$ = this.dialog.DialogSelectionObservable;
+    this.dialogSelection$ = this.dialogService.DialogSelectionObservable;
   }
 
   setDialogObservables() {
@@ -50,13 +52,21 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   getAllNews(){
     this.news$ = this.controller.getAll();
     this.subscribeNews = this.news$.subscribe({
-      next: resp => { this.news = resp.data }
+      next: resp => { this.news = resp.data },
+      error: err => {
+        let dialog: DialogData = { 
+          type: DialogType.ERROR, 
+          header: 'Error', 
+          content: 'Error al realizar la petición. Intente nuevamente.'
+        };
+        this.dialogService.show(dialog);
+      }
     });
   }
 
   deleteDialog(_id: number){
     this._idDelete = _id;
-    this.dialog.show({ 
+    this.dialogService.show({ 
       type: DialogType.CONFIRM, 
       header: 'Eliminar Novedad '+_id, content:'Seguro que quiere eliminar esta novedadd?', 
       btnOk:'Eliminar', btnCancel:'Cancelar'

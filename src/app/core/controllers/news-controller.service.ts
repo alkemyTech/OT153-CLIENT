@@ -9,7 +9,8 @@ import { Delete } from '../models/delete.interface';
   providedIn: 'root'
 })
 export class NewsControllerService {
-  private url:string = environment.apiUrlNews;
+  // private url:string = environment.apiUrlNews;
+  private url:string = 'some_error';
 
   constructor(private privateService: PrivateService) { }
 
