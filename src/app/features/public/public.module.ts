@@ -24,13 +24,11 @@ import { DonationsHeaderComponent } from './pages/donations/donations-header/don
 import { LeafletMapComponent } from './pages/contact/components/leaflet-map/leaflet-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CampaignsSchoolComponent } from './pages/campaigns/campaigns-school.component';
-import { FooterSchoolComponent } from '@app/core/components/footer/footer-school/footer-school.component';
 @NgModule({
   declarations: [
     PublicComponent,
     HeaderComponent,
     FooterComponent,
-    FooterSchoolComponent,
     AboutComponent,
     AboutTextComponent,
     CampaignsSchoolComponent,

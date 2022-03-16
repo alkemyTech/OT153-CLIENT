@@ -10,8 +10,6 @@
           <li><a routerLink="/nosotros">Nosotros</a></li>
           <li><a routerLink="/actividades">Actividades</a></li>
           <li><a routerLink="/contacto">Contacto</a></li>
-          <li><a routerLink="/campañas/vuelta-al-cole">Campaña escolar</a></li>
-          <li><a routerLink="/campañas/juguetes">Campaña juguetes</a></li>
           <li *ngIf="isAuth"><a routerLink="/donar">Contribuye</a></li>
         </ul>
       </div>
@@ -25,6 +23,14 @@
         <a href="{{ twitterLink }}" class="twitter">
           <i class="pi pi-twitter"></i> <p>{{ twitterLink }}</p> 
         </a>
+      </div>
+    </div>
+    <div class="topfooter text-center campain">
+      <div class="col-campain campain">
+        <ul>
+          <li><a routerLink="/campañas/vuelta-al-cole">Campaña escolar</a></li>
+          <li><a routerLink="/campañas/juguetes">Campaña juguetes</a></li>
+        </ul>
       </div>
     </div>
   </div>
