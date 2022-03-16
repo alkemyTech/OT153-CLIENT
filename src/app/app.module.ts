@@ -13,6 +13,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [AppComponent,DialogComponent],
@@ -25,6 +26,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     ToastModule,
     StoreModule,
     LeafletModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
   ],
