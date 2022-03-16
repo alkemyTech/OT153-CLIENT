@@ -3,6 +3,7 @@ import { DialogService } from '@app/core/services/dialog.service';
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { LeafletControlLayersConfig } from '@asymmetrik/ngx-leaflet';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-leaflet-map',
@@ -22,9 +23,9 @@ export class LeafletMapComponent implements OnInit {
 
   private initMap(): void {
     // Define our base layers
-    const wMaps = L.tileLayer('http://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
+    const wMaps = L.tileLayer(environment.wikimediaMap, {
       detectRetina: true,
-      attribution: '&copy; <a href="">WikimediaMap</a> contributors'
+      attribution: '&copy; <a href="https://www.wikimedia.org/">Wikimedia</a> contributors'
     });
     const organizationMarker = this.organizationMarker()
     
