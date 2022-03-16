@@ -4,20 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "home",
-    pathMatch: "full",
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
 
   {
-    path: "",
-    loadChildren: () =>
-      import("./public/public.module").then((m) => m.PublicModule),
+    path: '',
+    loadChildren: () => import('./public/public.module').then((m) => m.PublicModule),
   },
   {
-    path: "backoffice",
-    loadChildren: () =>
-      import("./backoffice/backoffice.module").then((m) => m.BackofficeModule),
+    path: '',
+    loadChildren: () => import('./backoffice/backoffice.module').then((m) => m.BackofficeModule),
   },
 ];
 
