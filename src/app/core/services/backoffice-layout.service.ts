@@ -36,12 +36,10 @@ export class BackofficeLayoutService {
 
   showSlide() : void{
     this.ShowSlide = true;
-    console.log('show');
   }
 
   hideSlide() : void{
     this.ShowSlide = false;
-    console.log('hide');
   }
 
     
