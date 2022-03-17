@@ -17,7 +17,7 @@ export class OrganizationControllerService {
   constructor(private privateService: PrivateApiService, private publicService: PublicapiService) {}
 
   public getPublicOrganization<T>(): Observable<Organization> {
-    return this.publicService.get<Organization>(environment.apiUrlOrganization);
+    return this.publicService.getPublicOrganization<Organization>();
   }
 
   public postOrganization(body: {}, activateHeader: boolean = true): Observable<Organization> {
