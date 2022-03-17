@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackofficeLayoutService } from '@app/core/services/backoffice-layout.service'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'alk-header-backoffice',
@@ -6,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderBackofficeComponent implements OnInit {
-
-  constructor() { }
+  
+  constructor(public layoutService: BackofficeLayoutService) { 
+  }
 
   ngOnInit(): void {
   }
 
-  openNavbar() : void {}
+  openNavbar() : void {
+    this.show();
+  }
+
+  show(){
+    this.layoutService.showSlide();
+  }
 
 }
