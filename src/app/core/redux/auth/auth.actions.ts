@@ -16,5 +16,5 @@ export const login        = createAction('[Authentication] Login', props<{ email
 export const googlelogin  = createAction('[Authentication] Google Login');
 export const isGoogleAuth  = createAction('[Authentication] Google Is Google');
 export const logout       = createAction('[Authentication] Logout');
-export const register     = createAction('[Authentication] Register', props<{name: string, email: string, password: string}>() );
+export const register     = createAction('[Authentication] Register', props<{name: string; email: string; address: string;  password: string}>() );
 export const setAuthState = createAction('[Authentication] Auth State Modified', props<AuthResponse>() );

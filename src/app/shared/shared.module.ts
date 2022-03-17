@@ -24,6 +24,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SuccessDialogTemplateComponent } from './components/dialog/components/success-dialog-template/success-dialog-template.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
+import { GoogleMapsModule } from "@angular/google-maps";
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+
 const componentToExport = [
   CarouselComponent,
   ContactFormComponent,
@@ -40,7 +43,7 @@ const componentToExport = [
   SuccessDialogTemplateComponent,
 ];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule, NgxExtendedPdfViewerModule];
+const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule, GoogleMapsModule, GooglePlaceModule,NgxExtendedPdfViewerModule];
 @NgModule({
   declarations: [...componentToExport, SkeletonComponent],
   imports: [CommonModule, ...modulesToExport],

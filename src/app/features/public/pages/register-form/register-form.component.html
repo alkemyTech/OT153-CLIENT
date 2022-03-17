@@ -1,6 +1,26 @@
 <p-card header="Registro" styleClass="p-card-shadow col-6 m-auto">
   <div class="grid p-fluid">
     <form (submit)="submit()" [formGroup]="formSignup" class="w-100 col-5">
+
+      <div class="field" [class.has-error]="passwordControl.touched && passwordControl.dirty">
+        <input
+          id="name"
+          placeholder="Nombre"
+          type="text"
+          aria-describedby="name-help"
+          pInputText
+          formControlName="name"
+        />
+        <div *ngIf="usernameControl.invalid">
+          <small
+            *ngIf="usernameControl.touched && usernameControl.hasError('required')"
+            id="name-help"
+            class="p-error"
+            >El campo es obligatorio
+          </small>
+        </div>
+      </div>
+      
       <div class="field" [class.has-error]="useremailControl.touched && useremailControl.dirty">
         <input
           pInputText
@@ -10,6 +30,36 @@
           aria-describedby="useremail-help"
           formControlName="useremail"
         />
+        <div *ngIf="useremailControl.invalid">
+          <small
+            *ngIf="useremailControl.touched && useremailControl.hasError('required')"
+            id="useremail-help"
+            class="p-error"
+            >El campo es obligatorio</small
+          >
+          <small
+            *ngIf="useremailControl.touched && useremailControl.hasError('hasEmail')"
+            id="useremail-help"
+            class="p-error"
+            >Email invalido</small
+          >
+        </div>
+      </div>
+
+      <div class="field" [class.has-error]="userdirectionControl.touched && userdirectionControl.dirty">        
+        <input
+        pInputText
+        id="userdirection"
+        type="text"
+        [class.has-error]="userdirectionControl.touched && userdirectionControl.dirty"
+        placeholder="Ingrese Direccion"
+        aria-describedby="userdirection-help"
+        formControlName="userdirection"
+        ngx-google-places-autocomplete
+        #placesRef="ngx-places"
+        (onAddressChange)="handleAdressChange($event)"
+      />
+
         <div *ngIf="useremailControl.invalid">
           <small
             *ngIf="useremailControl.touched && useremailControl.hasError('required')"
@@ -107,9 +157,19 @@
       </div>
       <div *ngIf="termsAccepted" class="terms">
         <button pButton pRipple type="button" disabled label="Acepto los términos y condiciones." class="p-button-success p-button-text"></button>
+      <div class="mt-4 col-12" *ngIf="viewMap && direction?.valid">
+        <google-map width="100%" [center]="position" [zoom]="15" [options]="mapOptions">
+          <map-marker
+          [position]="position"
+          [label]="label"
+          [title]="title"
+          [options]="markerOptions"
+          > </map-marker>
+        </google-map>
       </div>
+    </div>
       <div>
-        <button pButton type="submit" label="Registrar" class="p-button-primary col-"></button>
+        <button pButton type="submit" label="Registrar" (click)="submit()" class="p-button-primary col-"></button>
 
         <button pButton type="button" label="Volver" class="p-button-danger col-6"></button>
       </div>
