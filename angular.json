@@ -30,7 +30,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico", 
+              "src/favicon.ico",
               "src/assets",
               {
                 "glob": "**/*",
@@ -122,14 +122,15 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [  
+            "assets": [
               {
                 "glob": "**/*",
                 "input": "./node_modules/leaflet/dist/images",
                 "output": "leaflet/"
               },
               "src/favicon.ico",
-              "src/assets"],
+              "src/assets"
+            ],
             "styles": [
               "node_modules/primeflex/primeflex.css",
               "node_modules/primeng/resources/themes/fluent-light/theme.css",
@@ -138,6 +139,9 @@
               "node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["./src/styles/"]
+            },
             "scripts": []
           }
         }
