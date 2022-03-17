@@ -11,7 +11,7 @@ import { RootReduxModule } from './redux/root.redux.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [NewsletterFormComponent ],
+  declarations: [NewsletterFormComponent],
   imports: [
     CommonModule, 
     HttpClientModule, 
@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
   providers: [HttpService, UserService],
   exports: [
     NewsletterFormComponent,
+    
     ],
 })
 export class CoreModule {}
