@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
 import { logout, isGoogleAuth } from '@core/redux/auth/auth.actions';
 import { getAuthOk } from '@core/redux/auth/auth.selectors';
 import { Router } from '@angular/router';
+import * as fromFirebaseAuth from "firebase/auth";
+import { DialogService } from '@app/core/services/dialog.service';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
 
 @Component({
   selector: 'alk-header',
@@ -13,7 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor( private store: Store<AuthState>, private router: Router) {
+  constructor( private store: Store<AuthState>, private router: Router, private dialogService: DialogService) {
     this.authState$ = this.store.select(getAuthOk);
   }
 
@@ -74,7 +78,17 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+
     this.store.dispatch(logout());
-    this.router.navigateByUrl('/')
+    const auth = fromFirebaseAuth.getAuth();
+    fromFirebaseAuth.signOut(auth).then(() => {
+      let dialog: DialogData = { type: DialogType.SUCCESS, header:  'Operación Exitosa', content: 'La sesión se cerro correctamente.'};
+      this.dialogService.show(dialog);
+    }).catch(() => {
+      let dialog: DialogData = { type: DialogType.ERROR, header:  'Error', content: 'Error al cerrar la sesión.'};
+      this.dialogService.show(dialog);
+    });
+
+    this.router.navigate(['/home']);
   }
 }
