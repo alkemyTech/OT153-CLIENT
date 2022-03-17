@@ -1,3 +1,3 @@
-<p-sidebar [(visible)]="visible">
+<p-sidebar (onHide)="onHide($event)" [(visible)]="visible">
     <p-panelMenu [model]="items" [style]="{'width':'290px'}"></p-panelMenu>
 </p-sidebar>

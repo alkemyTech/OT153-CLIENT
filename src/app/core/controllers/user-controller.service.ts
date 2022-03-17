@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserControllerService {
   private _groupId: string = '153';
   private _headers!: HttpHeaders;
   private _baseUrl: string = environment.apiUrlUsers;

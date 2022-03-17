@@ -1,5 +1,7 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { BackofficeLayoutService } from '@app/core/services/backoffice-layout.service';
 
 
 @Component({
@@ -9,12 +11,30 @@ import {MenuItem} from 'primeng/api';
 })
 export class SidebarComponent implements OnInit {
 
-  items: MenuItem[];
-  visible: boolean = true;
+  public items: MenuItem[];
+  public visible: boolean = false;
+  private show: Observable<boolean>;
 
-  constructor() { }
+  constructor(public layoutService: BackofficeLayoutService) { 
+    this.show = this.layoutService.ShowSlideObservable;
+  }
 
   ngOnInit(): void {
+    this.defineItems();
+    this.showSubscribe();
+  }
+
+  showSubscribe(){
+    this.show.subscribe({
+      next: (resp) => { this.visible = resp }      
+    })
+  }
+
+  onHide(e):void{
+    this.layoutService.hideSlide();
+  }
+
+  defineItems(){
     this.items = [
       {
         label: "Actividades",
