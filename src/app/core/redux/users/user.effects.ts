@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
-import { UserService } from '@app/core/controllers/userService/user.service';
+import { UserControllerService } from '@app/core/controllers/user-controller.service';
 import * as action from '@app/core/redux/users/user.actions'
 
 @Injectable()
@@ -80,5 +80,5 @@ export class UsersEffects {
       catchError((error)=> of(action.deleteUserFail({error:error})))
     )
   })
-  constructor(private actions$: Actions, private userService: UserService) {}
+  constructor(private actions$: Actions, private userService: UserControllerService) {}
 }
