@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component, ViewChild, TemplateRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from '@core/models/dialog.inteface';
 import { DialogService } from '@app/core/services/dialog.service';
