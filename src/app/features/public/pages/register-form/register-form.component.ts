@@ -14,7 +14,8 @@ import { DialogType } from '@app/core/enums/dialog.enum';
 import { Store } from '@ngrx/store';
 import { GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { timer } from 'rxjs';
-
+import { } from '@angular/google-maps';
+declare const google: any;
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
