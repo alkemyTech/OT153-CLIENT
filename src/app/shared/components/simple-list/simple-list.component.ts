@@ -37,5 +37,4 @@ export class SimpleListComponent implements OnInit {
     this.emitDelete.emit(id);
   }
 
-
 }
