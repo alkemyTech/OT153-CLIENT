@@ -1,10 +1,12 @@
 <div class="container">
   <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
     <div class="text-center mb-5">
-        <img src="/assets/img/logo.png" alt="Image" height="150" class="mb-3">
-        <div class="text-900 text-3xl font-medium mb-3">Bienvenidos</div>
-        <span class="text-600 font-medium line-height-3">¿No tienes una cuenta?</span>
-        <a [routerLink]="['/registrarse']"  class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate</a>
+        <div class="img-header">
+          <img src="/assets/img/logo.png" alt="Image" height="150" class="mb-3">
+        </div>
+        <div class="title text-900 text-3xl font-medium">Bienvenidos a Somos Más ONG</div>
+        <span class="text-600 font-medium line-height-3">¿Aun no tenes una cuenta?</span>
+        <a [routerLink]="['/registrarse']"  class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate!</a>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
@@ -41,8 +43,8 @@
             <small id="password-help" class="p-error block">Contraseña obligatoria.</small>
           </div>
           <div class="btn-content mt-5">
-            <button class="btn mr-4" pButton pRipple label="Ingresar" [disabled]="!loginForm.valid" icon="pi pi-user"  type="submit"></button>
-            <button class="btn mr-4" pButton pRipple label="Google Login" (click)="loginGoogle()"><img src="/assets/public/icon-google.png"  alt="Login con google"></button>
+            <button class="btn mr-4" pButton pRipple label="Ingresar" [disabled]="!loginForm.valid" icon="pi pi-user"  type="submit" ></button>
+            <button class="btn mr-4" type="button" pButton pRipple label="Ingresa con tu cuenta de Google" (click)="loginGoogle()"><img src="/assets/public/icon-google.png"  alt="Login con google"></button>
           </div>
       </div>
     </form>
