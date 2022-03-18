@@ -7,3 +7,16 @@
   height: 850px;
   background-color: beige;
 }
+.btn-content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn{
+  width: 50%;
+  height: auto;
+  color: black;
+  background-color: white;
+  border-color: black;
+  margin-left: 20px;
+}

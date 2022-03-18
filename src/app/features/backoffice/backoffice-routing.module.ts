@@ -47,7 +47,10 @@ const routes: Routes = [
       },
       {
         path: 'categorias',
-        component: CategoriesFormComponent,
+        children: [
+          { path: '', component: CategoriesFormComponent },
+          { path: 'crear', component: CategoriesFormComponent },
+        ],
       },
       {
         path: 'diapositivas',
