@@ -1,6 +1,5 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { New } from '@app/core/models/news.interfaces';
+import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { _RESOLVED_META_REDUCERS } from '@ngrx/store/src/tokens';
 
 @Component({

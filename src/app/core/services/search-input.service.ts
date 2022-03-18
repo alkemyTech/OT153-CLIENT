@@ -1,46 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
+import { Search } from '@core/models/search.models';
 @Injectable({
   providedIn: 'root'
 })
 export class SearchInputService {
+  private lengthDebounce = 3;
+  private initialSearch: Search = { search: '',  load: false };
+  private searchObservable: BehaviorSubject<Search> = new BehaviorSubject<Search>( this.initialSearch );
 
-  private initialBackofficeLayout = {
-    actual: '',
-    showSlide: false, 
-  }
-
-  private actualObservable: BehaviorSubject<string> = new BehaviorSubject<string>(
-    this.initialBackofficeLayout.actual );
-  private showSlideObservable: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    this.initialBackofficeLayout.showSlide );
+  constructor() { }
   
-  constructor() {}
-  
-  get LayoutActualObservable(): Observable<string> {
-      return this.actualObservable.asObservable()
-  }
-  
-  get ShowSlideObservable(): Observable<boolean> {
-      return this.showSlideObservable.asObservable()
+  get SearchObservable(): Observable<Search>{
+    return this.searchObservable.asObservable();
   }
 
-  set LayoutActual( nuevoactual : string ){
-    this.actualObservable.next(nuevoactual);
+  set Search( newSearch : string ){
+    let flagLength = ( newSearch.length >= this.lengthDebounce );
+    this.searchObservable.next({ search: newSearch, load: flagLength });
   }
 
-  private set ShowSlide(flag : boolean) {
-    this.showSlideObservable.next(flag);
-  }
-
-  showSlide() : void{
-    this.ShowSlide = true;
-  }
-
-  hideSlide() : void{
-    this.ShowSlide = false;
-  }
-
-    
 }

@@ -6,6 +6,8 @@ import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@core/models/activities-state.interface';
 import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@app/core/redux/activities/activities.index';
 import { DialogType } from '@app/core/enums/dialog.enum';
+import { SearchInputService } from '@app/core/services/search-input.service';
+import { Search } from '@app/core/models/search.models';
 @Component({
   selector: 'app-list-activitites',
   templateUrl: './list-activitites.component.html',
@@ -14,6 +16,7 @@ import { DialogType } from '@app/core/enums/dialog.enum';
 export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities$: Observable<any> = new Observable();
   public dialogSelection$: Observable<boolean>;
+  public searchObserver$: Observable<Search>;
   private subscribeActivity: Subscription;
   private subscribeDialogSelection: Subscription;
   public activities: Activities[];
@@ -22,13 +25,19 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
 
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>, 
-    public dialog: DialogService
+    public dialog: DialogService,
+    public search: SearchInputService
   ) {}  
 
   ngOnInit(): void {
     this.setDialogObservables();
     this.delete_dialogSubscribe();
     this.getAllActivities();
+    this.searchObserver$ = this.search.SearchObservable;
+    this.searchObserver$.subscribe(
+      (resp) => console.log('In list: ',resp)
+    )
+
   }
 
   private setDialogObservables(){
