@@ -17,6 +17,10 @@ export class ActivitiesControllerService {
     return this.privateService.get<ActivitiesResponse>(this.url)
   }
 
+  search(value: string): Observable<ActivitiesResponse>{
+    return this.privateService.search<ActivitiesResponse>(this.url, value)
+  }
+
   getOne(id: number): Observable<ActivityResponse>{
     return this.privateService.get<ActivityResponse>(this.url, id)
   }

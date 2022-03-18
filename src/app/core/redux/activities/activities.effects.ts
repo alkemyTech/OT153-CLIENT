@@ -8,7 +8,8 @@ import {
   getOneActivities, GetOneActivity_Success, GetOneActivity_Fail,
   insertActivities, InsertActivities_Success, InsertActivities_Fail,
   updateActivities, UpdateActivities_Success, UpdateActivities_Fail,
-  deleteActivities, DeleteActivity_Success, DeleteActivity_Fail
+  deleteActivities, DeleteActivity_Success, DeleteActivity_Fail,
+  searchActivities, SearchActivities_Success, SearchActivities_Fail,
 } from '@core/redux/activities/activities.actions'; 
 
 @Injectable()
@@ -27,6 +28,20 @@ export class ActivitiesEffects {
       })
     )
   });
+
+  searchActivity$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(searchActivities),
+      mergeMap((action) => {  
+        return this.activitiesService.search(action.value).pipe(
+          map( response => SearchActivities_Success( {
+            activities: response.data
+          } ) ),
+          catchError( (error) => of( SearchActivities_Fail ({ error: error })))
+        )
+      })
+    )
+  })
 
   getOneActivities$ = createEffect( () => {
     return this.actions$.pipe(

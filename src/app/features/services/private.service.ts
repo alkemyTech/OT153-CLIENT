@@ -26,6 +26,11 @@ export class PrivateService {
     return route;
   }
 
+  search<T>(url: string, value: string): Observable<T> {
+    const urls = `${url}?search=${value}`;
+    return this.http.get<T>(urls, { headers: this.headers() });
+  }
+
   get<T>(url: string, id?: number): Observable<T> {
     const urls = this.router(url, id);
     return this.http.get<T>(urls, { headers: this.headers() });
