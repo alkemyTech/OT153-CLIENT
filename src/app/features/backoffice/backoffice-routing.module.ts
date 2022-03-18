@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'backoffice',
     component: BackofficeComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
