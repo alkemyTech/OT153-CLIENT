@@ -8,6 +8,7 @@ import { _RESOLVED_META_REDUCERS } from '@ngrx/store/src/tokens';
   styleUrls: ['./simple-list.component.scss']
 })
 export class SimpleListComponent implements OnInit {
+  @Input() title: string;
   @Input() data: any[];
   @Input() createLink: string;
   @Input() editLink: string;
