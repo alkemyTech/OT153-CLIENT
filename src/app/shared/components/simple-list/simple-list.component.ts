@@ -1,6 +1,5 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { New } from '@app/core/models/news.interfaces';
+import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { _RESOLVED_META_REDUCERS } from '@ngrx/store/src/tokens';
 
 @Component({
@@ -9,6 +8,7 @@ import { _RESOLVED_META_REDUCERS } from '@ngrx/store/src/tokens';
   styleUrls: ['./simple-list.component.scss']
 })
 export class SimpleListComponent implements OnInit {
+  @Input() title: string;
   @Input() data: any[];
   @Input() createLink: string;
   @Input() editLink: string;
@@ -37,5 +37,6 @@ export class SimpleListComponent implements OnInit {
     this.emitDelete.emit(id);
   }
 
-
 }
+
+//! 10011

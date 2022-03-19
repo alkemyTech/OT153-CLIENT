@@ -1,12 +1,13 @@
 <div class="col-12 md:col-10 lg:col-10 xl:col-8 m-auto mt-4">
-  <app-upper-title [title]="'Lista de novedades'" [colorText]="'white'"></app-upper-title>
+  <app-upper-title [title]="title" [colorText]="'white'"></app-upper-title>
   <p-card>
-    <div class="w-100 pr-5" style="text-align: end">
+    <div class="w-100 p-2" style="text-align: end">
+      <app-search></app-search>
       <button
         pButton
         icon="pi pi-plus"
         class="p-button-sm float-right"
-        pTooltip="Agregar tarea"
+        pTooltip="Crear"
         tooltipPosition="top"
         (click)="this.create()"
       ></button>
@@ -68,7 +69,7 @@
           <td>
             <span class="image-text">{{ data.created_at | date: 'dd/MM/YYYY HH:m:ss' }}</span>
           </td>
-          <td style="min-width: 110px !important">
+          <td style="min-width: 110px !important; display:flex; justify-content: space-around;">
             <button pButton name="edit" (click)="this.edit(data.id)" icon="pi pi-pencil" class="p-button-sm p-button-primary mr-1"></button>
             <button pButton name="delete" (click)="this.delete(data.id)" icon="pi pi-trash" class="p-button-sm p-button-danger"></button>
           </td>

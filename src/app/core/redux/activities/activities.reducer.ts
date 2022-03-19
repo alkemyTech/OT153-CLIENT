@@ -1,9 +1,10 @@
 import { 
   DeleteActivity_Success, GetAllActivities_Success, 
+  SearchActivities_Success, SearchActivities_Fail,
   GetOneActivity_Success, InsertActivities_Success, 
   UpdateActivities_Success, GetAllActivities_Fail, 
   GetOneActivity_Fail, DeleteActivity_Fail, 
-  InsertActivities_Fail, UpdateActivities_Fail,
+  InsertActivities_Fail, UpdateActivities_Fail, 
 } from './activities.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createReducer, on } from '@ngrx/store';
@@ -24,6 +25,8 @@ const initialState: activitiesState = {
 export const _activityReducer = createReducer( initialState,
   on( GetAllActivities_Success, (state, action) => { return {...state, responseAll: action.activities } }),
   on( GetAllActivities_Fail, (state, action) =>  { return {...state, error: action.error } }  ),
+  on( SearchActivities_Success, (state, action) => { return {...state, responseAll: action.activities } }),
+  on( SearchActivities_Fail, (state, action) => { return {...state, error: action.error } }),
   on( GetOneActivity_Success, (state, action) => { return {...state, response: action.activity } }  ),
   on( GetOneActivity_Fail, (state, action) => { return {...state, error: action.error } } ),
   on( InsertActivities_Success, (state, action) => { return {...state, response: action.activity } }  ),

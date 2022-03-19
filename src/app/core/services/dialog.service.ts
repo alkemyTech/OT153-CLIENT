@@ -40,9 +40,9 @@ export class DialogService {
     }
     
     set DialogSelection(selection){
-        let bool = selection===DialogType.CANCEL? false: true;
+        let bool = (selection===DialogType.CANCEL || selection === undefined)? false: true;
         this.toastByType(selection)
-        this.SelectionObservable.next(bool)
+        this.SelectionObservable.next(bool);        
     }
 
     toastByType(selection){

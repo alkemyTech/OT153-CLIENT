@@ -6,6 +6,9 @@ export enum type {
     GET_ALL_ACTIVITIES = '[Activities] Get All Activities',
     GET_ALL_ACTIVITIES_FAIL = '[Activities] Get All Activities Fail',
     GET_ALL_ACTIVITIES_SUCCESS = '[Activities] Get All Activities Success',
+    SEARCH_ACTIVITIES = '[Activities] Search Activities',
+    SEARCH_ACTIVITIES_FAIL = '[Activities] Search Activities Fail',
+    SEARCH_ACTIVITIES_SUCCESS = '[Activities] Search Activities Success',
     GET_ONE_ACTIVITY = '[Activities] Get One Activities',
     GET_ONE_ACTIVITY_FAIL = '[Activities] Get One Activities Fail',
     GET_ONE_ACTIVITY_SUCCESS = '[Activities] Get One Activities Success',
@@ -23,6 +26,10 @@ export enum type {
 export const getAllActivities = createAction(type.GET_ALL_ACTIVITIES);
 export const GetAllActivities_Fail= createAction(type.GET_ALL_ACTIVITIES_FAIL, props<{ error: any }>());
 export const GetAllActivities_Success = createAction(type.GET_ALL_ACTIVITIES_SUCCESS, props<{ activities: Activities[] }>());
+
+export const searchActivities = createAction(type.SEARCH_ACTIVITIES, props<{value: string}>());
+export const SearchActivities_Fail= createAction(type.SEARCH_ACTIVITIES_FAIL, props<{ error: any }>());
+export const SearchActivities_Success = createAction(type.SEARCH_ACTIVITIES_SUCCESS, props<{ activities: Activities[] }>());
 
 export const getOneActivities = createAction(type.GET_ONE_ACTIVITY, props<{id: number}>());
 export const GetOneActivity_Fail= createAction(type.GET_ONE_ACTIVITY_FAIL, props<{ error: any }>());

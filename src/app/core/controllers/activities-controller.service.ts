@@ -1,3 +1,4 @@
+import { SearchInputService } from '@app/core/services/search-input.service';
 import { Delete } from './../models/delete.interface';
 import { Injectable } from '@angular/core';
 import { PrivateService } from '../../features/services/private.service';
@@ -15,6 +16,10 @@ export class ActivitiesControllerService {
 
   getAll(): Observable<ActivitiesResponse>{
     return this.privateService.get<ActivitiesResponse>(this.url)
+  }
+
+  search(value: string): Observable<ActivitiesResponse>{
+    return this.privateService.search<ActivitiesResponse>(this.url, value)
   }
 
   getOne(id: number): Observable<ActivityResponse>{
@@ -35,3 +40,4 @@ export class ActivitiesControllerService {
 
 }
 
+//! 10011

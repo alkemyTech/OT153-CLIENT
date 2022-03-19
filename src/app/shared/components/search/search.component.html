@@ -1,0 +1,9 @@
+<span class="p-input-icon-right search-container">
+
+  <i *ngIf="!load" class="pi pi-search"></i>
+  <i *ngIf="load" class="pi pi-spin pi-spinner"></i>
+
+  <input pInputText type="text"  placeholder="Buscar"
+    class="p-inputtext-sm" [(ngModel)]="value" #input/>
+  
+</span>
