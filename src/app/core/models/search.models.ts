@@ -1,4 +1,4 @@
 export interface Search {
-    search: string,
+    search?: string,
     load: boolean,
 };

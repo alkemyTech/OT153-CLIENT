@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Search } from '@core/models/search.models';
@@ -11,13 +12,19 @@ export class SearchInputService {
 
   constructor() { }
   
-  get SearchObservable(): Observable<Search>{
+  get SearchObservable(): Observable<Search> {
     return this.searchObservable.asObservable();
   }
 
-  set Search( newSearch : string ){
+  set Search( newSearch : string ) {
     let flagLength = ( newSearch.length >= this.lengthDebounce );
     this.searchObservable.next({ search: newSearch, load: flagLength });
   }
 
+  set Load( newLoad : boolean ) {
+    this.searchObservable.next({ load : newLoad })
+  }
+
 }
+
+//! 10011

@@ -23,7 +23,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.SearchObserver$ = this.searchService.SearchObservable
     this.SearchObserver$.subscribe({
-      next: (resp)=> this.load = resp.load
+      next: (resp)=> {
+        this.load =  resp.load;
+      }
     })
   }
 
@@ -33,16 +35,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
       filter(Boolean),
       debounceTime(700),
       distinctUntilChanged(),
-      // tap(() => {
-      //   console.log(this.input.nativeElement.value)
-      // })
     )
     .subscribe({   
       next: () => { 
-        // console.log(this.value);
         this.searchService.Search = this.value;
+        setTimeout(() => this.load = false , 2000); // jaja
       }
     });
   }
 
 }
+
+//! 10011
