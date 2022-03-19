@@ -26,7 +26,7 @@ export class AuthEffects {
     register$ = createEffect(() => this.actions$.pipe(
         ofType(register),
         exhaustMap( registerAction =>
-            this.authService.auth({name: registerAction.name,email:registerAction.email, password: registerAction.password}).pipe(
+            this.authService.register({name: registerAction.name,email:registerAction.email, password: registerAction.password}).pipe(
                 map( (resp:any) => setAuthState({ auth: true, success: resp.success, token: resp.data.token, data: resp.data.user, googleUser: false}))
             ))            
     ));

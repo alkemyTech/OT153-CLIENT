@@ -1,9 +1,39 @@
+@import '__fonts';
+@import '__colors';
+
+
 .container {
+  background-image:url(/assets/public/login.jpg);min-height:calc(100vh - 119px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   height: 850px;
-  background-color: beige;
+}
+
+.surface-card{
+  box-shadow: 5px 5px 5px -6px $black !important;
+}
+
+.img-header{
+background-color: $lightBlue;
+}
+
+.title{
+  margin-top: 1.5rem;
+}
+
+.btn-content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn{
+  width: 50%;
+  height: auto;
+  color: $black;
+  background-color: $white;
+  border-color: $black;
+  margin-left: 20px;
 }
