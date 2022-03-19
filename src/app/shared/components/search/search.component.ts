@@ -33,13 +33,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
     fromEvent(this.input.nativeElement,'keyup')
     .pipe(
       filter(Boolean),
-      debounceTime(700),
+      debounceTime(500),
       distinctUntilChanged(),
     )
     .subscribe({   
       next: () => { 
         this.searchService.Search = this.value;
-        setTimeout(() => this.load = false , 2000); // jaja
+        setTimeout(() => this.load = false , 1300); // jaja
       }
     });
   }
