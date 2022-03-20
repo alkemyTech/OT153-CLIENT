@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import { userState } from '@app/core/models/user-state.interface';
 import * as userActions from '@app/core/redux/users/user.actions'
 import * as userSelector from '@app/core/redux/users/user.selector'
+import { SearchInputService } from '@app/core/services/search-input.service';
+import { Search } from '@app/core/models/search.models';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -26,33 +28,23 @@ export class UsersCrudComponent implements OnInit {
   userDialog: boolean;
   @ViewChild('dt') dt: Table | undefined;
 
+  public searchObserver$: Observable<Search>;
+
   constructor(
     private http: PrivateApiService,
     public dialogService: DialogService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private Store: Store<{ userState: userState }>
+    private Store: Store<{ userState: userState }>,
+    public searchServices: SearchInputService
   ) {}
 
   ngOnInit(): void {
     this.Store.dispatch(userActions.getUsers());
     this.user$ = this.Store.select(userSelector.SelectStateAllData);
     this.getAllUsers();
-    // this.users = [
-    //   { data: { name: 'John', email: 'john@test.com', id: 1239 } },
-    //   { data: { name: 'Mary', email: 'mary@test.com', id: 1244 } },
-    //   { data: { name: 'Elton', email: 'elton@test.com', id: 1250 } },
-    //   { data: { name: 'Dany', email: 'dany@test.com', id: 1244 } },
-    //   { data: { name: 'Elsa', email: 'elsa@test.com', id: 1250 } },
-    //   { data: { name: 'Rick', email: 'rick@test.com', id: 1239 } },
-    //   { data: { name: 'Python', email: 'python@test.com', id: 1244 } },
-    //   { data: { name: 'Mely', email: 'mely@test.com', id: 1239 } },
-    //   { data: { name: 'Susan', email: 'susan@test.com', id: 1250 } },
-    //   { data: { name: 'John', email: 'john@test.com', id: 1239 } },
-    //   { data: { name: 'Mary', email: 'mary@test.com', id: 1244 } },
-    //   { data: { name: 'Elton', email: 'elton@test.com', id: 1250 } },
-    //   { data: { name: 'Dany', email: 'dany@test.com', id: 1244 } },
-    // ];
+    this.searchSubscribe();
+
   }
 
   editUser(user: UserData) {
@@ -81,5 +73,29 @@ export class UsersCrudComponent implements OnInit {
     this.user$.subscribe((users) => {
       this.users = users.data;
     });
+  }
+
+  private getUsers() {
+    this.Store.dispatch(userActions.getUsers());
+
+  }
+  
+  private searchSubscribe() {
+    this.searchObserver$ = this.searchServices.SearchObservable;
+    this.subscribeSearchUsers = this.searchObserver$.subscribe({
+      next: (resp) => { this.search(resp.load, resp.search); }
+    })
+  }
+
+  private search(load?: boolean, search?: string){
+    if(load === true) { 
+      this.searchUsers(search || '');
+    }else{
+      this.getUsers();
+    }
+  }
+
+  private searchUsers(search: string){
+    this.Store.dispatch(userActions.searchUsers({value: search}));
   }
 }

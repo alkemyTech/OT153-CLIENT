@@ -24,6 +24,9 @@ export const _userReducer = createReducer(
   on(action.getUsersSuccess, (state,action) => {return {...state, responseAll: action.users}}),
   on(action.getUsersFail, (state,action)=> {return {...state,error:action.error}}),
 
+  on( action.SearchUsers_Success, (state, action) => { return {...state, responseAll: action.users } }),
+  on( action.SearchUsers_Fail, (state, action) => { return {...state, error: action.error } }),
+
   on(action.getUserSuccess, (state,action) => {return {...state, response:action.user}}),
   on(action.getUserFail, (state,action) => {return {...state, error:action.error}}),
 
