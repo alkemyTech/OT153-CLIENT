@@ -5,7 +5,7 @@ import { Table } from 'primeng/table';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { PrivateApiService } from '@app/core/services/privateApi.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { userState } from '@app/core/models/user-state.interface';
 import * as userActions from '@app/core/redux/users/user.actions'
@@ -29,6 +29,9 @@ export class UsersCrudComponent implements OnInit {
   @ViewChild('dt') dt: Table | undefined;
 
   public searchObserver$: Observable<Search>;
+  private subscribeUser: Subscription;
+  private subscribeDialogSelection: Subscription;
+  private subscribeSearchUsers: Subscription;
 
   constructor(
     private http: PrivateApiService,
