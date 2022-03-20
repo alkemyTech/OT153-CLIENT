@@ -13,6 +13,7 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { RegisterFormComponent } from './pages/register-form/register-form.component';
 import { PublicComponent } from './public.component';
 import { DonationGuard } from '@core/guards/donations.guard';
+import { LoginGuard } from '@app/core/guards/login.guard';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
       {
         path: 'iniciar-sesion',
         component: LoginFormComponent,
+        canActivate: [LoginGuard]
       },
       {
         path: 'miembros',

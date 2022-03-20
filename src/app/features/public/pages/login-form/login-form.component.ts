@@ -31,8 +31,6 @@ export class LoginFormComponent implements OnInit {
 
   onLogin(): void {
     const formValue = this.loginForm.value;
-    localStorage.setItem('email', formValue.email);
-    localStorage.setItem('password', formValue.password);
     const logAction = { email: this.loginForm.get('email')!.value, password: this.loginForm.get('password')!.value};
     this._store.dispatch(login(logAction));
 
@@ -47,7 +45,6 @@ export class LoginFormComponent implements OnInit {
     this._store.dispatch(googlelogin());
     this._store.select(getAuthToken).subscribe( token => {
       if(!token) return
-
       this._router.navigateByUrl('/')
     })
   }
