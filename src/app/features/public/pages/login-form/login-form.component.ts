@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit {
     password: ['', [Validators.required]],
   });
   
-  constructor(private fb: FormBuilder, private _store:Store<AuthState>,private _router:Router) {
+  constructor(private fb: FormBuilder, private _store:Store<AuthState>, private _router:Router) {
     this.authentication$ = this._store.pipe(select(getAuth));
   }
 
