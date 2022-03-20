@@ -25,6 +25,9 @@ import { LeafletMapComponent } from './pages/contact/components/leaflet-map/leaf
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { ToysComponent } from './pages/campaigns/toys/toys.component';
 import { CampaignsSchoolComponent } from './pages/campaigns/back-to-school/campaigns-school.component';
+import { ToysComponent } from './pages/campaigns/toys/toys.component';
+import { ToysHeaderComponent } from './pages/campaigns/toys/components/header/header.component';
+
 
 
 @NgModule({
@@ -51,6 +54,7 @@ import { CampaignsSchoolComponent } from './pages/campaigns/back-to-school/campa
     DonationsHeaderComponent,
     LeafletMapComponent,
     ToysComponent,
+    ToysHeaderComponent,
   ],
   imports: [CommonModule, PublicRoutingModule, SharedModule, LeafletModule],
   exports: [SharedModule],
