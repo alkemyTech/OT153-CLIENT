@@ -122,6 +122,15 @@ mapOptions = {
       const password = this.frmSignup.get('password')?.value;
     }
 
+  getTermsAcceptance(){
+    let dialog: DialogData = { 
+      type: DialogType.SUCCESS, 
+      header: 'Términos y condiciones', 
+      filePDF: this.termsFilePath 
+    };
+    this.dialogService.show(dialog);
+    this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
+    const {name, useremail , userdirection, password, confirmPassword } = this.frmSignup.value;
     try {
       const {name, useremail , userdirection, password, confirmPassword } = this.frmSignup.value;
 
