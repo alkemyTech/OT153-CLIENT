@@ -16,12 +16,14 @@ import { GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { timer } from 'rxjs';
 import { } from '@angular/google-maps';
 declare const google: any;
+
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
+  isLoading: boolean = true;
   private frmSignup: FormGroup;
   private usernameFormControl: FormControl = new FormControl('', [
     Validators.required,
@@ -132,13 +134,14 @@ mapOptions = {
         this._store.dispatch(
           register({name:name, email: useremail, address:userdirection, password: password})
         );
+        
       } else {
         this.frmSignup.get("confirmPassword")?.setErrors({ repeat: true });
         this.frmSignup.get("password")?.setErrors({ repeat: true });
-        alert("Las contraseñas no coinciden");
       }
     } catch (error) {
-      alert("Error en el registro");
+      let dialog: DialogData = { type: DialogType.ERROR, header:  'Error', content: 'El registro fallo'};
+      this.dialogService.show(dialog);
       this.frmSignup.reset();
     }
   }

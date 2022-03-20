@@ -1,178 +1,158 @@
-<p-card header="Registro" styleClass="p-card-shadow col-6 m-auto">
-  <div class="grid p-fluid">
-    <form (submit)="submit()" [formGroup]="formSignup" class="w-100 col-5">
+<div class="container">
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+        <div class="img-header">
+          <img src="/assets/img/logo.png" alt="Image" height="150" class="mb-3">
+        </div>
+        <div class="title text-900 text-3xl font-medium">Bienvenidos a Somos Más ONG</div>
+        <span class="text-600 font-medium line-height-3">¿Ya tenes una cuenta?</span>
+        <a [routerLink]="['/iniciar-sesion']"  class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Conectate</a>
+    </div>
 
-      <div class="field" [class.has-error]="passwordControl.touched && passwordControl.dirty">
-        <input
-          id="name"
-          placeholder="Nombre"
-          type="text"
+    <form (submit)="submit()" [formGroup]="formSignup" class="w-100 col-5">
+      <div>
+          <input id="name" type="text" 
+          formControlName="name"
           aria-describedby="name-help"
           pInputText
-          formControlName="name"
-        />
-        <div *ngIf="usernameControl.invalid">
-          <small
-            *ngIf="usernameControl.touched && usernameControl.hasError('required')"
-            id="name-help"
-            class="p-error"
-            >El campo es obligatorio
-          </small>
-        </div>
-      </div>
-      
-      <div class="field" [class.has-error]="useremailControl.touched && useremailControl.dirty">
-        <input
-          pInputText
-          id="useremail"
-          type="text"
-          placeholder="Correo electrónico"
-          aria-describedby="useremail-help"
+          placeholder="Nombre" class="w-full mb-3">
+          <div *ngIf="usernameControl.invalid">
+            <small
+              *ngIf="usernameControl.touched && usernameControl.hasError('required')"
+              id="name-help"
+              class="p-error"
+              >El nombre es obligatorio.
+            </small>
+          </div>
+
+          <input id="useremail" type="text" 
           formControlName="useremail"
-        />
-        <div *ngIf="useremailControl.invalid">
-          <small
-            *ngIf="useremailControl.touched && useremailControl.hasError('required')"
-            id="useremail-help"
-            class="p-error"
-            >El campo es obligatorio</small
-          >
-          <small
-            *ngIf="useremailControl.touched && useremailControl.hasError('hasEmail')"
-            id="useremail-help"
-            class="p-error"
-            >Email invalido</small
-          >
-        </div>
-      </div>
+          aria-describedby="useremail-help"
+          pInputText
+          placeholder="Correo electrónico" class="w-full mb-3">
+          <div *ngIf="useremailControl.invalid">
+            <small
+              *ngIf="useremailControl.touched && useremailControl.hasError('required')"
+              id="useremail-help"
+              class="p-error"
+              >El correo electrónico es obligatorio.
+            </small>
+          </div>
 
-      <div class="field" [class.has-error]="userdirectionControl.touched && userdirectionControl.dirty">        
-        <input
-        pInputText
-        id="userdirection"
-        type="text"
-        [class.has-error]="userdirectionControl.touched && userdirectionControl.dirty"
-        placeholder="Ingrese Direccion"
-        aria-describedby="userdirection-help"
-        formControlName="userdirection"
-        ngx-google-places-autocomplete
-        #placesRef="ngx-places"
-        (onAddressChange)="handleAdressChange($event)"
-      />
+          <input id="userdirection" type="text" 
+          pInputText
+          id="userdirection"
+          type="text"
+          placeholder="Ingrese su Direccion"
+          aria-describedby="userdirection-help"
+          formControlName="userdirection"
+          ngx-google-places-autocomplete
+          #placesRef="ngx-places"
+          (onAddressChange)="handleAdressChange($event)" class="w-full mb-3">
+          <div *ngIf="userdirectionControl.invalid">
+            <small
+              *ngIf="userdirectionControl.touched && userdirectionControl.hasError('required')"
+              id="userdirection-help"
+              class="p-error"
+              >La Direccion es obligatoria.
+            </small>
+          </div>
 
-        <div *ngIf="useremailControl.invalid">
-          <small
-            *ngIf="useremailControl.touched && useremailControl.hasError('required')"
-            id="useremail-help"
-            class="p-error"
-            >El campo es obligatorio</small
-          >
-          <small
-            *ngIf="useremailControl.touched && useremailControl.hasError('hasEmail')"
-            id="useremail-help"
-            class="p-error"
-            >Email invalido</small
-          >
-        </div>
-      </div>
-
-      <div class="field" [class.has-error]="passwordControl.touched && passwordControl.dirty">
-        <input
-          id="password"
-          placeholder="Contraseña"
-          type="password"
+          <input id="password" type="password" 
+          formControlName="password"
           aria-describedby="password-help"
           pInputText
-          formControlName="password"
-        />
-        <div *ngIf="passwordControl.invalid">
-          <small
-            *ngIf="passwordControl.touched && passwordControl.hasError('required')"
-            id="password-help"
-            class="p-error"
-            >El campo es obligatorio
-          </small>
-          <small
-            *ngIf="passwordControl.touched && passwordControl.hasError('minlength')"
-            id="password-help"
-            class="p-error block"
-            >Debe tener minimo seis caracteres.
-          </small>
-          <small
-            *ngIf="passwordControl.touched && passwordControl.hasError('hasNoSpaces')"
-            id="password-help"
-            class="p-error block"
-            >No ingrese espacios.</small
-          >
-          <small
-            *ngIf="passwordControl.touched && passwordControl.hasError('hasNumber')"
-            id="password-help"
-            class="p-error block"
-            >Ingrese al menos un número.</small
-          >
-          <small
-            *ngIf="passwordControl.touched && passwordControl.hasError('hasWord')"
-            id="password-help"
-            class="p-error block"
-            >Ingrese al menos una letra.</small
-          >
-          <small
-            *ngIf="passwordControl.touched && passwordControl.hasError('hasSymbol')"
-            id="password-help"
-            class="p-error block"
-            >Ingrese al menos un símbolo.</small
-          >
-        </div>
-      </div>
-
-      <div class="field" [class.has-error]="confirmPasswordControl.touched && confirmPasswordControl.dirty">
-        <input
-          id="confirmPassword"
-          placeholder="Confirmar Contraseña"
-          type="password"
-          aria-describedby="confirmPassword-help"
-          pInputText
-          formControlName="confirmPassword"
-        />
-        <div *ngIf="passwordControl.touched && confirmPasswordControl.touched" class="error">
-          <div *ngIf="confirmPasswordControl.invalid">
+          placeholder="Contraseña" class="w-full mb-3">
+          <div *ngIf="passwordControl.invalid">
             <small
-              *ngIf="confirmPasswordControl.touched && confirmPasswordControl.hasError('required')"
+              *ngIf="passwordControl.touched && passwordControl.hasError('required')"
+              id="password-help"
+              class="p-error"
+              >La contraseña es obligatoria
+            </small>
+            <small
+              *ngIf="passwordControl.touched && passwordControl.hasError('minlength')"
               id="password-help"
               class="p-error block"
-              >El campo es obligatorio</small
+              >Debe tener minimo seis caracteres.
+            </small>
+            <small
+              *ngIf="passwordControl.touched && passwordControl.hasError('hasNoSpaces')"
+              id="password-help"
+              class="p-error block"
+              >No ingrese espacios.</small
             >
             <small
-              *ngIf="confirmPasswordControl.touched && confirmPasswordControl.hasError('NoPassswordMatch')"
+              *ngIf="passwordControl.touched && passwordControl.hasError('hasNumber')"
               id="password-help"
               class="p-error block"
-              >La confirmacion no coincide.</small
+              >Ingrese al menos un número.</small
+            >
+            <small
+              *ngIf="passwordControl.touched && passwordControl.hasError('hasWord')"
+              id="password-help"
+              class="p-error block"
+              >Ingrese al menos una letra.</small
+            >
+            <small
+              *ngIf="passwordControl.touched && passwordControl.hasError('hasSymbol')"
+              id="password-help"
+              class="p-error block"
+              >Ingrese al menos un símbolo.</small
             >
           </div>
-        </div>
-      </div>
 
-      <div *ngIf="!termsAccepted" class="terms">
-        <button pButton pRipple type="button" (click)="getTermsAcceptance()" label="Leer términos y condiciones." class="p-button-warning p-button-text"></button>
-      </div>
-      <div *ngIf="termsAccepted" class="terms">
-        <button pButton pRipple type="button" disabled label="Acepto los términos y condiciones." class="p-button-success p-button-text"></button>
-      <div class="mt-4 col-12" *ngIf="viewMap && direction?.valid">
-        <google-map width="100%" [center]="position" [zoom]="15" [options]="mapOptions">
-          <map-marker
-          [position]="position"
-          [label]="label"
-          [title]="title"
-          [options]="markerOptions"
-          > </map-marker>
-        </google-map>
-      </div>
-    </div>
-      <div>
-        <button pButton type="submit" label="Registrar" (click)="submit()" class="p-button-primary col-"></button>
+          <div class="field" [class.has-error]="confirmPasswordControl.touched && confirmPasswordControl.dirty">
+            <input
+              id="confirmPassword"
+              placeholder="Confirmar tu contraseña"
+              type="password"
+              aria-describedby="confirmPassword-help"
+              pInputText
+              formControlName="confirmPassword"
+              class="w-full mb-3"
+            />
+            <div *ngIf="confirmPasswordControl.touched && confirmPasswordControl.touched" class="error">
+              <div *ngIf="confirmPasswordControl.invalid">
+                <small
+                  *ngIf="confirmPasswordControl.touched && confirmPasswordControl.hasError('required')"
+                  id="confirmPassword-help"
+                  class="p-error block"
+                  >El campo es obligatorio</small
+                >
+                <small
+                  *ngIf="confirmPasswordControl.touched && confirmPasswordControl.hasError('NoPassswordMatch')"
+                  id="confirmPassword-help"
+                  class="p-error block"
+                  >La confirmacion no coincide.</small
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 col-12" *ngIf="viewMap && direction?.valid">
+            <google-map width="100%" [center]="position" [zoom]="15" [options]="mapOptions">
+              <map-marker
+              [position]="position"
+              [label]="label"
+              [title]="title"
+              [options]="markerOptions"
+              > </map-marker>
+            </google-map>
+          </div>
+          <div *ngIf="!termsAccepted" class="terms">
+            <button pButton pRipple type="button" (click)="getTermsAcceptance()" label="Leer términos y condiciones." class="p-button-warning p-button-text"></button>
+          </div>
+          <div *ngIf="termsAccepted" class="terms">
+            <button pButton pRipple type="button" disabled label="Acepto los términos y condiciones." class="p-button-success p-button-text"></button>
 
-        <button pButton type="button" label="Volver" class="p-button-danger col-6"></button>
+        </div> 
+          
+      </div>
+      <div class="btn-content mt-5">
+        <button class="btn mr-4" pButton pRipple label="Registrarse" [disabled]="!formSignup.valid" type="submit" [loading]="!isLoading"></button>
+        <button class="btn mr-4" type="button" pButton pRipple label="Cancelar" [routerLink]="['/']" ></button>
       </div>
     </form>
-  </div>
-</p-card>
+</div>
+
+</div>
