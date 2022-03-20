@@ -35,19 +35,11 @@ export class HeaderComponent implements OnInit {
   ];
 
   linksBackoffice: link[] = [
-    { link: '/backoffice/organization', text: 'Organizacion' },
-    { link: '/donacion', text: 'Donaciones' },
-    { link: '/backoffice/actividades', text: 'Actividades' },
-    { link: '/backoffice/users', text: 'Usuarios' },
-    { link: '/backoffice/members', text: 'Miembros' },
-    { link: '/backoffice/categorias', text: 'Usuarios' },
-    { link: '/backoffice/', text: 'Dashboard' },
+    { link: '/donar', text: 'Donaciones' },
+    { link: '/backoffice', text: 'Dashboard' },
   ];
 
   linksGoogle: link[] = [
-    { link: '/home', text: 'Inicio' },
-    { link: '/nosotros', text: 'Nosotros' },
-    { link: '/contacto', text: 'Contacto' },
     { link: '/donar', text: 'Donaciones' },
   ];
 
@@ -57,17 +49,17 @@ export class HeaderComponent implements OnInit {
     this.loadLinks();
     this.authState$.subscribe( ({auth, isGoogleAuth}) =>{
 
-      //TODO erase then
-      if (auth && isGoogleAuth) {
-        console.log('is google auth');
-      } 
-      if (auth && !isGoogleAuth) {
-        console.log('is auth');
-      }
-      if (!auth){
-        console.log('not auth');
-      }
-      //TODO erase end
+      // //TODO erase then
+      // if (auth && isGoogleAuth) {
+      //   console.log('is google auth');
+      // } 
+      // if (auth && !isGoogleAuth) {
+      //   console.log('is auth');
+      // }
+      // if (!auth){
+      //   console.log('not auth');
+      // }
+      // //TODO erase end
 
       if(auth===true || isGoogleAuth===true){
         this.loggedIn = true;
@@ -80,15 +72,22 @@ export class HeaderComponent implements OnInit {
 
 
   loadLinks(): void {
-    this.authState$.subscribe( ({auth, isGoogleAuth}) => {
+    this.authState$.subscribe( ({auth, isGoogleAuth, user}) => {
       if (!auth) {
         this.links = this.linksHome;
       }
       else{
         if (isGoogleAuth) {
-          this.links = this.linksGoogle
+          this.links = [...this.linksHome, ...this.linksGoogle];
         }else {
-          this.links = [...this.linksHome, ...this.linksBackoffice];
+          if(user?.role_id == 1) {
+            this.links = [...this.linksHome, ...this.linksBackoffice];
+          }
+          else {
+            //without backoffice, it like google auth
+            this.links = [...this.linksHome, ...this.linksGoogle];
+          }
+
         }
       }
 
