@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { register } from '@app/core/redux/auth/auth.actions';
+import { register, login } from '@app/core/redux/auth/auth.actions';
+import { getAuth } from '@app/core/redux/auth/auth.selectors';
 import {
   wordValidator,
   digitValidator,
@@ -11,10 +12,11 @@ import { passwordMatchValidator } from '@app/core/util/validators/password.valid
 import { DialogService } from '@app/core/services/dialog.service';
 import { DialogData } from '@app/core/models/dialog.inteface';
 import { DialogType } from '@app/core/enums/dialog.enum';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { GooglePlaceDirective } from "ngx-google-places-autocomplete";
-import { timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { } from '@angular/google-maps';
+import { Router } from '@angular/router';
 declare const google: any;
 
 @Component({
@@ -23,6 +25,7 @@ declare const google: any;
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
+  authentication$: Observable<boolean>;
   isLoading: boolean = true;
   private frmSignup: FormGroup;
   private usernameFormControl: FormControl = new FormControl('', [
@@ -85,8 +88,9 @@ mapOptions = {
   termsAccepted = false;
   termsFilePath = '/assets/backoffice/terminos-y-condiciones.pdf'
 
-  constructor(private formBuilder: FormBuilder, private dialogService: DialogService, private _store:Store) {
+  constructor(private formBuilder: FormBuilder, private dialogService: DialogService, private _store:Store,private _router:Router) {
     this.frmSignup = this.registerForm();
+    this.authentication$ = this._store.pipe(select(getAuth));
     
   }
 
@@ -117,6 +121,36 @@ mapOptions = {
       const email = this.frmSignup.get('useremail')?.value;
       const password = this.frmSignup.get('password')?.value;
     }
+
+    try {
+      const {name, useremail , userdirection, password, confirmPassword } = this.frmSignup.value;
+
+      if (password === confirmPassword) {
+        this._store.dispatch(
+          register({name:name, email: useremail, address:userdirection, password: password})
+        );
+        const logAction = { email: this.formSignup.get('useremail')!.value, password: this.formSignup.get('password')!.value};
+        this._store.dispatch(login(logAction));
+        this._store.dispatch(
+          login({email: useremail, password: password})
+        );
+        this.authentication$.subscribe( auth => {
+          if(auth){
+            this._router.navigate(["/"]);
+          }
+        });
+        
+      } else {
+        this.frmSignup.get("confirmPassword")?.setErrors({ repeat: true });
+        this.frmSignup.get("password")?.setErrors({ repeat: true });
+      }
+    } catch (error) {
+      let dialog: DialogData = { type: DialogType.ERROR, header:  'Error', content: 'El registro fallo'};
+      this.dialogService.show(dialog);
+      this.frmSignup.reset();
+    }
+
+ 
   }
 
   getTermsAcceptance(){
@@ -128,22 +162,7 @@ mapOptions = {
     };
     this.dialogService.show(dialog);
     this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
-    const {name, useremail , userdirection, password, confirmPassword } = this.frmSignup.value;
-    try {
-      if (password === confirmPassword) {
-        this._store.dispatch(
-          register({name:name, email: useremail, address:userdirection, password: password})
-        );
-        
-      } else {
-        this.frmSignup.get("confirmPassword")?.setErrors({ repeat: true });
-        this.frmSignup.get("password")?.setErrors({ repeat: true });
-      }
-    } catch (error) {
-      let dialog: DialogData = { type: DialogType.ERROR, header:  'Error', content: 'El registro fallo'};
-      this.dialogService.show(dialog);
-      this.frmSignup.reset();
-    }
+
   }
 
   
