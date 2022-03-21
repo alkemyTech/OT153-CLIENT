@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DialogType } from '@app/core/enums/dialog.enum';
+import { ContactForm } from '@app/core/models/contact.interface';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogService } from '@app/core/services/dialog.service';
+import { PublicapiService } from '@app/core/services/publicApi.service';
 import { emailValidator, digitValidator, allDigitValidator } from '@app/core/util/validators/form.validators';
+import { environment } from '@env/environment';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -19,12 +25,19 @@ export class ContactFormComponent implements OnInit {
   ]);
   private messageFormControl: FormControl = new FormControl('', [Validators.required]);
 
-  private name: string;
-  private phone: string;
-  private email: string;
-  private message: string;
+  private contact: ContactForm = {
+    name: '',
+    phone: '',
+    email: '',
+    message: '',
+  };
 
-  constructor(private formBuilder: FormBuilder, private toastMessage: MessageService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private toastMessage: MessageService,
+    private apiService: PublicapiService,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.frmContact = this.registerForm();
@@ -41,16 +54,32 @@ export class ContactFormComponent implements OnInit {
 
   submit() {
     if (this.formContact.valid) {
-      this.name = this.nameControl.value;
-      this.phone = this.phoneControl.value;
-      this.email = this.emailControl.value;
-      this.message = this.messageControl.value;
-      this.toast();
+      this.contact.name = this.nameControl.value;
+      this.contact.phone = this.phoneControl.value;
+      this.contact.email = this.emailControl.value;
+      this.contact.message = this.messageControl.value;
+      this.sendMessage();
     }
   }
-    
-  private toast(){
-    this.toastMessage.add({ key:'toastMessage', severity:'success', summary:'Enviado' });
+
+  sendMessage() {
+    this.apiService.postContact(environment.apiUrlContact, this.contact).subscribe(
+      (response) => {
+        this.toast();
+      },
+      (error) => {
+        let dialog: DialogData = {
+          type: DialogType.ERROR,
+          header: 'Error al procesar la operación',
+          content: 'Hubo un error al enviar el mensaje de contacto.',
+        };
+        this.dialogService.show(dialog);
+      }
+    );
+  }
+
+  private toast() {
+    this.toastMessage.add({ key: 'toastMessage', severity: 'success', summary: 'Enviado' });
   }
 
   controlForm(key: string): FormControl {

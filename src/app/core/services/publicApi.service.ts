@@ -22,4 +22,8 @@ export class PublicapiService {
   public getPublicOrganization<T>(): Observable<Organization> {
     return this.http.get<Organization>(environment.apiUrlOrganization);
   }
+
+  public postContact<ContactFormResponse>(url: string, body: {}): Observable<ContactFormResponse> {
+    return this.http.post<ContactFormResponse>(url, body ? body : {});
+  }
 }
