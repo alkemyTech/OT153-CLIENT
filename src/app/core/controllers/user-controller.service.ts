@@ -25,6 +25,12 @@ export class UserControllerService {
     return this.http.get<Users>(this._baseUrl, { headers: this.headers() });
   }
 
+  search(value: string): Observable<Users>{
+    const url = `${this._baseUrl}?search=${value}`;
+    return this.http.get<Users>(url, { headers: this.headers() });
+  }
+
+
   public createUser(body: UserData): Observable<User> {
     return this.http.post<User>(this._baseUrl, body, { headers: this.headers() });
   }

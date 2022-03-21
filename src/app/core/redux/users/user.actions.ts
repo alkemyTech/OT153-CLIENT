@@ -6,6 +6,10 @@ export enum type {
   GET_USERS_FAIL = '[ User ] Get All Users Fail',
   GET_USERS_SUCCESS = '[ User ] Get All Users Success',
 
+  SEARCH_USERS = '[User] Search Users',
+  SEARCH_USERS_FAIL = '[User] Search Users Fail',
+  SEARCH_USERS_SUCCESS = '[User] Search Users Success',
+
   GET_USER = '[ User ] Get A User',
   GET_USER_FAIL = '[ User ] Get A User Fail',
   GET_USER_SUCCESS = '[ User ] Get A User Success',
@@ -26,6 +30,10 @@ export enum type {
 export const getUsers = createAction(type.GET_USERS);
 export const getUsersSuccess = createAction(type.GET_USERS_SUCCESS, props<{ users: Users }>());
 export const getUsersFail = createAction(type.GET_USERS_FAIL, props<{ error: any }>());
+
+export const searchUsers = createAction(type.SEARCH_USERS, props<{value: string}>());
+export const SearchUsers_Fail = createAction(type.SEARCH_USERS_FAIL, props<{ error: any }>());
+export const SearchUsers_Success = createAction(type.SEARCH_USERS_SUCCESS, props<{ users: Users }>());
 
 export const getUser = createAction(type.GET_USER, props<{ id: number }>());
 export const getUserSuccess = createAction(type.GET_USER_SUCCESS, props<{ user: User }>());
