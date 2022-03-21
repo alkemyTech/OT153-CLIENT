@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 import { ActivitiesSelector as Selector } from '@app/core/redux/activities/activities.index';
 
+
 @Component({
   selector: 'app-edit-activity-form',
   templateUrl: './edit-activity-form.component.html',
@@ -20,6 +21,7 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   description$ = new BehaviorSubject<string | undefined | null>(this.name);
 
   activity$: Observable<Activities> = new Observable()
+  activitySubscribe: Subscription;
 
   subscription: Array<Subscription> = [];
 
@@ -31,7 +33,7 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
 
   getActivity() {
     this.activity$ = this.Store.select(Selector.SelectStateOneData);
-    const activitySubscribe = this.activity$.subscribe({
+    this.activitySubscribe = this.activity$.subscribe({
         next: (activity) => {
           this.description = activity.description;
           this.description$.next(this.description);
@@ -43,7 +45,7 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
         error: (error) => { error },
         complete: () => { },
     })
-    this.subscription.push(activitySubscribe);
+    this.subscription.push(this.activitySubscribe);
   }
 
   ngOnDestroy(): void {

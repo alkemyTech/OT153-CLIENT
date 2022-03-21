@@ -8,6 +8,9 @@ import { ActivitiesSelector as Selector, ActivitiesActions as Action } from '@ap
 import { DialogType } from '@app/core/enums/dialog.enum';
 import { SearchInputService } from '@app/core/services/search-input.service';
 import { Search } from '@app/core/models/search.models';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DialogData } from '@app/core/models/dialog.inteface';
+
 @Component({
   selector: 'app-list-activitites',
   templateUrl: './list-activitites.component.html',
@@ -15,11 +18,14 @@ import { Search } from '@app/core/models/search.models';
 })
 export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities$: Observable<any> = new Observable();
+  public error$: Observable<any> = new Observable();
   public dialogSelection$: Observable<boolean>;
   public searchObserver$: Observable<Search>;
   private subscribeActivity: Subscription;
   private subscribeDialogSelection: Subscription;
   private subscribeSearchActivities: Subscription;
+  private subscribeError: Subscription;
+  public error : HttpErrorResponse;
   public activities: Activities[];
   private _idDelete: number;
   public rows: number = 10;
@@ -27,14 +33,14 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>, 
     public dialog: DialogService,
-    public searchServices: SearchInputService
+    public searchServices: SearchInputService,
   ) {}  
 
   ngOnInit(): void {
     this.setDialogObservables();
-    this.delete_dialogSubscribe();
     this.activitiesSubscribe()
     this.searchSubscribe();
+    this.errorSubscribe();
   }
 
   private setDialogObservables() {
@@ -48,6 +54,19 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
         this.activities = activities;
       }
     });
+  }
+
+  private errorSubscribe(){
+    this.error$ = this.Store.select(Selector.SelectStateError);
+    this.subscribeError = this.error$.subscribe({
+      next:(error: HttpErrorResponse)=> {
+        if(error.status === 404){
+        let dialog: DialogData = { type: DialogType.ERROR, header: 'ERROR', content: 
+        `Hubo un error en la carga de actividades` 
+        };
+        this.dialog.show(dialog);}
+      }
+    })
   }
 
   private searchSubscribe() {
@@ -76,7 +95,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   private delete_dialogSubscribe(){
     this.subscribeDialogSelection = this.dialogSelection$.subscribe(
       resp => {
-        if (resp) {
+        if (resp && this._idDelete && this._idDelete != -1) {
           this.Store.dispatch(Action.deleteActivities( {id: this._idDelete} ));
           this.filterList(this._idDelete);
         }
@@ -86,6 +105,8 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   }
 
   deleteDialog(_id: number){
+    this.delete_dialogSubscribe();
+
     this._idDelete = _id;
     this.dialog.show({ 
       type: DialogType.CONFIRM, 
@@ -103,9 +124,11 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribeActivity.unsubscribe;
-    this.subscribeDialogSelection.unsubscribe;
-    this.subscribeSearchActivities.unsubscribe;
+    this.subscribeActivity.unsubscribe();
+    this.subscribeDialogSelection?.unsubscribe();
+    this.subscribeSearchActivities.unsubscribe();
+    this.subscribeError.unsubscribe();
+    
   }
 
 }

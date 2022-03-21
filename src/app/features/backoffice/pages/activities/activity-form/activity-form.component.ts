@@ -1,16 +1,21 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { NewActivity, Activities } from '@core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ChangeEvent } from "@ckeditor/ckeditor5-angular";
-import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Observable, Subscription } from "rxjs";
-import { MessageService } from "primeng/api";
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Observable, ObservableInput, Subscription } from 'rxjs';
+import { MessageService } from 'primeng/api';
 import { Store } from '@ngrx/store';
-import { ActivitiesSelector as Selector, ActivitiesActions as Actions } from '@app/core/redux/activities/activities.index';
-import { Router } from '@angular/router';
-import { delay } from 'rxjs/operators';
+import {
+  ActivitiesSelector as Selector,
+  ActivitiesActions as Actions,
+} from '@app/core/redux/activities/activities.index';
+import { catchError, delay } from 'rxjs/operators';
+import { DialogData } from '@app/core/models/dialog.inteface';
+import { DialogType } from '@app/core/enums/dialog.enum';
+import { DialogService } from '@app/core/services/dialog.service';
 
 @Component({
   selector: 'app-activity-form',
@@ -24,8 +29,10 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   @Input() formTitle: string;
   @Input() defaultName: string | null | undefined;
   @Input() defaultImage: string | null | undefined;
-  @Input() defaultDescription: string | boolean | null | undefined = "";
+  @Input() defaultDescription: string | boolean | null | undefined = '';
   @Input() voidCKeditor: boolean = false; //
+  @Input() errorMessage: string = 'No se encontró la actividad'; //
+  @Input() successMessage: string = 'Operación exitosa!'; //
 
   form: FormGroup = new FormGroup(
     {
@@ -37,24 +44,24 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   );
 
   public Editor = ClassicEditor;
-  @ViewChild("image") image: TemplateRef<Event["target"]>;
+  @ViewChild('image') image: TemplateRef<Event['target']>;
   imageBuffer: string | ArrayBuffer | null | undefined;
   imgMessage: string;
   submitted: boolean = false;
   displaySubmitSpinner: boolean = false;
   subscription: Subscription = new Subscription();
+  errorSubscribe: Subscription = new Subscription();
+  successSubscribe: Subscription = new Subscription();
 
   error$: Observable<HttpErrorResponse> = new Observable();
+  errorResponse: HttpErrorResponse;
+  success$: Observable<Activities> = new Observable();
   activity$: Observable<Activities> = new Observable();
-  
+  dialog: DialogData | undefined;
+
   backLink = '/backoffice/actividades';
 
-  constructor(
-    private messageService: MessageService,
-    private Store: Store<{activitiesState: activitiesState}>,
-    private router: Router,
-
-  ) {}
+  constructor(private Store: Store<{ activitiesState: activitiesState }>, private dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.activity$ = this.Store.select(Selector.SelectStateOneData);
@@ -112,62 +119,73 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  private success() {
+    this.success$ = this.Store.select(Selector.SelectStateOneData);
+    this.successSubscribe = this.success$.subscribe({
+      next: (success) => {
+        if (!this.errorResponse || this.errorResponse.status === 0) {
+          if (success.name != '' && !this.dialog) {
+            this.dialog = { type: DialogType.SUCCESS, header: 'Enviado!', content: this.successMessage };
+            this.dialogService.show(this.dialog);
+          }
+        }
+      },
+    });
+  }
+
+  private error() {
+    this.error$ = this.Store.select(Selector.SelectStateError);
+    this.errorSubscribe = this.error$.subscribe({
+      next: (error: HttpErrorResponse) => {
+        this.errorResponse = error;
+        if (!this.dialog && error.status !== 0) {
+          this.dialog = { type: DialogType.ERROR, header: 'ERROR', content: `${this.errorMessage}` };
+          this.dialogService.show(this.dialog);
+        }
+      },
+    });
+  }
+
   httpSendActivity(form: FormGroup) {
     this.displaySubmitSpinner = true;
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Cargando actividad...',
-    });
+    this.error();
+    this.success();
     const _body: NewActivity = {
       name: form.get('name')?.value,
       description: form.get('description')?.value,
       image: form.get('image')?.value,
-    } 
-    
+    };
+
     let _id;
-    this.activity$.subscribe( {
-      next: (response:Activities) => {
+    this.activity$.subscribe({
+      next: (response: Activities) => {
         _id = response.id;
       },
-      error: (error) => {
-        
-      },
-      complete: () => { 
-      },
-    })
-    
-    if(this.defaultName){
-      this.Store.dispatch(Actions.updateActivities( { id: _id, body:_body} ) ) 
+      error: (error) => {},
+      complete: () => {},
+    });
+
+    if (this.defaultName) {
+      this.Store.dispatch(Actions.updateActivities({ id: _id, body: _body }));
     } else {
-      this.Store.dispatch(Actions.insertActivities( {body: _body} )) ;
+      this.Store.dispatch(Actions.insertActivities({ body: _body }));
+      this.dialog = undefined;
     }
 
-    this.subscription = (this.Store.select(Selector.SelectStateOneData)).subscribe({
+    this.subscription = this.Store.select(Selector.SelectStateOneData).subscribe({
       next: (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Enviado!',
-          detail: 'La actividad fue cargada exitosamente.',
-        });
-        delay(10000)
+        delay(10000);
         this.displaySubmitSpinner = false;
       },
       error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: `${err.status} ${err.statusText}`,
-        });
-        delay(10000)
+        delay(10000);
         this.displaySubmitSpinner = false;
       },
-      complete: () => { 
-      }
+      complete: () => {},
     });
-
   }
 
   ngOnDestroy(): void {
-    this.subscription.closed? null : this.subscription.unsubscribe();
+    this.subscription.closed ? null : this.subscription.unsubscribe();
   }
 }
