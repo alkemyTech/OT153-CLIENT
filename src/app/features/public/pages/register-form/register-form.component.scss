@@ -1,15 +1,45 @@
-form {
+@import '__fonts';
+@import '__colors';
+
+
+.container {
+  background-image:url(/assets/public/login.jpg);min-height:calc(100vh - 119px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  align-content: center;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 5px;
-  margin-top: 2px;
+  height: auto;
+
 }
 
-input {
-  width: 100%;
+.surface-card{
+  margin: 25px;
+  box-shadow: 5px 5px 5px -6px $black !important;
 }
+
+.img-header{
+background-color: $lightBlue;
+}
+
+.title{
+  margin-top: 1.5rem;
+}
+
+.btn-content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn{
+  width: 50%;
+  height: auto;
+  color: $black;
+  background-color: $white;
+  border-color: $black;
+  margin-left: 20px;
+}
+
 
 .terms {
   padding-top: 10px;
