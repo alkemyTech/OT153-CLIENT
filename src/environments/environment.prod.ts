@@ -26,6 +26,6 @@ export const environment = {
   apiUrlRegister: '',
   apiUrlUsers: '',
   apiUrlSlides: '',
-  apiUrlContact: '',
+  apiUrlContacts: '',
   wikimediaMap: '',
 };

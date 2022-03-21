@@ -63,7 +63,7 @@ export class ContactFormComponent implements OnInit {
   }
 
   sendMessage() {
-    this.apiService.postContact(environment.apiUrlContact, this.contact).subscribe(
+    this.apiService.postContact(environment.apiUrlContacts, this.contact).subscribe(
       (response) => {
         this.toast();
       },
