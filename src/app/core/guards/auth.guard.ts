@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { AuthState } from '@app/core/redux/auth/auth.reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { getAuthOk } from '@core/redux/auth/auth.selectors';
 
 @Injectable({
@@ -15,20 +15,22 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> | boolean {
     return this.store.select(getAuthOk).pipe(
       map(
-        ({auth, isGoogleAuth}) => {
-          if(!auth) {
-            this.router.navigateByUrl('/iniciar-sesion');
-            return false
-          }else{
-            if(isGoogleAuth){
-              return false
-            }else{
-              return true
+        ({auth, isGoogleAuth, user}) => {
+          if(auth && !isGoogleAuth){
+            if(user?.role_id == 1){
+              return true;
             }
+            this.router.navigateByUrl('/home');  
+            return false;       
           }
+          this.router.navigateByUrl('/iniciar-sesion');
+          return false;
+          
         }
       )
+      
     )
   }
   
 }
+

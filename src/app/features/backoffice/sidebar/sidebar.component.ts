@@ -37,17 +37,23 @@ export class SidebarComponent implements OnInit {
   defineItems(){
     this.items = [
       {
+        label: 'Home',
+        icon: "pi pi-fw pi-home",
+        routerLink: '/home',
+
+      },
+      {
         label: "Actividades",
         items: [
           {
             label: "Ver",
             icon: "pi pi-fw pi-eye",
-            url: "backoffice/actividades"
+            routerLink: "actividades",
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "backoffice/actividades/crear"
+            routerLink: "actividades/crear"
           }
         ]
       },
@@ -57,7 +63,7 @@ export class SidebarComponent implements OnInit {
           {
             label: "Ver",
             icon: "pi pi-fw pi-eye",
-            url: "backoffice/categorias"
+            routerLink: "categorias"
           }
         ]
       },
@@ -67,12 +73,12 @@ export class SidebarComponent implements OnInit {
           {
             label: "Ver",
             icon: "pi pi-fw pi-eye",
-            url: "backoffice/diapositivas"
+            routerLink: "diapositivas"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "backoffice/diapositivas/crear"
+            routerLink: "diapositivas/crear"
           }
         ]
       },
@@ -82,12 +88,12 @@ export class SidebarComponent implements OnInit {
           {
             label: "Ver",
             icon: "pi pi-fw pi-eye",
-            url: "backoffice/miembros"
+            routerLink: "miembros"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "backoffice/miembros/crear"
+            routerLink: "miembros/crear"
           }
         ]
       },
@@ -97,12 +103,12 @@ export class SidebarComponent implements OnInit {
           {
             label: "Ver",
             icon: "pi pi-fw pi-eye",
-            url: "backoffice/usuarios"
+            routerLink: "usuarios"
           },
           {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
-            url: "backoffice/usuarios/crear"
+            routerLink: "usuarios/crear"
           }
         ]
       },
