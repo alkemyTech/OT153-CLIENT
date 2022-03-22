@@ -161,7 +161,6 @@ mapOptions = {
     this.dialogService.show(dialog);
     this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
   }
-
   
   public handleAdressChange(adress: any) {
     this.viewMap = false;
@@ -206,4 +205,5 @@ mapOptions = {
   get confirmPasswordControl(): FormControl {
     return this.frmSignup.controls['confirmPassword'] as FormControl;
   }
+
 }

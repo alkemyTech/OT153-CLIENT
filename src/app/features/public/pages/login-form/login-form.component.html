@@ -15,13 +15,13 @@
           <input id="email" type="text" 
           [ngClass]="{
             'ng-invalid ng-dirty':
-              getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched
+            controlInvalid( 'email') && controlTouched('email')
           }"
           formControlName="email"
           aria-describedby="email-help"
           pInputText
           placeholder="Correo electrónico" class="w-full mb-3">
-          <div class="field" *ngIf="getControl(loginForm, 'email')?.invalid && getControl(loginForm, 'email')?.touched">
+          <div class="field" *ngIf="controlInvalid( 'email') && controlTouched('email')">
             <small id="email-help" class="p-error block">Correo electrónico inválido.</small>
           </div>
 
@@ -29,7 +29,7 @@
           <input id="password" type="password" 
           [ngClass]="{
             'ng-invalid ng-dirty':
-              getControl(loginForm, 'password')?.invalid && getControl(loginForm, 'password')?.touched
+            controlInvalid('password') && controlTouched('password')
           }"
           formControlName="password"
           aria-describedby="password-help"
@@ -38,7 +38,7 @@
           
           <div
             class="field"
-            *ngIf="getControl(loginForm, 'password')?.invalid && getControl(loginForm, 'password')?.touched"
+            *ngIf="controlInvalid('password') && controlTouched('password')"
           >
             <small id="password-help" class="p-error block">Contraseña obligatoria.</small>
           </div>
