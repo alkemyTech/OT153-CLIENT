@@ -5,6 +5,7 @@ import { GoogleUser } from '@app/core/models/google.interfaces';
  
 export interface AuthState {
   auth: boolean;
+  isAdmin: boolean,
   user: User | null;
   googleUser?: GoogleUser | Object | null | undefined,
   token: string | null,
@@ -13,6 +14,7 @@ export interface AuthState {
 
 export const initialState: AuthState = {
   auth: false,
+  isAdmin: false,
   user: null,
   googleUser: null,
   token!: null,
@@ -24,6 +26,7 @@ const _authReducer = createReducer(
   on(setAuthState, (state , setAuthState ) => ({
     ...state,
     auth: setAuthState.success,
+    isAdmin: setAuthState.isAdmin,
     user: setAuthState.data,
     googleUser: setAuthState.googleUser,
     isGoogleAuth: setAuthState.isGoogleAuth,

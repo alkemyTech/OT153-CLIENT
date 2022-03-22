@@ -18,8 +18,11 @@ export class AuthEffects {
     login$ = createEffect(() => this.actions$.pipe(
         ofType(login),
         exhaustMap(({email,password}) =>
-            this.authService.auth({email,password}).pipe(
-                map( ({success,data:{token,user}}) => setAuthState({ auth: true, success,token,data:user,googleUser:false}))
+            this.authService.auth({email,password}).pipe(        
+                tap(console.log),
+                map( ({success,data:{token,user}}) => setAuthState({ 
+                    auth: true, success,token,data:user,googleUser:false, isAdmin: (user.role_id === 1 ? true : false),
+                }))
             ))            
     ));
 
@@ -27,7 +30,7 @@ export class AuthEffects {
         ofType(register),
         exhaustMap( registerAction =>
             this.authService.register({name: registerAction.name,email:registerAction.email, password: registerAction.password}).pipe(
-                map( (resp:any) => setAuthState({ auth: true, success: resp.success, token: resp.data.token, data: resp.data.user, googleUser: false}))
+                map( (resp:any) => setAuthState({ auth: true, success: resp.success, token: resp.data.token, data: resp.data.user, googleUser: false, isAdmin: false}))
             ))            
     ));
 
@@ -36,7 +39,9 @@ export class AuthEffects {
         ofType( googlelogin ),
             mergeMap(
                 () => this.authService.googleLogin().pipe(
-                    map( (googleData) => setAuthState({ auth: false, googleUser: googleData.additionalUserInfo?.profile, success: true, data: null, token: googleData.credential?.['accessToken'], isGoogleAuth: true } ) )
+                    map( (googleData) => setAuthState({ 
+                        auth: false, googleUser: googleData.additionalUserInfo?.profile, success: true, data: null, token: googleData.credential?.['accessToken'], isGoogleAuth: true, isAdmin: false 
+                    }))
                 )
             )
         )

@@ -5,6 +5,7 @@ import { GoogleUser } from '@app/core/models/google.interfaces';
 
 interface AuthResponse {
     auth: boolean,
+    isAdmin: boolean,
     success: boolean,
     data: User | null,
     googleUser: GoogleUser | Object | null | undefined,
