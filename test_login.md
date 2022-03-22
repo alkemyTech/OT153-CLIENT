@@ -80,34 +80,48 @@
 
 <table>
     <tr>
-        <td colspan=5> Fields </td>
+        <th colspan=5> Verification of login form fields</th>
+    </tr>
+    <tr>
+        <th> Test Case Type </th>
+        <th> Description </th>
+        <th> Test Step </th>
+        <th> Expected Result </th>
+        <th> Status </th>
     </tr>
     <tr>
         <td> Funtionality </td>
-        <td> Deberia ser un formulario invalido </td>
-        <td> Enviar el formulario con todos los campos vacios </td>
-        <td> Mostrar que los campos son requeridos </td>
-        <td> - </td>
+        <td> There should be a form to log in. </td>
+        <td> Check if there are two different fields with name email and password </td>
+        <td> There have a form with fields email and password </td>
+        <td> Pass </td>
     </tr>
     <tr>
         <td> Funtionality </td>
-        <td> Deberia ser un formulario invalido </td>
-        <td> Enviar el formulario con el campo mail vacio </td>
-        <td> Mostrar error, el campo mail es requerido </td>
-        <td> - </td>
+        <td> Email field should be required </td>
+        <td> Email field with empty input </td>
+        <td> Email field is invalid </td>
+        <td> Pass </td>
     </tr>
     <tr>
         <td> Funtionality </td>
-        <td> Deberia ser un formulario invalido </td>
-        <td> Enviar el formulario con el campo password vacio </td>
-        <td> Mostrar error, el campo password es requerido </td>
-        <td> - </td>
+        <td> Email field should check the email format </td>
+        <td> 'ngUnit@test.com' is entered in the email field </td>
+        <td> Email field is valid </td>
+        <td> Pass </td>
     </tr>
     <tr>
         <td> Funtionality </td>
-        <td> No deberia ocurrir nada </td>
-        <td> Iniciar la validacion con google pero no elegir ningun usuario, salir de la autenticacion </td>
-        <td> Nada </td>
-        <td> - </td>
+        <td> Email field should verify that the format is not an email </td>
+        <td> 'NO@Email.' is entered in the email field </td>
+        <td> Email field is invalid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Password field should be required </td>
+        <td> Password field with empty input </td>
+        <td> Password field is invalid </td>
+        <td> Pass </td>
     </tr>
 </table>
