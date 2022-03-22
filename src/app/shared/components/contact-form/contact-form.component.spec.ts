@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { PrimengModule } from '@app/shared/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
 
 import { ContactFormComponent } from './contact-form.component';
@@ -13,7 +14,7 @@ describe('ContactFormComponent', () => {
   });
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, PrimengModule],
       declarations: [ContactFormComponent],
       providers: [{ provide: MessageService, useValue: fakeMessageService }],
     }).compileComponents();
@@ -29,23 +30,31 @@ describe('ContactFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should call submit method when click 'submit' button", () => {
+  it('should not send the form if it is invalid', () => {
+    fixture = TestBed.createComponent(ContactFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const { debugElement } = fixture;
     spyOn(component, 'submit');
+
+    component.emailControl.setValue('');
+    let button = fixture.debugElement.query(By.css('button')).nativeElement;
+    button.click();
+    console.log(fakeMessageService.add);
+    expect(fakeMessageService.add).toHaveBeenCalledTimes(0);
+  });
+
+  it("should call submit method when click 'submit' button", () => {
+    fixture = TestBed.createComponent(ContactFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const { debugElement } = fixture;
+    component.ngOnInit();
+    spyOn(component, 'submit');
+
     let button = fixture.debugElement.query(By.css('button')).nativeElement;
     button.click();
     expect(component.submit).toHaveBeenCalledTimes(1);
-  });
-
-  it('should not send the form if it is invalid', () => {
-    spyOn(component, 'submit');
-
-    // Instanciate the component again to avoid call from test below
-    component.ngOnInit();
-    component.emailControl.setValue('');
-
-    let button = fixture.debugElement.query(By.css('button')).nativeElement;
-    button.click();
-    expect(fakeMessageService.add).toHaveBeenCalledTimes(0);
   });
 
   it('form should be invalid when all the fields are missing', () => {

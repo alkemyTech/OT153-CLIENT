@@ -58,7 +58,9 @@ describe('ContactComponent', () => {
         { provide: PublicapiService, useValue: fakeApiService },
       ],
     }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -89,26 +91,22 @@ describe('ContactComponent', () => {
     expect(fakeApiService.getPublicOrganization).toHaveBeenCalled();
   });
 
-  it('should render contact info', async () => {
+  it('should render contact info', () => {
     let fixture = TestBed.createComponent(ContactComponent);
-    await fixture.whenStable().then(() => {
-      fakeApiService.getPublicOrganization.and.callFake(() => of(organization));
-      // Instanciate the component again to avoid 404 error from test below
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-      const { debugElement } = fixture;
-      const contactInfo = debugElement.query(By.css('app-contact-info'));
-      expect(contactInfo).toBeTruthy();
-    });
+    fakeApiService.getPublicOrganization.and.callFake(() => of(organization));
+    // Instanciate the component again to avoid 404 error from test below
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const { debugElement } = fixture;
+    const contactInfo = debugElement.query(By.css('app-contact-info'));
+    expect(contactInfo).toBeTruthy();
   });
 
-  it('should show a message when public API response is 404', async () => {
-    await fixture.whenStable().then(() => {
-      fakeApiService.getPublicOrganization.and.returnValue(
-        throwError(new HttpErrorResponse({ error: '404 - Not Found', status: 404 }))
-      );
-      component.ngOnInit();
-      expect(fakeDialogService.show).toHaveBeenCalled();
-    });
+  it('should show a message when public API response is 404', () => {
+    fakeApiService.getPublicOrganization.and.returnValue(
+      throwError(new HttpErrorResponse({ error: '404 - Not Found', status: 404 }))
+    );
+    component.ngOnInit();
+    expect(fakeDialogService.show).toHaveBeenCalled();
   });
 });
