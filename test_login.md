@@ -26,60 +26,6 @@
 
 <table>
     <tr>
-        <td colspan=5> Redireccionamiento </td>
-    </tr>
-    <tr>
-        <td> Funtionality </td>
-        <td> Deberias redireccionar a backoffice luego de loguearse como un usuario Administrador </td>
-        <td> Loguearse como un usuario de rol administrador </td>
-        <td> Redireccionarse a backoffice </td>
-        <td>  </td>
-    </tr>
-    <tr>
-        <td> Funtionality </td>
-        <td> Deberias redireccionar a home tras loguearse como un usuario estandar </td>
-        <td> Loguearse como un usuario de rol estandar </td>
-        <td> Redireccionarse a home </td>
-        <td> - </td>
-    </tr>
-    <tr>
-        <td> Funtionality </td>
-        <td> Deberias redireccionar a home tras autenticarse con cuenta de google </td>
-        <td> Usar la autenticacion de google  </td>
-        <td> Redireccionarse a home </td>
-        <td> - </td>
-    </tr>
-    <tr>
-        <td> Funtionality </td>
-        <td> Deberias redireccionar a home tras autenticarse con cuenta de google </td>
-        <td> Usar la autenticacion de google  </td>
-        <td> Redireccionarse a home </td>
-        <td> - </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
-        <td colspan=5> Auth Store </td>
-    </tr>
-    <tr>
-        <td> Funtionality </td>
-        <td> Deberias almacenar los datos del usuario tras un logueo con credenciales validas </td>
-        <td> autenticarse como un usuario valido - admin / standar / googleuser  </td>
-        <td> Tener almacenados en el store los datos del usuario logueado </td>
-        <td> - </td>
-    </tr>
-    <tr>
-        <td> Funtionality </td>
-        <td> No Deberias almacenar los datos del usuario tras un logueo con credenciales invalidas </td>
-        <td> Intentar autenticarse con credenciales invalidas </td>
-        <td> Error de autenticacion </td>
-        <td> - </td>
-    </tr>
-</table>
-
-<table>
-    <tr>
         <th colspan=5> Verification of login form fields</th>
     </tr>
     <tr>
@@ -123,5 +69,41 @@
         <td> Password field with empty input </td>
         <td> Password field is invalid </td>
         <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Form should verify that it has been valid </td>
+        <td> Email and Password field with valid input </td>
+        <td> Form valid </td>
+        <td> Pass </td>
+    </tr>
+</table>
+
+
+
+<table>
+    <tr>
+        <th colspan=5> Auth Store </th>
+    </tr>
+    <tr>
+        <th> Test Case Type </th>
+        <th> Description </th>
+        <th> Test Step </th>
+        <th> Expected Result </th>
+        <th> Status </th>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Deberias almacenar los datos del usuario tras un logueo con credenciales validas </td>
+        <td> autenticarse como un usuario valido - admin / standar / googleuser  </td>
+        <td> Tener almacenados en el store los datos del usuario logueado </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> No Deberias almacenar los datos del usuario tras un logueo con credenciales invalidas </td>
+        <td> Intentar autenticarse con credenciales invalidas </td>
+        <td> Error de autenticacion </td>
+        <td> - </td>
     </tr>
 </table>

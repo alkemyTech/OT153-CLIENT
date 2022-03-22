@@ -7,51 +7,54 @@ import { of } from 'rxjs';
 import { DialogService } from '@core/services/dialog.service';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { By } from "@angular/platform-browser";
  
 describe("Testing Login Form Component", () => {
 
-  const storeMock = jasmine.createSpyObj('Store', ['select']);
-
+  const storeMock = jasmine.createSpyObj('Store', ['select','dispatch']);
   let component: LoginFormComponent;
   let fixture: ComponentFixture<LoginFormComponent>;
 
-  describe('Verification of login form fields', () =>{
 
-    beforeEach(async () => {
-      storeMock.select.and.returnValue(
-        of({
-          auth: false,
-          isAdmin: false,
-          user: null,
-          googleUser: null,
-          token!: null,
-          isGoogleAuth: false
-        })
-      );
+  beforeAll(async () => {
+    storeMock.select.and.returnValue(
+      of({
+        auth: false,
+        isAdmin: false,
+        user: null,
+        googleUser: null,
+        token!: null,
+        isGoogleAuth: false
+      })
+    );
+
+
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        StoreModule.forRoot({}, {}),
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule
+      ],
+      declarations: [LoginFormComponent],
+      providers: [
+        { provide: Store, useValue: storeMock },
+        DialogService,
+        MessageService
+      ],
+    }).compileComponents();
+  });
+
+  beforeAll(() => {
+    fixture = TestBed.createComponent(LoginFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
   
-      TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          StoreModule.forRoot({}, {}),
-          FormsModule,
-          ReactiveFormsModule,
-          CommonModule
-        ],
-        declarations: [LoginFormComponent],
-        providers: [
-          { provide: Store, useValue: storeMock },
-          DialogService,
-          MessageService
-        ],
-      }).compileComponents();
-    });
-  
-    beforeEach(() => {
-      fixture = TestBed.createComponent(LoginFormComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-  
+  //? 6 test
+  describe('Verification of login form fields', () => {
+
     it('There should be a form to log in.', () => {
       expect( component.loginForm.contains('email')).toBeTruthy();
       expect( component.loginForm.contains('password')).toBeTruthy();
@@ -81,49 +84,40 @@ describe("Testing Login Form Component", () => {
       expect( control?.valid ).toBeFalsy();
     });
 
+    it("Form should verify that it has been valid",()=>{
+      component.loginForm.get('email')?.setValue('test@test.com');
+      component.loginForm.get('password')?.setValue('password_502');
+      expect(component.loginForm.valid).toBeTruthy();
+    });
+    //? 6 test
   })
 
-  xdescribe('Login form addressing verification', () =>{
+  // ?
+  xdescribe('Verification of login form submit', () => {
 
-    beforeEach(async () => {
-      storeMock.select.and.returnValue(
-        of({
-          auth: false,
-          isAdmin: false,
-          user: null,
-          googleUser: null,
-          token!: null,
-          isGoogleAuth: false
-        })
-      );
-  
-      TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-          StoreModule.forRoot({}, {}),
-          FormsModule,
-          ReactiveFormsModule,
-          CommonModule
-        ],
-        declarations: [LoginFormComponent],
-        providers: [
-          { provide: Store, useValue: storeMock },
-          DialogService,
-          MessageService
-        ],
-      }).compileComponents();
-    });
-  
-    beforeEach(() => {
-      fixture = TestBed.createComponent(LoginFormComponent);
-      component = fixture.componentInstance;
+    it("Deberia cambiar el estado de auth a verdadero",()=>{
+      spyOn(component, 'onLogin');
+
+      component.loginForm.get('email')?.value('ngUnit@test.com');
+      component.loginForm.get('password')?.value('password');
+
+      let button = fixture.debugElement.query(By.css('button')).nativeElement;
       fixture.detectChanges();
+      button.click();
+
+      expect(component.onLogin).toHaveBeenCalledTimes(1);
+      
     });
-
-    
-
 
 
   })
  
+  xdescribe('', () => {
+
+    it('', () => {
+      
+    })
+
+  })
+
 });
