@@ -36,6 +36,11 @@ export class MemberService {
     return this.http.get<MemberResponse>(url);
   }
 
+  public getMemberByName(name: string): Observable<MembersResponse> {
+    let url = `${this._baseUrl}?search=${name}`;
+    return this.http.get<MembersResponse>(url);
+  }
+
   public updateMemberById(id: number, body: Member): Observable<MemberResponse> {
     let url = `${this._baseUrl}/${id}`;
     return this.http.put<MemberResponse>(url, body, { headers: this.headers() });

@@ -1,6 +1,20 @@
 <div class="col-12 md:col-10 lg:col-10 xl:col-8 m-auto mt-4">
   <p-card>
-    <div class="w-100 pr-5" style="text-align: end">
+       
+    <div class="w-100 pr-5 flex justify-content-between mb-3" style="text-align: end">
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-spin pi-spinner" *ngIf="loading"></i>
+          <input 
+            type="text" 
+            pInputText 
+            #inputSearch
+            placeholder="Buscar miembro"
+            (keyup)="keyup(inputSearch.value)"
+          />
+        </span>
+      </div>
+
       <button
         pButton
         icon="pi pi-plus"
@@ -10,7 +24,16 @@
         tooltipPosition="top"
       ></button>
     </div>
+
+    <alk-skeleton 
+      [headers]="['Nombre', 'Imagen', '']" 
+      [rows]="10" 
+      [skeletonType]="'table'"
+      *ngIf="loading"
+    ></alk-skeleton>
+
     <p-table
+    *ngIf="!loading"
       #dt
       [value]="members"
       dataKey="id"

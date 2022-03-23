@@ -28,6 +28,15 @@ export const _memberReducer = createReducer(
   on(action.getMemberSuccess, (state,action) => {return {...state, response: action.member}}),
   on(action.getMemberFail, (state,action) => {return {...state, error: action.error}}),
 
+  on(action.getMemberByNameSuccess, (state , {response} ) => (
+    {
+    ...state,
+    responseAll: response
+    }
+  )),
+
+  on(action.getMemberFail, (state,action) => {return {...state, error: action.error}}),
+
   on(action.updateMemberSuccess,(state,action) => {return {...state,response: action.member}}),
   on(action.updateMemberFail, (state,action) => {return {...state,error: action.error}}),
 
