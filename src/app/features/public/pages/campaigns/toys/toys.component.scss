@@ -1,0 +1,76 @@
+
+$randomNumber: (random(11) + 4);
+
+$gray : rgb(228, 228, 228);
+
+$gradienYellow: radial-gradient(#f0e15986 10%, #ffeec1a2 60%, #fddc6ea2);
+
+.campaign-container {
+  @media screen and (min-width: 2048px) {
+    background: $gradienYellow;
+  }
+}
+
+.card-gray{
+  border: 2px solid rgba(173, 172, 172, 0.452);
+  background: $gray !important;
+  padding: 30px 10px;
+  box-shadow: 0px 2px 6px 5px rgba(196, 196, 196, 0.418);
+}
+
+.card-yellow {
+  border: 2px solid rgba(173, 172, 172, 0.452);
+  background: radial-gradient(#faedb4 75%, rgba(239, 255, 15, 0.315));
+  padding: 5px 10px;
+  box-shadow: 0px 2px 6px 5px rgba(196, 196, 196, 0.418);
+}
+
+.counter {
+  @media screen and (max-width: 767px) {
+    //hide on mobile
+    display: none;
+  }
+}
+
+.title-yellow{
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 1.8em;
+  text-shadow: 1px 2px 2px rgb(95 95 95 / 89%);
+  color: #d4af37;
+}
+
+.small-img{
+  max-width: 70px;
+  transform: rotate($randomNumber+deg);
+  -ms-transform: rotate($randomNumber+deg);
+  -webkit-transform: rotate($randomNumber+deg);
+  
+  border: none;
+}
+
+.container-back-images{  
+  display: flex;
+  position: absolute;
+  width: 100%;
+  justify-content: space-between;
+  height: 100%;
+  padding: 2% 3%;
+  @media only screen and (max-width: 991px) {
+      display: none;
+  }
+}
+
+.to-left{
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  justify-content: space-between;
+}
+
+.to-right{
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  justify-content: space-between;
+}

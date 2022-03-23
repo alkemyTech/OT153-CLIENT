@@ -24,6 +24,7 @@ import { DonationsHeaderComponent } from './pages/donations/donations-header/don
 import { LeafletMapComponent } from './pages/contact/components/leaflet-map/leaflet-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CampaignsSchoolComponent } from './pages/campaigns/campaigns-school.component';
+import { ToysComponent } from './pages/campaigns/toys/toys.component';
 @NgModule({
   declarations: [
     PublicComponent,
@@ -47,6 +48,7 @@ import { CampaignsSchoolComponent } from './pages/campaigns/campaigns-school.com
     RegisterFormComponent,
     DonationsHeaderComponent,
     LeafletMapComponent,
+    ToysComponent,
   ],
   imports: [CommonModule, PublicRoutingModule, SharedModule, LeafletModule],
   exports: [SharedModule],

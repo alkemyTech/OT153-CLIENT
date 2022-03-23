@@ -1,0 +1,51 @@
+<div class="col-12 flex justify-content-center flex-column align-items-center relative my-5 campaign-container">
+
+  <div class="xl:col-5 lg:col-6 md:col-10 lg:col-8 sm:col-10">
+    <h3 class="text-center mb-5 title-yellow">{{ title }}</h3>
+
+    <div class="card-gray">
+      <ng-template pTemplate="header">
+      </ng-template>
+      <div class="text-center">
+        <h2 class="mb-3">Fecha y lugar</h2>
+        <p>
+          {{ date.getDay() | weekdayFormat }} {{ date.getDate() }} de
+          {{ date.getMonth() | monthNumberFormat }} de {{ date.getFullYear() }} a las
+          {{ date.getHours() }}:{{ date.getMinutes() }}
+        </p>
+        <p class="mt-3">{{ place }}</p>
+      </div>
+      <div class="text-center">
+        <h2 class="my-3">Descripción</h2>
+        <p class="line-height-3">{{ description }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="xl:col-5 lg:col-6 md:col-10 lg:col-8 sm:col-10 text-center">
+    <div class=" card-yellow counter">
+      <p class="text-lg">Te quedan <b>{{daysToDday}} días {{hoursToDday}} horas y {{minutesToDday}} minutos</b> para participar.</p>
+    </div>
+  </div>
+
+  <div class="container-back-images">
+    <div class="to-left">
+      <img
+        *ngFor="let image of imagesLeft"
+        [src]="image"
+        class="small-img"
+        [ngStyle]="{transform:'rotate('+random()+')'}"
+      />
+    </div>
+    <div class="to-right">
+      <img
+        [src]="image"
+        class="small-img"
+        [ngStyle]="{transform:'rotate('+random()+')'}"
+        *ngFor="let image of imagesRight"
+      />    
+    </div>
+  </div>
+  
+</div>

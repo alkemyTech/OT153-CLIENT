@@ -14,6 +14,7 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
 import { PublicComponent } from './public.component';
 import { DonationGuard } from '@core/guards/donations.guard';
 import { LoginGuard } from '@app/core/guards/login.guard';
+import { ToysComponent } from './pages/campaigns/toys/toys.component';
 
 const routes: Routes = [
   {
@@ -66,7 +67,7 @@ const routes: Routes = [
         path: 'campañas',
         children: [
           { path: 'vuelta-al-cole', component: CampaignsSchoolComponent },
-          { path: 'juguetes', component: HomeComponent },
+          { path: 'juguetes', component: ToysComponent },
         ],
       },
     ],
