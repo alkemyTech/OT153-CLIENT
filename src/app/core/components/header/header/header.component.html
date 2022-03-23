@@ -9,29 +9,43 @@
         <a (click)="openNavbar = false" >{{link.text}}</a>
       </li>
 
-      <li>
-        <button 
-          *ngIf="!loggedIn"
-          pButton
-          class="p-button-primary p-button-sm"
-          [routerLink]="['iniciar-sesion']"
-        >
-        Login</button>
-        <button 
-          pButton
-          *ngIf="loggedIn"
-          class="p-button-secondary p-button-sm ml-2"
-          (click)="logout()"
-        >
-        Logout</button>
-      </li>
+      
 
     </ul>
-      <div id="menu-btn" class="menu" (click)="openNavbar = !openNavbar" >
-          <div class="bar1" [ngClass]="openNavbar ? 'change1': ''"></div>
-          <div class="bar2" [ngClass]="openNavbar ? 'change2': ''"></div>
-          <div class="bar3" [ngClass]="openNavbar ? 'change3': ''"></div>
-      </div>
+
+    <div id="menu-btn" class="menu" (click)="openNavbar = !openNavbar" >
+        <div class="bar1" [ngClass]="openNavbar ? 'change1': ''"></div>
+        <div class="bar2" [ngClass]="openNavbar ? 'change2': ''"></div>
+        <div class="bar3" [ngClass]="openNavbar ? 'change3': ''"></div>
+    </div>
+
+    <div class="mr-2">
+      <button 
+        *ngIf="!loggedIn"
+        pButton
+        class="p-button-primary p-button-sm"
+        [routerLink]="[loginHref]"
+      >
+      Login</button>
+  
+      <button 
+        *ngIf="!loggedIn || !isAdmin"
+        pButton
+        class="p-button-info p-button-sm ml-2"
+        [routerLink]="[registerHref]"
+      >
+      Registrarse</button>
+  
+      <button           
+        pButton
+        *ngIf="loggedIn"
+        class="p-button-secondary p-button-sm ml-2"
+        (click)="logout()"
+      >
+      Logout</button>
+    </div>
+
   </nav>
+
 
 </header>
