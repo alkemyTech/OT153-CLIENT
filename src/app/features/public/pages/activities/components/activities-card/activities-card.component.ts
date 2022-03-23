@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Activities } from '@app/core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { fromEvent, interval, Observable, timer } from 'rxjs';
 import { ICard } from '@app/core/models/card.interfaces';
 import {
   ActivitiesSelector as Selector,
@@ -12,25 +12,42 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService } from '@app/core/services/dialog.service';
 import { DialogType } from '@app/core/enums/dialog.enum';
 import { DialogData } from '@app/core/models/dialog.inteface';
+import { debounce, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { SearchInputService } from '@app/core/services/search-input.service';
+import { Search } from '@app/core/models/search.models';
 
 @Component({
   selector: 'app-activities-card',
   templateUrl: './activities-card.component.html',
   styleUrls: ['./activities-card.component.scss'],
 })
-export class ActivitiesCardComponent implements OnInit {
+export class ActivitiesCardComponent implements OnInit, AfterViewInit {
   public activities$: Observable<Activities[]> = new Observable();
   public error$: Observable<HttpErrorResponse> = new Observable();
+  public search$: Observable<Search> = new Observable();
   public cards: ICard[];
   loading: boolean = true;
+  searchLoading: boolean = false;
+  noResult: boolean = false;
+  @ViewChild('search', { static: true }) searchValue: ElementRef;
 
-  constructor(private Store: Store<{ activitiesState: activitiesState }>, private dialogService: DialogService) {}
+  constructor(
+    private Store: Store<{ activitiesState: activitiesState }>,
+    private dialogService: DialogService,
+  ) {}
 
   ngOnInit() {
     this.activities$ = this.Store.select(Selector.SelectStateAllData);
     this.error$ = this.Store.select(Selector.SelectStateError);
     this.Store.dispatch(Actions.getAllActivities());
     this.alerts();
+  }
+
+  ngAfterViewInit(): void {
+    this.listenSearchInput();
+    timer(1000).subscribe(() => {
+      this.loading = false;
+    });
   }
 
   ActivitieToICard(activitie: Activities): ICard {
@@ -51,13 +68,42 @@ export class ActivitiesCardComponent implements OnInit {
     });
   }
 
-  getLoading(): void {
-    this.activities$.subscribe((res) => {
-      if (res.length < 1) {
-        this.loading = true;
-      } else {
-        this.loading = false;
-      }
-    });
+  listenSearchInput(): void {
+    fromEvent(this.searchValue.nativeElement, 'keyup')
+      .pipe(debounce(() => interval(600)))
+      .subscribe((event) => {
+        let char = event as { key };
+        if (/[a-zA-Z]/.test(char.key)) {
+          this.Store.dispatch(Actions.searchActivities({ value: this.searchValue.nativeElement.value }));
+          this.loading = true;
+          this.searchLoading = true;
+          this.noResult = false;
+        }
+      });
+
+    fromEvent(this.searchValue.nativeElement, 'keyup')
+      .pipe(debounceTime(2300))
+      .subscribe({
+        next: (event) => {
+          let char = event as { key };
+          if (/[a-zA-Z]/.test(char.key)) {
+            this.loading = false;
+          }
+        },
+      });
+
+    fromEvent(this.searchValue.nativeElement, 'keyup')
+      .pipe(
+        // if search returns nothing
+        debounceTime(2500)
+      )
+      .subscribe({
+        next: (event) => {
+          let char = event as { key };
+          if (/[a-zA-Z]/.test(char.key)) {
+            this.noResult = true;
+          }
+        },
+      });
   }
 }
