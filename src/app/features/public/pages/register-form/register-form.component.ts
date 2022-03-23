@@ -17,6 +17,7 @@ import { GooglePlaceDirective } from "ngx-google-places-autocomplete";
 import { Observable, timer } from 'rxjs';
 import { } from '@angular/google-maps';
 import { Router } from '@angular/router';
+import { AuthState } from '@app/core/redux/auth/auth.reducers';
 declare const google: any;
 
 @Component({
@@ -25,7 +26,7 @@ declare const google: any;
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
-  authentication$: Observable<boolean>;
+  authentication$: Observable<AuthState>;
   isLoading: boolean = true;
   private frmSignup: FormGroup;
   private usernameFormControl: FormControl = new FormControl('', [
@@ -159,7 +160,33 @@ mapOptions = {
       filePDF: this.termsFilePath 
     };
     this.dialogService.show(dialog);
-    this.dialogService.DialogSelectionObservable.subscribe(acceptance => this.termsAccepted = acceptance)
+    this.dialogService.DialogSelectionObservable.subscribe((acceptance) => (this.termsAccepted = acceptance));
+    const { name, useremail, userdirection, password, confirmPassword } = this.frmSignup.value;
+    try {
+      const { name, useremail, userdirection, password, confirmPassword } = this.frmSignup.value;
+
+      if (password === confirmPassword) {
+        this._store.dispatch(register({ name: name, email: useremail, address: userdirection, password: password }));
+        const logAction = {
+          email: this.formSignup.get('useremail')!.value,
+          password: this.formSignup.get('password')!.value,
+        };
+        this._store.dispatch(login(logAction));
+        this._store.dispatch(login({ email: useremail, password: password }));
+        this.authentication$.subscribe((auth) => {
+          if (auth.auth) {
+            this._router.navigate(['/']);
+          }
+        });
+      } else {
+        this.frmSignup.get('confirmPassword')?.setErrors({ repeat: true });
+        this.frmSignup.get('password')?.setErrors({ repeat: true });
+      }
+    } catch (error) {
+      let dialog: DialogData = { type: DialogType.ERROR, header: 'Error', content: 'El registro fallo' };
+      this.dialogService.show(dialog);
+      this.frmSignup.reset();
+    }
   }
   
   public handleAdressChange(adress: any) {

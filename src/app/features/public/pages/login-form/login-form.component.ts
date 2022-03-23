@@ -15,39 +15,43 @@ import { getAuthToken } from '@core/redux/auth/auth.selectors';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  public authentication$: Observable<boolean>;
+  public authentication$: Observable<AuthState>;
   public loginForm: FormGroup;
+  public standarAuth: boolean;
   
-  constructor(fb: FormBuilder, public _store:Store<AuthState>, private _router:Router) { // 
+  constructor(fb: FormBuilder, public _store:Store<{state: AuthState}>, private _router:Router) { // 
     this.loginForm = fb.group({
       email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required]],
     });
-    this.authentication$ = this._store.select(getAuth);   
-
+    this.authentication$ = this._store.select(getAuth);
+    this.standarAuth = false
   }
 
   ngOnInit(): void {
   }
 
-  onLogin(): void {
+  onLogin(): boolean {
     if(this.loginForm.valid){
       const logAction = { email: this.loginForm.get('email')!.value, password: this.loginForm.get('password')!.value};
       this._store.dispatch(login(logAction));
   
       this.authentication$.subscribe( auth => {
-        if(auth){
-          // this._router.navigate(["/backoffice"]);
+        this.standarAuth = auth.auth
+        if(auth.auth){
+          this._router.navigate(["/backoffice"]);
         }
       });
     }
+    return this.loginForm.valid;
   }
+  
 
   loginGoogle(){
     this._store.dispatch(googlelogin());
     this._store.select(getAuthToken).subscribe( token => {
       if(!token) return
-      // this._router.navigateByUrl('/')
+        this._router.navigateByUrl('/')
     })
   }
   

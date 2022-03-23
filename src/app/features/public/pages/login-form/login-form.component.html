@@ -9,7 +9,7 @@
         <a [routerLink]="['/registrarse']"  class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate!</a>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" id="loginForm">
       <div>
           <label for="email" class="block text-900 font-medium mb-2">Email</label>
           <input id="email" type="text" 
@@ -49,10 +49,11 @@
               class="btn mr-4"
               type="submit" label="Ingresar" icon="pi pi-user"
               [disabled]="!loginForm.valid"   
+              (click)="onLogin()"
             > </button>
 
             <button 
-              pButton pRipple 
+              pButton pRipple  id="btn_googleLogin"
               class="btn mr-4" 
               type="button" label="Ingresa con tu cuenta de Google" 
               (click)="loginGoogle()"
