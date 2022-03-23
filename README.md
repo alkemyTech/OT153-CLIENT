@@ -28,9 +28,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Testing
+___
 
-· Component: Header component.
-· Author: Gonzalo Moreno
+### · Component: Header component.
+
+### · Author: Gonzalo Moreno
 
 Cases:
 - If user is not authenticated, it should show public links, login and register. Restrict access to Newsletter (rows: 1, 2, 3).
@@ -215,6 +217,163 @@ Cases:
         <td> Should display an error dialog if there is an error from the server response </td>
         <td> Receive an error response from the server, and check if it displays an error dialog message </td>
         <td> Display an error dialog message </td>
+        <td> Pass </td>
+    </tr>
+</table>
+
+___
+### · Component: Login component.
+
+### · Author: Nicolas Luna
+
+<style>
+    table th, table td {
+        border: 1px solid 
+    }
+</style>
+
+<table>
+    <tr>
+        <th colspan=5> Verification of login form fields</th>
+    </tr>
+    <tr>
+        <th>Test Case Type</th><th>Description</th><th>Test Step</th><th>Expected Result</th><th> Status </th>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> There should be a form to log in. </td>
+        <td> Check if there are two different fields with name email and password </td>
+        <td> There have a form with fields email and password </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Email field should be required </td>
+        <td> Email field with empty input </td>
+        <td> Email field is invalid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Password field should be required </td>
+        <td> Password field with empty input </td>
+        <td> Password field is invalid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Email field should check the email format </td>
+        <td> 'ngUnit@test.com' is entered in the email field </td>
+        <td> Email field is valid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Email field should verify that the format is not an email </td>
+        <td> 'NO@Email.' is entered in the email field </td>
+        <td> Email field is invalid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Form should verify that it has been valid </td>
+        <td> Email and Password field with valid input </td>
+        <td> Form valid </td>
+        <td> Pass </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th colspan=5> Verification of store </th>
+    </tr>
+    <tr>
+        <th> Test Case Type </th>
+        <th> Description </th>
+        <th> Test Step </th>
+        <th> Expected Result </th>
+        <th> Status </th>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Should make a call to the store </td>
+        <td> A valid form is sent and interaction with the store is expected </td>
+        <td> Dispatch been called </td>
+        <td> Pass </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th colspan=5> Verification of error message </th>
+    </tr>
+    <tr>
+        <th> Test Case Type </th>
+        <th> Description </th>
+        <th> Test Step </th>
+        <th> Expected Result </th>
+        <th> Status </th>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Should have email error message </td>
+        <td> Interacts with the input leaving invalid values </td>
+        <td> A error message debuged </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> NOT should have email error message </td>
+        <td> No interaction </td>
+        <td> Without error message </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Should have password error message </td>
+        <td> Interacts with the input leaving invalid values </td>
+        <td> A error message debuged </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> NOT should have password error message </td>
+        <td> No interaction </td>
+        <td> Without error message </td>
+        <td> Pass </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th colspan=5> Verification of buttons </th>
+    </tr>
+    <tr>
+        <th> Test Case Type </th>
+        <th> Description </th>
+        <th> Test Step </th>
+        <th> Expected Result </th>
+        <th> Status </th>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Should call onLogin when the form is valid </td>
+        <td> Submit a valid form </td>
+        <td> The onLogin function must be called </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Should not call onLogin when the form is valid </td>
+        <td> Try submit a invalid form </td>
+        <td> The onLogin function must not be called </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Should call loginGoogle when the form is valid </td>
+        <td> Choose start with google </td>
+        <td> The loginGoogle function must be called </td>
         <td> Pass </td>
     </tr>
 </table>
