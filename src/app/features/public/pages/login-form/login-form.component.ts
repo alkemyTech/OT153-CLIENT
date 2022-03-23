@@ -18,12 +18,12 @@ export class LoginFormComponent implements OnInit {
   public authentication$: Observable<boolean>;
   public loginForm: FormGroup;
   
-  constructor(fb: FormBuilder, private _store:Store<AuthState>, private _router:Router) { // 
+  constructor(fb: FormBuilder, public _store:Store<AuthState>, private _router:Router) { // 
     this.loginForm = fb.group({
       email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required]],
     });
-    this.authentication$ = this._store.select(getAuth);
+    this.authentication$ = this._store.select(getAuth);   
 
   }
 
@@ -31,21 +31,23 @@ export class LoginFormComponent implements OnInit {
   }
 
   onLogin(): void {
-    const logAction = { email: this.loginForm.get('email')!.value, password: this.loginForm.get('password')!.value};
-    this._store.dispatch(login(logAction));
-
-    this.authentication$.subscribe( auth => {
-      if(auth){
-        this._router.navigate(["/backoffice"]);
-      }
-    });
+    if(this.loginForm.valid){
+      const logAction = { email: this.loginForm.get('email')!.value, password: this.loginForm.get('password')!.value};
+      this._store.dispatch(login(logAction));
+  
+      this.authentication$.subscribe( auth => {
+        if(auth){
+          // this._router.navigate(["/backoffice"]);
+        }
+      });
+    }
   }
 
   loginGoogle(){
     this._store.dispatch(googlelogin());
     this._store.select(getAuthToken).subscribe( token => {
       if(!token) return
-      this._router.navigateByUrl('/')
+      // this._router.navigateByUrl('/')
     })
   }
   
