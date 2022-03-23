@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PhoneFormatPipe } from '@app/shared/pipes/phone-format.pipe';
 
 import { ContactInfoComponent } from './contact-info.component';
 
@@ -8,9 +9,9 @@ describe('ContactInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContactInfoComponent ]
-    })
-    .compileComponents();
+      declarations: [ContactInfoComponent],
+      providers: [PhoneFormatPipe],
+    }).compileComponents();
   });
 
   beforeEach(() => {

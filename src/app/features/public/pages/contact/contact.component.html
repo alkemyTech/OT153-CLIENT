@@ -1,15 +1,15 @@
 <div class="wrapped ease-in-out-2">
-    <app-upper-title [title]="title" [colorBackground]="colorBackground"></app-upper-title>
-    
-    <div class="w-100 map-container">
-        <app-leaflet-map></app-leaflet-map>
-    </div>
+  <app-upper-title [title]="title" [colorBackground]="colorBackground"></app-upper-title>
 
-    <section class="col-8 contact-container m-auto">
-        <app-contact-form></app-contact-form>
-    </section>
+  <div class="w-100 map-container">
+    <app-leaflet-map></app-leaflet-map>
+  </div>
 
-    <div *ngIf="organization_info" class="col-8 m-auto info-container">
-        <app-contact-info [info]="organization_info"></app-contact-info>
-    </div>
+  <section class="col-8 contact-container m-auto">
+    <app-contact-form></app-contact-form>
+  </section>
+
+  <div *ngIf="organization_info" class="col-8 m-auto info-container">
+    <app-contact-info [info]="organization_info"></app-contact-info>
+  </div>
 </div>

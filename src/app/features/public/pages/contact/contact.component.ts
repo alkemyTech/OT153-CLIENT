@@ -29,7 +29,11 @@ export class ContactComponent implements OnInit {
         this.organization_info = res;
       },
       (error) => {
-        let dialog: DialogData = { type: DialogType.ERROR, header:  'Error al procesar la operación', content: 'Los datos de la organización no pudieron ser cargados.'};
+        let dialog: DialogData = {
+          type: DialogType.ERROR,
+          header: 'Error al procesar la operación',
+          content: 'Los datos de la organización no pudieron ser cargados.',
+        };
         this.dialogService.show(dialog);
       }
     );
