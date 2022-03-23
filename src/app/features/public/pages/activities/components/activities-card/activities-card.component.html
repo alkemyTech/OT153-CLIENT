@@ -1,14 +1,24 @@
+<div class="w-100 p-2 pt-0 mb-2" style="text-align: end">
+  <span class="p-input-icon-right search-container">
+
+    <i *ngIf="!loading" class="pi pi-search"></i>
+    <i *ngIf="loading && searchLoading" class="pi pi-spin pi-spinner"></i>
+  
+    <input pInputText type="text" placeholder="Buscar"
+      class="p-inputtext-sm" #search/>
+    
+  </span>
+</div>
 <p-card header="" styleClass="p-card-shadow m-auto">
   <div class="grid">
-    <div *ngFor="let activitie of activities$ | async " class="col-6">
-      <a routerLink="{{activitie.id}}">
-        <app-card 
-          [data]="ActivitieToICard(activitie)">
-        </app-card>
+    <div *ngFor="let activitie of activities$ | async" class="col-6">
+      <a routerLink="{{ activitie.id }}">
+        <app-card [data]="ActivitieToICard(activitie)"> </app-card>
       </a>
     </div>
   </div>
   <div *ngIf="loading" class="loading">
-    <app-spinner [strokeWidth]="'2'" [fillColor]="'transparent'" [width] ="1000" [height]="1000"></app-spinner>
+    <app-spinner [strokeWidth]="'2'" [fillColor]="'transparent'" [width]="1000" [height]="1000"></app-spinner>
   </div>
+  <p *ngIf="!loading && (activities$ | async)?.length === 0 && noResult">No se han encontrado resultados...</p>
 </p-card>
