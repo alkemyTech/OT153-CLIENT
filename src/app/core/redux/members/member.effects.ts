@@ -37,6 +37,21 @@ export class MemberEffects {
     )
   })
 
+  getMemberByName$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(action.getMemberByName),
+      mergeMap((act) => {
+        return this.memberService.getMemberByName(act.name).pipe(
+          map(
+            response => action.getMemberByNameSuccess({response}),
+          )
+        )
+      }),
+      catchError((error )=> of(action.getMemberByNameFail({error: error})))
+
+    )
+  })
+
   postMember$ = createEffect(()=> {
     return this.actions$.pipe(
       ofType(action.postMember),

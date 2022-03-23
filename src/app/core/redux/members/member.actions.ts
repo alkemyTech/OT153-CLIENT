@@ -11,6 +11,10 @@ export enum type {
   GET_MEMBER_FAIL = '[ Member ] Get A Member Fail',
   GET_MEMBER_SUCCESS = '[ Member ] Get A Member Success',
 
+  GET_MEMBER_BY_NAME = '[ Member ] Get A Member By Name',
+  GET_MEMBER_BY_NAME_FAIL = '[ Member ] Get A Member By Name Fail',
+  GET_MEMBER_BY_NAME_SUCCESS = '[ Member ] Get A Member By Name Success',
+
   POST_MEMBER = '[ Member ] Post A Member',
   POST_MEMBER_FAIL = '[ Member ] Post A Member Fail',
   POST_MEMBER_SUCCESS = '[ Member ] Post A Member Success',
@@ -31,6 +35,10 @@ export const getMembersFail = createAction(type.GET_MEMBERS_FAIL, props<{ error:
 export const getMember = createAction(type.GET_MEMBER, props<{ id: number }>());
 export const getMemberSuccess = createAction(type.GET_MEMBER_SUCCESS, props<{ member: MemberResponse }>());
 export const getMemberFail = createAction(type.GET_MEMBER_FAIL, props<{error: any}>())
+
+export const getMemberByName = createAction(type.GET_MEMBER_BY_NAME, props<{ name: string }>());
+export const getMemberByNameSuccess = createAction(type.GET_MEMBER_BY_NAME_SUCCESS, props<{ response: MembersResponse }>());
+export const getMemberByNameFail = createAction(type.GET_MEMBER_BY_NAME_FAIL, props<{error: any}>())
 
 export const postMember = createAction(type.POST_MEMBER, props<{ body: Member }>());
 export const postMemberSuccess = createAction(type.POST_MEMBER_SUCCESS, props<{ member: MemberResponse }>())
