@@ -71,7 +71,6 @@ export class RegisterFormComponent implements OnInit {
     labelOrigin: new google.maps.Point(25, 60)
 };
 
-
 mapOptions = {
   zoom: 8,
   mapId: 'fadc1ec7936b54d3'
