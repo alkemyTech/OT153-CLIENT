@@ -11,10 +11,46 @@
   }
 
   .product-image {
-    width: 60%;
-    height: 50vh;
     object-fit: cover;
+    width: 100%;
     object-position: 50% 50%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
+
+  @media only screen and (max-width: 1940px) {
+    .product-image {
+      height: 55vh;
+    }
+    .product-item-content {
+      font-size: 25px;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .product-image {
+      height: 50vh;
+    }
+    .product-item-content {
+      font-size: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .product-image {
+      height: 40vh;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .product-image {
+      height: 30vh;
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    .product-image {
+      height: 15vh;
+    }
+  }
+
 }
