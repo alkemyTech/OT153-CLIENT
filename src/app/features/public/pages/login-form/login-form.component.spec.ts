@@ -14,15 +14,13 @@ const INVALID_EMAIL = 'NO@Email.';
 
 describe("Testing Login Form Component", () => {
 
-  const storeMock = jasmine.createSpyObj('Store', ['select','dispatch']);
-
   let component: LoginFormComponent;
   let fixture: ComponentFixture<LoginFormComponent>;
   
   //? 6 test
   describe('Verification of login form fields', () => {
-
-    beforeEach(async () => {
+    const storeMock = jasmine.createSpyObj('Store', ['select','dispatch']);
+    beforeAll(async () => {
       let state = {
           auth: false,
           isAdmin: false,
@@ -55,7 +53,7 @@ describe("Testing Login Form Component", () => {
       }).compileComponents();
     });
 
-    beforeEach(() => {
+    beforeAll(() => {
       fixture = TestBed.createComponent(LoginFormComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
@@ -97,12 +95,10 @@ describe("Testing Login Form Component", () => {
     });
     //? 6 test
   })
-
   
-  
-  // ? 6 test
-  describe('Verification of login form submit', () => {
-
+  // ? 1 test
+  describe('Verification of store', () => {
+    const storeMock = jasmine.createSpyObj('Store', ['select','dispatch']);
     beforeEach(async () => {
       let state = {
           auth: false,
@@ -143,32 +139,58 @@ describe("Testing Login Form Component", () => {
       fixture.detectChanges();
     });
 
-    it("It should change the auth state to true",async ()=>{
-      let auth = false;
-      spyOn(component, 'onLogin').and.callFake(()=> auth = true)
-
+    it("Should make a call to the store when submit",async ()=>{
       component.loginForm.get('email')?.setValue(VALID_EMAIL);
       component.loginForm.get('password')?.setValue('password');
-
       fixture.detectChanges();
       fixture.nativeElement.querySelector("#btn_submit").click();
 
       expect(storeMock.dispatch).toHaveBeenCalled();
-      expect(auth).toBeTruthy();
     });
 
-    it("It should change the auth state to false",async () => {
-      let auth: boolean = false;
-      spyOn(component, 'onLogin').and.callFake(()=> auth = false)
+    // ? 1 test
+  })
 
-      component.loginForm.get('email')?.setValue(VALID_EMAIL);
-      component.loginForm.get('password')?.setValue('password');
+  // ? 4 test
+  describe('Verification of error message', () => {
+    const storeMock = jasmine.createSpyObj('Store', ['select','dispatch']);
+    beforeEach(async () => {
+      let state = {
+          auth: false,
+          isAdmin: false,
+          user: null,
+          googleUser: null,
+          token!: null,
+          isGoogleAuth: false
+      }
 
+      storeMock.select.and.returnValue(
+        of(state)
+      );
+
+      storeMock.dispatch()
+  
+      TestBed.configureTestingModule({
+        imports: [
+          RouterTestingModule,
+          StoreModule.forRoot({}, {}),
+          FormsModule,
+          ReactiveFormsModule,
+          CommonModule
+        ],
+        declarations: [LoginFormComponent],
+        providers: [
+          { provide: Store, useValue: storeMock },
+          DialogService,
+          MessageService
+        ],
+      }).compileComponents();
+    });
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(LoginFormComponent);
+      component = fixture.componentInstance;
       fixture.detectChanges();
-      fixture.nativeElement.querySelector("#btn_submit").click();
-
-      expect(storeMock.dispatch).toHaveBeenCalled();
-      expect(auth).toBeFalsy();
     });
 
     it("Should have email error message",fakeAsync(()=>{
@@ -200,13 +222,12 @@ describe("Testing Login Form Component", () => {
       expect(errorMessage).toBeNull();
     }));
 
+    // ? 4 test
+  });
 
-    // ? 6 test
-  })
-
-  //? 4 test
-  describe('Verification of buttons' , () => {
-      
+  //? 3 test
+  describe('Verification of buttons', () => {
+    const storeMock = jasmine.createSpyObj('Store', ['select','dispatch']);
     beforeEach(async () => {
       let state = {
           auth: false,
@@ -246,7 +267,6 @@ describe("Testing Login Form Component", () => {
       fixture.detectChanges();
     });
 
-
     it("Should call onLogin when the form is valid",async ()=>{
       const spy = spyOn(component, 'onLogin');
 
@@ -273,23 +293,12 @@ describe("Testing Login Form Component", () => {
     it("Should call loginGoogle when the form is valid",async ()=>{
       const spy = spyOn(component, 'loginGoogle')
       fixture.nativeElement.querySelector("#btn_googleLogin").click();
-
       expect(storeMock.dispatch).toHaveBeenCalled();
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    it("Should not call loginGoogle when the form is valid",async ()=>{
-      const spy = spyOn(component, 'loginGoogle');
-      expect(spy).toHaveBeenCalledTimes(0);
-    });
-
-    // ? 4 test
+    // ? 3 test
   })
-
-  
-  
-
-
 
 
   //*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
