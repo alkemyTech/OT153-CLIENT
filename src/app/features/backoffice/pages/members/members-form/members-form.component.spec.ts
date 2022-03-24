@@ -283,6 +283,20 @@ describe('Test MembersFormComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
 
+    it("Should call patchMember when the form is valid",async ()=>{
+      component.newForm = false;
+      const spy = spyOn(component, 'patchMember');
+      component.form.get('name')?.setValue('name');
+      component.form.get('description')?.setValue('description');
+      component.form.get('image')?.setValue('image');      
+      component.form.get('fbLink')?.setValue('fbLink');
+      component.form.get('liLink')?.setValue('liLink');
+      fixture.detectChanges();
+      fixture.nativeElement.querySelector("#btn_submit").click();
+
+      expect(mockStore.dispatch).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalled();
+    });
   
   });
 
