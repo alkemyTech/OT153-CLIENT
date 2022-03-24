@@ -49,6 +49,6 @@ export class EditActivityFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.forEach(elem => elem.unsubscribe);
+    this.subscription.map(elem => elem.unsubscribe());
   }
 }

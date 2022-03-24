@@ -62,6 +62,6 @@ export class ActivitySelectedComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.map( s => s.unsubscribe );
+    this.subscription.map( s => s.unsubscribe() );
   }
 }
