@@ -17,7 +17,7 @@
             <!-- section DESCRIPTION  -->
             <div class="field col-12">
                 <div class="col-sm-9">
-                    <ckeditor [editor]="editor" [config]="config" formControlName="description"></ckeditor>
+                    <ckeditor [editor]="editor" [config]="config" name="description" ngDefaultControl></ckeditor>
                 </div>
                 <div *ngIf="getControl(form,'description')?.invalid">
                     <small
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="col-6">
-                    <button pButton type="button" [routerLink]="this.routerLink" label="Atras"
+                    <button pButton type="button" id="btn_submit" [routerLink]="this.routerLink" label="Atras"
                         class="p-button-secondary box"></button>
                 </div>
             </div>
