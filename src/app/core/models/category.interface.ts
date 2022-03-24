@@ -20,14 +20,14 @@ export interface respFullCategories {
 }
 
 export interface fullCategoryDate {
-  id:                 number;
+  id?:                 number;
   name:               string;
   description:        string;
-  image:              string;
-  parent_category_id: number;
-  created_at:         Date;
-  updated_at:         Date;
-  deleted_at:         Date;
+  image?:              string | ArrayBuffer | null;
+  parent_category_id?: number;
+  created_at?:         Date;
+  updated_at?:         Date;
+  deleted_at?:         Date;
 }
 
 

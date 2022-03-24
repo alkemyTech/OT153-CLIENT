@@ -1,9 +1,9 @@
-<p-card header="{{newForm ? 'Crear':'Editar'}} Miembro" styleClass="p-card-shadow m-auto col-10 mt-2">
+<p-card header="{{newForm ? 'Crear':'Editar'}} Categoria" styleClass="p-card-shadow m-auto col-10 mt-2">
   <div class="grid p-fluid">
     <form (ngSubmit)="submit()" [formGroup]="form" class="w-100">
       <!-- section NAME -->
       <div class="field col-12" [class.has-error]="getControl(form,'name')?.touched && getControl(form,'name')?.dirty">
-        <input pInputText id="name-input" placeholder="Miembro" type="text" formControlName="name"
+        <input pInputText id="name-input" placeholder="Categoria" type="text" formControlName="name"
           aria-describedby="name-help" />
         <div *ngIf="getControl(form,'name')?.invalid">
           <small *ngIf="getControl(form,'name')?.touched && getControl(form,'name')?.hasError('required')"
