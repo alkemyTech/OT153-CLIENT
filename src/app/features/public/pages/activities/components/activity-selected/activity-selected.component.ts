@@ -29,7 +29,7 @@ export class ActivitySelectedComponent implements OnInit, OnDestroy {
 
   ActivityId: number = parseInt(this.router.url.split('/').pop() || '');
   activity: Activities;
-  subscription: Subscription;
+  subscription: Subscription[];
   url: string = environment.apiUrlActivities;
 
   constructor(
@@ -37,7 +37,9 @@ export class ActivitySelectedComponent implements OnInit, OnDestroy {
     private router: Router,
     private Store: Store<{ activitiesState: activitiesState }>,
     private dialogService: DialogService
-  ) {}
+  ) { 
+    this.subscription = []
+  }
 
   ngOnInit(): void {
     this.activity$ = this.Store.select(Selector.SelectStateOneData);
@@ -47,18 +49,19 @@ export class ActivitySelectedComponent implements OnInit, OnDestroy {
   }
 
   getActivity(): void {
-    this.activity$.subscribe((activity) => {
+    const activitySubs = this.activity$.subscribe((activity) => {
       this.activity = activity;
     });
-    this.error$.subscribe((error) => {
+    const errorSubs = this.error$.subscribe((error) => {
       if (error.error) {
         let dialog: DialogData = { type: DialogType.ERROR, header: 'ERROR', content: error.message };
         this.dialogService.show(dialog);
       }
     });
+    this.subscription.push(activitySubs, errorSubs)
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription.map( s => s.unsubscribe() );
   }
 }

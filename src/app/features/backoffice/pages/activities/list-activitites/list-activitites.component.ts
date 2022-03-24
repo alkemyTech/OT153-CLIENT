@@ -21,10 +21,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   public error$: Observable<any> = new Observable();
   public dialogSelection$: Observable<boolean>;
   public searchObserver$: Observable<Search>;
-  private subscribeActivity: Subscription;
-  private subscribeDialogSelection: Subscription;
-  private subscribeSearchActivities: Subscription;
-  private subscribeError: Subscription;
+  private subscriptions: Subscription[] = [];
   public error : HttpErrorResponse;
   public activities: Activities[];
   private _idDelete: number;
@@ -49,16 +46,17 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
 
   private activitiesSubscribe(){
     this.activities$ = this.Store.select(Selector.SelectStateAllData);
-    this.subscribeActivity = this.activities$.subscribe({
+    const subscribeActivity = this.activities$.subscribe({
       next:(activities:Activities[]) => {
         this.activities = activities;
       }
     });
+    this.subscriptions.push(subscribeActivity);
   }
 
   private errorSubscribe(){
     this.error$ = this.Store.select(Selector.SelectStateError);
-    this.subscribeError = this.error$.subscribe({
+    const subscribeError = this.error$.subscribe({
       next:(error: HttpErrorResponse)=> {
         if(error.status === 404){
         let dialog: DialogData = { type: DialogType.ERROR, header: 'ERROR', content: 
@@ -67,13 +65,15 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
         this.dialog.show(dialog);}
       }
     })
+    this.subscriptions.push(subscribeError)
   }
 
   private searchSubscribe() {
     this.searchObserver$ = this.searchServices.SearchObservable;
-    this.subscribeSearchActivities = this.searchObserver$.subscribe({
+    const subscribeSearchActivities = this.searchObserver$.subscribe({
       next: (resp) => { this.search(resp.load, resp.search); }
-    })
+    });
+    this.subscriptions.push(subscribeSearchActivities)
   }
 
   private search(load?: boolean, search?: string){
@@ -93,7 +93,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   }
 
   private delete_dialogSubscribe(){
-    this.subscribeDialogSelection = this.dialogSelection$.subscribe(
+    const subscribeDialogSelection = this.dialogSelection$.subscribe(
       resp => {
         if (resp && this._idDelete && this._idDelete != -1) {
           this.Store.dispatch(Action.deleteActivities( {id: this._idDelete} ));
@@ -101,12 +101,12 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
         }
         this._idDelete=-1
       }
-    )
+    );
+    this.subscriptions.push(subscribeDialogSelection)
   }
 
   deleteDialog(_id: number){
     this.delete_dialogSubscribe();
-
     this._idDelete = _id;
     this.dialog.show({ 
       type: DialogType.CONFIRM, 
@@ -124,11 +124,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribeActivity.unsubscribe();
-    this.subscribeDialogSelection?.unsubscribe();
-    this.subscribeSearchActivities.unsubscribe();
-    this.subscribeError.unsubscribe();
-    
+    this.subscriptions.map( s => s.unsubscribe());
   }
 
 }

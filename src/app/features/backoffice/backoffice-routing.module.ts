@@ -34,6 +34,7 @@ const routes: Routes = [
         children: [
           { path: '', component: ListActivititesComponent },
           { path: 'crear', component: NewActivityFormComponent },
+          { path: 'editar', redirectTo: '' },
           { path: 'editar/:id', component: EditActivityFormComponent },
         ],
       },
@@ -42,6 +43,7 @@ const routes: Routes = [
         children: [
           { path: '', component: ListNewsComponent },
           { path: 'crear', component: NewNewsFormComponent },
+          { path: 'editar', redirectTo: '' },
           { path: 'editar/:id', component: EditNewsFormComponent },
         ],
       },
@@ -68,23 +70,16 @@ const routes: Routes = [
       },
       {
         path: 'organizacion',
-        component: OrganizationDetailsComponent,
-      },
-      {
-        path: 'organizacion/editar',
-        component: OrganizationEditComponent,
+        children: [
+          { path: '', component: OrganizationDetailsComponent },
+          { path: 'editar', component: OrganizationEditComponent }
+        ]
       },
       {
         path: 'usuarios',
         children: [
-          {
-            path: '',
-            component: UsersCrudComponent,
-          },
-          {
-            path: 'crear',
-            component: NewUserComponent,
-          },
+          { path: '', component: UsersCrudComponent },
+          { path: 'crear', component: NewUserComponent },
         ],
       },
     ],

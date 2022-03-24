@@ -26,6 +26,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 import { GoogleMapsModule } from "@angular/google-maps";
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 const componentToExport = [
   CarouselComponent,
@@ -41,13 +42,23 @@ const componentToExport = [
   DialogTemplateComponent,
   SimpleListComponent,
   SuccessDialogTemplateComponent,
-  SearchComponent
+  SearchComponent, 
+  SkeletonComponent, 
+  BackButtonComponent,
 ];
 
-const modulesToExport = [CKEditorModule, PrimengModule, ReactiveFormsModule, MaterialModule, GoogleMapsModule, GooglePlaceModule,NgxExtendedPdfViewerModule];
+const modulesToExport = [
+  CKEditorModule,
+  PrimengModule, 
+  ReactiveFormsModule, 
+  MaterialModule,
+  GoogleMapsModule, 
+  GooglePlaceModule,
+  NgxExtendedPdfViewerModule,
+];
 @NgModule({
-  declarations: [...componentToExport, SkeletonComponent],
-  imports: [CommonModule, ...modulesToExport],
-  exports: [...modulesToExport, ...componentToExport],
+  declarations: [...componentToExport ],
+  imports: [ CommonModule, ...modulesToExport ],
+  exports: [...modulesToExport, ...componentToExport ],
 })
 export class SharedModule {}

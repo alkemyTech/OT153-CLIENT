@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NewActivity, Activities } from '@core/models/activities.interfaces';
 import { activitiesState } from '@app/core/models/activities-state.interface';
@@ -49,9 +50,8 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   imgMessage: string;
   submitted: boolean = false;
   displaySubmitSpinner: boolean = false;
-  subscription: Subscription = new Subscription();
-  errorSubscribe: Subscription = new Subscription();
-  successSubscribe: Subscription = new Subscription();
+  private subscriptions : Subscription[] = [];
+
 
   error$: Observable<HttpErrorResponse> = new Observable();
   errorResponse: HttpErrorResponse;
@@ -61,7 +61,11 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
 
   backLink = '/backoffice/actividades';
 
-  constructor(private Store: Store<{ activitiesState: activitiesState }>, private dialogService: DialogService) {}
+  constructor(
+    private Store: Store<{ activitiesState: activitiesState }>, 
+    private dialogService: DialogService, 
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.activity$ = this.Store.select(Selector.SelectStateOneData);
@@ -121,7 +125,7 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
 
   private success() {
     this.success$ = this.Store.select(Selector.SelectStateOneData);
-    this.successSubscribe = this.success$.subscribe({
+    const successSubscribe = this.success$.subscribe({
       next: (success) => {
         if (!this.errorResponse || this.errorResponse.status === 0) {
           if (success.name != '' && !this.dialog) {
@@ -131,11 +135,12 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
         }
       },
     });
+    this.subscriptions.push(successSubscribe);
   }
 
   private error() {
     this.error$ = this.Store.select(Selector.SelectStateError);
-    this.errorSubscribe = this.error$.subscribe({
+    const errorSubscribe = this.error$.subscribe({
       next: (error: HttpErrorResponse) => {
         this.errorResponse = error;
         if (!this.dialog && error.status !== 0) {
@@ -144,6 +149,7 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
         }
       },
     });
+    this.subscriptions.push(errorSubscribe);
   }
 
   httpSendActivity(form: FormGroup) {
@@ -172,7 +178,7 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
       this.dialog = undefined;
     }
 
-    this.subscription = this.Store.select(Selector.SelectStateOneData).subscribe({
+    const storeSelectSubscription = this.Store.select(Selector.SelectStateOneData).subscribe({
       next: (response) => {
         delay(10000);
         this.displaySubmitSpinner = false;
@@ -183,9 +189,10 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
       },
       complete: () => {},
     });
+    this.subscriptions.push(storeSelectSubscription);
   }
 
   ngOnDestroy(): void {
-    this.subscription.closed ? null : this.subscription.unsubscribe();
+    this.subscriptions.map( s => s.unsubscribe())
   }
 }
