@@ -13,6 +13,7 @@ import {
 } from '@app/core/redux/organization/organization.index';
 import { Observable, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ProgressBarService } from '@app/core/services/progressbar.service';
 
 @Component({
   selector: 'app-about',
@@ -30,13 +31,14 @@ export class AboutComponent implements OnInit, OnDestroy {
   public subscriptions: Subscription[] = [];
   public organization: OrganizationData;
 
-  constructor(private Store: Store<{ organizationState: OrganizationState }>, private dialogService: DialogService) {}
+  constructor(private Store: Store<{ organizationState: OrganizationState }>, private dialogService: DialogService, private progressbarService: ProgressBarService) {}
 
   ngOnInit(): void {
     this.organization$ = this.Store.select(Selector.SelectStateOrganization);
     this.error$ = this.Store.select(Selector.SelectStateOrganizationError);
     this.getOrganization();
     this.Store.dispatch(Action.getOrganization());
+    this.progressbarService.setDisplay(true);
   }
 
   getOrganization() {
@@ -44,6 +46,7 @@ export class AboutComponent implements OnInit, OnDestroy {
       this.text = organization.data.long_description;
       this.load = false;
       this.organization = organization.data;
+      this.progressbarService.setDisplay(false);
     });
 
     this.error$.subscribe((error) => {
