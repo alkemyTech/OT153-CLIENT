@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { getControl as getControlFunction } from '@app/core/util/getControlForm';
 import { emailValidator } from '@app/core/util/validators/form.validators';
@@ -15,38 +15,59 @@ import { getAuthToken } from '@core/redux/auth/auth.selectors';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  authentication$: Observable<boolean>;
-
-  getControl = getControlFunction;
-  loginForm = this.fb.group({
-    email: ['', [Validators.required, emailValidator()]],
-    password: ['', [Validators.required]],
-  });
+  public authentication$: Observable<AuthState>;
+  public loginForm: FormGroup;
+  public standarAuth: boolean;
   
-  constructor(private fb: FormBuilder, private _store:Store<AuthState>, private _router:Router) {
-    this.authentication$ = this._store.pipe(select(getAuth));
-  }
-
-  ngOnInit(): void {}
-
-  onLogin(): void {
-    const formValue = this.loginForm.value;
-    const logAction = { email: this.loginForm.get('email')!.value, password: this.loginForm.get('password')!.value};
-    this._store.dispatch(login(logAction));
-
-    this.authentication$.subscribe( auth => {
-      if(auth){
-        this._router.navigate(["/backoffice"]);
-      }
+  constructor(fb: FormBuilder, public _store:Store<{state: AuthState}>, private _router:Router) { // 
+    this.loginForm = fb.group({
+      email: ['', [Validators.required, emailValidator()]],
+      password: ['', [Validators.required]],
     });
+    this.authentication$ = this._store.select(getAuth);
+    this.standarAuth = false
   }
+
+  ngOnInit(): void {
+  }
+
+  onLogin(): boolean {
+    if(this.loginForm.valid){
+      const logAction = { email: this.loginForm.get('email')!.value, password: this.loginForm.get('password')!.value};
+      this._store.dispatch(login(logAction));
+  
+      this.authentication$.subscribe( auth => {
+        this.standarAuth = auth.auth
+        if(auth.auth){
+          this._router.navigate(["/backoffice"]);
+        }
+      });
+    }
+    return this.loginForm.valid;
+  }
+  
 
   loginGoogle(){
     this._store.dispatch(googlelogin());
     this._store.select(getAuthToken).subscribe( token => {
       if(!token) return
-      this._router.navigateByUrl('/')
+        this._router.navigateByUrl('/')
     })
   }
+  
+  getControl(controlName :string){
+    return getControlFunction(this.loginForm, controlName);
+  }
+  
+  controlInvalid(controlName :string){
+    return this.getControl(controlName)?.invalid
+  }
+
+  controlTouched(controlName:string){
+    return this.getControl(controlName)?.touched
+  }
+
+
+  
   
 }

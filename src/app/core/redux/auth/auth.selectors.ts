@@ -6,7 +6,7 @@ export const getAuthState = createFeatureSelector<AuthState>('authReducer');
 
 export const getAuth = createSelector(
     getAuthState,
-    (state: AuthState) => state.auth
+    (state: AuthState) => state
 );  
 
 export const getAuthOk = createSelector(
