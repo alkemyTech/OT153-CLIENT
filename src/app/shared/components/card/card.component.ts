@@ -27,12 +27,15 @@ export class CardComponent implements OnInit {
   style = {};
   styleDescription = {};
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {  
     this.styleDescription = { 
       'width': '100%', 
-      'height': this.heightDescription+'rem'
+      'height': this.heightDescription+'rem',
+      'min-height': this.heightDescription+'rem',
+      'max-height': this.heightDescription+'rem'
     }
     if (this.fixedWidth) {
       this.style = {
@@ -42,5 +45,7 @@ export class CardComponent implements OnInit {
     };
 
   }
-  
+
+
+  // 10011
 }
