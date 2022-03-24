@@ -102,7 +102,6 @@ export class CategoriesFormComponent implements OnInit {
     };
     this.privateService.post(this.categoryURL, body).subscribe(
       (res) => {
-        console.log(res);
         //Mensaje de success
       },
       (error) => {
@@ -130,7 +129,6 @@ export class CategoriesFormComponent implements OnInit {
     }
     this.privateService.patch<fullCategoryDate>(url, body).subscribe(
       (res) => {
-        console.log(res)
         //Mensaje de success
       },
       (error) => {
