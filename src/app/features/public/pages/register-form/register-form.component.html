@@ -11,7 +11,7 @@
 
     <form (submit)="submit()" [formGroup]="formSignup" class="w-100 col-5">
       <div>
-          <input id="name" type="text" 
+          <input id="name" type="text"
           formControlName="name"
           aria-describedby="name-help"
           pInputText
@@ -25,7 +25,7 @@
             </small>
           </div>
 
-          <input id="useremail" type="text" 
+          <input id="useremail" type="text"
           formControlName="useremail"
           aria-describedby="useremail-help"
           pInputText
@@ -39,7 +39,7 @@
             </small>
           </div>
 
-          <input id="userdirection" type="text" 
+          <input id="userdirection" type="text"
           pInputText
           id="userdirection"
           type="text"
@@ -58,7 +58,7 @@
             </small>
           </div>
 
-          <input id="password" type="password" 
+          <input id="password" type="password"
           formControlName="password"
           aria-describedby="password-help"
           pInputText
@@ -145,12 +145,12 @@
           <div *ngIf="termsAccepted" class="terms">
             <button pButton pRipple type="button" disabled label="Acepto los términos y condiciones." class="p-button-success p-button-text"></button>
 
-        </div> 
-          
+        </div>
+
       </div>
       <div class="btn-content mt-5">
         <button class="btn mr-4 mt-2" pButton pRipple label="Registrarse" [disabled]="!formSignup.valid" type="submit" [loading]="!isLoading"></button>
-        <button class="btn mr-4 mt-2" type="button" pButton pRipple label="Cancelar" [routerLink]="['/']" ></button>
+        <back-button label="Cancelar" class="btn mr-4 mt-2"></back-button>
       </div>
     </form>
 </div>
