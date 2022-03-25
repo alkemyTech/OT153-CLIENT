@@ -15,6 +15,7 @@ import { DialogData } from '@app/core/models/dialog.inteface';
 import { debounce, debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { SearchInputService } from '@app/core/services/search-input.service';
 import { Search } from '@app/core/models/search.models';
+import { ProgressBarService } from '@app/core/services/progressbar.service';
 
 @Component({
   selector: 'app-activities-card',
@@ -34,6 +35,7 @@ export class ActivitiesCardComponent implements OnInit, AfterViewInit {
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>,
     private dialogService: DialogService,
+    private progressbarService: ProgressBarService
   ) {}
 
   ngOnInit() {
@@ -41,12 +43,14 @@ export class ActivitiesCardComponent implements OnInit, AfterViewInit {
     this.error$ = this.Store.select(Selector.SelectStateError);
     this.Store.dispatch(Actions.getAllActivities());
     this.alerts();
+    this.progressbarService.setDisplay(true)
   }
 
   ngAfterViewInit(): void {
     this.listenSearchInput();
-    timer(1000).subscribe(() => {
+    timer(3000).subscribe(() => {
       this.loading = false;
+      this.progressbarService.setDisplay(false)
     });
   }
 

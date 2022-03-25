@@ -14,6 +14,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   declarations: [AppComponent,DialogComponent],
@@ -24,6 +25,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     ToastModule, 
     BrowserAnimationsModule, 
     ToastModule,
+    ProgressBarModule,
     StoreModule,
     LeafletModule,
     AngularFireModule.initializeApp(environment.firebase),
