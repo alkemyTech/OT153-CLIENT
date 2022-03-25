@@ -30,12 +30,13 @@ background-color: $lightBlue;
 }
 
 .btn{
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  width: 48%;
   height: auto;
   color: $black;
   background-color: $white;
   border-color: $black;
-  margin-left: 20px;
 }
 
 @media only screen and (max-width: 550px) {
