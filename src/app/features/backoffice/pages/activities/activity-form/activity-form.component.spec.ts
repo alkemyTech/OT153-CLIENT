@@ -1,27 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActivityFormComponent } from './activity-form.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { StoreModule } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
-
-
-let authState = {
-  auth: false,
-  isAdmin: false,
-  user: null,
-  googleUser: null,
-  token!: null,
-  isGoogleAuth: false
-}
+import { MessageService } from 'primeng/api';
+import { DialogService } from '@core/services/dialog.service';
 
 
 describe('Testing Activity Form Component', () => {
   let component: ActivityFormComponent;
   let fixture: ComponentFixture<ActivityFormComponent>;
-  let element;
 
   let activitiesState = {
     responseAll: [],
@@ -32,7 +22,6 @@ describe('Testing Activity Form Component', () => {
 
   const storeMock = jasmine.createSpyObj('store', ['select']);
 
-
   beforeEach(async () => {
     storeMock.select.and.returnValue(
       of(activitiesState)
@@ -41,7 +30,11 @@ describe('Testing Activity Form Component', () => {
     await TestBed.configureTestingModule({
       declarations: [ActivityFormComponent],
       imports: [RouterTestingModule, StoreModule.forRoot({}, {}),],
-      providers: [{ provide: Store, useValue: storeMock }],
+      providers: [
+        { provide: Store, useValue: storeMock },
+        DialogService,
+        MessageService
+      ],
     }).compileComponents();
   });
 
@@ -68,19 +61,10 @@ describe('Testing Activity Form Component', () => {
     expect( control?.valid ).toBeFalsy();
   });
 
-  // it('should upload the file', () => {
-  //   component.selectFile(new Event('change'));
-  //   const inputEl = element.querySelector('#image_file');
-  //   const fileList = { 0: { name: 'foo', size: 500001 } };
-  //   inputEl.value = {
-  //       target: {
-  //           files: fileList
-  //       }
-  //   };
-  //   inputEl.dispatchEvent(new Event('change'));     
-  // });
-
-  it('Only logged user should be able to navigate form', () =>{
-
+  it('Field image should be mandatory', () =>{
+    const control = component.form.get('image');
+    control?.setValue('');
+   
+    expect( control?.valid ).toBeFalsy();
   });
 });
