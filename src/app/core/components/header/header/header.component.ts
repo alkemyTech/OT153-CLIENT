@@ -35,20 +35,10 @@ export class HeaderComponent implements OnInit {
   linksHome: link[] = [
     { link: '/home', text: 'Inicio' },
     { link: '/nosotros', text: 'Nosotros' },
+    { link: '/actividades', text: 'Actividades' },
     { link: '/contacto', text: 'Contacto' },
   ];
 
-  linksBackoffice: link[] = [
-    { link: '/home', text: 'Inicio' },
-    { link: '/nosotros', text: 'Nosotros' },
-    { link: '/backoffice/organization', text: 'Organizacion' },
-    { link: '/backoffice/actividades', text: 'Actividades' },
-    { link: '/backoffice/users', text: 'Usuarios' },
-    { link: '/backoffice/members', text: 'Miembros' },
-    { link: '/backoffice/categorias', text: 'Usuarios' },
-    { link: '/backoffice/novedades', text: 'Novedades' },
-    { link: '/backoffice/', text: 'Dashboard' },
-  ];
 
   linksGoogle: link[] = [
     { link: '/home', text: 'Inicio' },
@@ -76,17 +66,14 @@ export class HeaderComponent implements OnInit {
   loadLinks(): void {
     this.authState$.subscribe( ({auth, isAdmin, isGoogleAuth}) => {
 
-      if (auth && isAdmin && !isGoogleAuth) {
-        this.links = [...this.linksBackoffice];
-      } else {
-        if(isGoogleAuth || (auth && !isAdmin)){
+      if(isGoogleAuth || (auth && !isAdmin)){
           this.links = this.linksGoogle
         }else{
           this.links = this.linksHome;
         }
       }
 
-    }) 
+    ) 
   }
 
   logout(){

@@ -117,12 +117,7 @@ mapOptions = {
   submit() {
     if(this.termsAccepted == false){
       this.getTermsAcceptance();
-    }
-    
-    if(this.termsAccepted){
-      const email = this.frmSignup.get('useremail')?.value;
-      const password = this.frmSignup.get('password')?.value;
-
+    }else{
       try {
         const {name, useremail , userdirection, password, confirmPassword } = this.frmSignup.value;
   
@@ -151,6 +146,11 @@ mapOptions = {
         this.frmSignup.reset();
       }
     }
+    
+    if(this.termsAccepted){
+      const email = this.frmSignup.get('useremail')?.value;
+      const password = this.frmSignup.get('password')?.value;
+    }
  
   }
   getTermsAcceptance(){
@@ -161,32 +161,6 @@ mapOptions = {
     };
     this.dialogService.show(dialog);
     this.dialogService.DialogSelectionObservable.subscribe((acceptance) => (this.termsAccepted = acceptance));
-    const { name, useremail, userdirection, password, confirmPassword } = this.frmSignup.value;
-    try {
-      const { name, useremail, userdirection, password, confirmPassword } = this.frmSignup.value;
-
-      if (password === confirmPassword) {
-        this._store.dispatch(register({ name: name, email: useremail, address: userdirection, password: password }));
-        const logAction = {
-          email: this.formSignup.get('useremail')!.value,
-          password: this.formSignup.get('password')!.value,
-        };
-        this._store.dispatch(login(logAction));
-        this._store.dispatch(login({ email: useremail, password: password }));
-        this.authentication$.subscribe((auth) => {
-          if (auth.auth) {
-            this._router.navigate(['/']);
-          }
-        });
-      } else {
-        this.frmSignup.get('confirmPassword')?.setErrors({ repeat: true });
-        this.frmSignup.get('password')?.setErrors({ repeat: true });
-      }
-    } catch (error) {
-      let dialog: DialogData = { type: DialogType.ERROR, header: 'Error', content: 'El registro fallo' };
-      this.dialogService.show(dialog);
-      this.frmSignup.reset();
-    }
   }
   
   public handleAdressChange(adress: any) {

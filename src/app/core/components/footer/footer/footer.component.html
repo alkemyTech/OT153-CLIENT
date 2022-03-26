@@ -1,42 +1,43 @@
 <footer>
-  <div class="container">
-    <div class="topfooter text-center">
-      <div class="col-footer logo">
-        <img src="assets/img/logo.png" alt="logo-somosmas" />
+    <div class="container">
+      <div class="topfooter text-center">
+        <div class="col-footer logo">
+          <a routerLink="/home"><img src="assets/img/logo.png" alt="logo-somosmas" /></a>
+        </div>
+        <div class="col-footer navigation">
+          <ul>
+            <li><a routerLink="/home">Inicio</a></li>
+            <li><a routerLink="/nosotros">Nosotros</a></li>
+            <li><a routerLink="/actividades">Actividades</a></li>
+            <li><a routerLink="/contacto">Contacto</a></li>
+            <li *ngIf="isAuth"><a routerLink="/donar">Contribuye</a></li>
+          </ul>
+        </div>
+        <div class="col-footer social">
+          <a href="{{ facebookLink }}"  class="facebook">
+            <i class="pi pi-facebook"></i> <p>{{ instagramLink }}</p> 
+          </a>
+          <a href="{{ instagramLink }}" class="instagram mt-2">
+            <i class="pi pi-instagram"></i> <p>{{ instagramLink }}</p> 
+          </a>
+          <a href="{{ twitterLink }}" class="twitter mt-2">
+            <i class="pi pi-twitter"></i> <p>{{ twitterLink }}</p> 
+          </a>
+        </div>
       </div>
-      <div class="col-footer navigation">
-        <ul>
-          <li><a routerLink="/home">Inicio</a></li>
-          <li><a routerLink="/nosotros">Nosotros</a></li>
-          <li><a routerLink="/actividades">Actividades</a></li>
-          <li><a routerLink="/contacto">Contacto</a></li>
-          <li *ngIf="isAuth"><a routerLink="/donar">Contribuye</a></li>
-        </ul>
-      </div>
-      <div class="col-footer social">
-        <a href="{{ facebookLink }}"  class="facebook">
-          <i class="pi pi-facebook"></i> <p>{{ facebookLink }}</p> 
-        </a>
-        <a href="{{ instagramLink }}" class="instagram">
-          <i class="pi pi-instagram"></i> <p>{{ instagramLink }}</p> 
-        </a>
-        <a href="{{ twitterLink }}" class="twitter">
-          <i class="pi pi-twitter"></i> <p>{{ twitterLink }}</p> 
-        </a>
+      <div class="topfooter text-center campain">
+        <div class="col-campain campain">
+          <ul>
+            <li><a routerLink="/campañas/vuelta-al-cole">Campaña escolar</a></li>
+            <li><a routerLink="/campañas/juguetes">Campaña juguetes</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="topfooter text-center campain">
-      <div class="col-campain campain">
-        <ul>
-          <li><a routerLink="/campañas/vuelta-al-cole">Campaña escolar</a></li>
-          <li><a routerLink="/campañas/juguetes">Campaña juguetes</a></li>
-        </ul>
-      </div>
+    <hr />
+  
+    <div class="subfooter">
+      <span>© {{ date | date: 'yyyy' }} SOMOS MÁS - All rights reserved</span>
     </div>
-  </div>
-  <hr />
-
-  <div class="subfooter">
-    <span>© {{ date | date: 'yyyy' }} SOMOS MÁS - All rights reserved</span>
-  </div>
-</footer>
+  </footer>
+  

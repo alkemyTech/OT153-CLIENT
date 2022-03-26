@@ -37,3 +37,18 @@ background-color: $lightBlue;
   border-color: $black;
   margin-left: 20px;
 }
+
+@media only screen and (max-width: 550px) {
+
+  .btn-content{
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+
+    #btn_googleLogin img {
+      max-height: 16px;
+      max-width: 16px;
+    }
+  }
+
+}
