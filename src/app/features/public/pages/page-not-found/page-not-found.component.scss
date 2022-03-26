@@ -1,0 +1,22 @@
+$grey: rgb(241,245,255);
+$linear: linear-gradient(0deg, rgba(241,245,255,1) 0%, rgba(190,207,255,1) 100%);
+
+.contenedor {  
+  background: $grey;
+  background: $linear; 
+  width: 100vw;
+  height: 100vh;
+  font-family: monospace;
+}
+
+img {
+  max-width: 120px;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+a {
+  text-decoration: none;
+}
