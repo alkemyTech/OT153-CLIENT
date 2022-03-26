@@ -38,3 +38,37 @@
       font-size: 1em;
     }
   }
+
+
+
+
+//!
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .container{
+    display: flex;
+  }
+
+  .logo-campaign{
+    display: none;
+  }
+  
+  .slogan{  
+    display: none;
+  }
+
+}
+
+//!
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 991px){
+ 
+  .container{
+    display: flex;
+  }
+
+  .slogan{  
+    display: none;
+  }
+
+}
