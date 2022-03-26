@@ -377,3 +377,52 @@ ___
         <td> Pass </td>
     </tr>
 </table>
+
+
+___
+### · Component: Activity Form component.
+
+### · Author: Francisco Javier González del Solar
+
+<style>
+    table th, table td {
+        border: 1px solid 
+    }
+</style>
+
+<table>
+    <tr>
+        <th colspan=5> Verification of login form fields</th>
+    </tr>
+    <tr>
+        <th>Test Case Type</th><th>Description</th><th>Test Step</th><th>Expected Result</th><th> Status </th>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> There should be an activity form created </td>
+        <td> Create a form </td>
+        <td> There is a form to create an activity </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> There should be three fields in the form </td>
+        <td> Create a form</td>
+        <td> Fields image, description and name are there </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Image field should be required </td>
+        <td> Image field with empty input </td>
+        <td> Image field is invalid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Funtionality </td>
+        <td> Name field should be required </td>
+        <td> Name field with empty input </td>
+        <td> Name field is invalid </td>
+        <td> Pass </td>
+    </tr>
+</table>
