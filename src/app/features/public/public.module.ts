@@ -23,8 +23,12 @@ import { RegisterFormComponent } from './pages/register-form/register-form.compo
 import { DonationsHeaderComponent } from './pages/donations/donations-header/donations-header.component';
 import { LeafletMapComponent } from './pages/contact/components/leaflet-map/leaflet-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { CampaignsSchoolComponent } from './pages/campaigns/campaigns-school.component';
+import { CampaignsSchoolComponent } from './pages/campaigns/back-to-school/campaigns-school.component';
 import { ToysComponent } from './pages/campaigns/toys/toys.component';
+import { ToysHeaderComponent } from './pages/campaigns/toys/components/header/header.component';
+
+
+
 @NgModule({
   declarations: [
     PublicComponent,
@@ -49,6 +53,7 @@ import { ToysComponent } from './pages/campaigns/toys/toys.component';
     DonationsHeaderComponent,
     LeafletMapComponent,
     ToysComponent,
+    ToysHeaderComponent,
   ],
   imports: [CommonModule, PublicRoutingModule, SharedModule, LeafletModule],
   exports: [SharedModule],

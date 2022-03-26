@@ -4,7 +4,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { UsComponent } from './pages/about/components/us/us.component';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { ActivitySelectedComponent } from './pages/activities/components/activity-selected/activity-selected.component';
-import { CampaignsSchoolComponent } from './pages/campaigns/campaigns-school.component';
+import { CampaignsSchoolComponent } from './pages/campaigns/back-to-school/campaigns-school.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DonationsComponent } from './pages/donations/donations.component';
 import { ThanksComponent } from './pages/donations/thanks/thanks.component';
