@@ -87,6 +87,7 @@ const routes: Routes = [
         children: [
           { path: '', component: UsersCrudComponent },
           { path: 'crear', component: NewUserComponent },
+          { path: 'editar', component: EditUserComponent },
           { path: 'editar/:id', component: EditUserComponent },
         ],
       },

@@ -1,14 +1,15 @@
+
 <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid formgrid">
   <div class="col-12 flex justify-content-center">
     <img [src]="'assets/backoffice/Usuarios.png'" height="150px" [alt]="'users'" class="user-tumbnail" />
   </div>
 
-  <div class="field col-12 md:col-11 mx-auto">
+  <div class="field col-12 md:col-8 mx-auto">
     <label for="name"><strong>Nombre *</strong></label>
     <input class="p-inputgroup" formControlName="name" autocomplete="off" type="text" pInputText id="name" autofocus />
     <small class="p-error" *ngIf="submitted && !form.get('name')?.value">Nombre es requerido.</small>
   </div>
-  <div class="field col-12 md:col-11 mx-auto">
+  <div class="field col-12 md:col-8 mx-auto">
     <label for="email"><strong>Email *</strong></label>
     <input class="p-inputgroup" formControlName="email" id="email" pInputText />
     <small class="p-error" *ngIf="submitted && !form.get('email')?.value">Email es requerido.</small>
@@ -21,7 +22,7 @@
       icon="pi pi-times"
       class="p-button-text"
       type="button"
-      (click)="hideDialog()"
+      routerLink="/backoffice/usuarios"
     ></button>
     <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" type="submit"></button>
   </div>
