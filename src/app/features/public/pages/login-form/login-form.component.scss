@@ -41,9 +41,13 @@ background-color: $lightBlue;
 
 @media only screen and (max-width: 550px) {
 
+  .btn{
+    width: 100%;
+  }
+
   .btn-content{
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 
     #btn_googleLogin img {
