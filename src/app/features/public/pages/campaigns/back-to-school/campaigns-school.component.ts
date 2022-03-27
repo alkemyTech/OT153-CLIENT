@@ -16,7 +16,7 @@ export class CampaignsSchoolComponent implements OnInit {
 
   constructor() {
     this.campaign = {
-      title: 'Juntos en la vuelta al cole',
+      title: '¡Volvamos juntos!',
       description: `Incididunt dolore nisi nostrud in irure mollit velit est voluptate. 
 
         Eu ipsum labore nulla id amet. Laboris laborum ipsum 
