@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { New, NewResponse, NewsResponse } from '@app/core/models/news.interfaces';
+import { New, NewsResponse } from '@app/core/models/news.interfaces';
 import { Observable, Subscription } from 'rxjs';
 import { NewsControllerService } from '@app/core/controllers/news-controller.service';
 import { DialogService } from '@app/core/services/dialog.service';
@@ -15,11 +15,11 @@ import { DialogType } from '@app/core/enums/dialog.enum';
 export class ListNewsComponent implements OnInit, OnDestroy {
   public news$: Observable<NewsResponse> = new Observable();
   private dialogSelection$: Observable<boolean>;
-  private subscribeNews: Subscription;
-  private subscribeDialogSelection: Subscription;
+  private subscriptions: Subscription[] = [];
   public news: New[];
   private _idDelete: number;
   public rows: number = 10;
+  private clickDelete: boolean = false;
 
   constructor( 
     private controller:NewsControllerService,
@@ -37,21 +37,22 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   }
 
   setDialogObservables() {
-    this.subscribeDialogSelection = this.dialogSelection$.subscribe(
+    const subscribeDialogSelection = this.dialogSelection$.subscribe(
       resp => {
-        if (resp) {
+        if (resp && this.clickDelete) {
           this.controller.delete(this._idDelete);
           this.filterList(this._idDelete);
-          console.log('Eliminacion',this._idDelete);
         }
-        this._idDelete=-1
+        this._idDelete=-1;
+        this.clickDelete = false;
       }
     )
+    this.subscriptions.push(subscribeDialogSelection);
   }
 
   getAllNews(){
     this.news$ = this.controller.getAll();
-    this.subscribeNews = this.news$.subscribe({
+    const subscribeNews = this.news$.subscribe({
       next: resp => { this.news = resp.data },
       error: err => {
         let dialog: DialogData = { 
@@ -62,10 +63,12 @@ export class ListNewsComponent implements OnInit, OnDestroy {
         this.dialogService.show(dialog);
       }
     });
+    this.subscriptions.push(subscribeNews);
   }
 
   deleteDialog(_id: number){
     this._idDelete = _id;
+    this.clickDelete = true;
     this.dialogService.show({ 
       type: DialogType.CONFIRM, 
       header: 'Eliminar Novedad '+_id, content:'Seguro que quiere eliminar esta novedadd?', 
@@ -78,7 +81,6 @@ export class ListNewsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscribeNews.unsubscribe;
-    this.subscribeDialogSelection.unsubscribe;
+    this.subscriptions.map(s => s.unsubscribe());
   }
 }
