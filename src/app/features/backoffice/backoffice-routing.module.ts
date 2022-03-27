@@ -20,12 +20,13 @@ import { OrganizationDetailsComponent } from './pages/organization-details/organ
 import { OrganizationEditComponent } from './pages/organization-details/organization-edit/organization-edit.component';
 import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { PageNotFoundComponent } from '../public/pages/page-not-found/page-not-found.component';
+import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
     path: '',
     component: BackofficeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -86,6 +87,7 @@ const routes: Routes = [
         children: [
           { path: '', component: UsersCrudComponent },
           { path: 'crear', component: NewUserComponent },
+          { path: 'editar/:id', component: EditUserComponent },
         ],
       },
     ],
