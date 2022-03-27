@@ -12,8 +12,7 @@ import { PrivateApiService } from '../services/privateApi.service';
   providedIn: 'root',
 })
 export class OrganizationControllerService {
-  private url: string = environment.apiUrlNews;
-
+  
   constructor(private privateService: PrivateApiService, private publicService: PublicapiService) {}
 
   public getPublicOrganization<T>(): Observable<Organization> {
