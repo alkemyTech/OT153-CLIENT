@@ -92,7 +92,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    canActivate: [AuthGuard],
+    redirectTo: 'dashboard',
   }
 ];
 

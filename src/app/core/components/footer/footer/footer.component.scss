@@ -18,7 +18,7 @@ footer {
   align-content: center;
   flex-wrap: nowrap;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   margin-bottom: 2vh;
 }
 
@@ -159,6 +159,7 @@ hr {
   
   .social{
     padding-top: 2px;
+    padding-left: 5rem;
     display: flex;
     flex-direction: column; 
     justify-content: space-around;
@@ -200,7 +201,7 @@ hr {
     display: block;
 
     & a{
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
 
     & ul{

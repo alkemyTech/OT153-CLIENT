@@ -25,28 +25,22 @@
       [paginator]="true"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [filterDelay]="0"
-      [globalFilterFields]="['activity.name', 'activity.created_at']"
     >
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="name">
-            <div class="flex justify-content-center align-items-center" style="text-align: center">
+          <th>
+            <div class="flex align-items-center" style="text-align: center">
               Nombre
-              <p-sortIcon field="name"></p-sortIcon>
-              <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
             </div>
           </th>
           <th>
-            <div class="flex justify-content-center align-items-center">
+            <div class="flex align-items-center">
               Imagen
-              <p-columnFilter type="text" field="image" display="menu" class="ml-auto"></p-columnFilter>
             </div>
           </th>
-          <th pSortableColumn="created_at" style="width: 30%">
-            <div class="flex justify-content-center align-items-center">
+          <th style="width: 30%">
+            <div class="flex align-items-center">
               Creado
-              <p-sortIcon field="created_at"></p-sortIcon>
-              <p-columnFilter type="text" field="created_at" display="menu" class="ml-auto"></p-columnFilter>
             </div>
           </th>
           <th style="width: 15%"></th>
