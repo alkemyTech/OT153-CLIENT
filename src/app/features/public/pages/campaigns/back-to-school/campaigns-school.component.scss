@@ -2,6 +2,7 @@
 @import '_fonts';
 
 .campaign-container {
+  padding-top: 75px;
   background: $bgColorSoft;
   @media screen and (min-width: 2048px) {
     //smart tv background overlay
@@ -14,7 +15,9 @@
   letter-spacing: 4px;
   font-size: 1.8em;
   text-shadow: 1px 2px 2px rgba(95, 95, 95, 0.89);
-  color: $gold;
+  color:$lightBlue;
+  margin-bottom: 5px;
+
 
   @media screen and (max-width: 991px) {
     //medium devices
@@ -127,11 +130,12 @@
     //hide on mobile
     display: none;
   }
+  margin-top:5px;
   padding: 2px;
-  border: 3px solid rgb(224, 224, 224);
+  border: 3px solid $softBlue;
   border-radius: 2%;
   box-shadow: 3px 2px 5px 1px rgb(153, 153, 153);
-  background: radial-gradient(rgb(250, 237, 180) 75%, rgba(239, 255, 15, 0.315));
+  background:$softBlue;
   font-size: 120%;
   font-weight: 400;
 }
