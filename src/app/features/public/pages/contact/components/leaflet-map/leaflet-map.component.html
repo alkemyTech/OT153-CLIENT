@@ -1,9 +1,18 @@
-<div 
+<!-- <div 
     class="map transition-easyout-2 shadow-black"
     leaflet
     [leafletOptions]="mapOption"
 >
+</div> -->
+<div class="map transition-easyout-2 shadow-black">
+    <google-map width="100%" height="100%" [center]="position" [zoom]="17" [options]="mapOptions">
+        <map-marker
+            [position]="position"
+            [options]="markerOptions"
+        > </map-marker>
+    </google-map>
 </div>
+
 
 
 
