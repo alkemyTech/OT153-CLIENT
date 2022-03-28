@@ -30,6 +30,7 @@ import { ListNewsComponent } from './pages/news/list-news/list-news.component';
 import { NewNewsFormComponent } from './pages/news/new-news-form/new-news-form.component';
 import { HeaderBackofficeComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     NewsFormComponent,
     HeaderBackofficeComponent,
     SidebarComponent,
+    CategoriesListComponent,
 
   ],
   imports: [

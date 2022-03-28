@@ -15,11 +15,11 @@ export interface simpleCategoryData {
 
 export interface respFullCategories {
   success: boolean;
-  data: fullCategoryDate[];
+  data: fullCategoryData[];
   message: string;
 }
 
-export interface fullCategoryDate {
+export interface fullCategoryData {
   id?:                 number;
   name:               string;
   description:        string;
@@ -32,7 +32,7 @@ export interface fullCategoryDate {
 
 
 export interface categoriesState {
-  categories: fullCategoryDate[],
+  categories: fullCategoryData[],
   loaded: boolean,
   loading: boolean,
   error: any
