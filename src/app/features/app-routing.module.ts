@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'backoffice',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./backoffice/backoffice.module').then((m) => m.BackofficeModule),
   },
 ];
