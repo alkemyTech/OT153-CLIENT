@@ -1,4 +1,4 @@
-<p-card id='Card' header="" class='card' [styleClass]="'p-card-shadow card'" [style]="style">
+<p-card id='Card' header="" [styleClass]="'p-card-shadow card'" [style]="style">
     <ng-template pTemplate="header">
         <img alt="" [src]="data['image']" class="image image-placeholder" />
     </ng-template> 
@@ -7,7 +7,7 @@
             <b>{{data['name'] | uppercase}}</b>
         </p-divider>
         <p-scrollPanel [style]="styleDescription">
-            {{ data['description'] }}
+            <span [innerHTML]="data.description"></span>
         </p-scrollPanel>
     </ng-template>
 </p-card>

@@ -58,6 +58,21 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        label: "Novedades",
+        items: [
+          {
+            label: "Ver",
+            icon: "pi pi-fw pi-eye",
+            routerLink: "novedades",
+          },
+          {
+            label: "Añadir",
+            icon: "pi pi-fw pi-plus",
+            routerLink: "novedades/crear"
+          }
+        ]
+      },
+      {
         label: "Categorías",
         items: [
           {
