@@ -37,9 +37,9 @@ export class SidebarComponent implements OnInit {
   defineItems(){
     this.items = [
       {
-        label: 'Home',
+        label: 'Dashboard',
         icon: "pi pi-fw pi-home",
-        routerLink: '/home',
+        routerLink: 'dashboard',
 
       },
       {
@@ -54,6 +54,21 @@ export class SidebarComponent implements OnInit {
             label: "Añadir",
             icon: "pi pi-fw pi-plus",
             routerLink: "actividades/crear"
+          }
+        ]
+      },
+      {
+        label: "Novedades",
+        items: [
+          {
+            label: "Ver",
+            icon: "pi pi-fw pi-eye",
+            routerLink: "novedades",
+          },
+          {
+            label: "Añadir",
+            icon: "pi pi-fw pi-plus",
+            routerLink: "novedades/crear"
           }
         ]
       },

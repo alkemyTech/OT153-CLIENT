@@ -27,6 +27,7 @@ import { CampaignsSchoolComponent } from './pages/campaigns/back-to-school/campa
 import { ToysComponent } from './pages/campaigns/toys/toys.component';
 import { ToysHeaderComponent } from './pages/campaigns/toys/components/header/header.component';
 import { BackToSchoolHeader } from './pages/campaigns/back-to-school/components/header/header.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 
@@ -55,7 +56,8 @@ import { BackToSchoolHeader } from './pages/campaigns/back-to-school/components/
     LeafletMapComponent,
     ToysComponent,
     ToysHeaderComponent,
-    BackToSchoolHeader
+    BackToSchoolHeader,
+    PageNotFoundComponent,
   ],
   imports: [CommonModule, PublicRoutingModule, SharedModule, LeafletModule],
   exports: [SharedModule],
