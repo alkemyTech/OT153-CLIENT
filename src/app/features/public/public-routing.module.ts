@@ -15,6 +15,9 @@ import { PublicComponent } from './public.component';
 import { DonationGuard } from '@core/guards/donations.guard';
 import { LoginGuard } from '@app/core/guards/login.guard';
 import { ToysComponent } from './pages/campaigns/toys/toys.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { BackofficeComponent } from '../backoffice/backoffice.component';
+import { AuthGuard } from '../../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -69,9 +72,19 @@ const routes: Routes = [
           { path: 'vuelta-al-cole', component: CampaignsSchoolComponent },
           { path: 'juguetes', component: ToysComponent },
         ],
-      },
+      },      
     ],
   },
+  {
+    path: 'backoffice',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('../backoffice/backoffice.module').then(m => m.BackofficeModule)
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
