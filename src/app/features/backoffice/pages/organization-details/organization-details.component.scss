@@ -4,6 +4,11 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  height: 850px;
+  height: fit-content;
+  padding: 5px 0 10px 0;
   background-color: beige;
+}
+
+img {
+  border: 1px solid rgba(128, 128, 128, 0.22);
 }
