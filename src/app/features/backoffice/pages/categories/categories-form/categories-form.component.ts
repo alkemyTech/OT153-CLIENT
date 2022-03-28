@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { fullCategoryDate, respSimpleCategory } from '@core/models/category.interface';
+import { fullCategoryData, respSimpleCategory } from '@core/models/category.interface';
 import { listCategories } from '@core/redux/categories/categories.actions';
 import { SelectAllCategories } from '@core/redux/categories/categories.selector'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +20,7 @@ export class CategoriesFormComponent implements OnInit {
   @ViewChild('fileInput') fileInput: FileUpload;
   @Input() routerLink: string;
   @Input() id: number | null;
-  categories: fullCategoryDate[];
+  categories: fullCategoryData[];
   loading: boolean = false;
   loaded: boolean = false;
   error: any = null;
@@ -95,7 +95,7 @@ export class CategoriesFormComponent implements OnInit {
   postCategory(): void {
     const { name, description } = this.form.value;
     let image = this.base64Image;
-    const body: fullCategoryDate = {
+    const body: fullCategoryData = {
       name: name,
       description: description,
       image: image,
@@ -113,7 +113,7 @@ export class CategoriesFormComponent implements OnInit {
   patchCategory(): void {
     let url = `${this.categoryURL}/${this.id}`;
     const { name, description, fbLink, liLink } = this.form.value;
-    let body: fullCategoryDate;
+    let body: fullCategoryData;
     if (this.uploadedFile) {
       let image = this.base64Image;
       body = {
@@ -127,7 +127,7 @@ export class CategoriesFormComponent implements OnInit {
         description: description,
       };
     }
-    this.privateService.patch<fullCategoryDate>(url, body).subscribe(
+    this.privateService.patch<fullCategoryData>(url, body).subscribe(
       (res) => {
         //Mensaje de success
       },
@@ -140,7 +140,7 @@ export class CategoriesFormComponent implements OnInit {
   getCategory(id: number | null): void {
     let url = `${this.categoryURL}/${id}`;
     this.privateService.get<any>(url).subscribe((res) => {
-      const data: fullCategoryDate = res.data;
+      const data: fullCategoryData = res.data;
       this.form.get('name')?.setValue(data.name);
       this.form.get('description')?.setValue(data.description);
       this.form.get('image')?.setValue(data.image);

@@ -18,6 +18,7 @@ import { EditNewsFormComponent } from './pages/news/edit-news-form/edit-news-for
 import { AuthGuard } from '@core/guards/auth.guard';
 import { OrganizationDetailsComponent } from './pages/organization-details/organization-details.component';
 import { OrganizationEditComponent } from './pages/organization-details/organization-edit/organization-edit.component';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { PageNotFoundComponent } from '../public/pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -55,7 +56,7 @@ const routes: Routes = [
       {
         path: 'categorias',
         children: [
-          { path: '', component: CategoriesFormComponent },
+          { path: '', component: CategoriesListComponent },
           { path: 'crear', component: CategoriesFormComponent },
         ],
       },

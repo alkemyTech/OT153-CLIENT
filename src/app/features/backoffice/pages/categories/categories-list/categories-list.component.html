@@ -1,0 +1,85 @@
+<div class="col-12 md:col-10 lg:col-10 xl:col-8 m-auto mt-4">
+  <p-card>
+       
+    <div class="w-100 pr-5 flex justify-content-between mb-3" style="text-align: end">
+      <div>
+        <span class="p-input-icon-right">
+          <i class="pi pi-spin pi-spinner" *ngIf="loading"></i>
+          <input 
+            type="text" 
+            pInputText 
+            #inputSearch
+            placeholder="Buscar categoria"
+          />
+        </span>
+      </div>
+
+      <button
+        pButton
+        icon="pi pi-plus"
+        routerLink="/backoffice/categorias/crear"
+        class="p-button-sm float-right"
+        pTooltip="Agregar Categoria"
+        tooltipPosition="top"
+      ></button>
+    </div>
+
+    <alk-skeleton 
+      [headers]="['Nombre', 'Imagen', '']" 
+      [rows]="10" 
+      [skeletonType]="'table'"
+      *ngIf="loading"
+    ></alk-skeleton>
+
+    <p-table
+    *ngIf="!loading"
+      #dt
+      [value]="categories"
+      dataKey="id"
+      styleClass="p-datatable-customers"
+      [rowHover]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      responsiveLayout="scroll"
+      [paginator]="true"
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [filterDelay]="0"
+      [globalFilterFields]="['categories.name', 'categories.created_at']"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="name">
+            <div class="flex justify-content-center align-items-center" style="text-align: center">
+              Nombre
+              <p-sortIcon field="name"></p-sortIcon>
+              <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
+            </div>
+          </th>
+          <th>
+            <div class="flex justify-content-center align-items-center">
+              Imagen
+              <p-columnFilter type="text" field="image" display="menu" class="ml-auto"></p-columnFilter>
+            </div>
+          </th>
+
+          <th style="width: 15%"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-categories>
+        <tr class="p-selectable-row">
+          <td>
+            {{ categories.name }}
+          </td>
+          <td>
+            <p-image [src]="categories.image" alt="Image" width="60" [preview]="true" *ngIf="categories.image"></p-image>
+          </td>
+          <td style="min-width: 110px !important">
+            <button pButton icon="pi pi-pencil" class="p-button-sm p-button-primary mr-1"></button>
+            <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
