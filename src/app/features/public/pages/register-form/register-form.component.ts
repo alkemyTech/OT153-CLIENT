@@ -70,13 +70,13 @@ export class RegisterFormComponent implements OnInit {
     origin: new google.maps.Point(0,0), 
     anchor: new google.maps.Point(0, 0),
     labelOrigin: new google.maps.Point(25, 60)
-};
-
-
-mapOptions = {
-  zoom: 8,
-  mapId: 'fadc1ec7936b54d3'
-};
+  };
+  
+  
+  mapOptions = {
+    zoom: 8,
+    mapId: 'fadc1ec7936b54d3'
+  };
 
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,

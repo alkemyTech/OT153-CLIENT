@@ -5,9 +5,13 @@
     <app-leaflet-map></app-leaflet-map>
   </div>
 
+
   <section class="col-8 contact-container m-auto">
     <app-contact-form></app-contact-form>
   </section>
+
+
+
 
   <div *ngIf="organization_info" class="col-8 m-auto info-container">
     <app-contact-info [info]="organization_info"></app-contact-info>
