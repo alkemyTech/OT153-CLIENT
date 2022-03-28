@@ -22,10 +22,14 @@ import { PageNotFoundComponent } from '../public/pages/page-not-found/page-not-f
 
 const routes: Routes = [
   {
-    path: 'backoffice',
+    path: '',
     component: BackofficeComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      },
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -87,8 +91,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    pathMatch: 'full',
-    component: PageNotFoundComponent
+    canActivate: [AuthGuard],
   }
 ];
 
