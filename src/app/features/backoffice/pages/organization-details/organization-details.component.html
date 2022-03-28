@@ -1,14 +1,15 @@
 <div class="container">
   <p-card
     header="{{ organization?.name }}"
-    subheader="{{ organization?.short_description }}"
     [style]="{ width: '360px' }"
-    styleClass="p-card-shadow"
+    styleClass="p-card-shadow text-center"
   >
     <ng-template pTemplate="header">
       <img [alt]="organization?.name" [src]="organization?.logo" />
     </ng-template>
-    <div [innerHTML]="organization?.name"></div>
+    <div [innerHTML]="organization?.long_description"></div>
+    <b><div class="pb-2" [innerHTML]="organization?.welcome_text"></div></b>
+
     <ng-template pTemplate="footer">
       <p-button [routerLink]="'/backoffice/organizacion/editar'" label="Editar" icon="pi pi-pencil"></p-button>
     </ng-template>

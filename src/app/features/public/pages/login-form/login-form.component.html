@@ -42,11 +42,11 @@
           >
             <small id="password-help" class="p-error block">Contraseña obligatoria.</small>
           </div>
-          <div class="btn-content mt-5">
+          <div class="btn-content mt-1">
 
             <button 
               pButton pRipple id="btn_submit" 
-              class="btn mr-4 mt-4"
+              class="btn mt-2"
               type="submit" label="Ingresar" icon="pi pi-user"
               [disabled]="!loginForm.valid"   
               (click)="onLogin()"
@@ -54,13 +54,12 @@
 
             <button 
               pButton pRipple  id="btn_googleLogin"
-              class="btn mr-4 mt-4" 
-              type="button" label="Ingresar" 
+              class="btn mt-2" 
+              type="button" label="Ingresar con google" 
               (click)="loginGoogle()"
             > 
               <img src="/assets/public/icon-google.png" alt="Ingreso con google"> 
             </button>
-          
           </div>
       </div>
     </form>

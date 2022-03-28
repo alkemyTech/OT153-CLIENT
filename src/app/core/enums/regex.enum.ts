@@ -5,9 +5,9 @@ export enum regex {
   SYMBOLS_REGEX = '[^a-z0-9]',
   ALLDIGITS_REGEX = '^[0-9]+$',
   URL_HTTPS = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?',
-  FACEBOOK_REGEX = 'https://www.facebook.com/[A-Za-z0-9 - _  . ]{4,}$',
-  INSTAGRAM_REGEX = 'https://www.instagram.com/[A-Za-z0-9 - _  . d]{4,}$',
-  TWITTER_REGEX = 'https://twitter.com/[A-Za-z0-9 - _  . ]{4,}$',
+  FACEBOOK_REGEX = 'https://(www.)?facebook.com/[A-Za-z0-9 - _  . ]{4,}$',
+  INSTAGRAM_REGEX = 'https://(www.)?instagram.com/[A-Za-z0-9 - _  . d]{4,}$',
+  TWITTER_REGEX = 'https://(www.)?twitter.com/[A-Za-z0-9 - _  . ]{4,}$',
 }
 
 export const EMAIL_REGEX: RegExp = new RegExp(regex.EMAIL_REGEX);

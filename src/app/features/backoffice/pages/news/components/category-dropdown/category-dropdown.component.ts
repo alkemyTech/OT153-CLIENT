@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { respSimpleCategory, simpleCategoryData } from '@app/core/models/category.interface';
 import { environment } from '@env/environment';
+import { DialogService } from '@app/core/services/dialog.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
+import { DialogType } from '@app/core/enums/dialog.enum';
 @Component({
   selector: 'app-category-dropdown',
   templateUrl: './category-dropdown.component.html',
@@ -21,8 +24,10 @@ export class CategoryDropdownComponent implements OnInit {
   @Output() emitSelect = new EventEmitter<number>();
   @Output() emitTouchedDirty = new EventEmitter<boolean>();
 
-  constructor(private HttpService: HttpService, private route: ActivatedRoute, private http: HttpClient) {
-  }
+  constructor(
+    private HttpService: HttpService, 
+    private dialog: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -47,7 +52,14 @@ export class CategoryDropdownComponent implements OnInit {
           const { data } = resp;
           _category = data;
         },
-        error: (error:HttpErrorResponse) => { alert(error.status); },
+        error: (error:HttpErrorResponse) => { 
+          this.dialog.show({ 
+            header: 'Error al buscar categoria', 
+            content: error.name , 
+            type: DialogType.ERROR, 
+            btnOk: 'Aceptar' 
+          })
+         },
         complete: () => { 
           this.selectedCategory = _category; 
           this.idSelected(); 
@@ -59,8 +71,18 @@ export class CategoryDropdownComponent implements OnInit {
   getCategories(): void {
     let _data: simpleCategoryData[];
     this.HttpService.get<respSimpleCategories>(`${this.url}`, true).subscribe({
-      next: ( resp ) => { const { data } = resp; _data = data},
-      error: ( error: HttpErrorResponse ) => { console.log( error.headers ); },
+      next: ( resp ) => { 
+        const { data } = resp;
+        _data = data
+      },
+      error: ( error: HttpErrorResponse ) => { 
+        this.dialog.show({ 
+          header: 'Error al buscar categoria', 
+          content: error.name , 
+          type: DialogType.ERROR, 
+          btnOk: 'Aceptar' 
+        })
+      },
       complete: () => { 
         this.categories = _data;
         this.setSelectedCategory();
