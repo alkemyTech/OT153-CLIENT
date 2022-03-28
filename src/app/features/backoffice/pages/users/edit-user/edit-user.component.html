@@ -1,6 +1,8 @@
-
+<div class="grid flex justify-content-center">
+  <p-card class="col-9 mt-3">
 <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid formgrid">
-  <div class="col-12 flex justify-content-center">
+  <div class="col-12 flex flex-column align-items-center">
+    <h2><p>Editar usuario</p></h2>
     <img [src]="'assets/backoffice/Usuarios.png'" height="150px" [alt]="'users'" class="user-tumbnail" />
   </div>
 
@@ -27,3 +29,5 @@
     <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" type="submit"></button>
   </div>
 </form>
+</p-card>
+</div>
