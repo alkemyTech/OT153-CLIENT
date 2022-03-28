@@ -426,3 +426,92 @@ ___
         <td> Pass </td>
     </tr>
 </table>
+
+
+<p>
+· Component: Member component.
+</p>
+<p>
+· Author: Flavio Gastón Salasevicius
+</p>
+
+<style>
+    table th, table td {
+        border: 1px solid 
+    }
+</style>
+
+<table>
+    <tr>
+        <th colspan=5> Testing the Member form component functionality </th>
+    </tr>
+    <tr>
+        <th> Test Case Type </th>
+        <th> Description </th>
+        <th> Test Step </th>
+        <th> Expected Result </th>
+        <th> Status </th>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Should create </td>
+        <td> Create component </td>
+        <td> The members form component exists </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Should not send the member form if it’s invalid </td>
+        <td> Make the form invalid and try to send it </td>
+        <td> The form should not have been sent </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Should call submit method when click 'submit' button </td>
+        <td> Press the submit button and check if the submit method is called  </td>
+        <td> The method should have been called </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Form should be invalid when a field is missing </td>
+        <td> Fill all form fields as blank, and check if the form is valid </td>
+        <td> Form should be invalid </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> It should show an error message when any field is wrong or empty </td>
+        <td> Fill in the data entry with invalid and blank values ​​and check if it shows a warning message</td>
+        <td> Display a helper error message for fields</td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Should display error message when 'name' field is empty </td>
+        <td> Make the name input an empty value,  and check if it displays a helper message </td>
+        <td> Display a helper error message for name </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Should display error message when 'content' field is empty </td>
+        <td> Make the content input an empty value,  and check if it displays a helper message </td>
+        <td> Display a helper error message for content </td>
+        <td> Pass </td>
+    </tr>
+    <tr>
+        <td> Functionality </td>
+        <td> Should display error message when 'Facebook Url' field is empty </td>
+        <td> Make the Facebook Url input an empty value,  and check if it displays a helper message </td>
+        <td> Display a helper error message for message </td>
+        <td> Pass </td>
+    </tr>
+        <tr>
+        <td> Functionality </td>
+        <td> Should display error message when 'Linkedin Url' field is empty </td>
+        <td> Make the Linkedin Url input an empty value,  and check if it displays a helper message </td>
+        <td> Display a helper error message for message </td>
+        <td> Pass </td> </tr>
+</table>
