@@ -29,8 +29,19 @@ button {
   margin-right: 0.5rem;
 }
 
+.container-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+
+  & .btn{
+    width: 48%;
+  }
+}
+
 @media screen and (max-width: 960px) {
-  button {
+  .container-wrap .btn{
     width: 100%;
     margin-bottom: 0.5rem;
   }

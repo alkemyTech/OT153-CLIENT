@@ -59,8 +59,6 @@ export class ActivityFormComponent implements OnInit, OnChanges, OnDestroy {
   activity$: Observable<Activities> = new Observable();
   dialog: DialogData | undefined;
 
-  backLink = '/backoffice/actividades';
-
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>, 
     private dialogService: DialogService, 
