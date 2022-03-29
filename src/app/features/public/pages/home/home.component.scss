@@ -30,6 +30,9 @@
   }
   .section-a {
     margin: auto;
+    h1{
+      margin-left: -20px;
+    }
     hr {
       display: none;
     }
@@ -54,6 +57,9 @@
     }
     .section-a {
       margin-bottom: 20px;
+      h1{
+      margin-left: 0px;
+      }
       hr {
         display: block;
         margin-top: 20px;
