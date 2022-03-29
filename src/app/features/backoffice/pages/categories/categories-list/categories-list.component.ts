@@ -45,9 +45,10 @@ export class CategoriesListComponent implements OnInit {
   }
 
   getCategories(){
-    this.categories$.subscribe( (categories) => {
-      this.categories = categories.data;
-    });  
+    this.store.select( SelectAllCategories ).subscribe(resp => {
+      this.categories = resp.categories;
+      this.loading = false;
+    })    
   }
 
   keyup(name: string){

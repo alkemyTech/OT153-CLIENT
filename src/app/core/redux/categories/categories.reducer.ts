@@ -20,6 +20,16 @@ const _categoriesReducer = createReducer(
     categories
   }) ),
 
+  on(actions.getCategoryByNameSuccess, (state, {response}) => (
+    {
+      ...state,
+      categories: response.data,
+      loading: true,
+      loaded:false,
+      error:null
+    }
+  )),
+
   on(actions.listCategoriesError, (state, {payload}) => ({
     ...state,
     loading: false,
