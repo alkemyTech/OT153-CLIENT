@@ -10,16 +10,23 @@
     <div class="grid">
       <div class="col-12">
           <div>
-            <h1 class="title"> Bienvenidos</h1>
-            <h2 class="description"> {{description }}</h2>
-          </div>
-          <div>
             <app-carousel [slides]=slides></app-carousel>
           </div>
+          <div class="section-who">
+            <div class="section-a">
+              <h1 class="title"> ¿Quienes somos?</h1>
+                            <hr>
+            </div>
+            <div class="vl"></div>
+            <div class="section-b">
+
+              <h2 class="description"> {{description }}</h2>
+            </div>
+          </div>
       </div>
-      <div class="col-12 md:col-6 lg:col-12">
-          <h1 class="title"> Noticias</h1>
-          <alk-news></alk-news>
+      <div class="col-12">
+        <h1 class="title"> Noticias</h1>
+        <alk-news></alk-news>
       </div>
   </div>
   </ng-container>
