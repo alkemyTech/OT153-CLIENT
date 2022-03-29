@@ -6,6 +6,8 @@ import { of } from "rxjs";
 import { HttpService } from '@core/services/http.service';
 import { environment } from '@env/environment';
 import { respFullCategories } from '@models/category.interface';
+import { getMemberByNameFail, getMemberByNameSuccess } from "../members/member.actions";
+import { CategoriesService } from '../../controllers/categories-controller.service';
 
 @Injectable()
 export class CategoriesEffects{
@@ -14,7 +16,8 @@ export class CategoriesEffects{
 
   constructor( 
     private actions$: Actions, 
-    private httpService: HttpService
+    private httpService: HttpService,
+    private categoriesService:CategoriesService
   ){}
 
   listCategories$ = createEffect(
@@ -29,5 +32,20 @@ export class CategoriesEffects{
       )
     )
   );
+
+  getCategoryByName$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(categoriesActions.getCategoryByName),
+      mergeMap((act) => {
+        return this.categoriesService.getCategoryById(act.name).pipe(
+          map(
+            response => categoriesActions.getCategoryByNameSuccess({response}),
+          )
+        )
+      }),
+      catchError((error )=> of(getMemberByNameFail({error: error})))
+
+    )
+  })
 
 }

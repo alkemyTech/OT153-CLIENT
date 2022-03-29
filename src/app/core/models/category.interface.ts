@@ -19,6 +19,12 @@ export interface respFullCategories {
   message: string;
 }
 
+export interface respFullCategoriess {
+  success: boolean;
+  data: fullCategoryData;
+  message: string;
+}
+
 export interface fullCategoryData {
   id?:                 number;
   name:               string;
