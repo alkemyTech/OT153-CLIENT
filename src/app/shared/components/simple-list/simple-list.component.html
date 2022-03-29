@@ -12,7 +12,13 @@
         (click)="this.create()"
       ></button>
     </div>
-    <p-table
+    <alk-skeleton 
+    [headers]="['Nombre', 'Imagen', '']" 
+    [rows]="10" 
+    [skeletonType]="'table'"
+    *ngIf="loading"
+  ></alk-skeleton>
+    <p-table *ngIf="!loading"
       #dt
       [value]="data"
       dataKey="id"
