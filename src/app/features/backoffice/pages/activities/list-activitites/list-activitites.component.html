@@ -3,6 +3,7 @@
   [data]="activities" 
   [createLink]="'backoffice/actividades/crear'"
   [editLink]="'backoffice/actividades/editar'"
+  [loading]="loading"
   (emitEdit)="edit($event)"
   (emitDelete)="deleteDialog($event)"
 ></app-simple-list>

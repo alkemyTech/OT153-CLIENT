@@ -12,10 +12,11 @@ export class SimpleListComponent implements OnInit {
   @Input() data: any[];
   @Input() createLink: string;
   @Input() editLink: string;
+  @Input() loading:boolean = false; 
   @Output() emitCreate = new EventEmitter<number>();
   @Output() emitEdit = new EventEmitter<number>();
   @Output() emitDelete = new EventEmitter<number>();
-
+  
   public rows: number = 10;
 
   constructor( private router: Router ) { }

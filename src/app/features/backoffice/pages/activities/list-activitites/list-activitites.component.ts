@@ -26,7 +26,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   public activities: Activities[];
   private _idDelete: number;
   public rows: number = 10;
-
+  public loading:boolean = false
   constructor(
     private Store: Store<{ activitiesState: activitiesState }>, 
     public dialog: DialogService,
@@ -49,6 +49,7 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
     const subscribeActivity = this.activities$.subscribe({
       next:(activities:Activities[]) => {
         this.activities = activities;
+        this.loading = false;
       }
     });
     this.subscriptions.push(subscribeActivity);
@@ -79,8 +80,11 @@ export class ListActivititesComponent implements OnInit, OnDestroy {
   private search(load?: boolean, search?: string){
     if(load === true) { 
       this.searchActivities(search || '');
+      this.loading = true;
+
     }else{
       this.getActivities();
+      this.loading = false;
     }
   }
 
